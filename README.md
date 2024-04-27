@@ -8,3 +8,14 @@ The look, i.e. HTML, is defined using a subclass to `WsView` referenced in a com
 In most WebST examples, component classes are defined as subclasses of `WsMvcComponent`. 
 They override class side method `modelClass`.
 As suggested by its name, this method answers the class of the model used by the component.
+
+## Install
+
+To install any of the projects below evaluate the following expression in a Playground, where `PROJECT_NAME` is replaced by the project you want to install.
+```Smalltalk
+Metacello new
+  baseline: 'WebST';
+  repository: 'github://bouraqadi/WebST:pharoXX';
+  load
+ ```
+Where XX is your Pharo image version number. Each supported Pharo version has a dedicated branch.
