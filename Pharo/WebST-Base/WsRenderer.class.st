@@ -88,6 +88,12 @@ WsRenderer >> htmlFrom: anObject [
 	^self html
 ]
 
+{ #category : #rendering }
+WsRenderer >> icon [
+
+	^ self tag: 'i'
+]
+
 { #category : #initialization }
 WsRenderer >> initialize [
 
