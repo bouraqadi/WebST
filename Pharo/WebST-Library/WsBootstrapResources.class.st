@@ -2,8 +2,9 @@ Class {
 	#name : #WsBootstrapResources,
 	#superclass : #SharedPool,
 	#classVars : [
-		'Bootstrap502',
-		'Bootstrap533'
+		'Bootstrap5o0o2',
+		'Bootstrap5o3o3',
+		'BootstrapIcons1o11o3'
 	],
 	#category : #'WebST-Library-Bootstrap'
 }
@@ -11,25 +12,37 @@ Class {
 { #category : #accesing }
 WsBootstrapResources class >> bootstrap5 [
 
-	^ self bootstrap533 
+	^ self bootstrap5o3o3 
 ]
 
 { #category : #accesing }
-WsBootstrapResources class >> bootstrap502 [
+WsBootstrapResources class >> bootstrap5o0o2 [
 
-	^ Bootstrap502
+	^ Bootstrap5o0o2
 ]
 
 { #category : #accesing }
-WsBootstrapResources class >> bootstrap533 [
+WsBootstrapResources class >> bootstrap5o3o3 [
 
-	^ Bootstrap533
+	^ Bootstrap5o3o3
+]
+
+{ #category : #accesing }
+WsBootstrapResources class >> bootstrapIcons1 [
+
+	^ self bootstrapIcons1o11o3
+	
+]
+
+{ #category : #accesing }
+WsBootstrapResources class >> bootstrapIcons1o11o3 [
+	^BootstrapIcons1o11o3
 ]
 
 { #category : #'class initialization' }
-WsBootstrapResources class >> initBootstrap502 [
+WsBootstrapResources class >> initBootstrap5o0o2 [
 
-	Bootstrap502 := WsCompositeResource withAll: {
+	Bootstrap5o0o2 := WsCompositeResource withAll: {
 			                (WsCssLink new
 				                 url:
 					                 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css';
@@ -47,8 +60,8 @@ WsBootstrapResources class >> initBootstrap502 [
 ]
 
 { #category : #'class initialization' }
-WsBootstrapResources class >> initBootstrap533 [
-	Bootstrap533 := WsCompositeResource withAll: {
+WsBootstrapResources class >> initBootstrap5o3o3 [
+	Bootstrap5o3o3 := WsCompositeResource withAll: {
 			                (WsCssLink new
 				                 url:
 					                 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
@@ -66,8 +79,15 @@ WsBootstrapResources class >> initBootstrap533 [
 ]
 
 { #category : #'class initialization' }
+WsBootstrapResources class >> initBootstrapIcons1o11o3 [
+
+	BootstrapIcons1o11o3 := WsCssLink new url: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'
+]
+
+{ #category : #'class initialization' }
 WsBootstrapResources class >> initialize [
 
-	self initBootstrap533.
-	self initBootstrap502
+	self initBootstrap5o3o3.
+	self initBootstrap5o0o2.
+	self initBootstrapIcons1o11o3
 ]
