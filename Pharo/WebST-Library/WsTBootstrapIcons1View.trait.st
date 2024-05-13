@@ -1,34 +1,12 @@
 Trait {
 	#name : #WsTBootstrapIcons1View,
-	#instVars : [
-		'iconCssClass'
-	],
 	#category : #'WebST-Library-Bootstrap'
 }
 
-{ #category : #'instance creation' }
-WsTBootstrapIcons1View classSide >> iconCssClass: iconCssClass [
-	^self new
-		iconCssClass: iconCssClass;
-		yourself
-]
-
-{ #category : #accessing }
-WsTBootstrapIcons1View >> iconCssClass [
-
-	^ iconCssClass 
-]
-
-{ #category : #accessing }
-WsTBootstrapIcons1View >> iconCssClass: anObject [
-
-	iconCssClass := anObject
-]
-
 { #category : #rendering }
-WsTBootstrapIcons1View >> renderOuterHtmlOn: html [
+WsTBootstrapIcons1View >> renderOn: html icon: iconCssClass [
 
-		html icon class: 'bi ' , self iconCssClass 
+	^html icon class: ('bi ' , iconCssClass); yourself
 ]
 
 { #category : #accessing }

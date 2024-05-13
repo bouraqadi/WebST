@@ -1,7 +1,7 @@
 Class {
 	#name : #WsSaveCancelButtonsView,
 	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Text'
+	#category : #'WebST-Library-Buttons'
 }
 
 { #category : #rendering }
