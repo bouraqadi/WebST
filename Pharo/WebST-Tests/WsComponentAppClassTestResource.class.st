@@ -9,38 +9,43 @@ Class {
 }
 
 { #category : #creating }
-WsComponentAppClassTestResource >> appClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass [
+WsComponentAppClassTestResource >> appClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
 	| descriptor |
 	descriptor := self
 		              descriptorForSuperclass: appSuperclass
 		              traits: appTraits
-		              componentClass: componentClass.
+		              componentClass: componentClass
+		attributes: attributes.
 	^ appClassesDict at: descriptor ifAbsentPut: [
 		  self
 			  newAppClassSuperclass: appSuperclass
 			  traits: appTraits
-			  componentClass: componentClass ]
+			  componentClass: componentClass
+			  attributes: attributes ]
 ]
 
 { #category : #creating }
-WsComponentAppClassTestResource >> descriptorForSuperclass: appSuperclass traits: appTraits componentClass: componentClass [
+WsComponentAppClassTestResource >> descriptorForSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
-	^WsComponentAppForTestDescriptor new
-		 superclass: appSuperclass;
-		traits: appTraits;
-		componentClass: componentClass 
+	^ WsComponentAppForTestDescriptor new
+		  superclass: appSuperclass;
+		  traits: appTraits;
+		  componentClass: componentClass;
+		attributes: attributes;
+		yourself
 ]
 
 { #category : #creating }
-WsComponentAppClassTestResource >> newAppClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass [
+WsComponentAppClassTestResource >> newAppClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
 	| appClass |
 	appClass := classFactory
 		            newSubclassOf: appSuperclass
 		            using: appTraits.
-	appClass rootComponentClass: componentClass.
-	"We need this method to suppress the class side rootComponentClass obtained from the trait defined as #explicitRequirement> It is fullfilled by the WsComponentAppForTest superclass. But, PharoJS does not provide support for #explicitRequirement dynamic lookup."
+	appClass rootComponentClass: componentClass;
+	 rootComponentAttributes: attributes.
+	"We need this method to suppress the class side rootComponentClass obtained from the trait defined as #explicitRequirement. It is fullfilled by the WsComponentAppForTest superclass. But, PharoJS does not provide support for #explicitRequirement dynamic lookup."
 	appClass compile: 'rootComponentClass ^super rootComponentClass'.
 	^ appClass
 ]

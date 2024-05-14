@@ -124,9 +124,21 @@ WsRenderer >> render: element [
 ]
 
 { #category : #rendering }
+WsRenderer >> render: element dataAttributes: dataAttributes [
+
+	self render: element style: nil dataAttributes: #(  )
+]
+
+{ #category : #rendering }
 WsRenderer >> render: element style: cssStyleString [
 
-	element renderOn: self  style: cssStyleString
+	self render: element style: cssStyleString dataAttributes: #()
+]
+
+{ #category : #rendering }
+WsRenderer >> render: element style: cssStyleString dataAttributes: attributesDict [
+
+	element renderOn: self style: cssStyleString dataAttributes: attributesDict
 ]
 
 { #category : #rendering }
@@ -134,7 +146,9 @@ WsRenderer >> renderAppClass: appClass [
 
 	| componentRenderer page |
 	componentRenderer := self species new.
-	componentRenderer render: appClass rootComponentClass.
+	componentRenderer
+		render: appClass rootComponentClass
+		dataAttributes: appClass rootComponentAttributes.
 	page := WsPage new.
 	page title: appClass title.
 	page addResourcesAll: componentRenderer globalResources.
@@ -144,24 +158,13 @@ WsRenderer >> renderAppClass: appClass [
 ]
 
 { #category : #rendering }
-WsRenderer >> renderComponentClass: component [
+WsRenderer >> renderComponentClass: component style: cssStyleString dataAttributes: attributesDict [
 
 	| currentLocalResources |
 	currentLocalResources := localResources.
 	self resetLocalResources.
 	self addAllResourcesOf: component.
-	component renderOuterHtmlOn: self.
-	localResources := currentLocalResources
-]
-
-{ #category : #rendering }
-WsRenderer >> renderComponentClass: component style: cssStyleString [
-
-	| currentLocalResources |
-	currentLocalResources := localResources.
-	self resetLocalResources.
-	self addAllResourcesOf: component.
-	component renderOuterHtmlOn: self style: cssStyleString.
+	component renderOuterHtmlOn: self style: cssStyleString dataAttributes: attributesDict.
 	localResources := currentLocalResources
 ]
 

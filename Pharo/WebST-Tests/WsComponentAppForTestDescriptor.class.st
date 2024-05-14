@@ -6,10 +6,23 @@ Class {
 	#instVars : [
 		'superclass',
 		'traits',
-		'componentClass'
+		'componentClass',
+		'attributes'
 	],
 	#category : #'WebST-Tests-Support'
 }
+
+{ #category : #accessing }
+WsComponentAppForTestDescriptor >> attributes [
+
+	^ attributes
+]
+
+{ #category : #accessing }
+WsComponentAppForTestDescriptor >> attributes: anObject [
+
+	attributes := anObject
+]
 
 { #category : #WsView }
 WsComponentAppForTestDescriptor >> componentClass [

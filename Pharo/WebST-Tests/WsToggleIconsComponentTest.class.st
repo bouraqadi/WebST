@@ -9,6 +9,14 @@ Class {
 }
 
 { #category : #accessing }
+WsToggleIconsComponentTest class >> attributs [
+
+	^ {
+		  (#onIcon -> 'bi-circle-fill').
+		  (#offIcon -> 'bi-circle') }
+]
+
+{ #category : #accessing }
 WsToggleIconsComponentTest class >> componentClass [
 
 	^ WsToggleIconsComponent

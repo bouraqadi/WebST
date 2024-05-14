@@ -22,6 +22,15 @@ WsComponent class >> addAllComponentClassesTo: classes [
 		each addAllComponentClassesTo: classes ]
 ]
 
+{ #category : #rendering }
+WsComponent class >> attributeNameFromJs: attributeJsName [
+
+	<pharoJsSkip>
+	^ String streamContents: [ :str |
+		  attributeJsName do: [ :char |
+			  self writeOn: str attributeNameChar:  char ] ]
+]
+
 { #category : #'instance creation' }
 WsComponent class >> new [
 	"HTML element classes cannot be directly instantiated "
@@ -36,27 +45,40 @@ WsComponent class >> registerTag [
 ]
 
 { #category : #rendering }
+WsComponent class >> renderAttributeOn: htmlBrush jsName: attributeJsName value: attributeValue [
+
+	<pharoJsSkip>
+	^ htmlBrush
+		  dataAttributeAt: (self attributeNameFromJs: attributeJsName)
+		  put: attributeValue
+]
+
+{ #category : #rendering }
 WsComponent class >> renderOn: html [
 
 	<pharoJsSkip>
-	self renderOn: html style: nil
+	self renderOn: html style: nil dataAttributes: #()
 ]
 
 { #category : #rendering }
-WsComponent class >> renderOn: html style: cssStyleString [
+WsComponent class >> renderOn: html style: cssStyleString dataAttributes: attributesDict [
 
 	<pharoJsSkip>
-	html renderComponentClass: self  style: cssStyleString
+	html renderComponentClass: self style: cssStyleString dataAttributes: attributesDict
 ]
 
 { #category : #rendering }
-WsComponent class >> renderOuterHtmlOn: html style: cssStyleString [
+WsComponent class >> renderOuterHtmlOn: html style: cssStyleString dataAttributes: attributesDict [
 
 	<pharoJsSkip>
 	| htmlBrush |
 	htmlBrush := html tag: self tagName.
-cssStyleString ifNil: [ ^self ].
-	htmlBrush style: cssStyleString
+	cssStyleString ifNotNil: [ htmlBrush style: cssStyleString ].
+	attributesDict keysAndValuesDo: [ :attributeJsName :attributeValue |
+		self
+			renderAttributeOn: htmlBrush
+			jsName: attributeJsName
+			value: attributeValue ]
 ]
 
 { #category : #rendering }
@@ -97,6 +119,15 @@ WsComponent class >> viewClass [
 
 	<pharoJsSkip>
 	self subclassResponsibility 
+]
+
+{ #category : #rendering }
+WsComponent class >> writeOn: aStream attributeNameChar: aCharacter [
+
+	<pharoJsSkip>
+	aCharacter isLowercase ifTrue: [ ^aStream << aCharacter].
+	aStream << $-;
+	<< aCharacter asLowercase
 ]
 
 { #category : #accessing }

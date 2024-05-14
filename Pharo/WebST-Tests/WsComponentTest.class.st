@@ -14,9 +14,10 @@ Class {
 WsComponentTest class >> appClass [
 
 	^ self appClassGenerator
-		              appClassSuperclass: self appSuperclass
-		              traits: self appTraits
-		              componentClass: self componentClass
+		  appClassSuperclass: self appSuperclass
+		  traits: self appTraits
+		  componentClass: self componentClass
+		  attributes: self attributes
 ]
 
 { #category : #accessing }
@@ -39,6 +40,11 @@ WsComponentTest class >> appSuperclass [
 WsComponentTest class >> appTraits [
 
 	^ { WsTComponentApp }
+]
+
+{ #category : #'suite parameters' }
+WsComponentTest class >> attributes [
+	^#()
 ]
 
 { #category : #accessing }
