@@ -15,7 +15,7 @@ WsToggleIconsComponent class >> modelClass [
 { #category : #'class initialization' }
 WsToggleIconsComponent class >> tagName [
 
-	'ws-toggle-icons'
+	^'ws-toggle-icons'
 ]
 
 { #category : #accessing }

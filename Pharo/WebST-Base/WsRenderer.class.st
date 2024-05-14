@@ -126,7 +126,7 @@ WsRenderer >> render: element [
 { #category : #rendering }
 WsRenderer >> render: element dataAttributes: dataAttributes [
 
-	self render: element style: nil dataAttributes: #(  )
+	self render: element style: nil dataAttributes: dataAttributes
 ]
 
 { #category : #rendering }
