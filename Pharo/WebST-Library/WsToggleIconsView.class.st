@@ -35,8 +35,6 @@ WsToggleIconsView >> onIconCss: anObject [
 { #category : #rendering }
 WsToggleIconsView >> renderOuterHtmlOn: html [
 
-	html icon
-		class: self onIconCss , ' onButton'.
-	html icon
-		class: self offIconCss , ' offButton'.
+	html icon class: self onIconCss , ' onIcon'.
+	html icon class: self offIconCss , ' offIcon'
 ]
