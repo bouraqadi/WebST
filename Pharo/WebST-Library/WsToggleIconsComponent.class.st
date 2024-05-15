@@ -43,8 +43,8 @@ WsToggleIconsComponent >> initView [
 	super initView.
 	onIcon := view querySelector: '.onIcon'.
 	offIcon := view querySelector: '.offIcon'.
-	onIcon classList add: self dataset onIcon.
-	offIcon classList add: self dataset offIcon.
+	onIcon classList add: self onIconAttribute.
+	offIcon classList add: self offIconAttribute.
 	self onClickElement: onIcon do: [ self isOn: false ].
 	self onClickElement: offIcon do: [ self isOn: true ]
 ]
@@ -53,6 +53,18 @@ WsToggleIconsComponent >> initView [
 WsToggleIconsComponent >> isOn: aBoolean [
 
 	model isOn: aBoolean
+]
+
+{ #category : #initialization }
+WsToggleIconsComponent >> offIconAttribute [
+
+	^ self dataset at: #offIcon ifAbsent: [ 'bi-toggle-off' ]
+]
+
+{ #category : #initialization }
+WsToggleIconsComponent >> onIconAttribute [
+
+	^ self dataset at: #onIcon ifAbsent: [ 'bi-toggle-on' ]
 ]
 
 { #category : #actions }
