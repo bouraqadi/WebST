@@ -74,7 +74,7 @@ WsComponent class >> renderOuterHtmlOn: html style: cssStyleString dataAttribute
 	| htmlBrush |
 	htmlBrush := html tag: self tagName.
 	cssStyleString ifNotNil: [ htmlBrush style: cssStyleString ].
-	attributesDict keysAndValuesDo: [ :attributeJsName :attributeValue |
+	attributesDict asDictionary keysAndValuesDo: [ :attributeJsName :attributeValue |
 		self
 			renderAttributeOn: htmlBrush
 			jsName: attributeJsName

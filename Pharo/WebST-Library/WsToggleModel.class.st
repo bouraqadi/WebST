@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'isOn',
-		'togglePort'
+		'isOnPort'
 	],
 	#category : #'WebST-Library-Buttons'
 }
@@ -12,7 +12,7 @@ Class {
 WsToggleModel >> initialize [ 
 	super initialize.
 	isOn := false.
-	togglePort := HyCollectionPort notificationSelector: #value:
+	isOnPort := HyCollectionPort notificationSelector: #value:
 ]
 
 { #category : #accessing }
@@ -25,7 +25,7 @@ WsToggleModel >> isOn [
 WsToggleModel >> isOn: aBoolean [
 
 	isOn := aBoolean.
-	togglePort notifyWith: isOn
+	isOnPort notifyWith: isOn
 ]
 
 { #category : #actions }

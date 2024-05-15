@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #accessing }
-WsToggleIconsComponentTest class >> attributs [
+WsToggleIconsComponentTest class >> attributes [
 
 	^ {
 		  (#onIcon -> 'bi-circle-fill').
@@ -33,7 +33,7 @@ WsToggleIconsComponentTest >> assert: domElement isShowing: aBoolean [
 WsToggleIconsComponentTest >> assertViewModelLink [
 
 	self assert: onIcon isShowing: model isOn.
-	self assert: offIcon isShowing: model isOn.
+	self assert: offIcon isShowing: model isOn not.
 	2 timesRepeat: [
 		model switchOn.
 		self assertShowing: onIcon.
