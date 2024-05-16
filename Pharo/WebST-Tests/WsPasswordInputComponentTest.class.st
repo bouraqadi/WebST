@@ -7,3 +7,9 @@ Class {
 	],
 	#category : #'WebST-Tests-Library'
 }
+
+{ #category : #accessing }
+WsPasswordInputComponentTest class >> componentClass [
+
+	^ WsPasswordInputComponent 
+]
