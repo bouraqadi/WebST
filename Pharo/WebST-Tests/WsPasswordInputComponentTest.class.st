@@ -13,3 +13,9 @@ WsPasswordInputComponentTest class >> componentClass [
 
 	^ WsPasswordInputComponent 
 ]
+
+{ #category : #asserting }
+WsPasswordInputComponentTest >> changeModelValues [
+
+	model text: 'new secret password'
+]
