@@ -126,19 +126,20 @@ WsRenderer >> render: element [
 { #category : #rendering }
 WsRenderer >> render: element dataAttributes: dataAttributes [
 
-	self render: element style: nil dataAttributes: dataAttributes
+	self render: element do: [: brush | brush dataAttributes: dataAttributes]
+]
+
+{ #category : #rendering }
+WsRenderer >> render: element do: brushBlock [
+	element
+		renderOn: self
+		do: brushBlock
 ]
 
 { #category : #rendering }
 WsRenderer >> render: element style: cssStyleString [
 
-	self render: element style: cssStyleString dataAttributes: #()
-]
-
-{ #category : #rendering }
-WsRenderer >> render: element style: cssStyleString dataAttributes: attributesDict [
-
-	element renderOn: self style: cssStyleString dataAttributes: attributesDict
+	self render: element do: [: brush | brush style: cssStyleString] 
 ]
 
 { #category : #rendering }
@@ -158,13 +159,15 @@ WsRenderer >> renderAppClass: appClass [
 ]
 
 { #category : #rendering }
-WsRenderer >> renderComponentClass: component style: cssStyleString dataAttributes: attributesDict [
+WsRenderer >> renderComponentClass: component do: brushBlock [
 
 	| currentLocalResources |
 	currentLocalResources := localResources.
 	self resetLocalResources.
 	self addAllResourcesOf: component.
-	component renderOuterHtmlOn: self style: cssStyleString dataAttributes: attributesDict.
+	component
+		renderOuterHtmlOn: self
+		do: brushBlock.
 	localResources := currentLocalResources
 ]
 

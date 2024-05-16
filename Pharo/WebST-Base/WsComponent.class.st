@@ -22,15 +22,6 @@ WsComponent class >> addAllComponentClassesTo: classes [
 		each addAllComponentClassesTo: classes ]
 ]
 
-{ #category : #rendering }
-WsComponent class >> attributeNameFromJs: attributeJsName [
-
-	<pharoJsSkip>
-	^ String streamContents: [ :str |
-		  attributeJsName do: [ :char |
-			  self writeOn: str attributeNameChar:  char ] ]
-]
-
 { #category : #'instance creation' }
 WsComponent class >> new [
 	"HTML element classes cannot be directly instantiated "
@@ -45,40 +36,28 @@ WsComponent class >> registerTag [
 ]
 
 { #category : #rendering }
-WsComponent class >> renderAttributeOn: htmlBrush jsName: attributeJsName value: attributeValue [
-
-	<pharoJsSkip>
-	^ htmlBrush
-		  dataAttributeAt: (self attributeNameFromJs: attributeJsName)
-		  put: attributeValue
-]
-
-{ #category : #rendering }
 WsComponent class >> renderOn: html [
 
 	<pharoJsSkip>
-	self renderOn: html style: nil dataAttributes: #()
+	self renderOn: html do: [ : brush | ]
 ]
 
 { #category : #rendering }
-WsComponent class >> renderOn: html style: cssStyleString dataAttributes: attributesDict [
+WsComponent class >> renderOn: html do: brushBlock [
 
 	<pharoJsSkip>
-	html renderComponentClass: self style: cssStyleString dataAttributes: attributesDict
+	html
+		renderComponentClass: self
+		do: brushBlock
 ]
 
 { #category : #rendering }
-WsComponent class >> renderOuterHtmlOn: html style: cssStyleString dataAttributes: attributesDict [
+WsComponent class >> renderOuterHtmlOn: html do: brushBlock [
 
 	<pharoJsSkip>
 	| htmlBrush |
 	htmlBrush := html tag: self tagName.
-	cssStyleString ifNotNil: [ htmlBrush style: cssStyleString ].
-	attributesDict asDictionary keysAndValuesDo: [ :attributeJsName :attributeValue |
-		self
-			renderAttributeOn: htmlBrush
-			jsName: attributeJsName
-			value: attributeValue ]
+	brushBlock value: htmlBrush
 ]
 
 { #category : #rendering }
