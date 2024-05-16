@@ -58,13 +58,13 @@ WsToggleIconsComponent >> isOn: aBoolean [
 { #category : #initialization }
 WsToggleIconsComponent >> offIconAttribute [
 
-	^ self dataset at: #offIcon ifAbsent: [ 'bi-toggle-off' ]
+	^ self dataAttributeAt: #offIcon ifAbsent: [ 'bi-toggle-off' ]
 ]
 
 { #category : #initialization }
 WsToggleIconsComponent >> onIconAttribute [
 
-	^ self dataset at: #onIcon ifAbsent: [ 'bi-toggle-on' ]
+	^ self dataAttributeAt: #onIcon ifAbsent: [ 'bi-toggle-on' ]
 ]
 
 { #category : #actions }
