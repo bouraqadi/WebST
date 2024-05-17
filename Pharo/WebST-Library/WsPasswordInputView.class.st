@@ -11,7 +11,7 @@ WsPasswordInputView >> renderOuterHtmlOn: html [
 		class: 'input-group';
 		with: [
 			html passwordInput
-				class: 'form-control textInput border border-end-0';
+				class: 'form-control border border-end-0';
 				placeholder: 'Your password here'.
 			html render: WsToggleIconsComponent do: [ :brush |
 				brush

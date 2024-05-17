@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'onIcon',
-		'offIcon'
+		'offIcon',
+		'isOnPort'
 	],
 	#category : #'WebST-Library-Buttons'
 }
@@ -29,11 +30,18 @@ WsToggleIconsComponent class >> viewClass [
 	^WsToggleIconsView 
 ]
 
+{ #category : #accessing }
+WsToggleIconsComponent >> icons [
+
+	^ {self onIcon. self offIcon}
+]
+
 { #category : #initialization }
 WsToggleIconsComponent >> initModel [
 
 	super initModel.
-	model -@ #isOnPort => [ :aBoolean | self showIsOnOff: aBoolean ].
+	isOnPort := model -@ #isOnPort.
+	isOnPort => [ :aBoolean | self showIsOnOff: aBoolean ].
 	self updateDisplay
 ]
 
@@ -49,16 +57,32 @@ WsToggleIconsComponent >> initView [
 	self onClickElement: offIcon do: [ self isOn: true ]
 ]
 
-{ #category : #actions }
+{ #category : #accessing }
+WsToggleIconsComponent >> isOn [
+	^model isOn
+]
+
+{ #category : #accessing }
 WsToggleIconsComponent >> isOn: aBoolean [
 
 	model isOn: aBoolean
+]
+
+{ #category : #accessing }
+WsToggleIconsComponent >> offIcon [
+
+	^ offIcon
 ]
 
 { #category : #initialization }
 WsToggleIconsComponent >> offIconAttribute [
 
 	^ self dataAttributeAt: #offIcon ifAbsent: [ 'bi-toggle-off' ]
+]
+
+{ #category : #accessing }
+WsToggleIconsComponent >> onIcon [
+	^onIcon 
 ]
 
 { #category : #initialization }
