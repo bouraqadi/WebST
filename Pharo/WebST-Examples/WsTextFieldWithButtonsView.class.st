@@ -1,11 +1,11 @@
 Class {
-	#name : #WsTextInputView,
+	#name : #WsTextFieldWithButtonsView,
 	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Text'
+	#category : #'WebST-Examples-Text'
 }
 
 { #category : #rendering }
-WsTextInputView >> renderOuterHtmlOn: html [
+WsTextFieldWithButtonsView >> renderOuterHtmlOn: html [
 
 	html div
 		class: 'input-group';

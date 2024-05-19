@@ -49,7 +49,7 @@ WsToDoItemComponent >> initModel [
 WsToDoItemComponent >> initView [
 
 	super initView.
-	textComponent := view querySelector: WsEditableTextComponent tagName.
+	textComponent := view querySelector: WsToggleEditTextComponent tagName.
 	checkbox := view querySelector: '.todo-checkbox'
 ]
 

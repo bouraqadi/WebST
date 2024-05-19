@@ -1,5 +1,5 @@
 Class {
-	#name : #WsEditableTextComponent,
+	#name : #WsToggleEditTextComponent,
 	#superclass : #WsComponent,
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
@@ -7,40 +7,40 @@ Class {
 		'textReader',
 		'textEditor'
 	],
-	#category : #'WebST-Library-Text'
+	#category : #'WebST-Examples-Text'
 }
 
 { #category : #'class initialization' }
-WsEditableTextComponent class >> tagName [
+WsToggleEditTextComponent class >> tagName [
 
 	^ 'ws-editable-text'
 ]
 
 { #category : #accessing }
-WsEditableTextComponent class >> viewClass [
+WsToggleEditTextComponent class >> viewClass [
 
 	<pharoJsSkip>
-	^ WsEditableTextView
+	^ WsToggleEditTextView
 ]
 
 { #category : #actions }
-WsEditableTextComponent >> cancelEdit [
+WsToggleEditTextComponent >> cancelEdit [
 	self closeEditor
 ]
 
 { #category : #actions }
-WsEditableTextComponent >> closeEditor [
+WsToggleEditTextComponent >> closeEditor [
 	self hide: textEditor .
 	self show: textReader
 ]
 
 { #category : #initialization }
-WsEditableTextComponent >> initView [
+WsToggleEditTextComponent >> initView [
 
 	super initView.
 	textReader := view querySelector: WsTextComponent tagName.
 	self onClickElement: textReader do: [ self openEditor ].
-	textEditor := view querySelector: WsTextInputComponent tagName.
+	textEditor := view querySelector: WsTextFieldWithButtonsComponent tagName.
 	textEditor
 		cancelBlock: [ self cancelEdit ];
 		saveBlock: [ :newText | self saveEdit: newText ].
@@ -50,12 +50,12 @@ WsEditableTextComponent >> initView [
 ]
 
 { #category : #accessing }
-WsEditableTextComponent >> model [
+WsToggleEditTextComponent >> model [
 	^textReader model
 ]
 
 { #category : #accessing }
-WsEditableTextComponent >> model: newModel [
+WsToggleEditTextComponent >> model: newModel [
 
 	textReader model: newModel.
 	textEditor	model: newModel
@@ -63,32 +63,32 @@ WsEditableTextComponent >> model: newModel [
 ]
 
 { #category : #actions }
-WsEditableTextComponent >> openEditor [
+WsToggleEditTextComponent >> openEditor [
 
 	self show: textEditor.
 	self hide: textReader
 ]
 
 { #category : #accessing }
-WsEditableTextComponent >> readerDisplay [
+WsToggleEditTextComponent >> readerDisplay [
 
 	^ textReader display
 ]
 
 { #category : #actions }
-WsEditableTextComponent >> saveEdit: newText [
+WsToggleEditTextComponent >> saveEdit: newText [
 
 	textReader text: newText.
 	self closeEditor
 ]
 
 { #category : #accessing }
-WsEditableTextComponent >> text [
+WsToggleEditTextComponent >> text [
 	^textReader text
 ]
 
 { #category : #accessing }
-WsEditableTextComponent >> text: newText [
+WsToggleEditTextComponent >> text: newText [
 
 	textReader text: newText
 ]

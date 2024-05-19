@@ -1,5 +1,5 @@
 Class {
-	#name : #WsEditableTextComponentTest,
+	#name : #WsToggleEditTextComponentTest,
 	#superclass : #WsComponentTest,
 	#instVars : [
 		'textReader',
@@ -8,17 +8,17 @@ Class {
 		'cancelButton',
 		'saveButton'
 	],
-	#category : #'WebST-Tests-Library'
+	#category : #'WebST-Tests-Examples'
 }
 
 { #category : #accessing }
-WsEditableTextComponentTest class >> componentClass [
+WsToggleEditTextComponentTest class >> componentClass [
 
-	^ WsEditableTextComponent 
+	^ WsToggleEditTextComponent 
 ]
 
 { #category : #tests }
-WsEditableTextComponentTest >> assertCancelEditing: newText [
+WsToggleEditTextComponentTest >> assertCancelEditing: newText [
 
 	| initialText |
 	initialText := self textReaderContents.
@@ -33,7 +33,7 @@ WsEditableTextComponentTest >> assertCancelEditing: newText [
 ]
 
 { #category : #tests }
-WsEditableTextComponentTest >> assertComponent [
+WsToggleEditTextComponentTest >> assertComponent [
 
 	self assertDisplayStateWith: ''.
 	self assertComponentSetText: 'Bilbo The Hobbit'.
@@ -46,7 +46,7 @@ WsEditableTextComponentTest >> assertComponent [
 ]
 
 { #category : #tests }
-WsEditableTextComponentTest >> assertComponentSetText: newText [
+WsToggleEditTextComponentTest >> assertComponentSetText: newText [
 
 	| initialText |
 	initialText := self textReaderContents.
@@ -58,7 +58,7 @@ WsEditableTextComponentTest >> assertComponentSetText: newText [
 ]
 
 { #category : #tests }
-WsEditableTextComponentTest >> assertDisplayStateWith: expectedText [
+WsToggleEditTextComponentTest >> assertDisplayStateWith: expectedText [
 
 	self assertShowing: textReader.
 	self assert: self textReaderContents equals: expectedText.
@@ -66,7 +66,7 @@ WsEditableTextComponentTest >> assertDisplayStateWith: expectedText [
 ]
 
 { #category : #tests }
-WsEditableTextComponentTest >> assertEditStateWith: expectedText [
+WsToggleEditTextComponentTest >> assertEditStateWith: expectedText [
 
 	self assertHidden: textReader.
 	self assertShowing: textEditor.
@@ -74,7 +74,7 @@ self assert: self textEditorInputValue equals: expectedText
 ]
 
 { #category : #tests }
-WsEditableTextComponentTest >> assertSaveEditing: newText [
+WsToggleEditTextComponentTest >> assertSaveEditing: newText [
 
 	| initialText |
 	initialText := self textReaderContents.
@@ -89,12 +89,12 @@ WsEditableTextComponentTest >> assertSaveEditing: newText [
 ]
 
 { #category : #accessing }
-WsEditableTextComponentTest >> component: aComponent [
+WsToggleEditTextComponentTest >> component: aComponent [
 
 	| editorView |
 	super component: aComponent.
 	textReader := shadowRoot querySelector: WsTextComponent tagName.
-	textEditor := shadowRoot querySelector: WsTextInputComponent tagName.
+	textEditor := shadowRoot querySelector: WsTextFieldWithButtonsComponent tagName.
 	editorView := textEditor view. 
 	textInput :=  editorView querySelector: 'input'.
 	cancelButton := editorView querySelector: '.cancelButton'.
@@ -102,13 +102,13 @@ WsEditableTextComponentTest >> component: aComponent [
 ]
 
 { #category : #accessing }
-WsEditableTextComponentTest >> textEditorInputValue [
+WsToggleEditTextComponentTest >> textEditorInputValue [
 
 	^ textInput value
 ]
 
 { #category : #accessing }
-WsEditableTextComponentTest >> textReaderContents [
+WsToggleEditTextComponentTest >> textReaderContents [
 
 	^ textReader text
 ]

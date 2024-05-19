@@ -9,6 +9,6 @@ WsToDoItemView >> renderOuterHtmlOn: html [
 
 	html checkbox class: 'form-check-input todo-checkbox'.
 	html
-		render: WsEditableTextComponent
+		render: WsToggleEditTextComponent
 		style: 'display:inline-block; margin-left:10px;'
 ]

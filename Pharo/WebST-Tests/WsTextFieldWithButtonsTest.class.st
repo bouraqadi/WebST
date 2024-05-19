@@ -1,20 +1,20 @@
 Class {
-	#name : #WsTextInputComponentTest,
+	#name : #WsTextFieldWithButtonsTest,
 	#superclass : #WsMvcComponentTest,
 	#instVars : [
 		'textDisplay'
 	],
-	#category : #'WebST-Tests-Library'
+	#category : #'WebST-Tests-Examples'
 }
 
 { #category : #accessing }
-WsTextInputComponentTest class >> componentClass [
+WsTextFieldWithButtonsTest class >> componentClass [
 
-	^ WsTextInputComponent 
+	^ WsTextFieldWithButtonsComponent 
 ]
 
 { #category : #asserting }
-WsTextInputComponentTest >> assertViewModelLink [
+WsTextFieldWithButtonsTest >> assertViewModelLink [
 
 	| newText1 newText2 input |
 	input := component input.
@@ -39,18 +39,18 @@ WsTextInputComponentTest >> assertViewModelLink [
 ]
 
 { #category : #asserting }
-WsTextInputComponentTest >> cancelButton [
+WsTextFieldWithButtonsTest >> cancelButton [
 	^shadowRoot querySelector: '.cancelButton'
 ]
 
 { #category : #asserting }
-WsTextInputComponentTest >> changeModelValues [
+WsTextFieldWithButtonsTest >> changeModelValues [
 
 	model text: 'new replacement text for change model test'
 ]
 
 { #category : #asserting }
-WsTextInputComponentTest >> saveButton [
+WsTextFieldWithButtonsTest >> saveButton [
 
 	^ shadowRoot querySelector: '.saveButton'
 ]
