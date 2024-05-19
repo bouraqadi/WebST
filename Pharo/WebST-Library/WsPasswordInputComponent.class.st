@@ -11,6 +11,12 @@ Class {
 }
 
 { #category : #accessing }
+WsPasswordInputComponent class >> defaultPlaceholderAttribute [
+
+	^ ''
+]
+
+{ #category : #accessing }
 WsPasswordInputComponent class >> modelClass [
 
 	^WsTextModel
@@ -29,6 +35,11 @@ WsPasswordInputComponent class >> viewClass [
 	^WsPasswordInputView 
 ]
 
+{ #category : #accessing }
+WsPasswordInputComponent >> defaultPlaceholderAttribute [
+	^self class defaultPlaceholderAttribute
+]
+
 { #category : #actions }
 WsPasswordInputComponent >> displayPassword: newText [
 	passwordField value: newText
@@ -44,12 +55,25 @@ WsPasswordInputComponent >> initModel [
 
 { #category : #initialization }
 WsPasswordInputComponent >> initView [
+
 	super initView.
 	toggleShowPasswordButton := view querySelector:
 		                            WsToggleIconsComponent tagName.
 	passwordField := view querySelector: 'input'.
-	toggleShowPasswordButton -@ #isOnPort => [ : aBoolean | self showPasswordAsPlainText: aBoolean ].
-	self onChangeElement: passwordField do: [: newPassword | self savePassword: newPassword ]
+	passwordField placeholder: self placeholderAttribute.
+	toggleShowPasswordButton -@ #isOnPort
+	=> [ :aBoolean | self showPasswordAsPlainText: aBoolean ].
+	self
+		onChangeElement: passwordField
+		do: [ :newPassword | self savePassword: newPassword ]
+]
+
+{ #category : #accessing }
+WsPasswordInputComponent >> placeholderAttribute [
+
+	^ self
+		  dataAttributeAt: #placeholder
+		  ifAbsent: [ self defaultPlaceholderAttribute ]
 ]
 
 { #category : #actions }

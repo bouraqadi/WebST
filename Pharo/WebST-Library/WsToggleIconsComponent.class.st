@@ -11,6 +11,18 @@ Class {
 	#category : #'WebST-Library-Buttons'
 }
 
+{ #category : #initialization }
+WsToggleIconsComponent class >> defaultOffIconAttribute [
+
+	^ 'bi-toggle-off'
+]
+
+{ #category : #initialization }
+WsToggleIconsComponent class >> defaultOnIconAttribute [
+
+	^ 'bi-toggle-on'
+]
+
 { #category : #accessing }
 WsToggleIconsComponent class >> modelClass [
 
@@ -28,6 +40,16 @@ WsToggleIconsComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsToggleIconsView 
+]
+
+{ #category : #initialization }
+WsToggleIconsComponent >> defaultOffIconAttribute [
+	^ self class defaultOffIconAttribute
+]
+
+{ #category : #initialization }
+WsToggleIconsComponent >> defaultOnIconAttribute [
+	^ self class defaultOnIconAttribute
 ]
 
 { #category : #accessing }
@@ -77,7 +99,9 @@ WsToggleIconsComponent >> offIcon [
 { #category : #initialization }
 WsToggleIconsComponent >> offIconAttribute [
 
-	^ self dataAttributeAt: #offIcon ifAbsent: [ 'bi-toggle-off' ]
+	^ self
+		  dataAttributeAt: #offIcon
+		  ifAbsent: [ self defaultOffIconAttribute ]
 ]
 
 { #category : #accessing }
@@ -88,7 +112,9 @@ WsToggleIconsComponent >> onIcon [
 { #category : #initialization }
 WsToggleIconsComponent >> onIconAttribute [
 
-	^ self dataAttributeAt: #onIcon ifAbsent: [ 'bi-toggle-on' ]
+	^ self
+		  dataAttributeAt: #onIcon
+		  ifAbsent: [ self defaultOnIconAttribute ]
 ]
 
 { #category : #actions }

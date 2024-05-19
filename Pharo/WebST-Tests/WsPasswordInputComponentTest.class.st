@@ -14,6 +14,30 @@ WsPasswordInputComponentTest class >> componentClass [
 	^ WsPasswordInputComponent 
 ]
 
+{ #category : #accessing }
+WsPasswordInputComponentTest class >> dataAttributes [
+	^{#placeholder -> 'New Password'}
+]
+
+{ #category : #asserting }
+WsPasswordInputComponentTest >> assertCustomAttributesApplied [
+
+	super assertCustomAttributesApplied.
+	self
+		assert: passwordField placeholder
+		equals: (self dataAttributesDict at: #placeholder)
+]
+
+{ #category : #asserting }
+WsPasswordInputComponentTest >> assertDefaultAttributesApplied [
+
+	super assertDefaultAttributesApplied.
+	self
+		assert: passwordField placeholder
+		equals: self rootComponentClass defaultPlaceholderAttribute 
+		
+]
+
 { #category : #asserting }
 WsPasswordInputComponentTest >> assertViewModelLink [
 

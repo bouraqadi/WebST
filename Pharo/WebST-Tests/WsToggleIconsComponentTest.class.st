@@ -9,17 +9,17 @@ Class {
 }
 
 { #category : #accessing }
-WsToggleIconsComponentTest class >> attributes [
+WsToggleIconsComponentTest class >> componentClass [
+
+	^ WsToggleIconsComponent
+]
+
+{ #category : #accessing }
+WsToggleIconsComponentTest class >> dataAttributes [
 
 	^ {
 		  (#onIcon -> 'bi-circle-fill').
 		  (#offIcon -> 'bi-circle') }
-]
-
-{ #category : #accessing }
-WsToggleIconsComponentTest class >> componentClass [
-
-	^ WsToggleIconsComponent
 ]
 
 { #category : #asserting }
@@ -27,6 +27,28 @@ WsToggleIconsComponentTest >> assert: domElement isShowing: aBoolean [
 	aBoolean ifTrue: [ ^self assertShowing: domElement ].
 	self assertHidden: domElement 
 
+]
+
+{ #category : #asserting }
+WsToggleIconsComponentTest >> assertCustomAttributesApplied [
+
+	| expectedOnClass expectedOffClass |
+	super assertCustomAttributesApplied.
+	expectedOnClass := self dataAttributesDict at: #onIcon.
+	self assert: onIcon hasCssClass: expectedOnClass.
+	expectedOffClass := self dataAttributesDict at: #offIcon.
+	self assert: offIcon hasCssClass: expectedOffClass
+]
+
+{ #category : #asserting }
+WsToggleIconsComponentTest >> assertDefaultAttributesApplied [
+
+	| expectedOnClass expectedOffClass |
+	super assertDefaultAttributesApplied.
+	expectedOnClass := self rootComponentClass defaultOnIconAttribute.
+	self assert: onIcon hasCssClass: expectedOnClass.
+	expectedOffClass := self rootComponentClass defaultOffIconAttribute.
+	self assert: offIcon hasCssClass: expectedOffClass
 ]
 
 { #category : #asserting }

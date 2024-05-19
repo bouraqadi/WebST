@@ -71,5 +71,6 @@ WsMvcComponentTest >> testDynamicComponentCreationWithProvidedModel [
 		insertBefore: newComponent
 		existingChild: staticComponent.
 	self assert: self allComponents size equals: 2.
-	self assertComponent: newComponent
+	self assertComponent: newComponent.
+
 ]

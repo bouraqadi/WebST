@@ -10,14 +10,14 @@ Class {
 	#category : #'WebST-Tests-Support'
 }
 
-{ #category : #'suite parameters' }
+{ #category : #accessing }
 WsComponentTest class >> appClass [
 
 	^ self appClassGenerator
 		  appClassSuperclass: self appSuperclass
 		  traits: self appTraits
 		  componentClass: self componentClass
-		  attributes: self attributes
+		  attributes: self dataAttributes
 ]
 
 { #category : #accessing }
@@ -42,14 +42,15 @@ WsComponentTest class >> appTraits [
 	^ { WsTComponentApp }
 ]
 
-{ #category : #'suite parameters' }
-WsComponentTest class >> attributes [
-	^#()
-]
-
 { #category : #accessing }
 WsComponentTest class >> componentClass [
 	^self subclassResponsibility 
+]
+
+{ #category : #accessing }
+WsComponentTest class >> dataAttributes [
+
+	^ #(  )
 ]
 
 { #category : #testing }
@@ -70,12 +71,12 @@ WsComponentTest >> allComponents [
 		                 self rootComponentClass  tagName.
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsComponentTest >> assertComponent [ 
 	self subclassResponsibility 
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsComponentTest >> assertComponent: aComponent [
 
 	self component: aComponent.
@@ -83,13 +84,25 @@ WsComponentTest >> assertComponent: aComponent [
 	self assertComponent
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsComponentTest >> assertComponentClass [
 
 	| actualClass expectedClass |
 	expectedClass := self bridge jsGlobalAt: self rootComponentClass name.
 	actualClass := self evalBlock: [ component class ].
 	self assert: actualClass identicalTo: expectedClass
+]
+
+{ #category : #asserting }
+WsComponentTest >> assertCustomAttributesApplied [
+
+	^self 
+]
+
+{ #category : #asserting }
+WsComponentTest >> assertDefaultAttributesApplied [
+
+	^ self
 ]
 
 { #category : #accessing }
@@ -99,7 +112,13 @@ WsComponentTest >> component: aComponent [
 
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
+WsComponentTest >> dataAttributesDict [
+
+	^ self class dataAttributes asDictionary
+]
+
+{ #category : #accessing }
 WsComponentTest >> jsComponentClass [
 
 	^ self bridge jsGlobalAt: self rootComponentClass name
@@ -121,7 +140,8 @@ WsComponentTest >> testDynamicComponentCreationBasic [
 		insertBefore: newComponent
 		existingChild: staticComponent.
 	self assert: self allComponents size equals: 2.
-	self assertComponent: newComponent
+	self assertComponent: newComponent.
+	self assertDefaultAttributesApplied
 ]
 
 { #category : #tests }
@@ -131,5 +151,6 @@ WsComponentTest >> testStaticComponentCreation [
 	| allComponents |
 	allComponents := self allComponents.
 	self assert: allComponents size equals: 1.
-	self assertComponent: allComponents first
+	self assertComponent: allComponents first.
+	self assertCustomAttributesApplied
 ]
