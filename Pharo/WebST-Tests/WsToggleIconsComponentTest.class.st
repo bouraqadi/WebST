@@ -23,13 +23,6 @@ WsToggleIconsComponentTest class >> dataAttributes [
 ]
 
 { #category : #asserting }
-WsToggleIconsComponentTest >> assert: domElement isShowing: aBoolean [
-	aBoolean ifTrue: [ ^self assertShowing: domElement ].
-	self assertHidden: domElement 
-
-]
-
-{ #category : #asserting }
 WsToggleIconsComponentTest >> assertCustomAttributesApplied [
 
 	| expectedOnClass expectedOffClass |
