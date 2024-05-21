@@ -1,11 +1,11 @@
 Class {
-	#name : #WsToggleEditTextView,
+	#name : #WsTextToggleEditView,
 	#superclass : #WsView,
 	#category : #'WebST-Examples-Text'
 }
 
 { #category : #rendering }
-WsToggleEditTextView >> renderOuterHtmlOn: html [
+WsTextToggleEditView >> renderOuterHtmlOn: html [
 
 	html
 		render: WsTextComponent;

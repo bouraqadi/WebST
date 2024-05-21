@@ -1,5 +1,5 @@
 Class {
-	#name : #WsToggleEditTextComponentTest,
+	#name : #WsTexToggleEditComponentTest,
 	#superclass : #WsComponentTest,
 	#instVars : [
 		'textReader',
@@ -12,13 +12,13 @@ Class {
 }
 
 { #category : #accessing }
-WsToggleEditTextComponentTest class >> componentClass [
+WsTexToggleEditComponentTest class >> componentClass [
 
-	^ WsToggleEditTextComponent 
+	^ WsTextToggleEditComponent 
 ]
 
 { #category : #tests }
-WsToggleEditTextComponentTest >> assertCancelEditing: newText [
+WsTexToggleEditComponentTest >> assertCancelEditing: newText [
 
 	| initialText |
 	initialText := self textReaderContents.
@@ -33,7 +33,7 @@ WsToggleEditTextComponentTest >> assertCancelEditing: newText [
 ]
 
 { #category : #tests }
-WsToggleEditTextComponentTest >> assertComponent [
+WsTexToggleEditComponentTest >> assertComponent [
 
 	self assertDisplayStateWith: ''.
 	self assertComponentSetText: 'Bilbo The Hobbit'.
@@ -46,7 +46,7 @@ WsToggleEditTextComponentTest >> assertComponent [
 ]
 
 { #category : #tests }
-WsToggleEditTextComponentTest >> assertComponentSetText: newText [
+WsTexToggleEditComponentTest >> assertComponentSetText: newText [
 
 	| initialText |
 	initialText := self textReaderContents.
@@ -58,7 +58,7 @@ WsToggleEditTextComponentTest >> assertComponentSetText: newText [
 ]
 
 { #category : #tests }
-WsToggleEditTextComponentTest >> assertDisplayStateWith: expectedText [
+WsTexToggleEditComponentTest >> assertDisplayStateWith: expectedText [
 
 	self assertShowing: textReader.
 	self assert: self textReaderContents equals: expectedText.
@@ -66,7 +66,7 @@ WsToggleEditTextComponentTest >> assertDisplayStateWith: expectedText [
 ]
 
 { #category : #tests }
-WsToggleEditTextComponentTest >> assertEditStateWith: expectedText [
+WsTexToggleEditComponentTest >> assertEditStateWith: expectedText [
 
 	self assertHidden: textReader.
 	self assertShowing: textEditor.
@@ -74,7 +74,7 @@ self assert: self textEditorInputValue equals: expectedText
 ]
 
 { #category : #tests }
-WsToggleEditTextComponentTest >> assertSaveEditing: newText [
+WsTexToggleEditComponentTest >> assertSaveEditing: newText [
 
 	| initialText |
 	initialText := self textReaderContents.
@@ -89,7 +89,7 @@ WsToggleEditTextComponentTest >> assertSaveEditing: newText [
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponentTest >> component: aComponent [
+WsTexToggleEditComponentTest >> component: aComponent [
 
 	| editorView |
 	super component: aComponent.
@@ -102,13 +102,13 @@ WsToggleEditTextComponentTest >> component: aComponent [
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponentTest >> textEditorInputValue [
+WsTexToggleEditComponentTest >> textEditorInputValue [
 
 	^ textInput value
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponentTest >> textReaderContents [
+WsTexToggleEditComponentTest >> textReaderContents [
 
 	^ textReader text
 ]

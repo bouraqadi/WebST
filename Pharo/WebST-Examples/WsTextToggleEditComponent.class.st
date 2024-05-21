@@ -1,5 +1,5 @@
 Class {
-	#name : #WsToggleEditTextComponent,
+	#name : #WsTextToggleEditComponent,
 	#superclass : #WsComponent,
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
@@ -11,31 +11,31 @@ Class {
 }
 
 { #category : #'class initialization' }
-WsToggleEditTextComponent class >> tagName [
+WsTextToggleEditComponent class >> tagName [
 
 	^ 'ws-editable-text'
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponent class >> viewClass [
+WsTextToggleEditComponent class >> viewClass [
 
 	<pharoJsSkip>
-	^ WsToggleEditTextView
+	^ WsTextToggleEditView
 ]
 
 { #category : #actions }
-WsToggleEditTextComponent >> cancelEdit [
+WsTextToggleEditComponent >> cancelEdit [
 	self closeEditor
 ]
 
 { #category : #actions }
-WsToggleEditTextComponent >> closeEditor [
+WsTextToggleEditComponent >> closeEditor [
 	self hide: textEditor .
 	self show: textReader
 ]
 
 { #category : #initialization }
-WsToggleEditTextComponent >> initView [
+WsTextToggleEditComponent >> initView [
 
 	super initView.
 	textReader := view querySelector: WsTextComponent tagName.
@@ -50,12 +50,12 @@ WsToggleEditTextComponent >> initView [
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponent >> model [
+WsTextToggleEditComponent >> model [
 	^textReader model
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponent >> model: newModel [
+WsTextToggleEditComponent >> model: newModel [
 
 	textReader model: newModel.
 	textEditor	model: newModel
@@ -63,32 +63,32 @@ WsToggleEditTextComponent >> model: newModel [
 ]
 
 { #category : #actions }
-WsToggleEditTextComponent >> openEditor [
+WsTextToggleEditComponent >> openEditor [
 
 	self show: textEditor.
 	self hide: textReader
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponent >> readerDisplay [
+WsTextToggleEditComponent >> readerDisplay [
 
 	^ textReader display
 ]
 
 { #category : #actions }
-WsToggleEditTextComponent >> saveEdit: newText [
+WsTextToggleEditComponent >> saveEdit: newText [
 
 	textReader text: newText.
 	self closeEditor
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponent >> text [
+WsTextToggleEditComponent >> text [
 	^textReader text
 ]
 
 { #category : #accessing }
-WsToggleEditTextComponent >> text: newText [
+WsTextToggleEditComponent >> text: newText [
 
 	textReader text: newText
 ]
