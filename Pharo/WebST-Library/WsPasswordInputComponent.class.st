@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'toggleShowPasswordButton',
-		'passwordField'
+		'passwordField',
+		'passwordPort'
 	],
 	#category : #'WebST-Library-Text'
 }
@@ -49,7 +50,8 @@ WsPasswordInputComponent >> displayPassword: newText [
 WsPasswordInputComponent >> initModel [
 
 	super initModel.
-	model -@ #textPort => [ :newText | self displayPassword: newText ].
+	passwordPort := model -@ #textPort.
+	passwordPort => [ :newText | self displayPassword: newText ].
 	self displayPassword: model text
 ]
 
@@ -66,6 +68,18 @@ WsPasswordInputComponent >> initView [
 	self
 		onChangeElement: passwordField
 		do: [ :newPassword | self savePassword: newPassword ]
+]
+
+{ #category : #accessing }
+WsPasswordInputComponent >> password [
+
+	^ model text
+]
+
+{ #category : #accessing }
+WsPasswordInputComponent >> password: newPassword [
+
+	model text: newPassword
 ]
 
 { #category : #accessing }
@@ -86,4 +100,16 @@ WsPasswordInputComponent >> showPasswordAsPlainText: aBoolean [
 	| newType |
 	newType := aBoolean ifTrue: [ 'text' ] ifFalse: ['password'].
 	passwordField type: newType
+]
+
+{ #category : #accessing }
+WsPasswordInputComponent >> value [
+
+	^ self password
+]
+
+{ #category : #accessing }
+WsPasswordInputComponent >> value: newPassword [
+
+	self password: newPassword
 ]
