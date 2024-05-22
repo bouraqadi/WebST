@@ -21,10 +21,23 @@ WsTComponentApp classSide >> appClasses [
 ]
 
 { #category : #accessing }
+WsTComponentApp classSide >> appExporterClass [
+
+	^ WsExporter
+]
+
+{ #category : #accessing }
 WsTComponentApp classSide >> bridgeClientClass [
 
 	<pharoJsSkip>
 	^ WsComponentBridgeClient
+]
+
+{ #category : #accessing }
+WsTComponentApp classSide >> exporterClass [
+
+	<pharoJsSkip>
+	^ WsAppExporter
 ]
 
 { #category : #rendering }
