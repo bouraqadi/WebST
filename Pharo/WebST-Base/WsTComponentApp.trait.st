@@ -37,7 +37,7 @@ WsTComponentApp classSide >> bridgeClientClass [
 WsTComponentApp classSide >> exporterClass [
 
 	<pharoJsSkip>
-	^ WsAppExporter
+	^ WsClientExporter
 ]
 
 { #category : #rendering }
