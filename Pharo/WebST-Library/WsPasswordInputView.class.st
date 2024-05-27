@@ -12,7 +12,7 @@ WsPasswordInputView >> renderOuterHtmlOn: html [
 		with: [
 			html passwordInput
 				class: 'form-control border border-end-0'.
-			html render: WsToggleIconsComponent do: [ :brush |
+			html render: WsToggleIconsComponent with: [ :brush |
 				brush
 					class: 'btn border border-start-0';
 					dataAttributes: {

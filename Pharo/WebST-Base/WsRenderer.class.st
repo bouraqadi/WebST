@@ -124,22 +124,31 @@ WsRenderer >> render: element [
 ]
 
 { #category : #rendering }
-WsRenderer >> render: element dataAttributes: dataAttributes [
+WsRenderer >> render: element class: cssClassString [
 
-	self render: element do: [: brush | brush dataAttributes: dataAttributes]
+	self
+		render: element
+		with: [ :brush | brush class: cssClassString
+ ]
 ]
 
 { #category : #rendering }
-WsRenderer >> render: element do: brushBlock [
-	element
-		renderOn: self
-		do: brushBlock
+WsRenderer >> render: element dataAttributes: dataAttributes [
+
+	self render: element with: [: brush | brush dataAttributes: dataAttributes]
 ]
 
 { #category : #rendering }
 WsRenderer >> render: element style: cssStyleString [
 
-	self render: element do: [: brush | brush style: cssStyleString] 
+	self render: element with: [: brush | brush style: cssStyleString] 
+]
+
+{ #category : #rendering }
+WsRenderer >> render: element with: brushBlock [
+	element
+		renderOn: self
+		with: brushBlock
 ]
 
 { #category : #rendering }
@@ -159,7 +168,7 @@ WsRenderer >> renderAppClass: appClass [
 ]
 
 { #category : #rendering }
-WsRenderer >> renderComponentClass: component do: brushBlock [
+WsRenderer >> renderComponentClass: component with: brushBlock [
 
 	| currentLocalResources |
 	currentLocalResources := localResources.
@@ -167,7 +176,7 @@ WsRenderer >> renderComponentClass: component do: brushBlock [
 	self addAllResourcesOf: component.
 	component
 		renderOuterHtmlOn: self
-		do: brushBlock.
+		with: brushBlock.
 	localResources := currentLocalResources
 ]
 

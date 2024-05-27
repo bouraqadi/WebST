@@ -39,20 +39,20 @@ WsComponent class >> registerTag [
 WsComponent class >> renderOn: html [
 
 	<pharoJsSkip>
-	self renderOn: html do: [ : brush | ]
+	self renderOn: html with: [ : brush | ]
 ]
 
 { #category : #rendering }
-WsComponent class >> renderOn: html do: brushBlock [
+WsComponent class >> renderOn: html with: brushBlock [
 
 	<pharoJsSkip>
 	html
 		renderComponentClass: self
-		do: brushBlock
+		with: brushBlock
 ]
 
 { #category : #rendering }
-WsComponent class >> renderOuterHtmlOn: html do: brushBlock [
+WsComponent class >> renderOuterHtmlOn: html with: brushBlock [
 
 	<pharoJsSkip>
 	| htmlBrush |
