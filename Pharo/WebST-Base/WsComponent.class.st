@@ -76,8 +76,7 @@ WsComponent class >> shadowHtml [
 WsComponent class >> subComponentClasses [
 
 	<pharoJsSkip>
-	^ self viewClass referencedClasses select: [ :each |
-		  each inheritsFrom: WsComponent ]
+	^ self viewClass referencedComponentClasses
 ]
 
 { #category : #'class initialization' }

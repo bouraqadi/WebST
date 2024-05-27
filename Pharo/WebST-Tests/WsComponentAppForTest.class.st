@@ -1,8 +1,8 @@
 Class {
 	#name : #WsComponentAppForTest,
 	#superclass : #PjWebApplication,
-	#traits : 'WsTComponentApp',
-	#classTraits : 'WsTComponentApp classTrait',
+	#traits : 'WsTSingleComponentApp',
+	#classTraits : 'WsTSingleComponentApp classTrait',
 	#classInstVars : [
 		'rootComponentClass',
 		'rootComponentAttributes'

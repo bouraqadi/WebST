@@ -1,8 +1,8 @@
 Class {
 	#name : #WsDependantViewApp,
 	#superclass : #PjWebApplication,
-	#traits : 'WsTComponentApp',
-	#classTraits : 'WsTComponentApp classTrait',
+	#traits : 'WsTSingleComponentApp',
+	#classTraits : 'WsTSingleComponentApp classTrait',
 	#category : #'WebST-Examples-DependantViews'
 }
 

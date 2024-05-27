@@ -154,15 +154,13 @@ WsRenderer >> render: element with: brushBlock [
 { #category : #rendering }
 WsRenderer >> renderAppClass: appClass [
 
-	| componentRenderer page |
-	componentRenderer := self species new.
-	componentRenderer
-		render: appClass rootComponentClass
-		dataAttributes: appClass rootComponentAttributes.
+	| contentRenderer page |
+	contentRenderer := self species new.
+	appClass renderContentOn: contentRenderer.
 	page := WsPage new.
 	page title: appClass title.
-	page addResourcesAll: componentRenderer globalResources.
-	page addViewHtml: componentRenderer html.
+	page addResourcesAll: contentRenderer globalResources.
+	page addViewHtml: contentRenderer html.
 	page addJsAt: appClass appJsFileName.
 	self render: page
 ]

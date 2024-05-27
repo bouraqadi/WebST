@@ -39,7 +39,7 @@ WsComponentTest class >> appSuperclass [
 { #category : #accessing }
 WsComponentTest class >> appTraits [
 
-	^ { WsTComponentApp }
+	^ { WsTSingleComponentApp }
 ]
 
 { #category : #accessing }

@@ -1,11 +1,11 @@
 Class {
-	#name : #WsComponentBridgeClient,
+	#name : #WsBridgeClient,
 	#superclass : #PjBrowserBridgeClient,
 	#category : #'WebST-Base-Apps'
 }
 
 { #category : #accessing }
-WsComponentBridgeClient >> initializeWithBridge: aBrdige [
+WsBridgeClient >> initializeWithBridge: aBrdige [
 
 	super initializeWithBridge: aBrdige.
 	self server html: appClass html

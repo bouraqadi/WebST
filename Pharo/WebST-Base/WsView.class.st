@@ -10,6 +10,13 @@ WsView class >> allGlobalResources [
 	^ self new allGlobalResources
 ]
 
+{ #category : #accessing }
+WsView class >> referencedComponentClasses [
+
+	^ self referencedClasses select: [ :each |
+		  each inheritsFrom: WsComponent ]
+]
+
 { #category : #rendering }
 WsView class >> renderOn: html [
 
