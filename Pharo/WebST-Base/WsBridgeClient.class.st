@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-WsBridgeClient >> initializeWithBridge: aBrdige [
+WsBridgeClient >> initializeWithBridge: aBridge [
 
-	super initializeWithBridge: aBrdige.
+	super initializeWithBridge: aBridge.
 	self server html: appClass html
 ]
