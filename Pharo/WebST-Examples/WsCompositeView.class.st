@@ -11,7 +11,8 @@ WsCompositeView >> renderOuterHtmlOn: html [
 		level1;
 		with: 'ABCD'.
 	html render: WsIntermediateCompositeViewAB.
-	html render: WsIntermediateCompositeViewCD
+	html render: WsIntermediateCompositeViewCD.
+	html render: WsIntermediateCompositeViewSubclass 
 ]
 
 { #category : #accessing }

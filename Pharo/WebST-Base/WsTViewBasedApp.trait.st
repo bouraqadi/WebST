@@ -5,11 +5,11 @@ Trait {
 	#category : #'WebST-Base-Apps'
 }
 
-{ #category : #accessing }
-WsTViewBasedApp classSide >> addAllComponentClassesTo: allComponentClasses [
+{ #category : #analyzing }
+WsTViewBasedApp classSide >> findComponentClassesWith: aComponentClassFinder [
 
 	<pharoJsSkip>
-	allComponentClasses addAll: self viewClass referencedComponentClasses 
+	aComponentClassFinder analyzeViewBasedAppClass: self
 ]
 
 { #category : #rendering }

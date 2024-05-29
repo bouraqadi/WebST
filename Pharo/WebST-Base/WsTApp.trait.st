@@ -4,20 +4,10 @@ Trait {
 }
 
 { #category : #accessing }
-WsTApp classSide >> addAllComponentClassesTo: allComponentClasses [
-
-	<pharoJsSkip>
-self explicitRequirement 
-]
-
-{ #category : #accessing }
 WsTApp classSide >> allComponentClasses [
 
 	<pharoJsSkip>
-	| allComponentClasses |
-	allComponentClasses := IdentitySet new.
-	self addAllComponentClassesTo: allComponentClasses.
-	^ allComponentClasses asArray
+	^WsComponentClassFinder allComponentClassesFrom: self
 ]
 
 { #category : #accessing }
@@ -32,6 +22,13 @@ WsTApp classSide >> exporterClass [
 
 	<pharoJsSkip>
 	^ WsClientExporter
+]
+
+{ #category : #analyzing }
+WsTApp classSide >> findComponentClassesWith: aComponentClassFinder [
+
+	<pharoJsSkip>
+	self explicitRequirement 
 ]
 
 { #category : #rendering }

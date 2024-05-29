@@ -13,13 +13,11 @@ Class {
 }
 
 { #category : #accessing }
-WsComponent class >> addAllComponentClassesTo: classes [
+WsComponent class >> findComponentClassesWith: aComponentClassFinder [
 
 	<pharoJsSkip>
-	(classes includes: self) ifTrue: [ ^ self ].
-	classes add: self.
-	self subComponentClasses do: [ :each |
-		each addAllComponentClassesTo: classes ]
+	aComponentClassFinder analyzeComponentClass: self
+
 ]
 
 { #category : #'instance creation' }
@@ -70,13 +68,6 @@ WsComponent class >> resources [
 WsComponent class >> shadowHtml [
 
 	self subclassResponsibility
-]
-
-{ #category : #accessing }
-WsComponent class >> subComponentClasses [
-
-	<pharoJsSkip>
-	^ self viewClass referencedComponentClasses
 ]
 
 { #category : #'class initialization' }

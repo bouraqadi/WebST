@@ -5,11 +5,11 @@ Trait {
 	#category : #'WebST-Base-Apps'
 }
 
-{ #category : #accessing }
-WsTSingleComponentApp classSide >> addAllComponentClassesTo: allComponentClasses [
+{ #category : #analyzing }
+WsTSingleComponentApp classSide >> findComponentClassesWith: aComponentClassFinder [
 
 	<pharoJsSkip>
-	self rootComponentClass addAllComponentClassesTo: allComponentClasses
+	aComponentClassFinder analyzeSingleComponentAppClass: self
 ]
 
 { #category : #testing }

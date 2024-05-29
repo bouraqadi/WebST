@@ -10,6 +10,12 @@ WsView class >> allGlobalResources [
 	^ self new allGlobalResources
 ]
 
+{ #category : #analyzing }
+WsView class >> findComponentClassesWith: aComponentClassFinder [
+
+	aComponentClassFinder analyzeViewClass: self
+]
+
 { #category : #accessing }
 WsView class >> referencedComponentClasses [
 
