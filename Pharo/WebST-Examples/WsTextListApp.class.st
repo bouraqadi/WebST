@@ -1,8 +1,6 @@
 Class {
 	#name : #WsTextListApp,
-	#superclass : #PjWebApplication,
-	#traits : 'WsTSingleComponentApp',
-	#classTraits : 'WsTSingleComponentApp classTrait',
+	#superclass : #WsSingleComponentApp,
 	#category : #'WebST-Examples-List'
 }
 

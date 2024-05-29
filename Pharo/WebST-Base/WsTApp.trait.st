@@ -28,13 +28,6 @@ WsTApp classSide >> appClasses [
 ]
 
 { #category : #accessing }
-WsTApp classSide >> bridgeClientClass [
-
-	<pharoJsSkip>
-	^ WsBridgeClient
-]
-
-{ #category : #accessing }
 WsTApp classSide >> exporterClass [
 
 	<pharoJsSkip>

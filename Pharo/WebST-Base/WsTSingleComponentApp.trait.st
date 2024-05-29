@@ -12,6 +12,13 @@ WsTSingleComponentApp classSide >> addAllComponentClassesTo: allComponentClasses
 	self rootComponentClass addAllComponentClassesTo: allComponentClasses
 ]
 
+{ #category : #testing }
+WsTSingleComponentApp classSide >> isHtmlGenerator [
+
+	<pharoJsSkip>
+	^ true
+]
+
 { #category : #rendering }
 WsTSingleComponentApp classSide >> renderContentOn: html [
 

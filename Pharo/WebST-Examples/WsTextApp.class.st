@@ -1,8 +1,6 @@
 Class {
 	#name : #WsTextApp,
-	#superclass : #PjWebApplication,
-	#traits : 'WsTSingleComponentApp',
-	#classTraits : 'WsTSingleComponentApp classTrait',
+	#superclass : #WsSingleComponentApp,
 	#category : #'WebST-Examples-Basic'
 }
 
