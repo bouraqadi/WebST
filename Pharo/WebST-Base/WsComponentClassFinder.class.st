@@ -2,7 +2,8 @@ Class {
 	#name : #WsComponentClassFinder,
 	#superclass : #Object,
 	#instVars : [
-		'componentClasses'
+		'componentClasses',
+		'visitedViewClasses'
 	],
 	#category : #'WebST-Base-Components'
 }
@@ -17,6 +18,7 @@ WsComponentClassFinder class >> allComponentClassesFrom: aClass [
 WsComponentClassFinder >> allComponentClassesFrom: aClass [
 
 	componentClasses := IdentitySet new.
+	visitedViewClasses := IdentitySet new.
 	aClass findComponentClassesWith: self.
 	^ componentClasses asArray
 ]
@@ -45,6 +47,12 @@ WsComponentClassFinder >> analyzeSingleComponentAppClass: aClass [
 ]
 
 { #category : #analyzing }
+WsComponentClassFinder >> analyzeSuperclassOf: aClass [
+	aClass superclass ifNil: [ ^ self ].
+	aClass superclass findComponentClassesWith: self
+]
+
+{ #category : #analyzing }
 WsComponentClassFinder >> analyzeViewBasedAppClass: aClass [
 
 	aClass viewClass findComponentClassesWith: self
@@ -53,7 +61,9 @@ WsComponentClassFinder >> analyzeViewBasedAppClass: aClass [
 { #category : #analyzing }
 WsComponentClassFinder >> analyzeViewClass: aViewClass [
 
-aViewClass withAllSuperclassesDo:[ : each |
-	each referencedClasses do: [ :aClass |
-		aClass findComponentClassesWith: self ]]
+	(visitedViewClasses includes: aViewClass) ifTrue: [ ^ self ].
+	visitedViewClasses add: aViewClass.
+	aViewClass referencedClasses do: [ :aClass |
+		aClass findComponentClassesWith: self ].
+	self analyzeSuperclassOf: aViewClass
 ]
