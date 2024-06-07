@@ -42,13 +42,6 @@ WsTSingleComponentApp classSide >> rootComponentClass [
 	self explicitRequirement
 ]
 
-{ #category : #rendering }
-WsTSingleComponentApp classSide >> title [
-
-	<pharoJsSkip>
-	^ self rootComponentClass title
-]
-
 { #category : #initialization }
 WsTSingleComponentApp >> initRootComponent [
 

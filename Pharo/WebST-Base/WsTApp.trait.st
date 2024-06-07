@@ -51,10 +51,3 @@ WsTApp classSide >> renderOn: html [
 	<pharoJsSkip>
 	html renderAppClass: self
 ]
-
-{ #category : #accessing }
-WsTApp classSide >> title [
-
-	<pharoJsSkip>
-	^self name
-]

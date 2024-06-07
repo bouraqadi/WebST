@@ -77,13 +77,6 @@ WsComponent class >> tagName [
 ]
 
 { #category : #accessing }
-WsComponent class >> title [
-
-	<pharoJsSkip>
-	^ self name
-]
-
-{ #category : #accessing }
 WsComponent class >> viewClass [
 
 	<pharoJsSkip>
