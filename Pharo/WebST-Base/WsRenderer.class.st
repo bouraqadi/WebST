@@ -65,8 +65,19 @@ WsRenderer >> addResource: resource [
 ]
 
 { #category : #accessing }
+WsRenderer >> context [
+	^WsNullContext new
+]
+
+{ #category : #accessing }
 WsRenderer >> document [
 	^document 
+]
+
+{ #category : #rendering }
+WsRenderer >> form [
+
+	^ self brush: WsFormTag new
 ]
 
 { #category : #accessing }
