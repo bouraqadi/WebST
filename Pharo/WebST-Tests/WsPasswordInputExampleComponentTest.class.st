@@ -1,5 +1,5 @@
 Class {
-	#name : #WsPasswordInputComponentTest,
+	#name : #WsPasswordInputExampleComponentTest,
 	#superclass : #WsMvcComponentTest,
 	#instVars : [
 		'toggleShowPasswordButton',
@@ -9,18 +9,18 @@ Class {
 }
 
 { #category : #accessing }
-WsPasswordInputComponentTest class >> componentClass [
+WsPasswordInputExampleComponentTest class >> componentClass [
 
-	^ WsPasswordInputComponent 
+	^ WsPasswordInputExampleComponent 
 ]
 
 { #category : #accessing }
-WsPasswordInputComponentTest class >> dataAttributes [
+WsPasswordInputExampleComponentTest class >> dataAttributes [
 	^{#placeholder -> 'New Password'}
 ]
 
 { #category : #asserting }
-WsPasswordInputComponentTest >> assertCustomAttributesApplied [
+WsPasswordInputExampleComponentTest >> assertCustomAttributesApplied [
 
 	super assertCustomAttributesApplied.
 	self
@@ -29,7 +29,7 @@ WsPasswordInputComponentTest >> assertCustomAttributesApplied [
 ]
 
 { #category : #asserting }
-WsPasswordInputComponentTest >> assertDefaultAttributesApplied [
+WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
 
 	super assertDefaultAttributesApplied.
 	self
@@ -39,18 +39,18 @@ WsPasswordInputComponentTest >> assertDefaultAttributesApplied [
 ]
 
 { #category : #asserting }
-WsPasswordInputComponentTest >> assertViewModelLink [
+WsPasswordInputExampleComponentTest >> assertViewModelLink [
 
 	| password1 password2 |
 	self assert: passwordField value equals: model text.
 	password1 := 'very secrete'.
 	self changeElement: passwordField value: password1.
 	self assert: model text equals: password1.
-	self clickPasswordDisplayIcon.
+	toggleShowPasswordButton click.
 	self assert: passwordField type equals: 'text'.
 	self assert: passwordField value equals: password1.
 	self assert: model text equals: password1.
-	self clickPasswordDisplayIcon.
+	toggleShowPasswordButton click.
 	self assert: passwordField type equals: 'password'.
 	self assert: passwordField value equals: password1.
 	self assert: model text equals: password1.
@@ -60,22 +60,13 @@ WsPasswordInputComponentTest >> assertViewModelLink [
 ]
 
 { #category : #asserting }
-WsPasswordInputComponentTest >> changeModelValues [
+WsPasswordInputExampleComponentTest >> changeModelValues [
 
 	model text: 'new secret password'
 ]
 
-{ #category : #asserting }
-WsPasswordInputComponentTest >> clickPasswordDisplayIcon [
-
-	| showingIcon |
-	showingIcon := toggleShowPasswordButton icons asLocalObject detect: [ :each |
-		               self isShowing: each ].
-	showingIcon click
-]
-
 { #category : #accessing }
-WsPasswordInputComponentTest >> component: newComponent [
+WsPasswordInputExampleComponentTest >> component: newComponent [
 
 	super component: newComponent.
 	toggleShowPasswordButton := shadowRoot querySelector:

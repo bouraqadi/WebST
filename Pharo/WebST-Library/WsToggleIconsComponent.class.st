@@ -1,3 +1,7 @@
+"
+Upon a click, I toggle the icon of my view and notify observers via the isOnPort. 
+
+"
 Class {
 	#name : #WsToggleIconsComponent,
 	#superclass : #WsMvcComponent,
@@ -75,8 +79,8 @@ WsToggleIconsComponent >> initView [
 	offIcon := view querySelector: '.offIcon'.
 	onIcon classList add: self onIconAttribute.
 	offIcon classList add: self offIconAttribute.
-	self onClickElement: onIcon do: [ self isOn: false ].
-	self onClickElement: offIcon do: [ self isOn: true ]
+	self onClickElement: self do: [ self model toggle ].
+
 ]
 
 { #category : #accessing }
@@ -135,6 +139,11 @@ WsToggleIconsComponent >> showIsOnOff: aBoolean [
 
 	aBoolean ifTrue: [ ^ self showIsOn ].
 	self showIsOff
+]
+
+{ #category : #actions }
+WsToggleIconsComponent >> toggle [
+	self model toggle
 ]
 
 { #category : #actions }

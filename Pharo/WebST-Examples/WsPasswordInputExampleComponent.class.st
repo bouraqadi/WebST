@@ -1,5 +1,5 @@
 Class {
-	#name : #WsPasswordInputComponent,
+	#name : #WsPasswordInputExampleComponent,
 	#superclass : #WsMvcComponent,
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
@@ -8,46 +8,46 @@ Class {
 		'passwordField',
 		'passwordPort'
 	],
-	#category : #'WebST-Library-Text'
+	#category : #'WebST-Examples-Text'
 }
 
 { #category : #accessing }
-WsPasswordInputComponent class >> defaultPlaceholderAttribute [
+WsPasswordInputExampleComponent class >> defaultPlaceholderAttribute [
 
 	^ ''
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent class >> modelClass [
+WsPasswordInputExampleComponent class >> modelClass [
 
 	^WsTextModel
 ]
 
 { #category : #'class initialization' }
-WsPasswordInputComponent class >> tagName [
+WsPasswordInputExampleComponent class >> tagName [
 
 	^'ws-password-input'
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent class >> viewClass [
+WsPasswordInputExampleComponent class >> viewClass [
 
 	<pharoJsSkip>
-	^WsPasswordInputView 
+	^WsPasswordInputExampleView 
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent >> defaultPlaceholderAttribute [
+WsPasswordInputExampleComponent >> defaultPlaceholderAttribute [
 	^self class defaultPlaceholderAttribute
 ]
 
 { #category : #actions }
-WsPasswordInputComponent >> displayPassword: newText [
+WsPasswordInputExampleComponent >> displayPassword: newText [
 	passwordField value: newText
 ]
 
 { #category : #initialization }
-WsPasswordInputComponent >> initModel [
+WsPasswordInputExampleComponent >> initModel [
 
 	super initModel.
 	passwordPort := model -@ #textPort.
@@ -56,7 +56,7 @@ WsPasswordInputComponent >> initModel [
 ]
 
 { #category : #initialization }
-WsPasswordInputComponent >> initView [
+WsPasswordInputExampleComponent >> initView [
 
 	super initView.
 	toggleShowPasswordButton := view querySelector:
@@ -71,19 +71,19 @@ WsPasswordInputComponent >> initView [
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent >> password [
+WsPasswordInputExampleComponent >> password [
 
 	^ model text
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent >> password: newPassword [
+WsPasswordInputExampleComponent >> password: newPassword [
 
 	model text: newPassword
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent >> placeholderAttribute [
+WsPasswordInputExampleComponent >> placeholderAttribute [
 
 	^ self
 		  dataAttributeAt: #placeholder
@@ -91,25 +91,25 @@ WsPasswordInputComponent >> placeholderAttribute [
 ]
 
 { #category : #actions }
-WsPasswordInputComponent >> savePassword: newPassword [
+WsPasswordInputExampleComponent >> savePassword: newPassword [
 	model text: newPassword 
 ]
 
 { #category : #actions }
-WsPasswordInputComponent >> showPasswordAsPlainText: aBoolean [
+WsPasswordInputExampleComponent >> showPasswordAsPlainText: aBoolean [
 	| newType |
 	newType := aBoolean ifTrue: [ 'text' ] ifFalse: ['password'].
 	passwordField type: newType
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent >> value [
+WsPasswordInputExampleComponent >> value [
 
 	^ self password
 ]
 
 { #category : #accessing }
-WsPasswordInputComponent >> value: newPassword [
+WsPasswordInputExampleComponent >> value: newPassword [
 
 	self password: newPassword
 ]
