@@ -79,8 +79,14 @@ WsToggleIconsComponent >> initView [
 	offIcon := view querySelector: '.offIcon'.
 	onIcon classList add: self onIconAttribute.
 	offIcon classList add: self offIconAttribute.
-	self onClickElement: self do: [ self model toggle ].
 
+]
+
+{ #category : #initialization }
+WsToggleIconsComponent >> initialize [
+
+	super initialize.
+	self onClickElement: self do: [ console log: 'click'. self toggle ]
 ]
 
 { #category : #accessing }
