@@ -10,7 +10,8 @@ Class {
 	#instVars : [
 		'onIcon',
 		'offIcon',
-		'isOnPort'
+		'isOnPort',
+		'clickHandler'
 	],
 	#category : #'WebST-Library-Buttons'
 }
@@ -72,6 +73,15 @@ WsToggleIconsComponent >> initModel [
 ]
 
 { #category : #initialization }
+WsToggleIconsComponent >> initToggleOnClick [
+
+	"Remember the handler to avoid duplicates, in cases when the view is reset, such as upon changing the model"
+	clickHandler ifNotNil: [ ^ self ].
+	clickHandler := [ self toggle ].
+	self onClickElement: self do: clickHandler
+]
+
+{ #category : #initialization }
 WsToggleIconsComponent >> initView [
 
 	super initView.
@@ -79,14 +89,7 @@ WsToggleIconsComponent >> initView [
 	offIcon := view querySelector: '.offIcon'.
 	onIcon classList add: self onIconAttribute.
 	offIcon classList add: self offIconAttribute.
-
-]
-
-{ #category : #initialization }
-WsToggleIconsComponent >> initialize [
-
-	super initialize.
-	self onClickElement: self do: [ console log: 'click'. self toggle ]
+	self initToggleOnClick 
 ]
 
 { #category : #accessing }
