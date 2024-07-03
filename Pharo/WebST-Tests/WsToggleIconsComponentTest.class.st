@@ -57,11 +57,11 @@ WsToggleIconsComponentTest >> assertViewModelLink [
 		model switchOff.
 		self assertHidden: onIcon.
 		self assertShowing: offIcon ].
-	offIcon click.
+	component click.
 	self assert: model isOn.
 	self assertShowing: onIcon.
 	self assertHidden: offIcon.
-	onIcon click.
+	component click.
 	self deny: model isOn.
 	self assertHidden: onIcon.
 	self assertShowing: offIcon
