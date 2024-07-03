@@ -5,7 +5,7 @@ Class {
 		'toggleShowPasswordButton',
 		'passwordField'
 	],
-	#category : #'WebST-Tests-Library'
+	#category : #'WebST-Tests-Examples'
 }
 
 { #category : #accessing }
