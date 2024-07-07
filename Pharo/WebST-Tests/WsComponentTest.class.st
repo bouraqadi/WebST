@@ -79,8 +79,15 @@ WsComponentTest >> assertComponent [
 { #category : #asserting }
 WsComponentTest >> assertComponent: aComponent [
 
+	self assertComponent: aComponent with: nil
+]
+
+{ #category : #asserting }
+WsComponentTest >> assertComponent: aComponent with: aBlock [
+
 	self component: aComponent.
 	self assertComponentClass.
+	aBlock value.
 	self assertComponent
 ]
 
@@ -140,8 +147,9 @@ WsComponentTest >> testDynamicComponentCreationBasic [
 		insertBefore: newComponent
 		existingChild: staticComponent.
 	self assert: self allComponents size equals: 2.
-	self assertComponent: newComponent.
-	self assertDefaultAttributesApplied
+	self
+		assertComponent: newComponent
+		with: [ self assertDefaultAttributesApplied ] 
 ]
 
 { #category : #tests }
@@ -151,6 +159,6 @@ WsComponentTest >> testStaticComponentCreation [
 	| allComponents |
 	allComponents := self allComponents.
 	self assert: allComponents size equals: 1.
-	self assertComponent: allComponents first.
-	self assertCustomAttributesApplied
+	self assertComponent: allComponents first with: [
+	self assertCustomAttributesApplied]
 ]

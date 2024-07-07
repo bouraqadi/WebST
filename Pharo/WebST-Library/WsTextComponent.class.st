@@ -10,6 +10,11 @@ Class {
 }
 
 { #category : #accessing }
+WsTextComponent class >> defaultTextAttribute [
+	^'...'
+]
+
+{ #category : #accessing }
 WsTextComponent class >> modelClass [
 
 	^WsTextModel 
@@ -36,6 +41,11 @@ WsTextComponent class >> viewClass [
 ]
 
 { #category : #accessing }
+WsTextComponent >> defaultTextAttribute [
+	^ self class defaultTextAttribute
+]
+
+{ #category : #accessing }
 WsTextComponent >> display [
 	^display
 ]
@@ -45,7 +55,7 @@ WsTextComponent >> initModel [
 
 	super initModel.
 	model -@ #textPort => [ :newText | self updateDisplay: newText ].
-	self updateDisplay: model text
+	model text: self textAttribute
 ]
 
 { #category : #initialization }
@@ -64,6 +74,14 @@ WsTextComponent >> text [
 WsTextComponent >> text: newText [
 
 	^ model text: newText
+]
+
+{ #category : #accessing }
+WsTextComponent >> textAttribute [
+
+	^ self
+		  dataAttributeAt: #text
+		  ifAbsent: [ self defaultTextAttribute ]
 ]
 
 { #category : #actions }

@@ -10,6 +10,12 @@ Class {
 	#category : #'WebST-Examples-Text'
 }
 
+{ #category : #accessing }
+WsTextToggleEditComponent class >> defaultTextAttribute [
+
+	^ 'Click to edit'
+]
+
 { #category : #'class initialization' }
 WsTextToggleEditComponent class >> tagName [
 
@@ -34,19 +40,26 @@ WsTextToggleEditComponent >> closeEditor [
 	self show: textReader
 ]
 
+{ #category : #accessing }
+WsTextToggleEditComponent >> defaultTextAttribute [
+
+	^ self class defaultTextAttribute
+]
+
 { #category : #initialization }
 WsTextToggleEditComponent >> initView [
 
 	super initView.
 	textReader := view querySelector: WsTextComponent tagName.
 	self onClickElement: textReader do: [ self openEditor ].
-	textEditor := view querySelector: WsTextFieldWithButtonsComponent tagName.
+	textEditor := view querySelector:
+		              WsTextFieldWithButtonsComponent tagName.
 	textEditor
 		cancelBlock: [ self cancelEdit ];
 		saveBlock: [ :newText | self saveEdit: newText ].
 	self closeEditor.
 	self model: textReader model.
-
+	self text: self textAttribute
 ]
 
 { #category : #accessing }
@@ -91,4 +104,10 @@ WsTextToggleEditComponent >> text [
 WsTextToggleEditComponent >> text: newText [
 
 	textReader text: newText
+]
+
+{ #category : #accessing }
+WsTextToggleEditComponent >> textAttribute [
+
+	^ self dataAttributeAt: #text ifAbsent: [ self defaultTextAttribute ]
 ]

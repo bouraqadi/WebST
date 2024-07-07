@@ -13,6 +13,29 @@ WsTextComponentTest class >> componentClass [
 	^ WsTextComponent 
 ]
 
+{ #category : #accessing }
+WsTextComponentTest class >> dataAttributes [
+	^{#text -> 'Text for custom attribute'}
+]
+
+{ #category : #asserting }
+WsTextComponentTest >> assertCustomAttributesApplied [
+
+	super assertCustomAttributesApplied.
+	self
+		assert: component text
+		equals: (self dataAttributesDict at: #text)
+]
+
+{ #category : #asserting }
+WsTextComponentTest >> assertDefaultAttributesApplied [
+
+	super assertDefaultAttributesApplied.
+	self
+		assert: component text
+		equals: self rootComponentClass defaultTextAttribute
+]
+
 { #category : #asserting }
 WsTextComponentTest >> assertViewModelLink [
 

@@ -16,17 +16,10 @@ WsTextModel class >> text: aString [
 ]
 
 { #category : #initialization }
-WsTextModel >> defaultText [
-
-	^ '...'
-]
-
-{ #category : #initialization }
 WsTextModel >> initialize [
 
 	super initialize.
-	textPort := HyCollectionPort notificationSelector: #value:.
-	text := self defaultText
+	textPort := HyCollectionPort notificationSelector: #value:
 ]
 
 { #category : #accessing }

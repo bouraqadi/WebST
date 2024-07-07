@@ -17,7 +17,13 @@ WsTexToggleEditComponentTest class >> componentClass [
 	^ WsTextToggleEditComponent 
 ]
 
-{ #category : #tests }
+{ #category : #accessing }
+WsTexToggleEditComponentTest class >> dataAttributes [
+
+	^ { (#text -> 'Editable Text custom attribute') }
+]
+
+{ #category : #asserting }
 WsTexToggleEditComponentTest >> assertCancelEditing: newText [
 
 	| initialText |
@@ -32,11 +38,10 @@ WsTexToggleEditComponentTest >> assertCancelEditing: newText [
 	self assert: component text equals: initialText
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsTexToggleEditComponentTest >> assertComponent [
 
-	self assertDisplayStateWith: ''.
-	self assertComponentSetText: 'Bilbo The Hobbit'.
+	self assertDisplayStateWith: component text.	self assertComponentSetText: 'Bilbo The Hobbit'.
 	self assertCancelEditing: 'WebSt = web components in Smalltalk'.
 	self assertComponentSetText: 'Gandalf The Wizard'.
 	self assertSaveEditing: 'Pharo is an open source Smalltalk'.
@@ -45,7 +50,7 @@ WsTexToggleEditComponentTest >> assertComponent [
 	self assertSaveEditing: 'But, save this one'
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsTexToggleEditComponentTest >> assertComponentSetText: newText [
 
 	| initialText |
@@ -57,7 +62,26 @@ WsTexToggleEditComponentTest >> assertComponentSetText: newText [
 
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
+WsTexToggleEditComponentTest >> assertCustomAttributesApplied [
+
+	super assertCustomAttributesApplied.
+	self
+		assert: component text
+		equals: (self dataAttributesDict at: #text).
+
+]
+
+{ #category : #asserting }
+WsTexToggleEditComponentTest >> assertDefaultAttributesApplied [
+
+	super assertDefaultAttributesApplied.
+	self
+		assert: component text
+		equals: self rootComponentClass defaultTextAttribute
+]
+
+{ #category : #asserting }
 WsTexToggleEditComponentTest >> assertDisplayStateWith: expectedText [
 
 	self assertShowing: textReader.
@@ -65,7 +89,7 @@ WsTexToggleEditComponentTest >> assertDisplayStateWith: expectedText [
 	self assertHidden: textEditor
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsTexToggleEditComponentTest >> assertEditStateWith: expectedText [
 
 	self assertHidden: textReader.
@@ -73,7 +97,7 @@ WsTexToggleEditComponentTest >> assertEditStateWith: expectedText [
 self assert: self textEditorInputValue equals: expectedText 
 ]
 
-{ #category : #tests }
+{ #category : #asserting }
 WsTexToggleEditComponentTest >> assertSaveEditing: newText [
 
 	| initialText |
