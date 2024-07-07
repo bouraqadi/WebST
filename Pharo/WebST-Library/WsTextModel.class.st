@@ -19,7 +19,8 @@ WsTextModel class >> text: aString [
 WsTextModel >> initialize [
 
 	super initialize.
-	textPort := HyCollectionPort notificationSelector: #value:
+	textPort := HyCollectionPort notificationSelector: #value:.
+	text := ''
 ]
 
 { #category : #accessing }
