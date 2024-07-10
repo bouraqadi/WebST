@@ -12,13 +12,6 @@ WsTSingleComponentApp classSide >> findComponentClassesWith: aComponentClassFind
 	aComponentClassFinder analyzeSingleComponentAppClass: self
 ]
 
-{ #category : #testing }
-WsTSingleComponentApp classSide >> isHtmlGenerator [
-
-	<pharoJsSkip>
-	^ true
-]
-
 { #category : #rendering }
 WsTSingleComponentApp classSide >> renderContentOn: html [
 

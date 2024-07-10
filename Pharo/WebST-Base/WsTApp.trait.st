@@ -38,6 +38,13 @@ WsTApp classSide >> html [
 	^WsRenderer htmlFrom: self
 ]
 
+{ #category : #testing }
+WsTApp classSide >> isHtmlGenerator [
+
+	<pharoJsSkip>
+	^ true
+]
+
 { #category : #rendering }
 WsTApp classSide >> renderContentOn: html [
 
