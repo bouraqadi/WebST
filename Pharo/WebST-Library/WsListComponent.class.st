@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'listView'
 	],
-	#category : #'WebST-Library-List'
+	#category : #'WebST-Library-Lists'
 }
 
 { #category : #accessing }

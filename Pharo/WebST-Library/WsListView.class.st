@@ -1,7 +1,7 @@
 Class {
 	#name : #WsListView,
 	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-List'
+	#category : #'WebST-Library-Lists'
 }
 
 { #category : #rendering }

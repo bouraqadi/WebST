@@ -3,6 +3,12 @@ Trait {
 	#category : #'WebST-Library-Bootstrap'
 }
 
+{ #category : #accessing }
+WsTBootstrapIcons1View >> bootstrapIcons1Resources [
+
+	^ { WsBootstrapResources bootstrapIcons1 }
+]
+
 { #category : #rendering }
 WsTBootstrapIcons1View >> renderOn: html icon: iconCssClass [
 
@@ -12,5 +18,5 @@ WsTBootstrapIcons1View >> renderOn: html icon: iconCssClass [
 { #category : #accessing }
 WsTBootstrapIcons1View >> resources [
 
-	^ {WsBootstrapResources bootstrapIcons1}
+	^self bootstrapIcons1Resources 
 ]

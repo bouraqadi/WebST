@@ -5,7 +5,7 @@ Class {
 		'items',
 		'addPort'
 	],
-	#category : #'WebST-Library-List'
+	#category : #'WebST-Library-Lists'
 }
 
 { #category : #adding }
