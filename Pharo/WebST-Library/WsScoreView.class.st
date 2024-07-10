@@ -1,7 +1,7 @@
 Class {
 	#name : #WsScoreView,
 	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Examples-Misc'
+	#category : #'WebST-Library-Counter'
 }
 
 { #category : #rendering }

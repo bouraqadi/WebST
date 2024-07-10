@@ -5,47 +5,49 @@ Class {
 }
 
 { #category : #rendering }
-WsWindowView >> bodyID [
-	^'windowBody'
+WsWindowView >> renderBodyContentsOn: html [
+
+			html div
+				class: 'container mt-3';
+				with: [
+					html div
+						class: 'alert alert-light fs-3 text-center';
+						with: 'No Contents' ] 
 ]
 
 { #category : #rendering }
 WsWindowView >> renderBodyOn: html [
 
 	html div
-		id: self bodyID;
-		class: 'collapse show border border-1 border-dark flex-fill';
-		with: [ html div class: 'mx-auto'; with: 'Body content' ]
+		class: 'windowBody border border-1 border-dark flex-fill';
+		with: [self renderBodyContentsOn: html]
 ]
 
 { #category : #rendering }
-WsWindowView >> renderHeadingButtonOn: html class: classString iconClass: iconClasssString [
+WsWindowView >> renderHeadingButtonOn: html class: classString iconClass: iconClasssString [ 
 
-	^ html button
-	bePush;
-		  class: classString;
-		  with: [ html icon class: iconClasssString ];
-		  yourself
+	| button |
+	button := html button.
+	button
+		bePush;
+		class: classString;
+		with: [ html icon class: iconClasssString ]
 ]
 
 { #category : #rendering }
 WsWindowView >> renderHeadingButtonsOn: html [
 
-	| minimizeBrush |
 	self
 		renderHeadingButtonOn: html
-		class: 'btn btn-danger me-1'
+		class: 'closeButton btn btn-danger me-1'
 		iconClass: 'bi bi-x-lg'.
-	minimizeBrush := self
-		                 renderHeadingButtonOn: html
-		                 class: 'btn btn-warning me-1'
-		                 iconClass: 'bi bi-dash-lg'.
-	minimizeBrush
-		attributeAt: 'data-bs-toggle' put: 'collapse';
-		attributeAt: 'data-bs-target' put: '#' , self bodyID.
 	self
 		renderHeadingButtonOn: html
-		class: 'btn btn-success'
+		class: 'minimizeButton btn btn-warning me-1'
+		iconClass: 'bi bi-dash-lg'.
+	self
+		renderHeadingButtonOn: html
+		class: 'maximizeButton btn btn-success'
 		iconClass: 'bi bi-arrows-angle-expand'
 ]
 

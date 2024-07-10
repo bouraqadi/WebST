@@ -1,7 +1,7 @@
 Class {
 	#name : #WsPasswordInputExampleView,
 	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Examples-Text'
+	#category : #'WebST-Library-Text'
 }
 
 { #category : #rendering }

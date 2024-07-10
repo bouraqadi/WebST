@@ -8,7 +8,7 @@ Class {
 		'passwordField',
 		'passwordPort'
 	],
-	#category : #'WebST-Examples-Text'
+	#category : #'WebST-Library-Text'
 }
 
 { #category : #accessing }

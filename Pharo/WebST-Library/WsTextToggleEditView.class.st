@@ -1,7 +1,7 @@
 Class {
 	#name : #WsTextToggleEditView,
 	#superclass : #WsView,
-	#category : #'WebST-Examples-Text'
+	#category : #'WebST-Library-Text'
 }
 
 { #category : #rendering }

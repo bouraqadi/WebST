@@ -1,7 +1,7 @@
 Class {
 	#name : #WsEditableTextApp,
 	#superclass : #WsTextApp,
-	#category : #'WebST-Examples-Basic'
+	#category : #'WebST-Examples-Text'
 }
 
 { #category : #rendering }
