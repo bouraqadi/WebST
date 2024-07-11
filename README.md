@@ -24,4 +24,4 @@ Where XX is your Pharo image version number. Each supported Pharo version has a 
 
 
 ## Talk at the ESUG International Conference, Lille, France, July 2024
-<a href="https://nootrix.com/tutorials/webst-web-components-with-smalltalk-esug-2024-in-lille-france/"><img align="center" src="Images/webSt-pharo-htmlCsJs-w1000.jpg" width="400px"></a>
+<p align="center"><a href="https://nootrix.com/tutorials/webst-web-components-with-smalltalk-esug-2024-in-lille-france/"><img align="center" src="Images/webSt-pharo-htmlCsJs-w1000.jpg" width="400px"></a></p>
