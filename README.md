@@ -1,5 +1,6 @@
 # WebST = Web Components with Smalltalk
 <img align="left" src="./webST-logo717x784.png" width="100px">
+
 WebST is a framework for building [Web Components](https://www.webcomponents.org/) using [PharoJS](https://github.com/PharoJS/PharoJS). 
 Each web component can be used via a custom HTML tag (e.g. `<ws-counter>`). When you use a custom tag in your HTML code, the web browser creates a DOM object that is an instance of a component class which defines the appearance and the behavior provided by the developer.
 
