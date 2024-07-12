@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfWebST }
+Package { #name : 'BaselineOfWebST' }

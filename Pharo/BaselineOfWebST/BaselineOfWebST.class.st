@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfWebST,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfWebST
+	#name : 'BaselineOfWebST',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfWebST',
+	#package : 'BaselineOfWebST'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfWebST >> baseline: spec [
 
 	<baseline>
@@ -15,9 +16,9 @@ BaselineOfWebST >> baseline: spec [
 				loads: #( 'Seaside-Pharo-Canvas' 'Seaside-Tests-Pharo-Canvas'
 					   'Javascript-Pharo-Core' 'Javascript-Tests-Pharo-Core' ) ];
 		baseline: 'PharoJS'
-		with: [ spec repository: 'github://PharoJS/PharoJS:pharo11/' ];
+		with: [ spec repository: 'github://PharoJS/PharoJS:pharo12/' ];
 		baseline: 'HydrogenComponentsJS'
-		with: [ spec repository: 'github://bouraqadi/PharoJsMisc:pharo11' ].
+		with: [ spec repository: 'github://bouraqadi/PharoJsMisc:pharo12' ].
 
 	spec
 		package: 'WebST-Base'
