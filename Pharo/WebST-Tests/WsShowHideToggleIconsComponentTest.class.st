@@ -1,10 +1,12 @@
 Class {
-	#name : #WsShowHideToggleIconsComponentTest,
-	#superclass : #WsToggleIconsComponentTest,
-	#category : #'WebST-Tests-Library'
+	#name : 'WsShowHideToggleIconsComponentTest',
+	#superclass : 'WsToggleIconsComponentTest',
+	#category : 'WebST-Tests-Library',
+	#package : 'WebST-Tests',
+	#tag : 'Library'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsShowHideToggleIconsComponentTest class >> componentClass [
 
 	^ WsShowHideToggleIconsComponent

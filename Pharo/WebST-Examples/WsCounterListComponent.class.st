@@ -1,24 +1,26 @@
 Class {
-	#name : #WsCounterListComponent,
-	#superclass : #WsListComponent,
+	#name : 'WsCounterListComponent',
+	#superclass : 'WsListComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
-	#category : #'WebST-Examples-List'
+	#category : 'WebST-Examples-List',
+	#package : 'WebST-Examples',
+	#tag : 'List'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCounterListComponent class >> itemComponentClass [
 
 	^ WsCounterComponent
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsCounterListComponent class >> tagName [
 
 	^ 'ws-counter-list'
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsCounterListComponent >> addCounter: countValue [
 
 	| counter |

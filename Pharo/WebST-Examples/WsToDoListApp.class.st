@@ -1,23 +1,25 @@
 Class {
-	#name : #WsToDoListApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-ToDoList'
+	#name : 'WsToDoListApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListApp class >> rootComponentClass [
 
 	^ WsToDoListComponent
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsToDoListApp class >> title [
 
 	<pharoJsSkip>
 	^ 'Shopping - ToDo List WebST Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoListApp >> initRootComponent [
 
 	self rootComponent

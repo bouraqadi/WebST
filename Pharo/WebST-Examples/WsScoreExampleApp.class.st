@@ -1,15 +1,17 @@
 Class {
-	#name : #WsScoreExampleApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-Misc'
+	#name : 'WsScoreExampleApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-Misc',
+	#package : 'WebST-Examples',
+	#tag : 'Misc'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsScoreExampleApp class >> rootComponentClass [
 	^WsScoreComponent 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsScoreExampleApp >> initRootComponent [
 
 	super initRootComponent.

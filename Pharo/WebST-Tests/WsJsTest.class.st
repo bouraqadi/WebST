@@ -1,16 +1,18 @@
 Class {
-	#name : #WsJsTest,
-	#superclass : #WsResourceElementTest,
-	#category : #'WebST-Tests-Views'
+	#name : 'WsJsTest',
+	#superclass : 'WsResourceElementTest',
+	#category : 'WebST-Tests-Views',
+	#package : 'WebST-Tests',
+	#tag : 'Views'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsJsTest >> resourceClass [
 
 	^WsJsScript 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsJsTest >> testCrossoriginAnonymous [
 
 	resource crossoriginAnonymous.
@@ -18,7 +20,7 @@ WsJsTest >> testCrossoriginAnonymous [
 		, '" crossorigin="anonymous"></script>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsJsTest >> testIntegrity [
 
 	| integrity |
@@ -29,7 +31,7 @@ WsJsTest >> testIntegrity [
 		, integrity , '"></script>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsJsTest >> testUrlOnly [
 
 	self assertHtml: '<script defer type="text/javascript" src="' , url

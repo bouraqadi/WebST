@@ -1,10 +1,12 @@
 Class {
-	#name : #WsScoreView,
-	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Counter'
+	#name : 'WsScoreView',
+	#superclass : 'WsBootstrap5View',
+	#category : 'WebST-Library-Counter',
+	#package : 'WebST-Library',
+	#tag : 'Counter'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsScoreView >> renderColumnOn: html with: contents [
 
 	html div
@@ -12,7 +14,7 @@ WsScoreView >> renderColumnOn: html with: contents [
 		with: contents.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsScoreView >> renderOuterHtmlOn: html [
 	html div
 		class: 'd-flex flex-column align-items-center p-1';
@@ -25,7 +27,7 @@ WsScoreView >> renderOuterHtmlOn: html [
 				self renderScoreOn: html playerName: name ] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsScoreView >> renderOuterHtmlOnDetails: html [
 
 	html div
@@ -39,7 +41,7 @@ WsScoreView >> renderOuterHtmlOnDetails: html [
 							self renderScoreOn: html playerName: name ] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsScoreView >> renderRowOn: html with: contents [
 
 	html div
@@ -47,7 +49,7 @@ WsScoreView >> renderRowOn: html with: contents [
 		with: contents
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsScoreView >> renderScoreOn: html playerName: name [
 
 	self renderColumnOn: html with: [

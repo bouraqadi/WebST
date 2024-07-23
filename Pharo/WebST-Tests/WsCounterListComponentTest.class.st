@@ -1,22 +1,24 @@
 Class {
-	#name : #WsCounterListComponentTest,
-	#superclass : #WsListComponentTest,
-	#category : #'WebST-Tests-Examples'
+	#name : 'WsCounterListComponentTest',
+	#superclass : 'WsListComponentTest',
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCounterListComponentTest class >> componentClass [
 
 	^ WsCounterListComponent
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsCounterListComponentTest >> changeModelValues [
 	self evalBlock: [
 		#( 42 35 21 ) do: [ :each | model add: (WsCounterModel count: each) ] ]
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsCounterListComponentTest >> itemComponentAsserter [
 	^WsCounterComponentTestAsserter
 ]

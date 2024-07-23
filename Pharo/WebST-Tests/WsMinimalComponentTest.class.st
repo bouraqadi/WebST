@@ -1,17 +1,19 @@
 Class {
-	#name : #WsMinimalComponentTest,
-	#superclass : #WsComponentTest,
+	#name : 'WsMinimalComponentTest',
+	#superclass : 'WsComponentTest',
 	#classTraits : 'PjTAppRunsInJS classTrait',
-	#category : #'WebST-Tests-Examples'
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsMinimalComponentTest class >> componentClass [
 
 	^ WsMinimalComponent 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsMinimalComponentTest >> assertComponent [
 
 	self assert: component innerHTML isEmpty.

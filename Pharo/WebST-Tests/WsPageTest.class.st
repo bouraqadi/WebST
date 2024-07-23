@@ -1,16 +1,18 @@
 Class {
-	#name : #WsPageTest,
-	#superclass : #TestCase,
-	#category : #'WebST-Tests-Views'
+	#name : 'WsPageTest',
+	#superclass : 'TestCase',
+	#category : 'WebST-Tests-Views',
+	#package : 'WebST-Tests',
+	#tag : 'Views'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsPageTest >> testBodyBasic [
 
 	self assert: WsBody html equals: '<body></body>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsPageTest >> testHeadBasic [
 
 	self
@@ -18,7 +20,7 @@ WsPageTest >> testHeadBasic [
 		equals: '<head><meta charset="utf-8"/><title></title></head>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsPageTest >> testHeadTitle [
 
 	| head |
@@ -29,7 +31,7 @@ WsPageTest >> testHeadTitle [
 		equals: '<head><meta charset="utf-8"/><title>Short and Sweet</title></head>' 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsPageTest >> testPageBasic [
 
 	self
@@ -38,7 +40,7 @@ WsPageTest >> testPageBasic [
 		'<!doctype html><html><head><meta charset="utf-8"/><title></title></head><body></body></html>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsPageTest >> testPageTitle [
 
 	| page |

@@ -1,20 +1,22 @@
 Class {
-	#name : #WsCompositeComponentTest,
-	#superclass : #WsComponentTest,
+	#name : 'WsCompositeComponentTest',
+	#superclass : 'WsComponentTest',
 	#instVars : [
 		'intermediateComponent',
 		'leafComponent'
 	],
-	#category : #'WebST-Tests-Examples'
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeComponentTest class >> componentClass [
 
 	^ WsCompositeComponent
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertComponent [
 
 	self assertPageLinks.
@@ -24,7 +26,7 @@ WsCompositeComponentTest >> assertComponent [
 	self assertLeafStructure
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertCompositeStructure [
 
 	| expectedCompositeDisplay |
@@ -37,7 +39,7 @@ WsCompositeComponentTest >> assertCompositeStructure [
 		display: expectedCompositeDisplay
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertIntermediateStructure [
 
 	| expectedIntermediateDisplay |
@@ -50,7 +52,7 @@ WsCompositeComponentTest >> assertIntermediateStructure [
 		display: expectedIntermediateDisplay
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertLeafStructure [
 
 	self
@@ -59,7 +61,7 @@ WsCompositeComponentTest >> assertLeafStructure [
 		display: '<p>leaf</p>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertPageLinks [
 
 	| allLinks |
@@ -72,7 +74,7 @@ WsCompositeComponentTest >> assertPageLinks [
 			self assert: (link href endsWith: expectedHref) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertPageScripts [
 
 	| allScripts |
@@ -86,7 +88,7 @@ WsCompositeComponentTest >> assertPageScripts [
 			self assert: script defer ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeComponentTest >> assertShadowHtml: aComponent linkHrefs: linkHrefs display: htmlString [
 
 	| dom allLinks |
@@ -98,19 +100,19 @@ WsCompositeComponentTest >> assertShadowHtml: aComponent linkHrefs: linkHrefs di
 	self assert: (dom innerHTML endsWith: htmlString)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeComponentTest >> intermediateComponent [ 
 	^intermediateComponent ifNil: [intermediateComponent := shadowRoot querySelector:
 		                         self intermediateTag].
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeComponentTest >> intermediateTag [
 	^WsIntermediateComponent tagName 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeComponentTest >> leafComponent [
 
 	^ leafComponent ifNil: [	leafComponent := self intermediateComponent view querySelector:
@@ -118,7 +120,7 @@ WsCompositeComponentTest >> leafComponent [
 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeComponentTest >> leafTag [
 
 	^ WsLeafComponent tagName

@@ -1,10 +1,12 @@
 Class {
-	#name : #WsIntermediateCompositeViewAB,
-	#superclass : #WsView,
-	#category : #'WebST-Examples-CompositeViews'
+	#name : 'WsIntermediateCompositeViewAB',
+	#superclass : 'WsView',
+	#category : 'WebST-Examples-CompositeViews',
+	#package : 'WebST-Examples',
+	#tag : 'CompositeViews'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsIntermediateCompositeViewAB >> renderOuterHtmlOn: html [
 
 	html heading
@@ -15,7 +17,7 @@ WsIntermediateCompositeViewAB >> renderOuterHtmlOn: html [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsIntermediateCompositeViewAB >> resources [
 
 	^ {

@@ -1,19 +1,21 @@
 Class {
-	#name : #WsResourceElementTest,
-	#superclass : #TestCase,
+	#name : 'WsResourceElementTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource',
 		'url'
 	],
-	#category : #'WebST-Tests-Views'
+	#category : 'WebST-Tests-Views',
+	#package : 'WebST-Tests',
+	#tag : 'Views'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 WsResourceElementTest class >> isAbstract [ 
 	^self == WsResourceElementTest 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsResourceElementTest >> assertHtml: expectedHtml [
 
 	| renderer |
@@ -22,12 +24,12 @@ WsResourceElementTest >> assertHtml: expectedHtml [
 	self assert: renderer html equals: expectedHtml
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsResourceElementTest >> resourceClass [
 	self subclassResponsibility 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsResourceElementTest >> setUp [
 
 	super setUp.

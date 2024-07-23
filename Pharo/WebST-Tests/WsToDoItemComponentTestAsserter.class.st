@@ -1,10 +1,12 @@
 Class {
-	#name : #WsToDoItemComponentTestAsserter,
-	#superclass : #WsTextComponentTestAsserter,
-	#category : #'WebST-Tests-Examples'
+	#name : 'WsToDoItemComponentTestAsserter',
+	#superclass : 'WsTextComponentTestAsserter',
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoItemComponentTestAsserter >> assertViewModelLink [
 
 	super assertViewModelLink.
@@ -14,13 +16,13 @@ WsToDoItemComponentTestAsserter >> assertViewModelLink [
 	self deny: self checkBox checked]
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoItemComponentTestAsserter >> checkBox [
 
 	^ domRoot querySelector: '.todo-checkbox'
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoItemComponentTestAsserter >> textDisplay [
 
 	^ component textComponent  readerDisplay

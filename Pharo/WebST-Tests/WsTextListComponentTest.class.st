@@ -1,16 +1,18 @@
 Class {
-	#name : #WsTextListComponentTest,
-	#superclass : #WsListComponentTest,
-	#category : #'WebST-Tests-Library'
+	#name : 'WsTextListComponentTest',
+	#superclass : 'WsListComponentTest',
+	#category : 'WebST-Tests-Library',
+	#package : 'WebST-Tests',
+	#tag : 'Library'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextListComponentTest class >> componentClass [
 
 	^ WsTextListComponent 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextListComponentTest >> changeModelValues [
 
 	self evalBlock: [
@@ -20,7 +22,7 @@ WsTextListComponentTest >> changeModelValues [
 	component addText: 'Star Wars'.
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextListComponentTest >> itemComponentAsserter [
 
 	^ WsTextComponentTestAsserter 

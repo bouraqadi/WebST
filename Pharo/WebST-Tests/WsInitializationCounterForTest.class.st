@@ -1,6 +1,6 @@
 Class {
-	#name : #WsInitializationCounterForTest,
-	#superclass : #WsMvcComponent,
+	#name : 'WsInitializationCounterForTest',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
@@ -8,29 +8,31 @@ Class {
 		'viewInitCount',
 		'modelInitCount'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsInitializationCounterForTest class >> modelClass [
 
 	^Object
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsInitializationCounterForTest class >> tagName [
 
 	^'ws-mvc-init-test'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsInitializationCounterForTest class >> viewClass [
 
 	<pharoJsSkip>
 	^WsMinimalView 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsInitializationCounterForTest >> initModel [
 
 	console log: 'initModel'.
@@ -38,7 +40,7 @@ WsInitializationCounterForTest >> initModel [
 	super initModel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsInitializationCounterForTest >> initView [
 
 	console log: 'initView'.
@@ -46,7 +48,7 @@ WsInitializationCounterForTest >> initView [
 	super initView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsInitializationCounterForTest >> initialize [
 
 	viewResetCount := 0.
@@ -56,13 +58,13 @@ WsInitializationCounterForTest >> initialize [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsInitializationCounterForTest >> modelInitCount [
 
 	^ modelInitCount
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsInitializationCounterForTest >> resetView [
 
 	console log: 'resetView'.
@@ -70,13 +72,13 @@ WsInitializationCounterForTest >> resetView [
 	super resetView
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsInitializationCounterForTest >> viewInitCount [
 
 	^ viewInitCount
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsInitializationCounterForTest >> viewResetCount [
 
 	^ viewResetCount

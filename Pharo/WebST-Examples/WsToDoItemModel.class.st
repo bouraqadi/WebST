@@ -1,14 +1,16 @@
 Class {
-	#name : #WsToDoItemModel,
-	#superclass : #WsTextModel,
+	#name : 'WsToDoItemModel',
+	#superclass : 'WsTextModel',
 	#instVars : [
 		'isChecked',
 		'isCheckedPort'
 	],
-	#category : #'WebST-Examples-ToDoList'
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoItemModel >> initialize [
 
 	super initialize.
@@ -16,13 +18,13 @@ WsToDoItemModel >> initialize [
 	isCheckedPort := HyCollectionPort notificationSelector: #value:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoItemModel >> isChecked [
 
 	^ isChecked
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoItemModel >> isChecked: aBoolean [
 
 	isChecked := aBoolean.

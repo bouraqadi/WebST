@@ -1,10 +1,12 @@
 Class {
-	#name : #WsTextToggleEditView,
-	#superclass : #WsView,
-	#category : #'WebST-Library-Text'
+	#name : 'WsTextToggleEditView',
+	#superclass : 'WsView',
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextToggleEditView >> renderOuterHtmlOn: html [
 
 	html

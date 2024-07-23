@@ -1,16 +1,18 @@
 Class {
-	#name : #WsToDoListComponentTest,
-	#superclass : #WsListComponentTest,
-	#category : #'WebST-Tests-Examples'
+	#name : 'WsToDoListComponentTest',
+	#superclass : 'WsListComponentTest',
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListComponentTest class >> componentClass [
 
 	^ WsToDoListComponent 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoListComponentTest >> assertViewModelLink [
 
 	| itemsInitialCount |
@@ -21,7 +23,7 @@ WsToDoListComponentTest >> assertViewModelLink [
 	super assertViewModelLink
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoListComponentTest >> changeModelValues [
 
 	self evalBlock: [
@@ -32,19 +34,19 @@ WsToDoListComponentTest >> changeModelValues [
 	component heading: 'Another catchy title'
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoListComponentTest >> clickAddItemButton [
 
 	^self clickElement: (shadowRoot querySelector: '.addItemButton')
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoListComponentTest >> headingDisplayContent [
 
 	^ (shadowRoot querySelector: '.headingDisplay') textContent
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToDoListComponentTest >> itemComponentAsserter [
 
 	^ WsToDoItemComponentTestAsserter

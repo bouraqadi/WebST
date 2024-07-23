@@ -1,62 +1,64 @@
 Class {
-	#name : #WsCounterComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsCounterComponent',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'display'
 	],
-	#category : #'WebST-Library-Counter'
+	#category : 'WebST-Library-Counter',
+	#package : 'WebST-Library',
+	#tag : 'Counter'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsCounterComponent class >> count: anInteger [
 	^self new
 		count: anInteger;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCounterComponent class >> modelClass [ 
 	^WsCounterModel 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsCounterComponent class >> tagName [
 	^'ws-counter'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCounterComponent class >> viewClass [
 <pharoJsSkip>
 	^ WsCounterView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsCounterComponent >> count: anInteger [
 
 	model count: anInteger
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsCounterComponent >> decrement [
 
 	model decrement
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsCounterComponent >> displayCount: newCount [
 
 	display textContent: newCount
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsCounterComponent >> increment [
 
 	model increment
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsCounterComponent >> initModel [
 
 	super initModel.
@@ -65,7 +67,7 @@ WsCounterComponent >> initModel [
 	self updateDisplay
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsCounterComponent >> initView [
 
 	| incrementButton decrementButton resetButton |
@@ -80,13 +82,13 @@ WsCounterComponent >> initView [
 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsCounterComponent >> reset [
 
 	model reset
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsCounterComponent >> updateDisplay [
 
 	self displayCount: model count

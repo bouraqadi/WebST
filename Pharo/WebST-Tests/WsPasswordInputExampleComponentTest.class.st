@@ -1,25 +1,27 @@
 Class {
-	#name : #WsPasswordInputExampleComponentTest,
-	#superclass : #WsMvcComponentTest,
+	#name : 'WsPasswordInputExampleComponentTest',
+	#superclass : 'WsMvcComponentTest',
 	#instVars : [
 		'toggleShowPasswordButton',
 		'passwordField'
 	],
-	#category : #'WebST-Tests-Examples'
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponentTest class >> componentClass [
 
 	^ WsPasswordInputExampleComponent 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponentTest class >> dataAttributes [
 	^{#placeholder -> 'New Password'}
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsPasswordInputExampleComponentTest >> assertCustomAttributesApplied [
 
 	super assertCustomAttributesApplied.
@@ -28,7 +30,7 @@ WsPasswordInputExampleComponentTest >> assertCustomAttributesApplied [
 		equals: (self dataAttributesDict at: #placeholder)
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
 
 	super assertDefaultAttributesApplied.
@@ -38,7 +40,7 @@ WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
 		
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsPasswordInputExampleComponentTest >> assertViewModelLink [
 
 	| password1 password2 |
@@ -59,13 +61,13 @@ WsPasswordInputExampleComponentTest >> assertViewModelLink [
 	self assert: model text equals: password2
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsPasswordInputExampleComponentTest >> changeModelValues [
 
 	model text: 'new secret password'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponentTest >> component: newComponent [
 
 	super component: newComponent.

@@ -1,10 +1,12 @@
 Class {
-	#name : #WsToDoListView,
-	#superclass : #WsListView,
-	#category : #'WebST-Examples-ToDoList'
+	#name : 'WsToDoListView',
+	#superclass : 'WsListView',
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsToDoListView >> renderOuterHtmlOn: html [
 
 	html heading

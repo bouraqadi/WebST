@@ -1,16 +1,18 @@
 Class {
-	#name : #WsTextInputApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-Text'
+	#name : 'WsTextInputApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-Text',
+	#package : 'WebST-Examples',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextInputApp class >> rootComponentClass [
 
 	^ WsTextFieldWithButtonsComponent 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextInputApp class >> title [
 
 	<pharoJsSkip>

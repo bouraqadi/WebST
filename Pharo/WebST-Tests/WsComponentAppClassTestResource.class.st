@@ -1,14 +1,16 @@
 Class {
-	#name : #WsComponentAppClassTestResource,
-	#superclass : #TestResource,
+	#name : 'WsComponentAppClassTestResource',
+	#superclass : 'TestResource',
 	#instVars : [
 		'classFactory',
 		'appClassesDict'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #creating }
+{ #category : 'creating' }
 WsComponentAppClassTestResource >> appClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
 	| descriptor |
@@ -25,7 +27,7 @@ WsComponentAppClassTestResource >> appClassSuperclass: appSuperclass traits: app
 			  attributes: attributes ]
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 WsComponentAppClassTestResource >> descriptorForSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
 	^ WsComponentAppForTestDescriptor new
@@ -36,7 +38,7 @@ WsComponentAppClassTestResource >> descriptorForSuperclass: appSuperclass traits
 		yourself
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 WsComponentAppClassTestResource >> newAppClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
 	| appClass |
@@ -48,7 +50,7 @@ WsComponentAppClassTestResource >> newAppClassSuperclass: appSuperclass traits: 
 	^ appClass
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 WsComponentAppClassTestResource >> setUp [
 
 	super setUp.
@@ -56,7 +58,7 @@ WsComponentAppClassTestResource >> setUp [
 	appClassesDict := Dictionary new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 WsComponentAppClassTestResource >> tearDown [ 
 
 	super tearDown.

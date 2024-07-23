@@ -1,10 +1,12 @@
 Class {
-	#name : #WsSaveCancelButtonsView,
-	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Buttons'
+	#name : 'WsSaveCancelButtonsView',
+	#superclass : 'WsBootstrap5View',
+	#category : 'WebST-Library-Buttons',
+	#package : 'WebST-Library',
+	#tag : 'Buttons'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsSaveCancelButtonsView >> renderOuterHtmlOn: html [
 
 	html button

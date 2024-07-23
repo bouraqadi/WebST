@@ -1,10 +1,12 @@
 Class {
-	#name : #WsTextComponentTestAsserter,
-	#superclass : #WsComponentTestAsserter,
-	#category : #'WebST-Tests-Library'
+	#name : 'WsTextComponentTestAsserter',
+	#superclass : 'WsComponentTestAsserter',
+	#category : 'WebST-Tests-Library',
+	#package : 'WebST-Tests',
+	#tag : 'Library'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextComponentTestAsserter >> assertViewModelLink [
 
 	| newText |
@@ -14,7 +16,7 @@ WsTextComponentTestAsserter >> assertViewModelLink [
 	self assert: self textDisplay textContent equals: newText
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextComponentTestAsserter >> textDisplay [
 	^component display
 ]

@@ -1,40 +1,42 @@
 Class {
-	#name : #WsToDoItemComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsToDoItemComponent',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'textComponent',
 		'checkbox'
 	],
-	#category : #'WebST-Examples-ToDoList'
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoItemComponent class >> modelClass [
 
 	^WsToDoItemModel 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsToDoItemComponent class >> tagName [
 
 	^ 'ws-todo-item'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoItemComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsToDoItemView 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToDoItemComponent >> displayChecked: aBoolean [
 	checkbox checked: aBoolean
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoItemComponent >> initModel [
 
 	super initModel.
@@ -45,7 +47,7 @@ WsToDoItemComponent >> initModel [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoItemComponent >> initView [
 
 	super initView.
@@ -53,7 +55,7 @@ WsToDoItemComponent >> initView [
 	checkbox := view querySelector: '.todo-checkbox'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoItemComponent >> textComponent [
 	^textComponent 
 ]

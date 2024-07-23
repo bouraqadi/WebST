@@ -1,10 +1,12 @@
 Class {
-	#name : #WsCounterView,
-	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Counter'
+	#name : 'WsCounterView',
+	#superclass : 'WsBootstrap5View',
+	#category : 'WebST-Library-Counter',
+	#package : 'WebST-Library',
+	#tag : 'Counter'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsCounterView >> renderOuterHtmlOn: html [
 
 	html div

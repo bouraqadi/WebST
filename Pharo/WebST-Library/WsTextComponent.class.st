@@ -1,56 +1,58 @@
 Class {
-	#name : #WsTextComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsTextComponent',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'display'
 	],
-	#category : #'WebST-Library-Text'
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent class >> defaultTextAttribute [
 	^'...'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent class >> modelClass [
 
 	^WsTextModel 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsTextComponent class >> tagName [
 
 	^'ws-text'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsTextComponent class >> text: newText [
 	^self new
 		text: newText;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsTextView
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent >> defaultTextAttribute [
 	^ self class defaultTextAttribute
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent >> display [
 	^display
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextComponent >> initModel [
 
 	super initModel.
@@ -58,25 +60,25 @@ WsTextComponent >> initModel [
 	model text: self textAttribute
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextComponent >> initView [
 
 	super initView.
 	display := view querySelector: '.display'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent >> text [
 	^model text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent >> text: newText [
 
 	^ model text: newText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextComponent >> textAttribute [
 
 	^ self
@@ -84,7 +86,7 @@ WsTextComponent >> textAttribute [
 		  ifAbsent: [ self defaultTextAttribute ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextComponent >> updateDisplay: newText [
 	display textContent: newText 
 ]

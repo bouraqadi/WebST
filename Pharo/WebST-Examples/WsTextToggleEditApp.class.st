@@ -1,16 +1,18 @@
 Class {
-	#name : #WsTextToggleEditApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-Text'
+	#name : 'WsTextToggleEditApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-Text',
+	#package : 'WebST-Examples',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextToggleEditApp class >> rootComponentClass [
 
 	^ WsTextToggleEditComponent 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextToggleEditApp class >> title [
 
 	<pharoJsSkip>

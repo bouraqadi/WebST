@@ -1,18 +1,20 @@
 Class {
-	#name : #WsCompositeViewComponent,
-	#superclass : #WsComponent,
+	#name : 'WsCompositeViewComponent',
+	#superclass : 'WsComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
-	#category : #'WebST-Examples-CompositeViews'
+	#category : 'WebST-Examples-CompositeViews',
+	#package : 'WebST-Examples',
+	#tag : 'CompositeViews'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsCompositeViewComponent class >> tagName [
 
 	^'ws-abcd'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeViewComponent class >> viewClass [
 
 	<pharoJsSkip>

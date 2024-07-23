@@ -1,23 +1,25 @@
 Class {
-	#name : #WsCounterListApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-List'
+	#name : 'WsCounterListApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-List',
+	#package : 'WebST-Examples',
+	#tag : 'List'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsCounterListApp class >> rootComponentClass [
 
 	^ WsCounterListComponent 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsCounterListApp class >> title [
 
 	<pharoJsSkip>
 	^ 'Counters List WebST Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsCounterListApp >> initRootComponent [
 
 	#(0 -10 42) do: [: each | 

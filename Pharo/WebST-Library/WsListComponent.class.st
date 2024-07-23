@@ -1,32 +1,34 @@
 Class {
-	#name : #WsListComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsListComponent',
+	#superclass : 'WsMvcComponent',
 	#instVars : [
 		'listView'
 	],
-	#category : #'WebST-Library-Lists'
+	#category : 'WebST-Library-Lists',
+	#package : 'WebST-Library',
+	#tag : 'Lists'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponent class >> itemComponentClass [
 
 	^self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponent class >> modelClass [
 
 	^ WsListModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^ WsListView
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsListComponent >> addItem [
 
 	| newItem |
@@ -35,7 +37,7 @@ WsListComponent >> addItem [
 	^ newItem
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsListComponent >> addItemComponent: itemComponent [
 
 	| item |
@@ -45,12 +47,12 @@ WsListComponent >> addItemComponent: itemComponent [
 	listView appendChild: item
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsListComponent >> addItemModels: itemModels [
 	model addAll: itemModels 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsListComponent >> displayItemModel: itemModel [
 
 	| itemComponent |
@@ -58,20 +60,20 @@ WsListComponent >> displayItemModel: itemModel [
 	self addItemComponent: itemComponent
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsListComponent >> displayModel [
 
 	model items withIndexDo: [ :item :index |
 		self displayItemModel: item ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsListComponent >> handleAdd: itemModel at: itemIndex [
 
 	self displayItemModel: itemModel 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsListComponent >> initModel [
 
 	super initModel.
@@ -79,31 +81,31 @@ WsListComponent >> initModel [
 	self displayModel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsListComponent >> initView [
 
 	super initView.
 	listView := view querySelector: 'ul'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponent >> itemComponentClass [
 	^ self class itemComponentClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponent >> itemModelClass [
 
 	^ self itemComponentClass modelClass
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsListComponent >> newItemComponent: itemModel [
 
 	^ self itemComponentClass model: itemModel
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsListComponent >> newItemModel [
 
 	^ self itemModelClass new

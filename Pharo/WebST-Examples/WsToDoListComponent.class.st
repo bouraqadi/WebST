@@ -1,66 +1,68 @@
 Class {
-	#name : #WsToDoListComponent,
-	#superclass : #WsTextListComponent,
+	#name : 'WsToDoListComponent',
+	#superclass : 'WsTextListComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'headingDisplay'
 	],
-	#category : #'WebST-Examples-ToDoList'
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListComponent class >> itemComponentClass [
 
 	^ WsToDoItemComponent 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListComponent class >> modelClass [
 	^WsToDoListModel 
 	
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsToDoListComponent class >> tagName [
 
 	^ 'ws-todo-list'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^ WsToDoListView
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToDoListComponent >> displayHeading: aString [
 
 	headingDisplay textContent: aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoListComponent >> displayModel [
 
 	super displayModel.
 	self displayHeading: model heading
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListComponent >> heading: newTitle [
 
 	model heading: newTitle
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoListComponent >> initModel [
 
 	super initModel.
 	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoListComponent >> initView [
 
 	| addButton |

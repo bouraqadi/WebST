@@ -1,14 +1,16 @@
 Class {
-	#name : #WsListModel,
-	#superclass : #Object,
+	#name : 'WsListModel',
+	#superclass : 'Object',
 	#instVars : [
 		'items',
 		'addPort'
 	],
-	#category : #'WebST-Library-Lists'
+	#category : 'WebST-Library-Lists',
+	#package : 'WebST-Library',
+	#tag : 'Lists'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsListModel >> add: itemModel [
 
 	items addLast: itemModel.
@@ -16,13 +18,13 @@ WsListModel >> add: itemModel [
 			itemModel. items size}.
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsListModel >> addAll: itemModels [
 
 	itemModels do: [ :each | self add: each ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsListModel >> initialize [
 
 	super initialize.
@@ -30,13 +32,13 @@ WsListModel >> initialize [
 	addPort := HyCollectionPort notificationSelector: #value:value:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListModel >> itemAt: index [
 
 	^ self items at: index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListModel >> items [
 
 	^ items

@@ -1,36 +1,38 @@
 Class {
-	#name : #WsComponentTestAsserter,
-	#superclass : #TestAsserter,
+	#name : 'WsComponentTestAsserter',
+	#superclass : 'TestAsserter',
 	#instVars : [
 		'domRoot',
 		'model',
 		'component'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTestAsserter class >> assert: aComponent [
 	self new
 		component: aComponent; assert
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsComponentTestAsserter class >> component: aComponent [
 	^self new component: aComponent; yourself
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTestAsserter >> assert [
 	self assertViewModelLink 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTestAsserter >> assertViewModelLink [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTestAsserter >> component: aComponent [
 
 	component := aComponent.
@@ -38,19 +40,19 @@ WsComponentTestAsserter >> component: aComponent [
 	domRoot := aComponent view
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTestAsserter >> resources [
 
 	^ #()
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 WsComponentTestAsserter >> setUp [
 
 	^ self
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 WsComponentTestAsserter >> tearDown [
 
 	^ self

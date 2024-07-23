@@ -1,23 +1,25 @@
 Class {
-	#name : #WsCounterComponentTestAsserter,
-	#superclass : #WsComponentTestAsserter,
+	#name : 'WsCounterComponentTestAsserter',
+	#superclass : 'WsComponentTestAsserter',
 	#instVars : [
 		'display',
 		'incrementBtn',
 		'decrementBtn',
 		'resetBtn'
 	],
-	#category : #'WebST-Tests-Library'
+	#category : 'WebST-Tests-Library',
+	#package : 'WebST-Tests',
+	#tag : 'Library'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsCounterComponentTestAsserter >> assertCount: expectedCount [
 
 	self assert: display textContent equals: expectedCount asString.
 	self assert: model count equals: expectedCount
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsCounterComponentTestAsserter >> assertViewModelLink [
 
 	| expectedCount |
@@ -33,7 +35,7 @@ WsCounterComponentTestAsserter >> assertViewModelLink [
 	self assertCount: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCounterComponentTestAsserter >> component: aCounterComponent [
  
 	super component: aCounterComponent.

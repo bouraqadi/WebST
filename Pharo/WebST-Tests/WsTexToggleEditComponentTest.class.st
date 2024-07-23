@@ -1,6 +1,6 @@
 Class {
-	#name : #WsTexToggleEditComponentTest,
-	#superclass : #WsComponentTest,
+	#name : 'WsTexToggleEditComponentTest',
+	#superclass : 'WsComponentTest',
 	#instVars : [
 		'textReader',
 		'textEditor',
@@ -8,22 +8,24 @@ Class {
 		'cancelButton',
 		'saveButton'
 	],
-	#category : #'WebST-Tests-Examples'
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTexToggleEditComponentTest class >> componentClass [
 
 	^ WsTextToggleEditComponent 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTexToggleEditComponentTest class >> dataAttributes [
 
 	^ { (#text -> 'Editable Text custom attribute') }
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertCancelEditing: newText [
 
 	| initialText |
@@ -38,7 +40,7 @@ WsTexToggleEditComponentTest >> assertCancelEditing: newText [
 	self assert: component text equals: initialText
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertComponent [
 
 	self assertDisplayStateWith: component text.	self assertComponentSetText: 'Bilbo The Hobbit'.
@@ -50,7 +52,7 @@ WsTexToggleEditComponentTest >> assertComponent [
 	self assertSaveEditing: 'But, save this one'
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertComponentSetText: newText [
 
 	| initialText |
@@ -62,7 +64,7 @@ WsTexToggleEditComponentTest >> assertComponentSetText: newText [
 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertCustomAttributesApplied [
 
 	super assertCustomAttributesApplied.
@@ -72,7 +74,7 @@ WsTexToggleEditComponentTest >> assertCustomAttributesApplied [
 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertDefaultAttributesApplied [
 
 	super assertDefaultAttributesApplied.
@@ -81,7 +83,7 @@ WsTexToggleEditComponentTest >> assertDefaultAttributesApplied [
 		equals: self rootComponentClass defaultTextAttribute
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertDisplayStateWith: expectedText [
 
 	self assertShowing: textReader.
@@ -89,7 +91,7 @@ WsTexToggleEditComponentTest >> assertDisplayStateWith: expectedText [
 	self assertHidden: textEditor
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertEditStateWith: expectedText [
 
 	self assertHidden: textReader.
@@ -97,7 +99,7 @@ WsTexToggleEditComponentTest >> assertEditStateWith: expectedText [
 self assert: self textEditorInputValue equals: expectedText 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTexToggleEditComponentTest >> assertSaveEditing: newText [
 
 	| initialText |
@@ -112,7 +114,7 @@ WsTexToggleEditComponentTest >> assertSaveEditing: newText [
 	self assert: component text equals: newText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTexToggleEditComponentTest >> component: aComponent [
 
 	| editorView |
@@ -125,13 +127,13 @@ WsTexToggleEditComponentTest >> component: aComponent [
 	saveButton := editorView querySelector: '.saveButton'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTexToggleEditComponentTest >> textEditorInputValue [
 
 	^ textInput value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTexToggleEditComponentTest >> textReaderContents [
 
 	^ textReader text

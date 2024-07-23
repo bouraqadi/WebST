@@ -1,16 +1,18 @@
 Class {
-	#name : #WsCompositeViewComponentTest,
-	#superclass : #WsComponentTest,
-	#category : #'WebST-Tests-Examples'
+	#name : 'WsCompositeViewComponentTest',
+	#superclass : 'WsComponentTest',
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeViewComponentTest class >> componentClass [
 
 	^ WsCompositeViewComponent
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeViewComponentTest >> assertAllLinksIn: container useHrefs: allHrefs [
 
 		| allLinks |
@@ -21,7 +23,7 @@ WsCompositeViewComponentTest >> assertAllLinksIn: container useHrefs: allHrefs [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeViewComponentTest >> assertComponent [
 
 	| allScripts linkHrefs |
@@ -45,7 +47,7 @@ WsCompositeViewComponentTest >> assertComponent [
 				self leafComponent }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeViewComponentTest >> displayHtml [
 
 	| tagName leafComponentTag |
@@ -55,7 +57,7 @@ WsCompositeViewComponentTest >> displayHtml [
 		  { '<h1>ABCD</h1>'. '<h2>A+B</h2>'. '<p>a</p>'. '<p>b</p>'. '<h2>C+D</h2>'. '<p>c</p>'. '<p>d</p>'. leafComponentTag } do: [ :each | str << each ] ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCompositeViewComponentTest >> leafComponent [
 	^WsMinimalComponent 
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #WsToDoItemView,
-	#superclass : #WsView,
-	#category : #'WebST-Examples-ToDoList'
+	#name : 'WsToDoItemView',
+	#superclass : 'WsView',
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsToDoItemView >> renderOuterHtmlOn: html [
 
 	html checkbox class: 'form-check-input todo-checkbox'.

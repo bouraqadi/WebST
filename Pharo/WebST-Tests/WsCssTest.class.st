@@ -1,16 +1,18 @@
 Class {
-	#name : #WsCssTest,
-	#superclass : #WsResourceElementTest,
-	#category : #'WebST-Tests-Views'
+	#name : 'WsCssTest',
+	#superclass : 'WsResourceElementTest',
+	#category : 'WebST-Tests-Views',
+	#package : 'WebST-Tests',
+	#tag : 'Views'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCssTest >> resourceClass [
 
 	^WsCssLink 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCssTest >> testCrossoriginAnonymous [
 
 	resource crossoriginAnonymous.
@@ -19,7 +21,7 @@ WsCssTest >> testCrossoriginAnonymous [
 		, '" crossorigin="anonymous"/>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCssTest >> testIntegrity [
 
 	| integrity |
@@ -30,7 +32,7 @@ WsCssTest >> testIntegrity [
 		, '"/>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsCssTest >> testUrlOnly [
 
 	self assertHtml: '<link rel="stylesheet" href="' , url , '"/>'

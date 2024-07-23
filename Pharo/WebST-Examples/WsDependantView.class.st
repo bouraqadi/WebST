@@ -2,18 +2,20 @@
 Example of a view that depends on some some resources
 "
 Class {
-	#name : #WsDependantView,
-	#superclass : #WsView,
-	#category : #'WebST-Examples-DependantViews'
+	#name : 'WsDependantView',
+	#superclass : 'WsView',
+	#category : 'WebST-Examples-DependantViews',
+	#package : 'WebST-Examples',
+	#tag : 'DependantViews'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsDependantView >> renderOuterHtmlOn: html [
 
 	html paragraph: 'some text'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsDependantView >> resources [
 
 	^ {

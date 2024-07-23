@@ -1,20 +1,22 @@
 Class {
-	#name : #WsToggleIconsComponentTest,
-	#superclass : #WsMvcComponentTest,
+	#name : 'WsToggleIconsComponentTest',
+	#superclass : 'WsMvcComponentTest',
 	#instVars : [
 		'onIcon',
 		'offIcon'
 	],
-	#category : #'WebST-Tests-Library'
+	#category : 'WebST-Tests-Library',
+	#package : 'WebST-Tests',
+	#tag : 'Library'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponentTest class >> componentClass [
 
 	^ WsToggleIconsComponent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponentTest class >> dataAttributes [
 
 	^ {
@@ -22,7 +24,7 @@ WsToggleIconsComponentTest class >> dataAttributes [
 		  (#offIcon -> 'bi-circle') }
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToggleIconsComponentTest >> assertCustomAttributesApplied [
 
 	| expectedOnClass expectedOffClass |
@@ -33,7 +35,7 @@ WsToggleIconsComponentTest >> assertCustomAttributesApplied [
 	self assert: offIcon hasCssClass: expectedOffClass
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToggleIconsComponentTest >> assertDefaultAttributesApplied [
 
 	| expectedOnClass expectedOffClass |
@@ -44,7 +46,7 @@ WsToggleIconsComponentTest >> assertDefaultAttributesApplied [
 	self assert: offIcon hasCssClass: expectedOffClass
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToggleIconsComponentTest >> assertViewModelLink [
 
 	self assert: onIcon isShowing: model isOn.
@@ -67,13 +69,13 @@ WsToggleIconsComponentTest >> assertViewModelLink [
 	self assertShowing: offIcon
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsToggleIconsComponentTest >> changeModelValues [
 
 	model isOn: model isOn not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponentTest >> component: aComponent [
 
 	super component: aComponent.

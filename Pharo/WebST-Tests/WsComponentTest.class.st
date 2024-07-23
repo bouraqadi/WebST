@@ -1,16 +1,18 @@
 Class {
-	#name : #WsComponentTest,
-	#superclass : #PjWebAppTestCase,
+	#name : 'WsComponentTest',
+	#superclass : 'PjWebAppTestCase',
 	#traits : 'PjTAppRunsInJS',
 	#classTraits : 'PjTAppRunsInJS classTrait',
 	#instVars : [
 		'component',
 		'shadowRoot'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> appClass [
 
 	^ self appClassGenerator
@@ -20,69 +22,69 @@ WsComponentTest class >> appClass [
 		  attributes: self dataAttributes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> appClassGenerator [
 	^self appClassGeneratorClass current
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> appClassGeneratorClass [
 	^WsComponentAppClassTestResource 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> appSuperclass [
 
 	^ WsComponentAppForTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> appTraits [
 
 	^ { WsTSingleComponentApp }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> componentClass [
 	^self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> dataAttributes [
 
 	^ #(  )
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 WsComponentTest class >> isAbstract [
 
 	^ self == WsComponentTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest class >> resources [
 
 	^ super resources , { self appClassGeneratorClass }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest >> allComponents [
 	^document querySelectorAll:
 		                 self rootComponentClass  tagName.
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTest >> assertComponent [ 
 	self subclassResponsibility 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTest >> assertComponent: aComponent [
 
 	self assertComponent: aComponent with: nil
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTest >> assertComponent: aComponent with: aBlock [
 
 	self component: aComponent.
@@ -91,7 +93,7 @@ WsComponentTest >> assertComponent: aComponent with: aBlock [
 	self assertComponent
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTest >> assertComponentClass [
 
 	| actualClass expectedClass |
@@ -100,43 +102,43 @@ WsComponentTest >> assertComponentClass [
 	self assert: actualClass identicalTo: expectedClass
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTest >> assertCustomAttributesApplied [
 
 	^self 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsComponentTest >> assertDefaultAttributesApplied [
 
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest >> component: aComponent [
 	component := aComponent.
 	shadowRoot := component at: #shadowRoot.
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest >> dataAttributesDict [
 
 	^ self class dataAttributes asDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest >> jsComponentClass [
 
 	^ self bridge jsGlobalAt: self rootComponentClass name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentTest >> rootComponentClass [
 	^self appClass rootComponentClass
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsComponentTest >> testDynamicComponentCreationBasic [
 
 	| newComponent staticComponent |
@@ -152,7 +154,7 @@ WsComponentTest >> testDynamicComponentCreationBasic [
 		with: [ self assertDefaultAttributesApplied ] 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsComponentTest >> testStaticComponentCreation [
 	"Component is defined using HTML tags. See WsTComponentApp >> #newPage."
 

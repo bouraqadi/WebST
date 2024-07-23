@@ -1,10 +1,12 @@
 Class {
-	#name : #WsIntermediateCompositeViewSuperclass,
-	#superclass : #WsView,
-	#category : #'WebST-Examples-CompositeViews'
+	#name : 'WsIntermediateCompositeViewSuperclass',
+	#superclass : 'WsView',
+	#category : 'WebST-Examples-CompositeViews',
+	#package : 'WebST-Examples',
+	#tag : 'CompositeViews'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsIntermediateCompositeViewSuperclass >> renderOuterHtmlOn: html [
 
 	html render: WsMinimalComponent 

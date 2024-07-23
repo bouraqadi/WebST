@@ -1,57 +1,59 @@
 Class {
-	#name : #WsCounterModel,
-	#superclass : #Object,
+	#name : 'WsCounterModel',
+	#superclass : 'Object',
 	#instVars : [
 		'count',
 		'countPort'
 	],
-	#category : #'WebST-Library-Counter'
+	#category : 'WebST-Library-Counter',
+	#package : 'WebST-Library',
+	#tag : 'Counter'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsCounterModel class >> count: anInteger [
 	^self new
 		count: anInteger;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCounterModel >> count [
 	^ count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCounterModel >> count: anInteger [
 
 	count := anInteger.
 	countPort notifyWith: count
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 WsCounterModel >> decrement [
 
 	self decrement: 1
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 WsCounterModel >> decrement: amount [
 
 	self count: self count - amount
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 WsCounterModel >> increment [
 
 	self increment: 1
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 WsCounterModel >> increment: amount [
 
 	self count: self count + amount
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsCounterModel >> initialize [
 
 	super initialize.
@@ -60,7 +62,7 @@ WsCounterModel >> initialize [
 	self reset
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 WsCounterModel >> reset [
 	self count: 0
 ]

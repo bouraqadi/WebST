@@ -1,10 +1,12 @@
 Class {
-	#name : #WsTextView,
-	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Text'
+	#name : 'WsTextView',
+	#superclass : 'WsBootstrap5View',
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextView >> renderOuterHtmlOn: html [
 
 	html span

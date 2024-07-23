@@ -1,10 +1,12 @@
 Class {
-	#name : #WsPasswordInputExampleView,
-	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Text'
+	#name : 'WsPasswordInputExampleView',
+	#superclass : 'WsBootstrap5View',
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsPasswordInputExampleView >> renderOuterHtmlOn: html [
 
 	html div

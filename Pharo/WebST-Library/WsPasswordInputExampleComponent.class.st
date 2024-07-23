@@ -1,6 +1,6 @@
 Class {
-	#name : #WsPasswordInputExampleComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsPasswordInputExampleComponent',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
@@ -8,45 +8,47 @@ Class {
 		'passwordField',
 		'passwordPort'
 	],
-	#category : #'WebST-Library-Text'
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent class >> defaultPlaceholderAttribute [
 
 	^ ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent class >> modelClass [
 
 	^WsTextModel
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsPasswordInputExampleComponent class >> tagName [
 
 	^'ws-password-input'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsPasswordInputExampleView 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent >> defaultPlaceholderAttribute [
 	^self class defaultPlaceholderAttribute
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsPasswordInputExampleComponent >> displayPassword: newText [
 	passwordField value: newText
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsPasswordInputExampleComponent >> initModel [
 
 	super initModel.
@@ -55,7 +57,7 @@ WsPasswordInputExampleComponent >> initModel [
 	self displayPassword: model text
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsPasswordInputExampleComponent >> initView [
 
 	super initView.
@@ -70,19 +72,19 @@ WsPasswordInputExampleComponent >> initView [
 		do: [ :newPassword | self savePassword: newPassword ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent >> password [
 
 	^ model text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent >> password: newPassword [
 
 	model text: newPassword
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent >> placeholderAttribute [
 
 	^ self
@@ -90,25 +92,25 @@ WsPasswordInputExampleComponent >> placeholderAttribute [
 		  ifAbsent: [ self defaultPlaceholderAttribute ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsPasswordInputExampleComponent >> savePassword: newPassword [
 	model text: newPassword 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsPasswordInputExampleComponent >> showPasswordAsPlainText: aBoolean [
 	| newType |
 	newType := aBoolean ifTrue: [ 'text' ] ifFalse: ['password'].
 	passwordField type: newType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent >> value [
 
 	^ self password
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPasswordInputExampleComponent >> value: newPassword [
 
 	self password: newPassword

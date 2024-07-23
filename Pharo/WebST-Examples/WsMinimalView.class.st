@@ -1,10 +1,12 @@
 Class {
-	#name : #WsMinimalView,
-	#superclass : #WsView,
-	#category : #'WebST-Examples-Misc'
+	#name : 'WsMinimalView',
+	#superclass : 'WsView',
+	#category : 'WebST-Examples-Misc',
+	#package : 'WebST-Examples',
+	#tag : 'Misc'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsMinimalView >> renderOuterHtmlOn: html [
 
 	^ self

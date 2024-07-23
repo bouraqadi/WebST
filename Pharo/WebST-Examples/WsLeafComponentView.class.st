@@ -1,16 +1,18 @@
 Class {
-	#name : #WsLeafComponentView,
-	#superclass : #WsView,
-	#category : #'WebST-Examples-CompositeComponents'
+	#name : 'WsLeafComponentView',
+	#superclass : 'WsView',
+	#category : 'WebST-Examples-CompositeComponents',
+	#package : 'WebST-Examples',
+	#tag : 'CompositeComponents'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsLeafComponentView >> renderOuterHtmlOn: html [
 
 	html paragraph: 'leaf'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsLeafComponentView >> resources [
 
 	^ {

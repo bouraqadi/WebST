@@ -1,34 +1,36 @@
 Class {
-	#name : #WsComponentAppForTest,
-	#superclass : #WsSingleComponentApp,
+	#name : 'WsComponentAppForTest',
+	#superclass : 'WsSingleComponentApp',
 	#classInstVars : [
 		'rootComponentClass',
 		'rootComponentAttributes'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentAppForTest class >> rootComponentAttributes [
 
 	<pharoJsSkip>
 	^ rootComponentAttributes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentAppForTest class >> rootComponentAttributes: anAssociationArray [
 
 	<pharoJsSkip>
 	rootComponentAttributes := anAssociationArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentAppForTest class >> rootComponentClass [
 
 	^ rootComponentClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentAppForTest class >> rootComponentClass: anObject [
 
 	rootComponentClass := anObject

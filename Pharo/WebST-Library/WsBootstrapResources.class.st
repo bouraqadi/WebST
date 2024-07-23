@@ -1,45 +1,47 @@
 Class {
-	#name : #WsBootstrapResources,
-	#superclass : #SharedPool,
+	#name : 'WsBootstrapResources',
+	#superclass : 'SharedPool',
 	#classVars : [
 		'Bootstrap5o0o2',
 		'Bootstrap5o3o3',
 		'BootstrapIcons1o11o3'
 	],
-	#category : #'WebST-Library-Bootstrap'
+	#category : 'WebST-Library-Bootstrap',
+	#package : 'WebST-Library',
+	#tag : 'Bootstrap'
 }
 
-{ #category : #accesing }
+{ #category : 'accesing' }
 WsBootstrapResources class >> bootstrap5 [
 
 	^ self bootstrap5o3o3 
 ]
 
-{ #category : #accesing }
+{ #category : 'accesing' }
 WsBootstrapResources class >> bootstrap5o0o2 [
 
 	^ Bootstrap5o0o2
 ]
 
-{ #category : #accesing }
+{ #category : 'accesing' }
 WsBootstrapResources class >> bootstrap5o3o3 [
 
 	^ Bootstrap5o3o3
 ]
 
-{ #category : #accesing }
+{ #category : 'accesing' }
 WsBootstrapResources class >> bootstrapIcons1 [
 
 	^ self bootstrapIcons1o11o3
 	
 ]
 
-{ #category : #accesing }
+{ #category : 'accesing' }
 WsBootstrapResources class >> bootstrapIcons1o11o3 [
 	^BootstrapIcons1o11o3
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsBootstrapResources class >> initBootstrap5o0o2 [
 
 	Bootstrap5o0o2 := WsCompositeResource withAll: {
@@ -59,7 +61,7 @@ WsBootstrapResources class >> initBootstrap5o0o2 [
 				                 yourself) }
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsBootstrapResources class >> initBootstrap5o3o3 [
 	Bootstrap5o3o3 := WsCompositeResource withAll: {
 			                (WsCssLink new
@@ -78,13 +80,13 @@ WsBootstrapResources class >> initBootstrap5o3o3 [
 				                 yourself) }
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsBootstrapResources class >> initBootstrapIcons1o11o3 [
 
 	BootstrapIcons1o11o3 := WsCssLink new url: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsBootstrapResources class >> initialize [
 
 	self initBootstrap5o3o3.

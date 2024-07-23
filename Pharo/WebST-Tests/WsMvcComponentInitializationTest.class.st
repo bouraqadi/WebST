@@ -1,21 +1,23 @@
 Class {
-	#name : #WsMvcComponentInitializationTest,
-	#superclass : #WsMvcComponentTest,
+	#name : 'WsMvcComponentInitializationTest',
+	#superclass : 'WsMvcComponentTest',
 	#instVars : [
 		'viewResetCountExpected',
 		'viewInitCountExpected',
 		'modelInitCountExpected'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsMvcComponentInitializationTest class >> componentClass [
 
 	^ WsInitializationCounterForTest 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsMvcComponentInitializationTest >> assertComponent [
 
 	self assert: component viewResetCount equals: viewResetCountExpected.
@@ -24,19 +26,19 @@ WsMvcComponentInitializationTest >> assertComponent [
 	
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsMvcComponentInitializationTest >> assertViewModelLink [
 
 	^self
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsMvcComponentInitializationTest >> changeModelValues [
 
 	^self
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsMvcComponentInitializationTest >> testDynamicComponentCreationBasic [
 
 	viewResetCountExpected := 1.
@@ -45,7 +47,7 @@ WsMvcComponentInitializationTest >> testDynamicComponentCreationBasic [
 	super testDynamicComponentCreationBasic
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsMvcComponentInitializationTest >> testDynamicComponentCreationWithProvidedModel [
 
 	viewResetCountExpected := 2.
@@ -54,7 +56,7 @@ WsMvcComponentInitializationTest >> testDynamicComponentCreationWithProvidedMode
 	super testDynamicComponentCreationWithProvidedModel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsMvcComponentInitializationTest >> testStaticComponentCreation [
 	viewResetCountExpected := 1.
 	viewInitCountExpected := 1.

@@ -1,15 +1,17 @@
 Class {
-	#name : #WsListComponentTest,
-	#superclass : #WsMvcComponentTest,
-	#category : #'WebST-Tests-Library'
+	#name : 'WsListComponentTest',
+	#superclass : 'WsMvcComponentTest',
+	#category : 'WebST-Tests-Library',
+	#package : 'WebST-Tests',
+	#tag : 'Library'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 WsListComponentTest class >> isAbstract [ 
 	^self == WsListComponentTest 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsListComponentTest >> assertViewModelLink [
 
 	| itemModels itemComponents |
@@ -21,25 +23,25 @@ WsListComponentTest >> assertViewModelLink [
 		self assertViewOf: itemComponent linkedToModel: aModel ]
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsListComponentTest >> assertViewOf: itemComponent linkedToModel: itemModel [
 
 	self assert: itemComponent model identicalTo: itemModel.
 	self itemComponentAsserter assert: itemComponent
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsListComponentTest >> itemComponentAsserter [
 	^self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponentTest >> itemComponentClass [
 
 	^ self rootComponentClass itemComponentClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsListComponentTest >> itemElements [
 
 	^ (shadowRoot querySelectorAll: #li) asLocalObject 

@@ -1,10 +1,12 @@
 Class {
-	#name : #WsTextFieldWithButtonsView,
-	#superclass : #WsBootstrap5View,
-	#category : #'WebST-Library-Text'
+	#name : 'WsTextFieldWithButtonsView',
+	#superclass : 'WsBootstrap5View',
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextFieldWithButtonsView >> renderOuterHtmlOn: html [
 
 	html div

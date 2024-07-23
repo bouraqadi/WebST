@@ -1,16 +1,18 @@
 Class {
-	#name : #WsTextDisplayApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-Text'
+	#name : 'WsTextDisplayApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-Text',
+	#package : 'WebST-Examples',
+	#tag : 'Text'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextDisplayApp class >> rootComponentClass [
 
 	^ WsTextComponent
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextDisplayApp class >> title [
 
 	<pharoJsSkip>

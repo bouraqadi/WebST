@@ -1,26 +1,28 @@
 Class {
-	#name : #WsToDoListModel,
-	#superclass : #WsListModel,
+	#name : 'WsToDoListModel',
+	#superclass : 'WsListModel',
 	#instVars : [
 		'heading',
 		'headingPort'
 	],
-	#category : #'WebST-Examples-ToDoList'
+	#category : 'WebST-Examples-ToDoList',
+	#package : 'WebST-Examples',
+	#tag : 'ToDoList'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListModel >> heading [
 	^heading
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToDoListModel >> heading: newTitle [
 
 	heading := newTitle.
 	headingPort notifyWith: newTitle
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToDoListModel >> initialize [
 
 	super initialize.

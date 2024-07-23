@@ -1,23 +1,25 @@
 Class {
-	#name : #WsTextListApp,
-	#superclass : #WsSingleComponentApp,
-	#category : #'WebST-Examples-List'
+	#name : 'WsTextListApp',
+	#superclass : 'WsSingleComponentApp',
+	#category : 'WebST-Examples-List',
+	#package : 'WebST-Examples',
+	#tag : 'List'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextListApp class >> rootComponentClass [
 
 	^WsTextListComponent 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTextListApp class >> title [
 
 	<pharoJsSkip>
 	^ 'Robots - Text List WebST Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextListApp >> initRootComponent [
 
 	self rootComponent addAllTexts:

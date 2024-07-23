@@ -1,6 +1,6 @@
 Class {
-	#name : #WsTextFieldWithButtonsComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsTextFieldWithButtonsComponent',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
@@ -8,60 +8,62 @@ Class {
 		'cancelBlock',
 		'saveBlock'
 	],
-	#category : #'WebST-Library-Text'
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent class >> modelClass [
 
 	^WsTextModel 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsTextFieldWithButtonsComponent class >> tagName [
 
 	^'ws-text-input'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsTextFieldWithButtonsView 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextFieldWithButtonsComponent >> cancel [
 
 	self displayModelText.
 	self cancelBlock value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent >> cancelBlock [
 
 	^ cancelBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent >> cancelBlock: anObject [
 
 	cancelBlock := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextFieldWithButtonsComponent >> displayModelText [
 
 	self displayText: model text
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextFieldWithButtonsComponent >> displayText: aString [
 
 	input value: aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextFieldWithButtonsComponent >> initModel [
 
 	super initModel.
@@ -69,7 +71,7 @@ WsTextFieldWithButtonsComponent >> initModel [
 	self displayModelText
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextFieldWithButtonsComponent >> initView [
 
 	| cancelButton saveButton |
@@ -81,12 +83,12 @@ WsTextFieldWithButtonsComponent >> initView [
 	self onClickElement: saveButton do: [ self save ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent >> inputValue [
 	^input value
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextFieldWithButtonsComponent >> save [
 
 	self updateModelText.
@@ -94,19 +96,19 @@ WsTextFieldWithButtonsComponent >> save [
 	self saveBlock value: input value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent >> saveBlock [
 
 	^ saveBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsComponent >> saveBlock: anObject [
 
 	saveBlock := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextFieldWithButtonsComponent >> updateModelText [
 
 	model text: input value

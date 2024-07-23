@@ -1,16 +1,18 @@
 Class {
-	#name : #WsDependantViewComponentTest,
-	#superclass : #WsComponentTest,
-	#category : #'WebST-Tests-Examples'
+	#name : 'WsDependantViewComponentTest',
+	#superclass : 'WsComponentTest',
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsDependantViewComponentTest class >> componentClass [
 
 	^ WsDependantViewComponent
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsDependantViewComponentTest >> assertComponent [
 
 	| scripts jsDependency mainJs link |
@@ -29,7 +31,7 @@ WsDependantViewComponentTest >> assertComponent [
 	self assert: mainJs defer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsDependantViewComponentTest >> shadowHtml [
 
 	^ '<link rel="stylesheet" href="requiredCSS"><p>some text</p>'

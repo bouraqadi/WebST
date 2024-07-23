@@ -1,6 +1,6 @@
 Class {
-	#name : #WsComponentAppForTestDescriptor,
-	#superclass : #Object,
+	#name : 'WsComponentAppForTestDescriptor',
+	#superclass : 'Object',
 	#traits : 'TEquality',
 	#classTraits : 'TEquality classTrait',
 	#instVars : [
@@ -9,52 +9,54 @@ Class {
 		'componentClass',
 		'attributes'
 	],
-	#category : #'WebST-Tests-Support'
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentAppForTestDescriptor >> attributes [
 
 	^ attributes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponentAppForTestDescriptor >> attributes: anObject [
 
 	attributes := anObject
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsComponentAppForTestDescriptor >> componentClass [
 
 	^ componentClass
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsComponentAppForTestDescriptor >> componentClass: anObject [
 
 	componentClass := anObject
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsComponentAppForTestDescriptor >> superclass [
 
 	^ superclass
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsComponentAppForTestDescriptor >> superclass: anObject [
 
 	superclass := anObject
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsComponentAppForTestDescriptor >> traits [
 
 	^ traits
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsComponentAppForTestDescriptor >> traits: anObject [
 
 	traits := anObject

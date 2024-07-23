@@ -1,35 +1,37 @@
 Class {
-	#name : #WsAppExporterTest,
-	#superclass : #TestCase,
-	#category : #'WebST-Tests-Support'
+	#name : 'WsAppExporterTest',
+	#superclass : 'TestCase',
+	#category : 'WebST-Tests-Support',
+	#package : 'WebST-Tests',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsAppExporterTest >> appClass [
 
 	^ WsToDoListApp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsAppExporterTest >> htmlFile [
 
 	^ self appClass appFullHtmlFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsAppExporterTest >> jsFile [
 
 	^ self appClass appFullJsFileName 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 WsAppExporterTest >> setUp [
 	super setUp.
 	self jsFile ensureDelete.
 	self htmlFile ensureDelete
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WsAppExporterTest >> testHtmlAndJsFilesExport [
 
 	self deny: self jsFile exists.

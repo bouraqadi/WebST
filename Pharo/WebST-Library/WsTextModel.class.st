@@ -1,21 +1,23 @@
 Class {
-	#name : #WsTextModel,
-	#superclass : #Object,
+	#name : 'WsTextModel',
+	#superclass : 'Object',
 	#instVars : [
 		'text',
 		'textPort'
 	],
-	#category : #'WebST-Library-Text'
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextModel class >> text: aString [
 	^self new
 		text: aString;
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextModel >> initialize [
 
 	super initialize.
@@ -23,13 +25,13 @@ WsTextModel >> initialize [
 	text := ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextModel >> text [
 
 	^ text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextModel >> text: aString [
 
 	text := aString.

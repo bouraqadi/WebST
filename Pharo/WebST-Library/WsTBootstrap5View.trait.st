@@ -1,15 +1,17 @@
 Trait {
-	#name : #WsTBootstrap5View,
-	#category : #'WebST-Library-Bootstrap'
+	#name : 'WsTBootstrap5View',
+	#category : 'WebST-Library-Bootstrap',
+	#package : 'WebST-Library',
+	#tag : 'Bootstrap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTBootstrap5View >> bootstrap5Resources [
 
 	^ { WsBootstrapResources bootstrap5 }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTBootstrap5View >> resources [
 
 	^ self bootstrap5Resources 

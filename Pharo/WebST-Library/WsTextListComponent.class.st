@@ -1,29 +1,31 @@
 Class {
-	#name : #WsTextListComponent,
-	#superclass : #WsListComponent,
+	#name : 'WsTextListComponent',
+	#superclass : 'WsListComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
-	#category : #'WebST-Library-Lists'
+	#category : 'WebST-Library-Lists',
+	#package : 'WebST-Library',
+	#tag : 'Lists'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextListComponent class >> itemComponentClass [
 
 	^ WsTextComponent 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsTextListComponent class >> tagName [
 
 	^'ws-text-list'
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTextListComponent >> addAllTexts: newTexts [
 	newTexts do: [ : each | self addText: each ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTextListComponent >> addText: aString [
 
 	self addItem text: aString

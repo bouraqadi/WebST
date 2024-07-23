@@ -3,8 +3,8 @@ Upon a click, I toggle the icon of my view and notify observers via the isOnPort
 
 "
 Class {
-	#name : #WsToggleIconsComponent,
-	#superclass : #WsMvcComponent,
+	#name : 'WsToggleIconsComponent',
+	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
@@ -13,57 +13,59 @@ Class {
 		'isOnPort',
 		'clickHandler'
 	],
-	#category : #'WebST-Library-Buttons'
+	#category : 'WebST-Library-Buttons',
+	#package : 'WebST-Library',
+	#tag : 'Buttons'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent class >> defaultOffIconAttribute [
 
 	^ 'bi-toggle-off'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent class >> defaultOnIconAttribute [
 
 	^ 'bi-toggle-on'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent class >> modelClass [
 
 	^WsToggleModel 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsToggleIconsComponent class >> tagName [
 
 	^'ws-toggle-icons'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsToggleIconsView 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> defaultOffIconAttribute [
 	^ self class defaultOffIconAttribute
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> defaultOnIconAttribute [
 	^ self class defaultOnIconAttribute
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent >> icons [
 
 	^ {self onIcon. self offIcon}
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> initModel [
 
 	super initModel.
@@ -72,7 +74,7 @@ WsToggleIconsComponent >> initModel [
 	self updateDisplay
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> initToggleOnClick [
 
 	"Remember the handler to avoid duplicates, in cases when the view is reset, such as upon changing the model"
@@ -81,7 +83,7 @@ WsToggleIconsComponent >> initToggleOnClick [
 	self onClickElement: self do: clickHandler
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> initView [
 
 	super initView.
@@ -92,24 +94,24 @@ WsToggleIconsComponent >> initView [
 	self initToggleOnClick 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent >> isOn [
 	^model isOn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent >> isOn: aBoolean [
 
 	model isOn: aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent >> offIcon [
 
 	^ offIcon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> offIconAttribute [
 
 	^ self
@@ -117,12 +119,12 @@ WsToggleIconsComponent >> offIconAttribute [
 		  ifAbsent: [ self defaultOffIconAttribute ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsToggleIconsComponent >> onIcon [
 	^onIcon 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsToggleIconsComponent >> onIconAttribute [
 
 	^ self
@@ -130,32 +132,32 @@ WsToggleIconsComponent >> onIconAttribute [
 		  ifAbsent: [ self defaultOnIconAttribute ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToggleIconsComponent >> showIsOff [
 
 	self hide: onIcon.
 	self show: offIcon
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToggleIconsComponent >> showIsOn [
 	self show: onIcon.
 	self hide: offIcon
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToggleIconsComponent >> showIsOnOff: aBoolean [
 
 	aBoolean ifTrue: [ ^ self showIsOn ].
 	self showIsOff
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToggleIconsComponent >> toggle [
 	self model toggle
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsToggleIconsComponent >> updateDisplay [
 	self isOn: model isOn
 ]

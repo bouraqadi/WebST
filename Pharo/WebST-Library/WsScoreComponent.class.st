@@ -1,18 +1,20 @@
 Class {
-	#name : #WsScoreComponent,
-	#superclass : #WsComponent,
+	#name : 'WsScoreComponent',
+	#superclass : 'WsComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
-	#category : #'WebST-Library-Counter'
+	#category : 'WebST-Library-Counter',
+	#package : 'WebST-Library',
+	#tag : 'Counter'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsScoreComponent class >> tagName [
 
 	^'ws-score'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsScoreComponent class >> viewClass [
 
 	<pharoJsSkip>

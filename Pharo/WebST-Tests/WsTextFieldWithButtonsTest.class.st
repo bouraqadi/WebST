@@ -1,19 +1,21 @@
 Class {
-	#name : #WsTextFieldWithButtonsTest,
-	#superclass : #WsMvcComponentTest,
+	#name : 'WsTextFieldWithButtonsTest',
+	#superclass : 'WsMvcComponentTest',
 	#instVars : [
 		'textDisplay'
 	],
-	#category : #'WebST-Tests-Examples'
+	#category : 'WebST-Tests-Examples',
+	#package : 'WebST-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextFieldWithButtonsTest class >> componentClass [
 
 	^ WsTextFieldWithButtonsComponent 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextFieldWithButtonsTest >> assertViewModelLink [
 
 	| newText1 newText2 input |
@@ -38,18 +40,18 @@ WsTextFieldWithButtonsTest >> assertViewModelLink [
 	
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextFieldWithButtonsTest >> cancelButton [
 	^shadowRoot querySelector: '.cancelButton'
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextFieldWithButtonsTest >> changeModelValues [
 
 	model text: 'new replacement text for change model test'
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 WsTextFieldWithButtonsTest >> saveButton [
 
 	^ shadowRoot querySelector: '.saveButton'

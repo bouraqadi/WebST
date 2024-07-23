@@ -1,52 +1,54 @@
 Class {
-	#name : #WsTextToggleEditComponent,
-	#superclass : #WsComponent,
+	#name : 'WsTextToggleEditComponent',
+	#superclass : 'WsComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'textReader',
 		'textEditor'
 	],
-	#category : #'WebST-Library-Text'
+	#category : 'WebST-Library-Text',
+	#package : 'WebST-Library',
+	#tag : 'Text'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent class >> defaultTextAttribute [
 
 	^ 'Click to edit'
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsTextToggleEditComponent class >> tagName [
 
 	^ 'ws-editable-text'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^ WsTextToggleEditView
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextToggleEditComponent >> cancelEdit [
 	self closeEditor
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextToggleEditComponent >> closeEditor [
 	self hide: textEditor .
 	self show: textReader
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> defaultTextAttribute [
 
 	^ self class defaultTextAttribute
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTextToggleEditComponent >> initView [
 
 	super initView.
@@ -62,12 +64,12 @@ WsTextToggleEditComponent >> initView [
 	self text: self textAttribute
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> model [
 	^textReader model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> model: newModel [
 
 	textReader model: newModel.
@@ -75,38 +77,38 @@ WsTextToggleEditComponent >> model: newModel [
 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextToggleEditComponent >> openEditor [
 
 	self show: textEditor.
 	self hide: textReader
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> readerDisplay [
 
 	^ textReader display
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 WsTextToggleEditComponent >> saveEdit: newText [
 
 	textReader text: newText.
 	self closeEditor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> text [
 	^textReader text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> text: newText [
 
 	textReader text: newText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTextToggleEditComponent >> textAttribute [
 
 	^ self dataAttributeAt: #text ifAbsent: [ self defaultTextAttribute ]
