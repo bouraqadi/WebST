@@ -69,12 +69,6 @@ WsToggleIconsComponentTest >> assertViewModelLink [
 	self assertShowing: offIcon
 ]
 
-{ #category : 'asserting' }
-WsToggleIconsComponentTest >> changeModelValues [
-
-	model isOn: model isOn not
-]
-
 { #category : 'accessing' }
 WsToggleIconsComponentTest >> component: aComponent [
 

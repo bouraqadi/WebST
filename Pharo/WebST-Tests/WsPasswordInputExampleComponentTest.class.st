@@ -43,7 +43,7 @@ WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
 { #category : 'asserting' }
 WsPasswordInputExampleComponentTest >> assertViewModelLink [
 
-	| password1 password2 |
+	| password1 password2 password3 |
 	self assert: passwordField value equals: model text.
 	password1 := 'very secrete'.
 	self changeElement: passwordField value: password1.
@@ -58,13 +58,13 @@ WsPasswordInputExampleComponentTest >> assertViewModelLink [
 	self assert: model text equals: password1.
 	password2 := 'hush!!!!'.
 	self changeElement: passwordField value: password2.
-	self assert: model text equals: password2
-]
+	self assert: model text equals: password2.
+	password3 := 'new secret password'.
+	model text: password3.
+self assert: passwordField value equals: password3.
 
-{ #category : 'asserting' }
-WsPasswordInputExampleComponentTest >> changeModelValues [
+		
 
-	model text: 'new secret password'
 ]
 
 { #category : 'accessing' }

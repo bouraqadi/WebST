@@ -44,12 +44,6 @@ WsTextComponentTest >> assertViewModelLink [
 	asserter assertViewModelLink 
 ]
 
-{ #category : 'asserting' }
-WsTextComponentTest >> changeModelValues [
-
-	model text: 'another random text to test model change'
-]
-
 { #category : 'accessing' }
 WsTextComponentTest >> component: aTextComponent [
 	super component: aTextComponent.

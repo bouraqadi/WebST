@@ -32,12 +32,6 @@ WsMvcComponentInitializationTest >> assertViewModelLink [
 	^self
 ]
 
-{ #category : 'asserting' }
-WsMvcComponentInitializationTest >> changeModelValues [
-
-	^self
-]
-
 { #category : 'tests' }
 WsMvcComponentInitializationTest >> testDynamicComponentCreationBasic [
 

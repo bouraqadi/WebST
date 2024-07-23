@@ -19,21 +19,12 @@ WsMvcComponentTest class >> isAbstract [
 WsMvcComponentTest >> assertComponent [
 
 	self assertViewModelLink.
-	self changeModelValues.
-	self assertViewModelLink.
 	self replaceModel.
-	self assertViewModelLink.
-
+	self assertViewModelLink
 ]
 
 { #category : 'asserting' }
 WsMvcComponentTest >> assertViewModelLink [
-
-	self subclassResponsibility
-]
-
-{ #category : 'asserting' }
-WsMvcComponentTest >> changeModelValues [
 
 	self subclassResponsibility
 ]

@@ -18,13 +18,10 @@ WsCounterComponentTest class >> componentClass [
 { #category : 'asserting' }
 WsCounterComponentTest >> assertViewModelLink [
 
-	counterAsserter assertViewModelLink
-]
-
-{ #category : 'asserting' }
-WsCounterComponentTest >> changeModelValues [
-
-	model count: 42
+	counterAsserter assertViewModelLink.
+	model count: 42.
+	counterAsserter assertViewModelLink.
+	
 ]
 
 { #category : 'accessing' }

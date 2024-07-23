@@ -18,7 +18,7 @@ WsTextFieldWithButtonsTest class >> componentClass [
 { #category : 'asserting' }
 WsTextFieldWithButtonsTest >> assertViewModelLink [
 
-	| newText1 newText2 input |
+	| newText1 newText2 input newText3 |
 	input := component input.
 	self assert: input value equals: model text.
 	newText1 := 'new text'.
@@ -35,20 +35,15 @@ WsTextFieldWithButtonsTest >> assertViewModelLink [
 	self saveButton click.
 	self assert: model text equals: newText2.
 	self assert: input value equals: newText2.
-	
-	
+	newText3 := 'new replacement text for change model test'.
+	model text: newText3.
+	self assert: input value equals: newText3.
 	
 ]
 
 { #category : 'asserting' }
 WsTextFieldWithButtonsTest >> cancelButton [
 	^shadowRoot querySelector: '.cancelButton'
-]
-
-{ #category : 'asserting' }
-WsTextFieldWithButtonsTest >> changeModelValues [
-
-	model text: 'new replacement text for change model test'
 ]
 
 { #category : 'asserting' }
