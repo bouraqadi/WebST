@@ -1,8 +1,8 @@
 Class {
 	#name : 'WsComponentTest',
 	#superclass : 'PjWebAppTestCase',
-	#traits : 'PjTAppRunsInJS',
-	#classTraits : 'PjTAppRunsInJS classTrait',
+	#traits : 'PjTAppRunsInJS + WsTUrlTest',
+	#classTraits : 'PjTAppRunsInJS classTrait + WsTUrlTest classTrait',
 	#instVars : [
 		'component',
 		'shadowRoot'
