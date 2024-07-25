@@ -18,6 +18,10 @@ WsTUrlTest >> assertUrlFrom: actualUrlString equalsUrlFrom: expectedUrlString [
 
 	| expectedUrl |
 	expectedUrl := ZnUrl fromString: expectedUrlString.
+	expectedUrl hasScheme ifFalse: [
+		^ self
+			  assertUrlFrom: actualUrlString
+			  equalsUrlWithPath: expectedUrlString ].
 	self assertUrlFrom: actualUrlString equals: expectedUrl 
 ]
 
