@@ -36,7 +36,7 @@ WsInitializationCounterForTest class >> viewClass [
 WsInitializationCounterForTest >> initModel [
 
 	console log: 'initModel'.
-	modelInitCount := modelInitCount + 1.
+	modelInitCount := self modelInitCount + 1.
 	super initModel
 ]
 
@@ -44,42 +44,32 @@ WsInitializationCounterForTest >> initModel [
 WsInitializationCounterForTest >> initView [
 
 	console log: 'initView'.
-	viewInitCount := viewInitCount + 1.
+	viewInitCount := self viewInitCount + 1.
 	super initView
-]
-
-{ #category : 'initialization' }
-WsInitializationCounterForTest >> initialize [
-
-	viewResetCount := 0.
-	viewInitCount := 0.
-	modelInitCount := 0.
-	super initialize.
-
 ]
 
 { #category : 'accessing' }
 WsInitializationCounterForTest >> modelInitCount [
 
-	^ modelInitCount
+	^ modelInitCount ifNil: [ 0 ]
 ]
 
 { #category : 'initialization' }
 WsInitializationCounterForTest >> resetView [
 
 	console log: 'resetView'.
-	viewResetCount := viewResetCount + 1.
+	viewResetCount := self viewResetCount + 1.
 	super resetView
 ]
 
 { #category : 'accessing' }
 WsInitializationCounterForTest >> viewInitCount [
 
-	^ viewInitCount
+	^ viewInitCount ifNil: [ 0 ]
 ]
 
 { #category : 'accessing' }
 WsInitializationCounterForTest >> viewResetCount [
 
-	^ viewResetCount
+	^ viewResetCount ifNil: [ 0 ]
 ]

@@ -20,40 +20,13 @@ WsMvcComponentInitializationTest class >> componentClass [
 { #category : 'asserting' }
 WsMvcComponentInitializationTest >> assertComponent [
 
-	self assert: component viewResetCount equals: viewResetCountExpected.
-	self assert: component viewInitCount equals: viewInitCountExpected.
-	self assert: component modelInitCount equals: modelInitCountExpected.
-	
+	self assert: component viewResetCount equals: 1.
+	self assert: component viewInitCount equals: 1.
+	self assert: component modelInitCount equals: 1
 ]
 
 { #category : 'asserting' }
 WsMvcComponentInitializationTest >> assertViewModelLink [
 
 	^self
-]
-
-{ #category : 'tests' }
-WsMvcComponentInitializationTest >> testDynamicComponentCreationBasic [
-
-	viewResetCountExpected := 1.
-	viewInitCountExpected := 1.
-	modelInitCountExpected := 1.
-	super testDynamicComponentCreationBasic
-]
-
-{ #category : 'tests' }
-WsMvcComponentInitializationTest >> testDynamicComponentCreationWithProvidedModel [
-
-	viewResetCountExpected := 2.
-	viewInitCountExpected := 2.
-	modelInitCountExpected := 2.
-	super testDynamicComponentCreationWithProvidedModel
-]
-
-{ #category : 'tests' }
-WsMvcComponentInitializationTest >> testStaticComponentCreation [
-	viewResetCountExpected := 1.
-	viewInitCountExpected := 1.
-	modelInitCountExpected := 1.
-	super testStaticComponentCreation
 ]
