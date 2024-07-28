@@ -1,9 +1,9 @@
 Class {
 	#name : 'WsCompositeComponentInitSubViewTest',
 	#superclass : 'WsComponentTest',
-	#category : 'WebST-Tests-Examples',
+	#category : 'WebST-Tests-ViewCustomization',
 	#package : 'WebST-Tests',
-	#tag : 'Examples'
+	#tag : 'ViewCustomization'
 }
 
 { #category : 'accessing' }

@@ -3,9 +3,9 @@ Class {
 	#superclass : 'WsComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
-	#category : 'WebST-Examples-CompositeComponents',
+	#category : 'WebST-Examples-ViewCustomization',
 	#package : 'WebST-Examples',
-	#tag : 'CompositeComponents'
+	#tag : 'ViewCustomization'
 }
 
 { #category : 'class initialization' }

@@ -5,6 +5,13 @@ Trait {
 	#tag : 'Components'
 }
 
+{ #category : 'rendering' }
+WsTConcreteComponent classSide >> beforeRendering: rootView [
+
+	<pharoJsSkip>
+	^ self
+]
+
 { #category : 'class initialization' }
 WsTConcreteComponent classSide >> javascriptInitialize [
 
@@ -15,5 +22,5 @@ WsTConcreteComponent classSide >> javascriptInitialize [
 WsTConcreteComponent classSide >> shadowHtml [
 
 	<jsLiteralGenerator>
-	^ self viewClass html
+	^ self viewClass htmlWith: [ : view | self beforeRendering: view ]
 ]

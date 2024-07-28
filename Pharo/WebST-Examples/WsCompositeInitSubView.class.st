@@ -1,9 +1,9 @@
 Class {
 	#name : 'WsCompositeInitSubView',
 	#superclass : 'WsView',
-	#category : 'WebST-Examples-CompositeViews',
+	#category : 'WebST-Examples-ViewCustomization',
 	#package : 'WebST-Examples',
-	#tag : 'CompositeViews'
+	#tag : 'ViewCustomization'
 }
 
 { #category : 'rendering' }
@@ -15,7 +15,7 @@ WsCompositeInitSubView class >> subViewTextContent [
 WsCompositeInitSubView >> renderOuterHtmlOn: html [
 
 	html
-		render: WsInitializableSubView
+		render: WsInitializableView
 		with: [ :view | view textContent: self subViewTextContent ]
 ]
 

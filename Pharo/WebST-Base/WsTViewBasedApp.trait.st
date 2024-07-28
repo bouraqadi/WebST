@@ -7,6 +7,13 @@ Trait {
 	#tag : 'Apps'
 }
 
+{ #category : 'rendering' }
+WsTViewBasedApp classSide >> beforeRendering: rootView [
+
+	<pharoJsSkip>
+	^self
+]
+
 { #category : 'analyzing' }
 WsTViewBasedApp classSide >> findComponentClassesWith: aComponentClassFinder [
 
@@ -18,7 +25,7 @@ WsTViewBasedApp classSide >> findComponentClassesWith: aComponentClassFinder [
 WsTViewBasedApp classSide >> renderContentOn: html [
 
 	<pharoJsSkip>
-	self viewClass renderOn: html
+	self viewClass renderOn: html with: [ : view | self beforeRendering: view ]
 ]
 
 { #category : 'accessing' }

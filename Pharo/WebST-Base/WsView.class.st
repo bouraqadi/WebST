@@ -18,6 +18,19 @@ WsView class >> findComponentClassesWith: aComponentClassFinder [
 	aComponentClassFinder analyzeViewClass: self
 ]
 
+{ #category : 'rendering' }
+WsView class >> html [
+	^self htmlWith: [ : ignore |  ]
+]
+
+{ #category : 'rendering' }
+WsView class >> htmlWith: initBlock [
+	| view |
+	view := self new.
+	initBlock value: view.
+	^view html
+]
+
 { #category : 'accessing' }
 WsView class >> referencedComponentClasses [
 
