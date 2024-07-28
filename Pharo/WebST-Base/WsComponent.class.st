@@ -1,6 +1,6 @@
 Class {
-	#name : #WsComponent,
-	#superclass : #WsHtmlElement,
+	#name : 'WsComponent',
+	#superclass : 'WsHtmlElement',
 	#traits : 'PjTDomController',
 	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
@@ -9,10 +9,12 @@ Class {
 	#pools : [
 		'PjBrowserGlobals'
 	],
-	#category : #'WebST-Base-Components'
+	#category : 'WebST-Base-Components',
+	#package : 'WebST-Base',
+	#tag : 'Components'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponent class >> findComponentClassesWith: aComponentClassFinder [
 
 	<pharoJsSkip>
@@ -20,27 +22,27 @@ WsComponent class >> findComponentClassesWith: aComponentClassFinder [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsComponent class >> new [
 	"HTML element classes cannot be directly instantiated "
 
 	^ document createElement: self tagName
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsComponent class >> registerTag [
 
 	window customElements define: self tagName with: self 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsComponent class >> renderOn: html [
 
 	<pharoJsSkip>
 	self renderOn: html with: [ : brush | ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsComponent class >> renderOn: html with: brushBlock [
 
 	<pharoJsSkip>
@@ -49,7 +51,7 @@ WsComponent class >> renderOn: html with: brushBlock [
 		with: brushBlock
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsComponent class >> renderOuterHtmlOn: html with: brushBlock [
 
 	<pharoJsSkip>
@@ -58,32 +60,32 @@ WsComponent class >> renderOuterHtmlOn: html with: brushBlock [
 	brushBlock value: htmlBrush
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsComponent class >> resources [
 	<pharoJsSkip>
 	^self viewClass allGlobalResources
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponent class >> shadowHtml [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsComponent class >> tagName [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponent class >> viewClass [
 
 	<pharoJsSkip>
 	self subclassResponsibility 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsComponent class >> writeOn: aStream attributeNameChar: aCharacter [
 
 	<pharoJsSkip>
@@ -92,25 +94,25 @@ WsComponent class >> writeOn: aStream attributeNameChar: aCharacter [
 	<< aCharacter asLowercase
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponent >> document [
 	^document
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsComponent >> initView [
 
 	view innerHTML: self shadowHtml
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsComponent >> initialize [
 
 	super initialize.
 	self resetView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsComponent >> resetView [
 
 	view ifNil: [
@@ -119,7 +121,7 @@ WsComponent >> resetView [
 	self initView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsComponent >> shadowEncapsulationMode [
 	"Access from javaScript outside the root shadow dom is:
 	- granted when returning 'open' 
@@ -129,13 +131,13 @@ WsComponent >> shadowEncapsulationMode [
 	^ 'open'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsComponent >> shadowHtml [
 
 	^ self class shadowHtml
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsComponent >> view [
 	^view
 ]

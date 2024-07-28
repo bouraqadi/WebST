@@ -1,6 +1,6 @@
-Extension { #name : #Object }
+Extension { #name : 'Object' }
 
-{ #category : #'*WebST-Base' }
+{ #category : '*WebST-Base' }
 Object class >> findComponentClassesWith: aComponentClassFinder [
 	^self
 ]

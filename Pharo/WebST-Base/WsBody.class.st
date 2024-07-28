@@ -1,10 +1,12 @@
 Class {
-	#name : #WsBody,
-	#superclass : #WsCompositeTagElement,
-	#category : #'WebST-Base-Views'
+	#name : 'WsBody',
+	#superclass : 'WsCompositeTagElement',
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsBody >> tag [
 	^#body
 ]

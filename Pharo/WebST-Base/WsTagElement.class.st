@@ -1,15 +1,17 @@
 Class {
-	#name : #WsTagElement,
-	#superclass : #WsElement,
-	#category : #'WebST-Base-Views'
+	#name : 'WsTagElement',
+	#superclass : 'WsElement',
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTagElement >> renderInnerHtmlOn: html [
 	self subclassResponsibility 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTagElement >> renderOuterHtmlOn: html [
 
 	html
@@ -17,7 +19,7 @@ WsTagElement >> renderOuterHtmlOn: html [
 		with: [ self renderInnerHtmlOn: html ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTagElement >> tag [
 	self subclassResponsibility 
 ]

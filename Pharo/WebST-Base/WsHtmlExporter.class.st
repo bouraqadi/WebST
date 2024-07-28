@@ -1,10 +1,12 @@
 Class {
-	#name : #WsHtmlExporter,
-	#superclass : #WsExporter,
-	#category : #'WebST-Base-Apps'
+	#name : 'WsHtmlExporter',
+	#superclass : 'WsExporter',
+	#category : 'WebST-Base-Apps',
+	#package : 'WebST-Base',
+	#tag : 'Apps'
 }
 
-{ #category : #exporting }
+{ #category : 'exporting' }
 WsHtmlExporter >> exportApp: appClass [
 
 	appClass appFullHtmlFileName ensureDelete.

@@ -1,13 +1,15 @@
 Class {
-	#name : #WsMvcComponent,
-	#superclass : #WsComponent,
+	#name : 'WsMvcComponent',
+	#superclass : 'WsComponent',
 	#instVars : [
 		'model'
 	],
-	#category : #'WebST-Base-Components'
+	#category : 'WebST-Base-Components',
+	#package : 'WebST-Base',
+	#tag : 'Components'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsMvcComponent class >> model: aModel [
 
 	^ self basicNew
@@ -15,25 +17,25 @@ WsMvcComponent class >> model: aModel [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsMvcComponent class >> modelClass [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsMvcComponent class >> newModel [
 
 	^self modelClass new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsMvcComponent >> initModel [
 
 	^ self 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsMvcComponent >> initialize [
 
 	super initialize.
@@ -41,13 +43,13 @@ WsMvcComponent >> initialize [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsMvcComponent >> model [
 
 	^ model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsMvcComponent >> model: aModel [
 
 	(model notNil or: [view isNil]) ifTrue: [ self resetView ].
@@ -55,7 +57,7 @@ WsMvcComponent >> model: aModel [
 	self initModel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsMvcComponent >> newModel [
 	^self class newModel
 ]

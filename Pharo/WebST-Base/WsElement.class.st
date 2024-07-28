@@ -1,34 +1,36 @@
 Class {
-	#name : #WsElement,
-	#superclass : #Object,
-	#category : #'WebST-Base-Views'
+	#name : 'WsElement',
+	#superclass : 'Object',
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsElement class >> html [
 
 	^ self new html
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsElement >> html [
 
 	^ self renderClass htmlFrom: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsElement >> renderClass [
 
 	^ WsRenderer
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsElement >> renderOn: html [
 
 	html renderElement: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsElement >> renderOuterHtmlOn: html [
 
 	self subclassResponsibility

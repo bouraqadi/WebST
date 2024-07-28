@@ -1,19 +1,21 @@
 Class {
-	#name : #WsCompositeResource,
-	#superclass : #WsResource,
+	#name : 'WsCompositeResource',
+	#superclass : 'WsResource',
 	#traits : 'WsTCompositeElement',
 	#classTraits : 'WsTCompositeElement classTrait',
-	#category : #'WebST-Base-Resources'
+	#category : 'WebST-Base-Resources',
+	#package : 'WebST-Base',
+	#tag : 'Resources'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsCompositeResource class >> withAll: allChildren [
 	^self new
 		addAll: allChildren;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsCompositeResource >> addTo: aWsRenderer [
 
 	aWsRenderer addAllResources:  self children 

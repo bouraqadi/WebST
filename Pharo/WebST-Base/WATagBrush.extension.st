@@ -1,6 +1,6 @@
-Extension { #name : #WATagBrush }
+Extension { #name : 'WATagBrush' }
 
-{ #category : #'*WebST-Base' }
+{ #category : '*WebST-Base' }
 WATagBrush >> attributeNameFromJs: attributeJsName [
 
 	^ String streamContents: [ :str |
@@ -9,7 +9,7 @@ WATagBrush >> attributeNameFromJs: attributeJsName [
 
 ]
 
-{ #category : #'*WebST-Base' }
+{ #category : '*WebST-Base' }
 WATagBrush >> dataAttributes: attributeAssociations [
 
 	attributeAssociations asDictionary keysAndValuesDo: [
@@ -18,14 +18,14 @@ WATagBrush >> dataAttributes: attributeAssociations [
 		self renderDataAttribute: attributeJsName value: attributeValue ]
 ]
 
-{ #category : #'*WebST-Base' }
+{ #category : '*WebST-Base' }
 WATagBrush >> renderDataAttribute: attributeJsName value: attributeValue [
 	self 
 		dataAttributeAt: (self attributeNameFromJs: attributeJsName)
 		put: attributeValue
 ]
 
-{ #category : #'*WebST-Base' }
+{ #category : '*WebST-Base' }
 WATagBrush >> writeOn: aStream attributeNameChar: aCharacter [
 
 	aCharacter isLowercase ifTrue: [ ^ aStream << aCharacter ].

@@ -1,17 +1,19 @@
 Class {
-	#name : #WsHtmlElement,
-	#superclass : #Object,
-	#category : #'WebST-Base-Components'
+	#name : 'WsHtmlElement',
+	#superclass : 'Object',
+	#category : 'WebST-Base-Components',
+	#package : 'WebST-Base',
+	#tag : 'Components'
 }
 
-{ #category : #'pharoJs support' }
+{ #category : 'pharoJs support' }
 WsHtmlElement class >> javascriptName [
 
 	<pharoJsSkip>
 	^ #HTMLElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsHtmlElement >> dataAttributeAt: jsAttributeName ifAbsent: aBlock [
 
 	"Read attributes defined in html. JS attribute name is camel case.

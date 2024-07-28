@@ -1,23 +1,25 @@
 Class {
-	#name : #WsClientExporter,
-	#superclass : #WsExporter,
-	#category : #'WebST-Base-Apps'
+	#name : 'WsClientExporter',
+	#superclass : 'WsExporter',
+	#category : 'WebST-Base-Apps',
+	#package : 'WebST-Base',
+	#tag : 'Apps'
 }
 
-{ #category : #exporting }
+{ #category : 'exporting' }
 WsClientExporter >> exportApp: aClass [
 
 	self jsExporter exportApp: aClass.
 	self htmlExporter exportApp: aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsClientExporter >> htmlExporter [
 
 	^ WsHtmlExporter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsClientExporter >> jsExporter [ 
 	^PjFileExporter 
 ]

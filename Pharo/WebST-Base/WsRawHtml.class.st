@@ -1,32 +1,34 @@
 Class {
-	#name : #WsRawHtml,
-	#superclass : #WsElement,
+	#name : 'WsRawHtml',
+	#superclass : 'WsElement',
 	#instVars : [
 		'htmlString'
 	],
-	#category : #'WebST-Base-Views'
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsRawHtml class >> htmlString: htmlString [
 	^self new
 	htmlString: htmlString;
 	yourself
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsRawHtml >> htmlString [
 
 	^ htmlString
 ]
 
-{ #category : #WsView }
+{ #category : 'WsView' }
 WsRawHtml >> htmlString: anObject [
 
 	htmlString := anObject
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRawHtml >> renderOuterHtmlOn: html [
 
 	html html: self htmlString 

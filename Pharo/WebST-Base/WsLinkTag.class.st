@@ -1,26 +1,28 @@
 Class {
-	#name : #WsLinkTag,
-	#superclass : #WATagBrush,
-	#category : #'WebST-Base-Views'
+	#name : 'WsLinkTag',
+	#superclass : 'WATagBrush',
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #relationship }
+{ #category : 'relationship' }
 WsLinkTag >> beStylesheet [
 	self attributes at: 'rel' put: 'stylesheet'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 WsLinkTag >> isClosed [ 
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsLinkTag >> tag [
 
 	^#link
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsLinkTag >> url: aString [
 
 	self attributes at: 'href' put: aString

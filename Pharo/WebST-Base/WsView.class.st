@@ -1,59 +1,66 @@
 Class {
-	#name : #WsView,
-	#superclass : #WsElement,
-	#category : #'WebST-Base-Views'
+	#name : 'WsView',
+	#superclass : 'WsElement',
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsView class >> allGlobalResources [
 
 	^ self new allGlobalResources
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsView class >> findComponentClassesWith: aComponentClassFinder [
 
 	aComponentClassFinder analyzeViewClass: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsView class >> referencedComponentClasses [
 
 	^ self referencedClasses select: [ :each |
 		  each inheritsFrom: WsComponent ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsView class >> renderOn: html [
 
 	html render: self new
 ]
 
-{ #category : #accessing }
+{ #category : 'rendering' }
+WsView class >> renderOn: renderer with: initBlock [ 
+	renderer renderViewClass: self with: initBlock
+]
+
+{ #category : 'accessing' }
 WsView >> allGlobalResources [
 
 	^(self renderClass render: self)
 		  globalResources
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsView >> html [
 
 	^self renderClass htmlWithLocalResourcesFrom: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsView >> renderOn: html [
 	html renderView: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsView >> renderOuterHtmlOn: html [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsView >> resources [
 
 	^ #(  )

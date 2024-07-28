@@ -5,24 +5,26 @@ My subclasses should allow representing specific kinds of resources such as CSS 
 
 "
 Class {
-	#name : #WsLeafResource,
-	#superclass : #WsResource,
+	#name : 'WsLeafResource',
+	#superclass : 'WsResource',
 	#instVars : [
 		'url',
 		'integrity',
 		'crossorigin'
 	],
-	#category : #'WebST-Base-Resources'
+	#category : 'WebST-Base-Resources',
+	#package : 'WebST-Base',
+	#tag : 'Resources'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsLeafResource class >> url: aString [
 	^self new
 		url: aString;
 		yourself 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 WsLeafResource >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
 
@@ -31,24 +33,24 @@ WsLeafResource >> = anObject [
 	^ url = anObject url
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsLeafResource >> crossoriginAnonymous [
 	crossorigin := 'anonymous'
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 WsLeafResource >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
 	^ url hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsLeafResource >> integrity: aString [
 	integrity := aString
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsLeafResource >> renderOuterHtmlOn: html [
 
 	(self renderTagOn: html)
@@ -56,19 +58,19 @@ WsLeafResource >> renderOuterHtmlOn: html [
 		attributeAt: #crossorigin put: crossorigin
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsLeafResource >> renderTagOn: html [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsLeafResource >> url [
 
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsLeafResource >> url: anObject [
 
 	url := anObject

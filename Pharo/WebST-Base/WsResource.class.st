@@ -1,10 +1,12 @@
 Class {
-	#name : #WsResource,
-	#superclass : #WsElement,
-	#category : #'WebST-Base-Resources'
+	#name : 'WsResource',
+	#superclass : 'WsElement',
+	#category : 'WebST-Base-Resources',
+	#package : 'WebST-Base',
+	#tag : 'Resources'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsResource >> addTo: aWsRenderer [ 
 	self subclassResponsibility 
 ]

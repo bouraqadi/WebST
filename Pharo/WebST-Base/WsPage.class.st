@@ -1,53 +1,55 @@
 Class {
-	#name : #WsPage,
-	#superclass : #WsTagElement,
+	#name : 'WsPage',
+	#superclass : 'WsTagElement',
 	#traits : 'WsTResourceFactory',
 	#classTraits : 'WsTResourceFactory classTrait',
 	#instVars : [
 		'head',
 		'body'
 	],
-	#category : #'WebST-Base-Views'
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WsPage class >> with: aView [ 
 	^self new
 		addView: aView;
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsPage >> addResource: aResource [
 
 	head add: aResource
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsPage >> addView: aView [
 
 	self body add: aView
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsPage >> addViewHtml: htmlString [
 
 	self body add: (WsRawHtml htmlString: htmlString)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPage >> body [
 
 	^ body
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPage >> head [
 
 	^ head
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsPage >> initialize [
 
 	super initialize.
@@ -55,7 +57,7 @@ WsPage >> initialize [
 	body := WsBody new.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsPage >> renderInnerHtmlOn: html [
 
 	html
@@ -63,7 +65,7 @@ WsPage >> renderInnerHtmlOn: html [
 		render: body
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsPage >> renderOuterHtmlOn: html [
 
 
@@ -73,12 +75,12 @@ html
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPage >> tag [
 	^#html
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsPage >> title: aString [
 
 	self head title: aString

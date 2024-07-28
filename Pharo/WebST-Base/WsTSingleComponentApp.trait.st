@@ -1,18 +1,20 @@
 Trait {
-	#name : #WsTSingleComponentApp,
+	#name : 'WsTSingleComponentApp',
 	#traits : 'WsTApp',
 	#classTraits : 'WsTApp classTrait',
-	#category : #'WebST-Base-Apps'
+	#category : 'WebST-Base-Apps',
+	#package : 'WebST-Base',
+	#tag : 'Apps'
 }
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsTSingleComponentApp classSide >> findComponentClassesWith: aComponentClassFinder [
 
 	<pharoJsSkip>
 	aComponentClassFinder analyzeSingleComponentAppClass: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTSingleComponentApp classSide >> renderContentOn: html [
 
 	<pharoJsSkip>
@@ -22,43 +24,43 @@ WsTSingleComponentApp classSide >> renderContentOn: html [
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTSingleComponentApp classSide >> rootComponentAttributes [
 
 	<pharoJsSkip>
 	^ #(  )
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTSingleComponentApp classSide >> rootComponentClass [
 
 	self explicitRequirement
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTSingleComponentApp >> initRootComponent [
 
 	^ self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTSingleComponentApp >> rootComponent [ 
 	^self document querySelector:
 		                 self rootComponentTagName.
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTSingleComponentApp >> rootComponentClass [
 	^self class rootComponentClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTSingleComponentApp >> rootComponentTagName [
 	^self rootComponentClass tagName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsTSingleComponentApp >> start [
 
 	self initRootComponent

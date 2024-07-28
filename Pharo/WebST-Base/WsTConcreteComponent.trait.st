@@ -1,15 +1,17 @@
 Trait {
-	#name : #WsTConcreteComponent,
-	#category : #'WebST-Base-Components'
+	#name : 'WsTConcreteComponent',
+	#category : 'WebST-Base-Components',
+	#package : 'WebST-Base',
+	#tag : 'Components'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 WsTConcreteComponent classSide >> javascriptInitialize [
 
 	self  registerTag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTConcreteComponent classSide >> shadowHtml [
 
 	<jsLiteralGenerator>

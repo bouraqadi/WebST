@@ -1,13 +1,15 @@
 Class {
-	#name : #WsHead,
-	#superclass : #WsCompositeTagElement,
+	#name : 'WsHead',
+	#superclass : 'WsCompositeTagElement',
 	#instVars : [
 		'titleElement'
 	],
-	#category : #'WebST-Base-Views'
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsHead >> addMeta: aBlock [
 
 	| meta |
@@ -16,7 +18,7 @@ WsHead >> addMeta: aBlock [
 	self add: meta
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsHead >> initialize [
 
 	super initialize.
@@ -25,12 +27,12 @@ WsHead >> initialize [
 	self add: titleElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsHead >> tag [
 	^#head
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsHead >> title: aString [
 
 	titleElement text: aString

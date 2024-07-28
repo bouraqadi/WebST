@@ -1,35 +1,37 @@
 Trait {
-	#name : #WsTCompositeElement,
+	#name : 'WsTCompositeElement',
 	#instVars : [
 		'children'
 	],
-	#category : #'WebST-Base-Views'
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTCompositeElement >> add: aChild [
 
 	self children add: aChild
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTCompositeElement >> addAll: newChildren [
 
 	self children addAll: newChildren
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTCompositeElement >> children [
 	^children ifNil: [ children := OrderedCollection new ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTCompositeElement >> renderChildrenOn: html [
 
 	self children do: [ :each | html render: each ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTCompositeElement >> renderOuterHtmlOn: html [
 
 	self renderChildrenOn: html

@@ -17,7 +17,7 @@ WsCompositeView >> renderOuterHtmlOn: html [
 	html render: WsIntermediateCompositeViewSubclass 
 ]
 
-{ #category : 'accessing' }
+{ #category : 'as yet unclassified' }
 WsCompositeView >> resources [
 
 	^ {

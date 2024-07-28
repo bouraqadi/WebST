@@ -1,27 +1,29 @@
 Trait {
-	#name : #WsTResourceFactory,
-	#category : #'WebST-Base-Views'
+	#name : 'WsTResourceFactory',
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTResourceFactory >> addCssAt: urlString [
 
 	self addResourceClass: WsCssLink  url: urlString.
 
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTResourceFactory >> addJsAt: urlString [
 
 	self addResourceClass: WsJsScript url: urlString
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTResourceFactory >> addResource: aResource [
 	self explicitRequirement 
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTResourceFactory >> addResourceClass: resourceClass url: urlString [
 
 	| aResource |
@@ -29,7 +31,7 @@ WsTResourceFactory >> addResourceClass: resourceClass url: urlString [
 	self addResource: aResource
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsTResourceFactory >> addResourcesAll: allResources [ 
 	allResources do: [: each | self addResource: each]
 ]

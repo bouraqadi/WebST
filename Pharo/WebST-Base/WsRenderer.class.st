@@ -1,22 +1,24 @@
 Class {
-	#name : #WsRenderer,
-	#superclass : #WAHtmlCanvas,
+	#name : 'WsRenderer',
+	#superclass : 'WAHtmlCanvas',
 	#instVars : [
 		'stream',
 		'document',
 		'localResources',
 		'globalResources'
 	],
-	#category : #'WebST-Base-Views'
+	#category : 'WebST-Base-Views',
+	#package : 'WebST-Base',
+	#tag : 'Views'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer class >> htmlFrom: anObject [
 
 	^ self new htmlFrom: anObject
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer class >> htmlWithLocalResourcesFrom: anObject [
 
 	| basicRenderer |
@@ -27,85 +29,85 @@ WsRenderer class >> htmlWithLocalResourcesFrom: anObject [
 		  html
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer class >> render: anObject [
 
 	^ self new render: anObject; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> addAllResources: resources [
 
 	resources do: [ :each | self addResource: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> addAllResourcesOf: element [
 
 	element resources do: [ :each | self addResource: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> addGlobalResource: resource [
 
 (self globalResources includes: resource) ifTrue: [ ^self ].
 	self globalResources add: resource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> addLocalResource: resource [
 
 (self localResources includes: resource) ifTrue: [ ^self ].
 	localResources add: resource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> addResource: resource [
 	resource addTo: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> context [
 	^WsNullContext new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> document [
 	^document 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> form [
 
 	^ self brush: WsFormTag new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> globalResources [
 	^globalResources
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> html [
 
 	self flush.
 	^ stream contents
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> htmlFrom: anObject [
 
 	self render: anObject.
 	^self html
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> icon [
 
 	^ self tag: 'i'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsRenderer >> initialize [
 
 	super initialize.
@@ -116,25 +118,25 @@ WsRenderer >> initialize [
 	globalResources := OrderedCollection new
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> link [
 
 	^ self brush: WsLinkTag new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsRenderer >> localResources [
 
 	^ localResources
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> render: element [
 
 	element renderOn: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> render: element class: cssClassString [
 
 	self
@@ -143,26 +145,25 @@ WsRenderer >> render: element class: cssClassString [
  ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> render: element dataAttributes: dataAttributes [
 
 	self render: element with: [: brush | brush dataAttributes: dataAttributes]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> render: element style: cssStyleString [
 
 	self render: element with: [: brush | brush style: cssStyleString] 
 ]
 
-{ #category : #rendering }
-WsRenderer >> render: element with: brushBlock [
-	element
-		renderOn: self
-		with: brushBlock
+{ #category : 'rendering' }
+WsRenderer >> render: element with: aBlock [
+
+	element renderOn: self with: aBlock
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> renderAppClass: appClass [
 
 	| contentRenderer page |
@@ -176,7 +177,7 @@ WsRenderer >> renderAppClass: appClass [
 	self render: page
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> renderComponentClass: component with: brushBlock [
 
 	| currentLocalResources |
@@ -189,13 +190,13 @@ WsRenderer >> renderComponentClass: component with: brushBlock [
 	localResources := currentLocalResources
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> renderElement: element [
 
 	element renderOuterHtmlOn: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> renderHeadChild: element [
 
 	self document
@@ -207,14 +208,22 @@ WsRenderer >> renderHeadChild: element [
 	self document closeTag: element tag
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsRenderer >> renderView: view [
 
 	self addAllResourcesOf: view.
 	view renderOuterHtmlOn: self
 ]
 
-{ #category : #initialization }
+{ #category : 'rendering' }
+WsRenderer >> renderViewClass: aClass with: initBlock [
+	| view |
+	view := aClass new.
+	initBlock value: view. 
+	self render: view
+]
+
+{ #category : 'initialization' }
 WsRenderer >> resetLocalResources [
 
 	localResources := OrderedCollection new

@@ -1,20 +1,22 @@
 Class {
-	#name : #WsComponentClassFinder,
-	#superclass : #Object,
+	#name : 'WsComponentClassFinder',
+	#superclass : 'Object',
 	#instVars : [
 		'componentClasses',
 		'visitedViewClasses'
 	],
-	#category : #'WebST-Base-Components'
+	#category : 'WebST-Base-Components',
+	#package : 'WebST-Base',
+	#tag : 'Components'
 }
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder class >> allComponentClassesFrom: aClass [
 	^self new allComponentClassesFrom: aClass
 
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> allComponentClassesFrom: aClass [
 
 	componentClasses := IdentitySet new.
@@ -23,7 +25,7 @@ WsComponentClassFinder >> allComponentClassesFrom: aClass [
 	^ componentClasses asArray
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> analyzeClassReferencedBy: aClass [
 
 
@@ -31,7 +33,7 @@ WsComponentClassFinder >> analyzeClassReferencedBy: aClass [
 			each findComponentClassesWith: self ] 
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> analyzeComponentClass: aClass [
 
 	(componentClasses includes: aClass) ifTrue: [ ^ self ].
@@ -39,26 +41,26 @@ WsComponentClassFinder >> analyzeComponentClass: aClass [
 	aClass viewClass findComponentClassesWith: self
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> analyzeSingleComponentAppClass: aClass [
 
 	aClass rootComponentClass findComponentClassesWith:
 		self
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> analyzeSuperclassOf: aClass [
 	aClass superclass ifNil: [ ^ self ].
 	aClass superclass findComponentClassesWith: self
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> analyzeViewBasedAppClass: aClass [
 
 	aClass viewClass findComponentClassesWith: self
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsComponentClassFinder >> analyzeViewClass: aViewClass [
 
 	(visitedViewClasses includes: aViewClass) ifTrue: [ ^ self ].

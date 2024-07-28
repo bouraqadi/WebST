@@ -1,58 +1,60 @@
 Trait {
-	#name : #WsTApp,
-	#category : #'WebST-Base-Apps'
+	#name : 'WsTApp',
+	#category : 'WebST-Base-Apps',
+	#package : 'WebST-Base',
+	#tag : 'Apps'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTApp classSide >> allComponentClasses [
 
 	<pharoJsSkip>
 	^WsComponentClassFinder allComponentClassesFrom: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTApp classSide >> appClasses [
 
 	<pharoJsSkip>
 	^ super appClasses , self allComponentClasses 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WsTApp classSide >> exporterClass [
 
 	<pharoJsSkip>
 	^ WsClientExporter
 ]
 
-{ #category : #analyzing }
+{ #category : 'analyzing' }
 WsTApp classSide >> findComponentClassesWith: aComponentClassFinder [
 
 	<pharoJsSkip>
 	self explicitRequirement 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTApp classSide >> html [
 
 	<pharoJsSkip>
 	^WsRenderer htmlFrom: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 WsTApp classSide >> isHtmlGenerator [
 
 	<pharoJsSkip>
 	^ true
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTApp classSide >> renderContentOn: html [
 
 	<pharoJsSkip>
 	self explicitRequirement 	
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WsTApp classSide >> renderOn: html [
 
 	<pharoJsSkip>

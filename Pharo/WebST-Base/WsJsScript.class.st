@@ -2,18 +2,20 @@
 I represent an external JS file.
 "
 Class {
-	#name : #WsJsScript,
-	#superclass : #WsLeafResource,
-	#category : #'WebST-Base-Resources'
+	#name : 'WsJsScript',
+	#superclass : 'WsLeafResource',
+	#category : 'WebST-Base-Resources',
+	#package : 'WebST-Base',
+	#tag : 'Resources'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 WsJsScript >> addTo: resourceManager [
 
 	resourceManager addGlobalResource: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WsJsScript >> renderTagOn: html [
 
 	^ html script
