@@ -28,7 +28,7 @@ WsView class >> referencedComponentClasses [
 { #category : 'rendering' }
 WsView class >> renderOn: html [
 
-	html render: self new
+	self renderOn: html with: [ :ignore |  ]
 ]
 
 { #category : 'rendering' }
