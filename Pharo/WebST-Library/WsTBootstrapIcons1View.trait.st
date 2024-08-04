@@ -17,6 +17,12 @@ WsTBootstrapIcons1View >> renderOn: html icon: iconCssClass [
 	^html icon class: ('bi ' , iconCssClass); yourself
 ]
 
+{ #category : 'rendering' }
+WsTBootstrapIcons1View >> renderOn: html icon: iconCssClass style: styleString [
+
+	(self renderOn: html icon: iconCssClass) style: styleString 
+]
+
 { #category : 'accessing' }
 WsTBootstrapIcons1View >> resources [
 
