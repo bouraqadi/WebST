@@ -70,8 +70,7 @@ WsTexToggleEditComponentTest >> assertCustomAttributesApplied [
 	super assertCustomAttributesApplied.
 	self
 		assert: component text
-		equals: (self dataAttributesDict at: #text).
-
+		equalsDataAttributeAt: #text
 ]
 
 { #category : 'asserting' }

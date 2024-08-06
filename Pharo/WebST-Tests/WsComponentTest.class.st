@@ -74,6 +74,14 @@ WsComponentTest >> allComponents [
 ]
 
 { #category : 'asserting' }
+WsComponentTest >> assert: actualValue equalsDataAttributeAt: aSymbol [
+
+	| expectedValue |
+	expectedValue := self dataAttributesDict at: aSymbol. 
+	self assert: actualValue equals: expectedValue
+]
+
+{ #category : 'asserting' }
 WsComponentTest >> assertComponent [ 
 	self subclassResponsibility 
 ]

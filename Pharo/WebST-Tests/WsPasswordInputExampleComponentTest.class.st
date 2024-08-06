@@ -27,7 +27,7 @@ WsPasswordInputExampleComponentTest >> assertCustomAttributesApplied [
 	super assertCustomAttributesApplied.
 	self
 		assert: passwordField placeholder
-		equals: (self dataAttributesDict at: #placeholder)
+		equalsDataAttributeAt: #placeholder
 ]
 
 { #category : 'asserting' }
