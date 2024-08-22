@@ -61,10 +61,7 @@ WsPasswordInputExampleComponentTest >> assertViewModelLink [
 	self assert: model text equals: password2.
 	password3 := 'new secret password'.
 	model text: password3.
-self assert: passwordField value equals: password3.
-
-		
-
+	self assert: passwordField value equals: password3
 ]
 
 { #category : 'accessing' }
@@ -72,6 +69,6 @@ WsPasswordInputExampleComponentTest >> component: newComponent [
 
 	super component: newComponent.
 	toggleShowPasswordButton := shadowRoot querySelector:
-		                WsToggleIconsComponent tagName.
+		                            WsShowHideToggleComponent tagName.
 	passwordField := shadowRoot querySelector: 'input'
 ]
