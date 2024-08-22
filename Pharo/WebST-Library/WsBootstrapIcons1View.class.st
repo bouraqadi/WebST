@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsBootstrapIcon1View',
+	#name : 'WsBootstrapIcons1View',
 	#superclass : 'WsView',
 	#traits : 'WsTBootstrapIcons1View',
 	#classTraits : 'WsTBootstrapIcons1View classTrait',

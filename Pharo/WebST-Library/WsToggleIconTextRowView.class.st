@@ -1,6 +1,6 @@
 Class {
 	#name : 'WsToggleIconTextRowView',
-	#superclass : 'WsBootstrapIcon1View',
+	#superclass : 'WsBootstrapIcons1View',
 	#instVars : [
 		'onView',
 		'offView'
