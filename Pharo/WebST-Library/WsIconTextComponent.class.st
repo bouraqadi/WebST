@@ -17,6 +17,12 @@ WsIconTextComponent class >> defaultIconAttribute [
 	^ 'bi-emoji-smile'
 ]
 
+{ #category : 'accessing' }
+WsIconTextComponent class >> defaultTextAttribute [
+
+	^ nil
+]
+
 { #category : 'class initialization' }
 WsIconTextComponent class >> tagName [
 
@@ -39,6 +45,12 @@ WsIconTextComponent >> controller [
 WsIconTextComponent >> defaultIconAttribute [
 
 	^ self class defaultIconAttribute
+]
+
+{ #category : 'accessing' }
+WsIconTextComponent >> defaultTextAttribute [
+
+	^ self class defaultTextAttribute
 ]
 
 { #category : 'accessing' }
@@ -73,5 +85,5 @@ WsIconTextComponent >> text: aString [
 { #category : 'accessing' }
 WsIconTextComponent >> textAttribute [
 
-	^ self dataAttributeAt: #icon ifAbsent: [ nil ]
+	^ self dataAttributeAt: #icon ifAbsent: [ self defaultTextAttribute ]
 ]
