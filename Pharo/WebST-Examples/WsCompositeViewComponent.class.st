@@ -8,12 +8,6 @@ Class {
 	#tag : 'CompositeViews'
 }
 
-{ #category : 'class initialization' }
-WsCompositeViewComponent class >> tagName [
-
-	^'ws-abcd'
-]
-
 { #category : 'accessing' }
 WsCompositeViewComponent class >> viewClass [
 

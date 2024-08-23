@@ -8,12 +8,6 @@ Class {
 	#tag : 'ViewCustomization'
 }
 
-{ #category : 'class initialization' }
-WsCompositeComponentInitSubView class >> tagName [
-
-	^ 'ws-composite-init-sub-view'
-]
-
 { #category : 'accessing' }
 WsCompositeComponentInitSubView class >> viewClass [
 

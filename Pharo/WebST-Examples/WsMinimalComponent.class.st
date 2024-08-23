@@ -8,11 +8,6 @@ Class {
 	#tag : 'Misc'
 }
 
-{ #category : 'class initialization' }
-WsMinimalComponent class >> tagName [ 
-	^'ws-minimal'
-]
-
 { #category : 'accessing' }
 WsMinimalComponent class >> viewClass [
 

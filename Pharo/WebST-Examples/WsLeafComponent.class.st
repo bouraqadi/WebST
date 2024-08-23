@@ -8,12 +8,6 @@ Class {
 	#tag : 'CompositeComponents'
 }
 
-{ #category : 'class initialization' }
-WsLeafComponent class >> tagName [
-
-	^'ws-leaf'
-]
-
 { #category : 'accessing' }
 WsLeafComponent class >> viewClass [
 

@@ -8,12 +8,6 @@ Class {
 	#tag : 'DependantViews'
 }
 
-{ #category : 'class initialization' }
-WsDependantViewComponent class >> tagName [
-
-	^ 'ws-dependant-view'
-]
-
 { #category : 'accessing' }
 WsDependantViewComponent class >> viewClass [
 

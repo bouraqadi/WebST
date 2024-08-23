@@ -8,12 +8,6 @@ Class {
 	#tag : 'CompositeComponents'
 }
 
-{ #category : 'class initialization' }
-WsIntermediateComponent class >> tagName [
-
-	^'ws-intermediate'
-]
-
 { #category : 'accessing' }
 WsIntermediateComponent class >> viewClass [
 

@@ -19,12 +19,6 @@ WsInitializationCounterForTest class >> modelClass [
 	^Object
 ]
 
-{ #category : 'class initialization' }
-WsInitializationCounterForTest class >> tagName [
-
-	^'ws-mvc-init-test'
-]
-
 { #category : 'accessing' }
 WsInitializationCounterForTest class >> viewClass [
 

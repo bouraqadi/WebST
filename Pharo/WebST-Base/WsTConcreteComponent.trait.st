@@ -32,3 +32,10 @@ WsTConcreteComponent classSide >> shadowHtml [
 	<jsLiteralGenerator>
 	^ self viewClass htmlWith: [ : view | self beforeRendering: view ]
 ]
+
+{ #category : 'accessing' }
+WsTConcreteComponent classSide >> tagName [
+
+	<jsLiteralGenerator>
+	^ self name asKebabCase
+]

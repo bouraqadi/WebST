@@ -1,15 +1,6 @@
 Extension { #name : 'WATagBrush' }
 
 { #category : '*WebST-Base' }
-WATagBrush >> attributeNameFromJs: attributeJsName [
-
-	^ String streamContents: [ :str |
-		  attributeJsName do: [ :char |
-			  self writeOn: str attributeNameChar: char ] ]
-
-]
-
-{ #category : '*WebST-Base' }
 WATagBrush >> dataAttributes: attributeAssociations [
 
 	attributeAssociations asDictionary keysAndValuesDo: [
@@ -20,16 +11,8 @@ WATagBrush >> dataAttributes: attributeAssociations [
 
 { #category : '*WebST-Base' }
 WATagBrush >> renderDataAttribute: attributeJsName value: attributeValue [
-	self 
-		dataAttributeAt: (self attributeNameFromJs: attributeJsName)
+
+	self
+		dataAttributeAt: attributeJsName asKebabCase 
 		put: attributeValue
-]
-
-{ #category : '*WebST-Base' }
-WATagBrush >> writeOn: aStream attributeNameChar: aCharacter [
-
-	aCharacter isLowercase ifTrue: [ ^ aStream << aCharacter ].
-	aStream
-		<< $-;
-		<< aCharacter asLowercase
 ]

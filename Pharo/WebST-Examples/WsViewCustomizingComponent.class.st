@@ -14,12 +14,6 @@ WsViewCustomizingComponent class >> beforeRendering: rootView [
 	rootView textContent: self viewTextContent 
 ]
 
-{ #category : 'class initialization' }
-WsViewCustomizingComponent class >> tagName [
-
-	^'ws-view-customizing-component'
-]
-
 { #category : 'accessing' }
 WsViewCustomizingComponent class >> viewClass [
 

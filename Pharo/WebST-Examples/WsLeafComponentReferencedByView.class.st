@@ -8,12 +8,6 @@ Class {
 	#tag : 'CompositeComponents'
 }
 
-{ #category : 'class initialization' }
-WsLeafComponentReferencedByView class >> tagName [
-
-	^'ws-leaf-component-referenced-by-view'
-]
-
 { #category : 'accessing' }
 WsLeafComponentReferencedByView class >> viewClass [
 

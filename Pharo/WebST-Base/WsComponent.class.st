@@ -77,15 +77,6 @@ WsComponent class >> viewClass [
 	self subclassResponsibility 
 ]
 
-{ #category : 'rendering' }
-WsComponent class >> writeOn: aStream attributeNameChar: aCharacter [
-
-	<pharoJsSkip>
-	aCharacter isLowercase ifTrue: [ ^aStream << aCharacter].
-	aStream << $-;
-	<< aCharacter asLowercase
-]
-
 { #category : 'accessing' }
 WsComponent >> document [
 	^document
