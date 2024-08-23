@@ -85,5 +85,5 @@ WsIconTextComponent >> text: aString [
 { #category : 'accessing' }
 WsIconTextComponent >> textAttribute [
 
-	^ self dataAttributeAt: #icon ifAbsent: [ self defaultTextAttribute ]
+	^ self dataAttributeAt: #text ifAbsent: [ self defaultTextAttribute ]
 ]
