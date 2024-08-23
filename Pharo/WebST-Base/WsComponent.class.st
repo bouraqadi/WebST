@@ -14,14 +14,6 @@ Class {
 	#tag : 'Components'
 }
 
-{ #category : 'accessing' }
-WsComponent class >> findComponentClassesWith: aComponentClassFinder [
-
-	<pharoJsSkip>
-	aComponentClassFinder analyzeComponentClass: self
-
-]
-
 { #category : 'instance creation' }
 WsComponent class >> new [
 	"HTML element classes cannot be directly instantiated "

@@ -12,12 +12,6 @@ WsView class >> allGlobalResources [
 	^ self new allGlobalResources
 ]
 
-{ #category : 'analyzing' }
-WsView class >> findComponentClassesWith: aComponentClassFinder [
-
-	aComponentClassFinder analyzeViewClass: self
-]
-
 { #category : 'rendering' }
 WsView class >> html [
 	^self htmlWith: [ : ignore |  ]
@@ -29,13 +23,6 @@ WsView class >> htmlWith: initBlock [
 	view := self new.
 	initBlock value: view.
 	^view html
-]
-
-{ #category : 'accessing' }
-WsView class >> referencedComponentClasses [
-
-	^ self referencedClasses select: [ :each |
-		  each inheritsFrom: WsComponent ]
 ]
 
 { #category : 'rendering' }

@@ -23,7 +23,19 @@ WsCompositeComponentTest >> assertComponent [
 	self assertPageScripts.
 	self assertCompositeStructure.
 	self assertIntermediateStructure.
-	self assertLeafStructure
+	self assertLeafStructure.
+	self assertComponentClasses
+]
+
+{ #category : 'tests' }
+WsCompositeComponentTest >> assertComponentClasses [
+	self
+		assertCollection: self appClass allComponentClasses
+		hasSameElements: {
+				self rootComponentClass.
+				WsIntermediateComponent.
+				WsLeafComponentReferencedByView.
+				WsLeafComponent }
 ]
 
 { #category : 'tests' }
@@ -43,9 +55,21 @@ WsCompositeComponentTest >> assertCompositeStructure [
 WsCompositeComponentTest >> assertIntermediateStructure [
 
 	| expectedIntermediateDisplay |
-	expectedIntermediateDisplay := '<h2>Intermediate</h2><'
-	                               , self leafTag , '></' , self leafTag
-	                               , '>'.
+	expectedIntermediateDisplay := String streamContents: [ :str |
+		                               str
+			                               << '<h2>Intermediate</h2><';
+			                               <<
+				                               self
+					                               leafTagForComponentReferencedByView;
+			                               << '></';
+			                               <<
+				                               self
+					                               leafTagForComponentReferencedByView;
+			                               << '><';
+			                               << self leafTag;
+			                               << '></';
+			                               << self leafTag;
+			                               << $> ].
 	self
 		assertShadowHtml: self intermediateComponent
 		linkHrefs: #( 'intermediateCss' 'sharedCss' )
@@ -68,7 +92,7 @@ WsCompositeComponentTest >> assertPageLinks [
 	self assert: (document body querySelectorAll: #link) isEmpty.
 	allLinks := document head querySelectorAll: #link.
 	allLinks asLocalObject
-		with: #( 'compositeCss' 'sharedCss' 'intermediateCss'
+		with: #( 'compositeCss' 'sharedCss' 'intermediateCss' 'subViewLeafCss'
 		   'leafCss' )
 		do: [ :link :expectedHref |
 			self assert: (link href endsWith: expectedHref) ]
@@ -82,7 +106,7 @@ WsCompositeComponentTest >> assertPageScripts [
 	allScripts := document head querySelectorAll: #script.
 	allScripts asLocalObject
 		with:
-		#( 'compositeJs' 'sharedJs' 'intermediateJs' 'leafJs' 'index.js' )
+		#( 'compositeJs' 'sharedJs' 'intermediateJs' 'subViewLeafJs' 'leafJs' 'index.js' )
 		do: [ :script :expectedSrc |
 			self assert: (script src endsWith: expectedSrc).
 			self assert: script defer ]
@@ -124,4 +148,10 @@ WsCompositeComponentTest >> leafComponent [
 WsCompositeComponentTest >> leafTag [
 
 	^ WsLeafComponent tagName
+]
+
+{ #category : 'accessing' }
+WsCompositeComponentTest >> leafTagForComponentReferencedByView [
+
+	^ WsLeafComponentReferencedByView tagName
 ]

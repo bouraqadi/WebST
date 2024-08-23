@@ -3,7 +3,7 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'componentClasses',
-		'visitedViewClasses'
+		'analyzedClasses'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -20,17 +20,26 @@ WsComponentClassFinder class >> allComponentClassesFrom: aClass [
 WsComponentClassFinder >> allComponentClassesFrom: aClass [
 
 	componentClasses := IdentitySet new.
-	visitedViewClasses := IdentitySet new.
+	analyzedClasses := IdentitySet new.
 	aClass findComponentClassesWith: self.
 	^ componentClasses asArray
 ]
 
 { #category : 'analyzing' }
-WsComponentClassFinder >> analyzeClassReferencedBy: aClass [
+WsComponentClassFinder >> analyzeClass: aClass [
 
+	(analyzedClasses includes: aClass) ifTrue: [ ^ self ].
+	analyzedClasses add: aClass.
+	self analyzeClassesReferencedBy: aClass
+]
 
-		aClass referencedClasses do: [ :each |
-			each findComponentClassesWith: self ] 
+{ #category : 'analyzing' }
+WsComponentClassFinder >> analyzeClassesReferencedBy: aClass [
+
+	aClass referencedClasses do: [ :each |
+		each findComponentClassesWith: self ].
+	self analyzeClass: aClass class.
+	self analyzeSuperclassOf: aClass
 ]
 
 { #category : 'analyzing' }
@@ -38,18 +47,22 @@ WsComponentClassFinder >> analyzeComponentClass: aClass [
 
 	(componentClasses includes: aClass) ifTrue: [ ^ self ].
 	componentClasses add: aClass.
-	aClass viewClass findComponentClassesWith: self
+	self analyzeClass: aClass
 ]
 
 { #category : 'analyzing' }
 WsComponentClassFinder >> analyzeSingleComponentAppClass: aClass [
 
-	aClass rootComponentClass findComponentClassesWith:
-		self
+	"Sometimes the root component class is referenced via an instance variable"
+	self analyzeClass: aClass.
+	[aClass rootComponentClass ] on: Error do: [:ex| ^self ].
+	aClass rootComponentClass ifNil: [ ^self ].
+	aClass rootComponentClass findComponentClassesWith: self
 ]
 
 { #category : 'analyzing' }
 WsComponentClassFinder >> analyzeSuperclassOf: aClass [
+
 	aClass superclass ifNil: [ ^ self ].
 	aClass superclass findComponentClassesWith: self
 ]
@@ -57,15 +70,7 @@ WsComponentClassFinder >> analyzeSuperclassOf: aClass [
 { #category : 'analyzing' }
 WsComponentClassFinder >> analyzeViewBasedAppClass: aClass [
 
+	"Sometimes the view class is referenced via an instance variable"
+	self analyzeClass: aClass.
 	aClass viewClass findComponentClassesWith: self
-]
-
-{ #category : 'analyzing' }
-WsComponentClassFinder >> analyzeViewClass: aViewClass [
-
-	(visitedViewClasses includes: aViewClass) ifTrue: [ ^ self ].
-	visitedViewClasses add: aViewClass.
-	aViewClass referencedClasses do: [ :aClass |
-		aClass findComponentClassesWith: self ].
-	self analyzeSuperclassOf: aViewClass
 ]

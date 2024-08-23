@@ -9,7 +9,7 @@ Trait {
 WsTApp classSide >> allComponentClasses [
 
 	<pharoJsSkip>
-	^WsComponentClassFinder allComponentClassesFrom: self
+	^ WsComponentClassFinder allComponentClassesFrom: self
 ]
 
 { #category : 'accessing' }
@@ -24,13 +24,6 @@ WsTApp classSide >> exporterClass [
 
 	<pharoJsSkip>
 	^ WsClientExporter
-]
-
-{ #category : 'analyzing' }
-WsTApp classSide >> findComponentClassesWith: aComponentClassFinder [
-
-	<pharoJsSkip>
-	self explicitRequirement 
 ]
 
 { #category : 'rendering' }

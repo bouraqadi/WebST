@@ -12,6 +12,14 @@ WsTConcreteComponent classSide >> beforeRendering: rootView [
 	^ self
 ]
 
+{ #category : 'accessing' }
+WsTConcreteComponent classSide >> findComponentClassesWith: aComponentClassFinder [
+
+	<pharoJsSkip>
+	aComponentClassFinder analyzeComponentClass: self
+
+]
+
 { #category : 'class initialization' }
 WsTConcreteComponent classSide >> javascriptInitialize [
 

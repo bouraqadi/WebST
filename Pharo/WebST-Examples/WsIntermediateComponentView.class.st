@@ -12,6 +12,7 @@ WsIntermediateComponentView >> renderOuterHtmlOn: html [
 	html heading
 		level2;
 		with: 'Intermediate'.
+	html render: WsLeafViewRefencingComponent.
 	html render: WsLeafComponent
 ]
 
