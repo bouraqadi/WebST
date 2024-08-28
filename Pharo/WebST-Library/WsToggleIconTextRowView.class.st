@@ -1,53 +1,19 @@
 Class {
 	#name : 'WsToggleIconTextRowView',
-	#superclass : 'WsBootstrapIcons1View',
-	#instVars : [
-		'onView',
-		'offView'
-	],
+	#superclass : 'WsToggleView',
 	#category : 'WebST-Library-Buttons',
 	#package : 'WebST-Library',
 	#tag : 'Buttons'
 }
 
-{ #category : 'initialization' }
-WsToggleIconTextRowView >> initialize [ 
-	super initialize.
-	onView := WsIconTextRowView new.
-	offView := WsIconTextRowView new
-]
+{ #category : 'rendering' }
+WsToggleIconTextRowView >> renderViewContentOn: html [
 
-{ #category : 'initialization' }
-WsToggleIconTextRowView >> offIcon: icon [
-
-	offView icon: icon
-]
-
-{ #category : 'initialization' }
-WsToggleIconTextRowView >> offText: text [
-
-	offView text: text
-]
-
-{ #category : 'initialization' }
-WsToggleIconTextRowView >> onIcon: icon [
-	onView icon: icon
-]
-
-{ #category : 'initialization' }
-WsToggleIconTextRowView >> onText: text [
-
-	onView text: text
+	^ html render: WsIconTextRowView
 ]
 
 { #category : 'rendering' }
-WsToggleIconTextRowView >> renderOuterHtmlOn: html [
+WsToggleIconTextRowView >> viewBrushOn: html [
 
-	html span
-		id: 'onView';
-		with: [ html render: onView ].
-	html span
-		id: 'offView';
-		with: [ html render: offView ].
-
+	^ html span
 ]
