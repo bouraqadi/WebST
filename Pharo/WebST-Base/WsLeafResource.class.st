@@ -10,7 +10,8 @@ Class {
 	#instVars : [
 		'url',
 		'integrity',
-		'crossorigin'
+		'crossorigin',
+		'referrerpolicy'
 	],
 	#category : 'WebST-Base-Resources',
 	#package : 'WebST-Base',
@@ -22,6 +23,15 @@ WsLeafResource class >> url: aString [
 	^self new
 		url: aString;
 		yourself 
+]
+
+{ #category : 'instance creation' }
+WsLeafResource class >> url: urlString integrity: integrityString [ 
+
+	^ self new
+		url: urlString;
+		integrity: integrityString;
+		yourself
 ]
 
 { #category : 'comparing' }
@@ -45,9 +55,22 @@ WsLeafResource >> hash [
 	^ url hash
 ]
 
+{ #category : 'initialization' }
+WsLeafResource >> initialize [
+	super initialize.
+
+	self crossoriginAnonymous.
+	self noReferrer
+]
+
 { #category : 'accessing' }
 WsLeafResource >> integrity: aString [
 	integrity := aString
+]
+
+{ #category : 'initialization' }
+WsLeafResource >> noReferrer [
+	referrerpolicy := 'no-referrer'
 ]
 
 { #category : 'rendering' }
@@ -55,7 +78,8 @@ WsLeafResource >> renderOuterHtmlOn: html [
 
 	(self renderTagOn: html)
 		attributeAt: #integrity put: integrity;
-		attributeAt: #crossorigin put: crossorigin
+		attributeAt: #crossorigin put: crossorigin;
+		attributeAt: #referrerpolicy put: referrerpolicy
 ]
 
 { #category : 'rendering' }

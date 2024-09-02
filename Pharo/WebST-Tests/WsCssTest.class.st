@@ -14,11 +14,10 @@ WsCssTest >> resourceClass [
 
 { #category : 'tests' }
 WsCssTest >> testCrossoriginAnonymous [
-
-	resource crossoriginAnonymous.
+	"Crossorigin default is anonymous"
 	self assertHtml:
 		'<link rel="stylesheet" href="' , url
-		, '" crossorigin="anonymous"/>'
+		, '" crossorigin="anonymous" referrerpolicy="no-referrer"/>'
 ]
 
 { #category : 'tests' }
@@ -29,11 +28,11 @@ WsCssTest >> testIntegrity [
 	resource integrity: integrity.
 	self assertHtml:
 		'<link rel="stylesheet" href="' , url , '" integrity="' , integrity
-		, '"/>'
+		, '" crossorigin="anonymous" referrerpolicy="no-referrer"/>'
 ]
 
 { #category : 'tests' }
 WsCssTest >> testUrlOnly [
 
-	self assertHtml: '<link rel="stylesheet" href="' , url , '"/>'
+	self assertHtml: '<link rel="stylesheet" href="' , url , '" crossorigin="anonymous" referrerpolicy="no-referrer"/>'
 ]

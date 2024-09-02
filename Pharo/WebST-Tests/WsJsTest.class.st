@@ -15,9 +15,8 @@ WsJsTest >> resourceClass [
 { #category : 'tests' }
 WsJsTest >> testCrossoriginAnonymous [
 
-	resource crossoriginAnonymous.
 	self assertHtml: '<script defer type="text/javascript" src="' , url
-		, '" crossorigin="anonymous"></script>'
+		, '" crossorigin="anonymous" referrerpolicy="no-referrer"></script>'
 ]
 
 { #category : 'tests' }
@@ -28,12 +27,12 @@ WsJsTest >> testIntegrity [
 	resource integrity: integrity.
 	self assertHtml:
 		'<script defer type="text/javascript" src="' , url , '" integrity="'
-		, integrity , '"></script>'
+		, integrity , '" crossorigin="anonymous" referrerpolicy="no-referrer"></script>'
 ]
 
 { #category : 'tests' }
 WsJsTest >> testUrlOnly [
 
-	self assertHtml: '<script defer type="text/javascript" src="' , url
-		, '"></script>'
+	self assertHtml:
+		'<script defer type="text/javascript" src="' , url , '" crossorigin="anonymous" referrerpolicy="no-referrer"></script>'
 ]
