@@ -11,42 +11,38 @@ Class {
 }
 
 { #category : 'creating' }
-WsComponentAppClassTestResource >> appClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
+WsComponentAppClassTestResource >> appClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: componentDataAttributes style: componentStyle cssClasses: componentCssClasses [
 
 	| descriptor |
-	descriptor := self
-		              descriptorForSuperclass: appSuperclass
-		              traits: appTraits
-		              componentClass: componentClass
-		              attributes: attributes.
+	descriptor := WsComponentAppForTestDescriptor new
+		  superclass: appSuperclass;
+		  traits: appTraits;
+		  componentClass: componentClass;
+		  attributes: componentDataAttributes;
+		  style: componentStyle;
+		  cssClasses: componentCssClasses;
+		  yourself.
 	^ appClassesDict at: descriptor ifAbsentPut: [
 		  self
 			  newAppClassSuperclass: appSuperclass
 			  traits: appTraits
 			  componentClass: componentClass
-			  attributes: attributes ]
+			  attributes: componentDataAttributes
+			  style: componentStyle
+		  	  cssClasses: componentCssClasses ]
 ]
 
 { #category : 'creating' }
-WsComponentAppClassTestResource >> descriptorForSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
+WsComponentAppClassTestResource >> newAppClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: componentDataAttributes style: componentStyle cssClasses: componentCssClasses [
 
-	^ WsComponentAppForTestDescriptor new
-		  superclass: appSuperclass;
-		  traits: appTraits;
-		  componentClass: componentClass;
-		attributes: attributes;
-		yourself
-]
-
-{ #category : 'creating' }
-WsComponentAppClassTestResource >> newAppClassSuperclass: appSuperclass traits: appTraits componentClass: componentClass attributes: attributes [
 
 	| appClass |
-	appClass := classFactory
-		            newSubclassOf: appSuperclass.
+	appClass := classFactory newSubclassOf: appSuperclass.
 	appClass
 		rootComponentClass: componentClass;
-		rootComponentAttributes: attributes.
+		rootComponentAttributes: componentDataAttributes;
+		rootComponentStyle: componentStyle;
+		rootComponentCssClasses: componentCssClasses.
 	^ appClass
 ]
 

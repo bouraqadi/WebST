@@ -20,6 +20,8 @@ WsComponentTest class >> appClass [
 		  traits: self appTraits
 		  componentClass: self componentClass
 		  attributes: self dataAttributes
+		  style: self componentStyle
+		  cssClasses: self componentCssClasses
 ]
 
 { #category : 'accessing' }
@@ -47,6 +49,17 @@ WsComponentTest class >> appTraits [
 { #category : 'accessing' }
 WsComponentTest class >> componentClass [
 	^self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+WsComponentTest class >> componentCssClasses [
+
+	^ nil
+]
+
+{ #category : 'accessing' }
+WsComponentTest class >> componentStyle [
+	^nil
 ]
 
 { #category : 'accessing' }
@@ -149,17 +162,14 @@ WsComponentTest >> rootComponentClass [
 { #category : 'tests' }
 WsComponentTest >> testDynamicComponentCreationBasic [
 
-	| newComponent staticComponent |
+	| newComponent |
 	newComponent := self jsComponentClass new.
-	staticComponent := self allComponents first.
 	"Inserting new component first make it easier to view result during debug"
-	document body
-		insertBefore: newComponent
-		existingChild: staticComponent.
+	document body prepend: newComponent.
 	self assert: self allComponents size equals: 2.
 	self
 		assertComponent: newComponent
-		with: [ self assertDefaultAttributesApplied ] 
+		with: [ self assertDefaultAttributesApplied ]
 ]
 
 { #category : 'tests' }

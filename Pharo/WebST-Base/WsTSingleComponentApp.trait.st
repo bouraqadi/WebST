@@ -18,10 +18,10 @@ WsTSingleComponentApp classSide >> findComponentClassesWith: aComponentClassFind
 WsTSingleComponentApp classSide >> renderContentOn: html [
 
 	<pharoJsSkip>
-	html
-		render: self rootComponentClass
-		dataAttributes: self rootComponentAttributes.
-
+	html render: self rootComponentClass with: [ :brush |
+		brush dataAttributes: self rootComponentAttributes.
+		brush style: self rootComponentStyle.
+		brush class: self rootComponentCssClasses ]
 ]
 
 { #category : 'rendering' }
@@ -35,6 +35,20 @@ WsTSingleComponentApp classSide >> rootComponentAttributes [
 WsTSingleComponentApp classSide >> rootComponentClass [
 
 	self explicitRequirement
+]
+
+{ #category : 'rendering' }
+WsTSingleComponentApp classSide >> rootComponentCssClasses [
+
+	<pharoJsSkip>
+	^ nil
+]
+
+{ #category : 'rendering' }
+WsTSingleComponentApp classSide >> rootComponentStyle [
+
+	<pharoJsSkip>
+	^ nil
 ]
 
 { #category : 'initialization' }

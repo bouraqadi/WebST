@@ -7,7 +7,9 @@ Class {
 		'superclass',
 		'traits',
 		'componentClass',
-		'attributes'
+		'attributes',
+		'style',
+		'cssClasses'
 	],
 	#category : 'WebST-Tests-Support',
 	#package : 'WebST-Tests',
@@ -36,6 +38,30 @@ WsComponentAppForTestDescriptor >> componentClass [
 WsComponentAppForTestDescriptor >> componentClass: anObject [
 
 	componentClass := anObject
+]
+
+{ #category : 'accessing' }
+WsComponentAppForTestDescriptor >> cssClasses [
+
+	^ cssClasses
+]
+
+{ #category : 'accessing' }
+WsComponentAppForTestDescriptor >> cssClasses: anObject [
+
+	cssClasses := anObject
+]
+
+{ #category : 'accessing' }
+WsComponentAppForTestDescriptor >> style [
+
+	^ style
+]
+
+{ #category : 'accessing' }
+WsComponentAppForTestDescriptor >> style: anObject [
+
+	style := anObject
 ]
 
 { #category : 'WsView' }
