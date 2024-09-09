@@ -52,10 +52,9 @@ WsTextToggleEditComponent >> defaultTextAttribute [
 WsTextToggleEditComponent >> initView [
 
 	super initView.
-	textReader := view querySelector: WsTextComponent tagName.
+	textReader := self firstComponent: WsTextComponent.
 	self onClickElement: textReader do: [ self openEditor ].
-	textEditor := view querySelector:
-		              WsTextFieldWithButtonsComponent tagName.
+	textEditor := self firstComponent: WsTextFieldWithButtonsComponent.
 	textEditor
 		cancelBlock: [ self cancelEdit ];
 		saveBlock: [ :newText | self saveEdit: newText ].

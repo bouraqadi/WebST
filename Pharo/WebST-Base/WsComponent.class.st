@@ -82,6 +82,12 @@ WsComponent >> document [
 	^document
 ]
 
+{ #category : 'accessing' }
+WsComponent >> firstComponent: componentClass [
+
+	^ view querySelector: componentClass tagName
+]
+
 { #category : 'initialization' }
 WsComponent >> initView [
 

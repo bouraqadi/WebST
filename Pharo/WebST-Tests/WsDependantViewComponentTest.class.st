@@ -34,5 +34,5 @@ WsDependantViewComponentTest >> assertComponent [
 { #category : 'tests' }
 WsDependantViewComponentTest >> shadowHtml [
 
-	^ '<link rel="stylesheet" href="requiredCSS"><p>some text</p>'
+	^ '<link rel="stylesheet" href="requiredCSS" crossorigin="anonymous" referrerpolicy="no-referrer"><p>some text</p>'
 ]
