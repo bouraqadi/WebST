@@ -72,5 +72,6 @@ WsComponentClassFinder >> analyzeViewBasedAppClass: aClass [
 
 	"Sometimes the view class is referenced via an instance variable"
 	self analyzeClass: aClass.
+	aClass isAbstract ifTrue: [ ^self ].
 	aClass viewClass findComponentClassesWith: self
 ]
