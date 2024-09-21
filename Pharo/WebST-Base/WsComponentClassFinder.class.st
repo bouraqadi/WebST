@@ -5,9 +5,9 @@ Class {
 		'componentClasses',
 		'analyzedClasses'
 	],
-	#category : 'WebST-Base-Components',
+	#category : 'WebST-Base-Apps',
 	#package : 'WebST-Base',
-	#tag : 'Components'
+	#tag : 'Apps'
 }
 
 { #category : 'analyzing' }
