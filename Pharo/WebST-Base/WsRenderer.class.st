@@ -5,7 +5,8 @@ Class {
 		'stream',
 		'document',
 		'localResources',
-		'globalResources'
+		'globalResources',
+		'componentFinder'
 	],
 	#category : 'WebST-Base-Views',
 	#package : 'WebST-Base',
@@ -45,6 +46,14 @@ WsRenderer >> addAllResources: resources [
 WsRenderer >> addAllResourcesOf: element [
 
 	element resources do: [ :each | self addResource: each ]
+]
+
+{ #category : 'accessing' }
+WsRenderer >> addAllResourcesOfView: aView [
+	| newComponentClasses |
+	self addAllResourcesOf: aView.
+	newComponentClasses := componentFinder allNewComponentClassesFrom: aView class.
+	newComponentClasses do: [ : each | self addAllResourcesOf: each  ]
 ]
 
 { #category : 'accessing' }
@@ -115,7 +124,8 @@ WsRenderer >> initialize [
 	document := WAHtmlDocument on: stream.
 	"OrderedCollections are needed to ensure definition order which might be related to some implicit dependencies"
 	self resetLocalResources.
-	globalResources := OrderedCollection new
+	globalResources := OrderedCollection new.
+	componentFinder := WsIncrementalComponentClassFinder new
 ]
 
 { #category : 'rendering' }
@@ -211,7 +221,7 @@ WsRenderer >> renderHeadChild: element [
 { #category : 'rendering' }
 WsRenderer >> renderView: view [
 
-	self addAllResourcesOf: view.
+	self addAllResourcesOfView: view.
 	view renderOuterHtmlOn: self
 ]
 

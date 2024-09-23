@@ -16,7 +16,7 @@ WsTApp classSide >> allComponentClasses [
 WsTApp classSide >> appClasses [
 
 	<pharoJsSkip>
-	^ super appClasses , self allComponentClasses 
+	^ super appClasses , self allComponentClasses asArray
 ]
 
 { #category : 'accessing' }

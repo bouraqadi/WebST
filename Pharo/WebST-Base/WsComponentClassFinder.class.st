@@ -17,12 +17,16 @@ WsComponentClassFinder class >> allComponentClassesFrom: aClass [
 ]
 
 { #category : 'analyzing' }
+WsComponentClassFinder >> addComponentClass: aClass [
+
+	componentClasses add: aClass
+]
+
+{ #category : 'analyzing' }
 WsComponentClassFinder >> allComponentClassesFrom: aClass [
 
-	componentClasses := IdentitySet new.
-	analyzedClasses := IdentitySet new.
 	aClass findComponentClassesWith: self.
-	^ componentClasses asArray
+	^ self componentClasses
 ]
 
 { #category : 'analyzing' }
@@ -46,7 +50,7 @@ WsComponentClassFinder >> analyzeClassesReferencedBy: aClass [
 WsComponentClassFinder >> analyzeComponentClass: aClass [
 
 	(componentClasses includes: aClass) ifTrue: [ ^ self ].
-	componentClasses add: aClass.
+	self addComponentClass: aClass.
 	self analyzeClass: aClass
 ]
 
@@ -74,4 +78,17 @@ WsComponentClassFinder >> analyzeViewBasedAppClass: aClass [
 	self analyzeClass: aClass.
 	aClass isAbstract ifTrue: [ ^self ].
 	aClass viewClass findComponentClassesWith: self
+]
+
+{ #category : 'accessing' }
+WsComponentClassFinder >> componentClasses [
+	^componentClasses
+]
+
+{ #category : 'initialization' }
+WsComponentClassFinder >> initialize [ 
+	super initialize.
+	componentClasses := IdentitySet new.
+	analyzedClasses := IdentitySet new.
+
 ]
