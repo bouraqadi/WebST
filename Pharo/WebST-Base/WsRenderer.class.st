@@ -49,14 +49,6 @@ WsRenderer >> addAllResourcesOf: element [
 ]
 
 { #category : 'accessing' }
-WsRenderer >> addAllResourcesOfView: aView [
-	| newComponentClasses |
-	self addAllResourcesOf: aView.
-	newComponentClasses := componentFinder allNewComponentClassesFrom: aView class.
-	newComponentClasses do: [ : each | self addAllResourcesOf: each  ]
-]
-
-{ #category : 'accessing' }
 WsRenderer >> addGlobalResource: resource [
 
 (self globalResources includes: resource) ifTrue: [ ^self ].
@@ -125,7 +117,7 @@ WsRenderer >> initialize [
 	"OrderedCollections are needed to ensure definition order which might be related to some implicit dependencies"
 	self resetLocalResources.
 	globalResources := OrderedCollection new.
-	componentFinder := WsIncrementalComponentClassFinder new
+
 ]
 
 { #category : 'rendering' }
@@ -221,7 +213,7 @@ WsRenderer >> renderHeadChild: element [
 { #category : 'rendering' }
 WsRenderer >> renderView: view [
 
-	self addAllResourcesOfView: view.
+	self addAllResourcesOf: view.
 	view renderOuterHtmlOn: self
 ]
 
