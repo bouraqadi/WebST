@@ -131,6 +131,11 @@ WsComponent >> view [
 	^view
 ]
 
+{ #category : 'accessing' }
+WsComponent >> viewChildAt: elementId [
+	^self elementAt: elementId in: view
+]
+
 { #category : 'event init' }
 WsComponent >> whenConnectedToDomDo: aBlock [
 	"HTML does not provide any support for detecting a connection to DOM"
