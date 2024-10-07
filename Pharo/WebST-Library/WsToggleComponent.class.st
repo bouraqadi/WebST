@@ -7,7 +7,7 @@ Class {
 	#superclass : 'WsMvcComponent',
 	#instVars : [
 		'isOnPort',
-		'clickHandler',
+		'controller',
 		'onView',
 		'offView'
 	],
@@ -39,17 +39,9 @@ WsToggleComponent >> initModel [
 
 	super initModel.
 	isOnPort := model -@ #isOnPort.
-	isOnPort => [ :aBoolean | self showIsOnOff: aBoolean ].
-	self updateDisplay
-]
+	controller := WsToggleController new.
+	controller model: model onView: onView offView: offView.
 
-{ #category : 'initialization' }
-WsToggleComponent >> initToggleOnClick [
-
-	"Remember the handler to avoid duplicates, in cases when the view is reset, such as upon changing the model"
-	clickHandler ifNotNil: [ ^ self ].
-	clickHandler := [ self toggle ].
-	self onClickElement: self do: clickHandler
 ]
 
 { #category : 'initialization' }
@@ -58,7 +50,7 @@ WsToggleComponent >> initView [
 	super initView.
 	onView := view querySelector: '#onView'.
 	offView := view querySelector: '#offView'.
-	self initToggleOnClick
+ 
 ]
 
 { #category : 'accessing' }
@@ -73,31 +65,6 @@ WsToggleComponent >> isOn: aBoolean [
 ]
 
 { #category : 'actions' }
-WsToggleComponent >> showIsOff [
-
-	self hide: onView.
-	self show: offView
-]
-
-{ #category : 'actions' }
-WsToggleComponent >> showIsOn [
-	self show: onView.
-	self hide: offView
-]
-
-{ #category : 'actions' }
-WsToggleComponent >> showIsOnOff: aBoolean [
-
-	aBoolean ifTrue: [ ^ self showIsOn ].
-	self showIsOff
-]
-
-{ #category : 'actions' }
 WsToggleComponent >> toggle [
 	self model toggle
-]
-
-{ #category : 'actions' }
-WsToggleComponent >> updateDisplay [
-	self isOn: model isOn
 ]

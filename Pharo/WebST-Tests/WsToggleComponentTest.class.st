@@ -16,6 +16,21 @@ WsToggleComponentTest class >> isAbstract [
 ]
 
 { #category : 'asserting' }
+WsToggleComponentTest >> assertComponent [ 
+	super assertComponent.
+	self assertOnPort
+]
+
+{ #category : 'asserting' }
+WsToggleComponentTest >> assertOnPort [
+	window instVarNamed: #toggleFlag put: 123.
+	self evalBlock: [component -@ #isOnPort => [: aBoolean | window toggleFlag: aBoolean  ]].
+	#(true false true false) do: [: each |
+		component isOn: each .
+		self assert: window toggleFlag equals: each.]
+]
+
+{ #category : 'asserting' }
 WsToggleComponentTest >> assertViewModelLink [
 
 	self assert: onView isShowing: model isOn.
@@ -28,11 +43,11 @@ WsToggleComponentTest >> assertViewModelLink [
 		model switchOff.
 		self assertHidden: onView.
 		self assertShowing: offView ].
-	component click.
+	component offView click.
 	self assert: model isOn.
 	self assertShowing: onView.
 	self assertHidden: offView.
-	component click.
+	component onView click.
 	self deny: model isOn.
 	self assertHidden: onView.
 	self assertShowing: offView
