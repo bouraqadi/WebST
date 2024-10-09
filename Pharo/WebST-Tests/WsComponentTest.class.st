@@ -149,6 +149,11 @@ WsComponentTest >> dataAttributesDict [
 ]
 
 { #category : 'accessing' }
+WsComponentTest >> firstComponent [
+	^self allComponents first
+]
+
+{ #category : 'accessing' }
 WsComponentTest >> jsComponentClass [
 
 	^ self bridge jsGlobalAt: self rootComponentClass name
@@ -179,6 +184,7 @@ WsComponentTest >> testStaticComponentCreation [
 	| allComponents |
 	allComponents := self allComponents.
 	self assert: allComponents size equals: 1.
-	self assertComponent: allComponents first with: [
-	self assertCustomAttributesApplied]
+	self
+		assertComponent: self firstComponent
+		with: [ self assertCustomAttributesApplied ]
 ]
