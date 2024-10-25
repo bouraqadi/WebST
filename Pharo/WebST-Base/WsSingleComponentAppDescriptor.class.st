@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsComponentAppForTestDescriptor',
+	#name : 'WsSingleComponentAppDescriptor',
 	#superclass : 'Object',
 	#traits : 'TEquality',
 	#classTraits : 'TEquality classTrait',
@@ -11,79 +11,79 @@ Class {
 		'style',
 		'cssClasses'
 	],
-	#category : 'WebST-Tests-Support',
-	#package : 'WebST-Tests',
-	#tag : 'Support'
+	#category : 'WebST-Base-Apps',
+	#package : 'WebST-Base',
+	#tag : 'Apps'
 }
 
 { #category : 'accessing' }
-WsComponentAppForTestDescriptor >> attributes [
+WsSingleComponentAppDescriptor >> attributes [
 
 	^ attributes
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTestDescriptor >> attributes: anObject [
+WsSingleComponentAppDescriptor >> attributes: anObject [
 
 	attributes := anObject
 ]
 
 { #category : 'WsView' }
-WsComponentAppForTestDescriptor >> componentClass [
+WsSingleComponentAppDescriptor >> componentClass [
 
 	^ componentClass
 ]
 
 { #category : 'WsView' }
-WsComponentAppForTestDescriptor >> componentClass: anObject [
+WsSingleComponentAppDescriptor >> componentClass: anObject [
 
 	componentClass := anObject
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTestDescriptor >> cssClasses [
+WsSingleComponentAppDescriptor >> cssClasses [
 
 	^ cssClasses
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTestDescriptor >> cssClasses: anObject [
+WsSingleComponentAppDescriptor >> cssClasses: anObject [
 
 	cssClasses := anObject
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTestDescriptor >> style [
+WsSingleComponentAppDescriptor >> style [
 
 	^ style
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTestDescriptor >> style: anObject [
+WsSingleComponentAppDescriptor >> style: anObject [
 
 	style := anObject
 ]
 
 { #category : 'WsView' }
-WsComponentAppForTestDescriptor >> superclass [
+WsSingleComponentAppDescriptor >> superclass [
 
 	^ superclass
 ]
 
 { #category : 'WsView' }
-WsComponentAppForTestDescriptor >> superclass: anObject [
+WsSingleComponentAppDescriptor >> superclass: anObject [
 
 	superclass := anObject
 ]
 
 { #category : 'WsView' }
-WsComponentAppForTestDescriptor >> traits [
+WsSingleComponentAppDescriptor >> traits [
 
 	^ traits
 ]
 
 { #category : 'WsView' }
-WsComponentAppForTestDescriptor >> traits: anObject [
+WsSingleComponentAppDescriptor >> traits: anObject [
 
 	traits := anObject
 ]

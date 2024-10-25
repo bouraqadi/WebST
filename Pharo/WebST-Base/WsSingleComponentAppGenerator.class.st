@@ -45,7 +45,7 @@ WsSingleComponentAppGenerator >> appFor: componentClass [
 WsSingleComponentAppGenerator >> appFor: componentClass attributes: componentDataAttributes style: componentStyle cssClasses: componentCssClasses appSuperclass: appSuperclass traits: appTraits [
 
 	| descriptor |
-	descriptor := WsComponentAppForTestDescriptor new
+	descriptor := WsSingleComponentAppDescriptor new
 		              superclass: appSuperclass;
 		              traits: appTraits;
 		              componentClass: componentClass;

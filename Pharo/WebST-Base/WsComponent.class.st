@@ -23,8 +23,9 @@ WsComponent class >> new [
 
 { #category : 'demoing' }
 WsComponent class >> playground [
+
 	<pharoJsSkip>
-	WsSingleComponentAppGenerator playgroundFor: self 
+	^WsSingleComponentAppGenerator playgroundFor: self
 ]
 
 { #category : 'class initialization' }
