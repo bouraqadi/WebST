@@ -21,6 +21,12 @@ WsComponent class >> new [
 	^ document createElement: self tagName
 ]
 
+{ #category : 'demoing' }
+WsComponent class >> playground [
+	<pharoJsSkip>
+	WsSingleComponentAppGenerator playgroundFor: self 
+]
+
 { #category : 'class initialization' }
 WsComponent class >> registerTag [
 

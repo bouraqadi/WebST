@@ -16,12 +16,12 @@ Class {
 WsComponentTest class >> appClass [
 
 	^ self appClassGenerator
-		  appClassSuperclass: self appSuperclass
-		  traits: self appTraits
-		  componentClass: self componentClass
+		  appFor: self componentClass
 		  attributes: self dataAttributes
 		  style: self componentStyle
 		  cssClasses: self componentCssClasses
+		  appSuperclass: self appSuperclass
+		  traits: self appTraits
 ]
 
 { #category : 'accessing' }
@@ -37,7 +37,7 @@ WsComponentTest class >> appClassGeneratorClass [
 { #category : 'accessing' }
 WsComponentTest class >> appSuperclass [
 
-	^ WsComponentAppForTest
+	^ WsParametrizableSingleComponentApp
 ]
 
 { #category : 'accessing' }

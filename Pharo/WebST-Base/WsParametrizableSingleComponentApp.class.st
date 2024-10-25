@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsComponentAppForTest',
+	#name : 'WsParametrizableSingleComponentApp',
 	#superclass : 'WsSingleComponentApp',
 	#classInstVars : [
 		'rootComponentClass',
@@ -7,57 +7,57 @@ Class {
 		'rootComponentStyle',
 		'rootComponentCssClasses'
 	],
-	#category : 'WebST-Tests-Support',
-	#package : 'WebST-Tests',
-	#tag : 'Support'
+	#category : 'WebST-Base-Apps',
+	#package : 'WebST-Base',
+	#tag : 'Apps'
 }
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentAttributes [
+WsParametrizableSingleComponentApp class >> rootComponentAttributes [
 
 	<pharoJsSkip>
 	^ rootComponentAttributes
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentAttributes: anAssociationArray [
+WsParametrizableSingleComponentApp class >> rootComponentAttributes: anAssociationArray [
 
 	<pharoJsSkip>
 	rootComponentAttributes := anAssociationArray
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentClass [
+WsParametrizableSingleComponentApp class >> rootComponentClass [
 
 	^ rootComponentClass
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentClass: anObject [
+WsParametrizableSingleComponentApp class >> rootComponentClass: anObject [
 
 	rootComponentClass := anObject
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentCssClasses [
+WsParametrizableSingleComponentApp class >> rootComponentCssClasses [
 
 	^ rootComponentCssClasses
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentCssClasses: anObject [
+WsParametrizableSingleComponentApp class >> rootComponentCssClasses: anObject [
 
 	rootComponentCssClasses := anObject
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentStyle [
+WsParametrizableSingleComponentApp class >> rootComponentStyle [
 
 	^ rootComponentStyle
 ]
 
 { #category : 'accessing' }
-WsComponentAppForTest class >> rootComponentStyle: anObject [
+WsParametrizableSingleComponentApp class >> rootComponentStyle: anObject [
 
 	rootComponentStyle := anObject
 ]
