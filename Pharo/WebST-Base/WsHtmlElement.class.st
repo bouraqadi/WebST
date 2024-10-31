@@ -20,3 +20,10 @@ WsHtmlElement >> dataAttributeAt: jsAttributeName ifAbsent: aBlock [
 	https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset"
 	^ self dataset at: jsAttributeName ifAbsent: aBlock
 ]
+
+{ #category : 'accessing' }
+WsHtmlElement >> hasDataAttributeAt: jsAttributeName [ 
+
+	self dataAttributeAt: jsAttributeName ifAbsent: [ ^false ].
+	^true
+]
