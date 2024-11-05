@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'rendering' }
-WsTextToggleEditApp class >> rootComponentClass [
+WsTextToggleEditApp class >> componentClass [
 
 	^ WsTextToggleEditComponent 
 ]

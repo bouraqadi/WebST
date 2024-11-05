@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'rendering' }
-WsTextInputApp class >> rootComponentClass [
+WsTextInputApp class >> componentClass [
 
 	^ WsTextFieldWithButtonsComponent 
 ]

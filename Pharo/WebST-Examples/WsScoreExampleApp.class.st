@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'rendering' }
-WsScoreExampleApp class >> rootComponentClass [
+WsScoreExampleApp class >> componentClass [
 	^WsScoreComponent 
 ]
 

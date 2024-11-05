@@ -51,7 +51,7 @@ WsListComponentTest >> itemComponentAsserter [
 { #category : 'accessing' }
 WsListComponentTest >> itemComponentClass [
 
-	^ self rootComponentClass itemComponentClass
+	^ self componentClass itemComponentClass
 ]
 
 { #category : 'accessing' }

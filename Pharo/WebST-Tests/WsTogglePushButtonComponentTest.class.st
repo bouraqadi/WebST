@@ -40,9 +40,9 @@ WsTogglePushButtonComponentTest >> assertDefaultAttributesApplied [
 
 	| expectedOnClass expectedOffClass |
 	super assertDefaultAttributesApplied.
-	expectedOnClass := self rootComponentClass defaultOnButtonCssAttribute.
+	expectedOnClass := self componentClass defaultOnButtonCssAttribute.
 	self assert: onButton hasCssClass: expectedOnClass.
-	expectedOffClass := self rootComponentClass defaultOffButtonCssAttribute.
+	expectedOffClass := self componentClass defaultOffButtonCssAttribute.
 	self assert: offButton hasCssClass: expectedOffClass.
 
 ]

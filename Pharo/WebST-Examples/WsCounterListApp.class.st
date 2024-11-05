@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'rendering' }
-WsCounterListApp class >> rootComponentClass [
+WsCounterListApp class >> componentClass [
 
 	^ WsCounterListComponent 
 ]

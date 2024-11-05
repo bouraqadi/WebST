@@ -13,6 +13,12 @@ Class {
 }
 
 { #category : 'accessing' }
+WsParametrizableSingleComponentApp class >> componentClass [
+
+	^ rootComponentClass
+]
+
+{ #category : 'accessing' }
 WsParametrizableSingleComponentApp class >> rootComponentAttributes [
 
 	<pharoJsSkip>
@@ -24,12 +30,6 @@ WsParametrizableSingleComponentApp class >> rootComponentAttributes: anAssociati
 
 	<pharoJsSkip>
 	rootComponentAttributes := anAssociationArray
-]
-
-{ #category : 'accessing' }
-WsParametrizableSingleComponentApp class >> rootComponentClass [
-
-	^ rootComponentClass
 ]
 
 { #category : 'accessing' }

@@ -32,7 +32,7 @@ WsCompositeComponentTest >> assertComponentClasses [
 	self
 		assertCollection: self appClass allComponentClasses
 		hasSameElements: {
-				self rootComponentClass.
+				self componentClass.
 				WsIntermediateComponent.
 				WsLeafComponentReferencedByView.
 				WsLeafComponent }

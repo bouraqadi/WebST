@@ -59,9 +59,9 @@ WsComponentClassFinder >> analyzeSingleComponentAppClass: aClass [
 
 	"Sometimes the root component class is referenced via an instance variable"
 	self analyzeClass: aClass.
-	[aClass rootComponentClass ] on: Error do: [:ex| ^self ].
-	aClass rootComponentClass ifNil: [ ^self ].
-	aClass rootComponentClass findComponentClassesWith: self
+	[aClass componentClass ] on: Error do: [:ex| ^self ].
+	aClass componentClass ifNil: [ ^self ].
+	aClass componentClass findComponentClassesWith: self
 ]
 
 { #category : 'analyzing' }

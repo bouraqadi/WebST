@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'accessing' }
-WsToDoListApp class >> rootComponentClass [
+WsToDoListApp class >> componentClass [
 
 	^ WsToDoListComponent
 ]

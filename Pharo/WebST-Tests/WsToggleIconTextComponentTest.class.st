@@ -47,10 +47,10 @@ WsToggleIconTextComponentTest >> assertDefaultAttributesApplied [
 
 	| expectedOnClass expectedOffClass |
 	super assertDefaultAttributesApplied.
-	expectedOnClass := self rootComponentClass defaultOnIconAttribute.
+	expectedOnClass := self componentClass defaultOnIconAttribute.
 	self assert: onIcon hasCssClass: expectedOnClass.
 	self assertHidden: onText.
-	expectedOffClass := self rootComponentClass defaultOffIconAttribute.
+	expectedOffClass := self componentClass defaultOffIconAttribute.
 	self assert: offIcon hasCssClass: expectedOffClass.
 	self assertHidden: offText.
 

@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'accessing' }
-WsCounterApp class >> rootComponentClass [
+WsCounterApp class >> componentClass [
 
 	^ WsCounterComponent
 ]

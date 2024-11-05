@@ -79,7 +79,7 @@ WsTexToggleEditComponentTest >> assertDefaultAttributesApplied [
 	super assertDefaultAttributesApplied.
 	self
 		assert: component text
-		equals: self rootComponentClass defaultTextAttribute
+		equals: self componentClass defaultTextAttribute
 ]
 
 { #category : 'asserting' }

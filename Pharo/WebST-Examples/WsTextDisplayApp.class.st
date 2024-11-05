@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'rendering' }
-WsTextDisplayApp class >> rootComponentClass [
+WsTextDisplayApp class >> componentClass [
 
 	^ WsTextComponent
 ]

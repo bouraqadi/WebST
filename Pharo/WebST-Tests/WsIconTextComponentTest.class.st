@@ -52,7 +52,7 @@ WsIconTextComponentTest >> assertDefaultAttributesApplied [
 
 	| iconAttribute |
 	super assertDefaultAttributesApplied.
-	iconAttribute := self rootComponentClass defaultIconAttribute.
+	iconAttribute := self componentClass defaultIconAttribute.
 	self assert: (iconElement classList contains: iconAttribute).
 	self assertHidden: textElement
 ]

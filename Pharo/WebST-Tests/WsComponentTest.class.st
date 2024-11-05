@@ -1,65 +1,16 @@
 Class {
 	#name : 'WsComponentTest',
 	#superclass : 'PjWebAppTestCase',
-	#traits : 'PjTAppRunsInJS + WsTUrlTest',
-	#classTraits : 'PjTAppRunsInJS classTrait + WsTUrlTest classTrait',
-	#instVars : [
-		'component',
-		'shadowRoot'
-	],
+	#traits : 'WsTUrlTest + WsTSingleComponentTest',
+	#classTraits : 'WsTUrlTest classTrait + WsTSingleComponentTest classTrait',
 	#category : 'WebST-Tests-Support',
 	#package : 'WebST-Tests',
 	#tag : 'Support'
 }
 
 { #category : 'accessing' }
-WsComponentTest class >> appClass [
-
-	^ self appClassGenerator
-		  appFor: self componentClass
-		  attributes: self dataAttributes
-		  style: self componentStyle
-		  cssClasses: self componentCssClasses
-		  appSuperclass: self appSuperclass
-		  traits: self appTraits
-]
-
-{ #category : 'accessing' }
-WsComponentTest class >> appClassGenerator [
-	^self appClassGeneratorClass current
-]
-
-{ #category : 'accessing' }
-WsComponentTest class >> appClassGeneratorClass [
-	^WsComponentAppClassTestResource 
-]
-
-{ #category : 'accessing' }
-WsComponentTest class >> appSuperclass [
-
-	^ WsParametrizableSingleComponentApp
-]
-
-{ #category : 'accessing' }
-WsComponentTest class >> appTraits [
-
-	^ { WsTSingleComponentApp }
-]
-
-{ #category : 'accessing' }
 WsComponentTest class >> componentClass [
 	^self subclassResponsibility 
-]
-
-{ #category : 'accessing' }
-WsComponentTest class >> componentCssClasses [
-
-	^ nil
-]
-
-{ #category : 'accessing' }
-WsComponentTest class >> componentStyle [
-	^nil
 ]
 
 { #category : 'accessing' }
@@ -78,12 +29,6 @@ WsComponentTest class >> isAbstract [
 WsComponentTest class >> resources [
 
 	^ super resources , { self appClassGeneratorClass }
-]
-
-{ #category : 'accessing' }
-WsComponentTest >> allComponents [
-	^document querySelectorAll:
-		                 self rootComponentClass  tagName.
 ]
 
 { #category : 'asserting' }
@@ -118,7 +63,7 @@ WsComponentTest >> assertComponent: aComponent with: aBlock [
 WsComponentTest >> assertComponentClass [
 
 	| actualClass expectedClass |
-	expectedClass := self bridge jsGlobalAt: self rootComponentClass name.
+	expectedClass := self bridge jsGlobalAt: self componentClass name.
 	actualClass := self evalBlock: [ component class ].
 	self assert: actualClass identicalTo: expectedClass
 ]
@@ -136,32 +81,15 @@ WsComponentTest >> assertDefaultAttributesApplied [
 ]
 
 { #category : 'accessing' }
-WsComponentTest >> component: aComponent [
-	component := aComponent.
-	shadowRoot := component at: #shadowRoot.
-
-]
-
-{ #category : 'accessing' }
 WsComponentTest >> dataAttributesDict [
 
 	^ self class dataAttributes asDictionary
 ]
 
 { #category : 'accessing' }
-WsComponentTest >> firstComponent [
-	^self allComponents first
-]
-
-{ #category : 'accessing' }
 WsComponentTest >> jsComponentClass [
 
-	^ self bridge jsGlobalAt: self rootComponentClass name
-]
-
-{ #category : 'accessing' }
-WsComponentTest >> rootComponentClass [
-	^self appClass rootComponentClass
+	^ self bridge jsGlobalAt: self componentClass name
 ]
 
 { #category : 'tests' }

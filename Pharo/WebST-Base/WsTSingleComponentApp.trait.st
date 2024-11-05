@@ -7,6 +7,12 @@ Trait {
 	#tag : 'Apps'
 }
 
+{ #category : 'rendering' }
+WsTSingleComponentApp classSide >> componentClass [
+
+	self explicitRequirement
+]
+
 { #category : 'analyzing' }
 WsTSingleComponentApp classSide >> findComponentClassesWith: aComponentClassFinder [
 
@@ -18,7 +24,7 @@ WsTSingleComponentApp classSide >> findComponentClassesWith: aComponentClassFind
 WsTSingleComponentApp classSide >> renderContentOn: html [
 
 	<pharoJsSkip>
-	html render: self rootComponentClass with: [ :brush |
+	html render: self componentClass with: [ :brush |
 		brush dataAttributes: self rootComponentAttributes.
 		brush style: self rootComponentStyle.
 		brush class: self rootComponentCssClasses ]
@@ -29,12 +35,6 @@ WsTSingleComponentApp classSide >> rootComponentAttributes [
 
 	<pharoJsSkip>
 	^ #(  )
-]
-
-{ #category : 'rendering' }
-WsTSingleComponentApp classSide >> rootComponentClass [
-
-	self explicitRequirement
 ]
 
 { #category : 'rendering' }
@@ -51,6 +51,11 @@ WsTSingleComponentApp classSide >> rootComponentStyle [
 	^ nil
 ]
 
+{ #category : 'accessing' }
+WsTSingleComponentApp >> componentClass [
+	^self class componentClass
+]
+
 { #category : 'initialization' }
 WsTSingleComponentApp >> initRootComponent [
 
@@ -65,13 +70,8 @@ WsTSingleComponentApp >> rootComponent [
 ]
 
 { #category : 'accessing' }
-WsTSingleComponentApp >> rootComponentClass [
-	^self class rootComponentClass
-]
-
-{ #category : 'accessing' }
 WsTSingleComponentApp >> rootComponentTagName [
-	^self rootComponentClass tagName
+	^self componentClass tagName
 ]
 
 { #category : 'initialization' }

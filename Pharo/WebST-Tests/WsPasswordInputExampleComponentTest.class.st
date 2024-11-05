@@ -36,7 +36,7 @@ WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
 	super assertDefaultAttributesApplied.
 	self
 		assert: passwordField placeholder
-		equals: self rootComponentClass defaultPlaceholderAttribute 
+		equals: self componentClass defaultPlaceholderAttribute 
 		
 ]
 
@@ -48,11 +48,11 @@ WsPasswordInputExampleComponentTest >> assertViewModelLink [
 	password1 := 'very secrete'.
 	self changeElement: passwordField value: password1.
 	self assert: model text equals: password1.
-	toggleShowPasswordButton click.
+	self clickToggleButton.
 	self assert: passwordField type equals: 'text'.
 	self assert: passwordField value equals: password1.
 	self assert: model text equals: password1.
-	toggleShowPasswordButton click.
+	self clickToggleButton.
 	self assert: passwordField type equals: 'password'.
 	self assert: passwordField value equals: password1.
 	self assert: model text equals: password1.
@@ -64,6 +64,12 @@ WsPasswordInputExampleComponentTest >> assertViewModelLink [
 	self assert: passwordField value equals: password3
 ]
 
+{ #category : 'asserting' }
+WsPasswordInputExampleComponentTest >> clickToggleButton [
+
+	self toggleButtonVisibleView click
+]
+
 { #category : 'accessing' }
 WsPasswordInputExampleComponentTest >> component: newComponent [
 
@@ -71,4 +77,11 @@ WsPasswordInputExampleComponentTest >> component: newComponent [
 	toggleShowPasswordButton := shadowRoot querySelector:
 		                            WsShowHideToggleComponent tagName.
 	passwordField := shadowRoot querySelector: 'input'
+]
+
+{ #category : 'asserting' }
+WsPasswordInputExampleComponentTest >> toggleButtonVisibleView [
+
+	(self isShowing: toggleShowPasswordButton onView) ifTrue:  [ ^toggleShowPasswordButton onView ].
+	^toggleShowPasswordButton offView
 ]
