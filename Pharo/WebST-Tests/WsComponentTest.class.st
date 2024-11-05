@@ -13,12 +13,6 @@ WsComponentTest class >> componentClass [
 	^self subclassResponsibility 
 ]
 
-{ #category : 'accessing' }
-WsComponentTest class >> dataAttributes [
-
-	^ #(  )
-]
-
 { #category : 'testing' }
 WsComponentTest class >> isAbstract [
 

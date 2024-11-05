@@ -62,6 +62,12 @@ WsTSingleComponentTest classSide >> componentStyle [
 ]
 
 { #category : 'accessing' }
+WsTSingleComponentTest classSide >> dataAttributes [
+
+	^ #(  )
+]
+
+{ #category : 'accessing' }
 WsTSingleComponentTest >> allComponents [
 
 	^ self document querySelectorAll: self componentClass tagName
@@ -83,4 +89,10 @@ WsTSingleComponentTest >> componentClass [
 { #category : 'accessing' }
 WsTSingleComponentTest >> firstComponent [
 	^self allComponents first
+]
+
+{ #category : 'accessing' }
+WsTSingleComponentTest >> setUpComponent [
+
+	self component: self firstComponent
 ]
