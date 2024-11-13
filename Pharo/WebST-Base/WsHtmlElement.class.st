@@ -1,11 +1,12 @@
+"
+Placeholder for JS class HTMLElement. See class-side method #javascriptName
+
+"
 Class {
 	#name : 'WsHtmlElement',
-	#superclass : 'Object',
+	#superclass : 'WsNode',
 	#instVars : [
 		'style'
-	],
-	#pools : [
-		'PjBrowserGlobals'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',

@@ -74,6 +74,12 @@ WsTSingleComponentTest >> allComponents [
 ]
 
 { #category : 'accessing' }
+WsTSingleComponentTest >> component [
+	^component ifNil: [ component := self firstComponent ]
+
+]
+
+{ #category : 'accessing' }
 WsTSingleComponentTest >> component: aComponent [
 
 	component := aComponent.
@@ -92,7 +98,7 @@ WsTSingleComponentTest >> firstComponent [
 ]
 
 { #category : 'accessing' }
-WsTSingleComponentTest >> setUpComponent [
+WsTSingleComponentTest >> shadowRoot [
 
-	self component: self firstComponent
+	^ shadowRoot ifNil: [ shadowRoot := self component view ]
 ]
