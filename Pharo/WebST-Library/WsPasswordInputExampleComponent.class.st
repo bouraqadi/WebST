@@ -61,7 +61,7 @@ WsPasswordInputExampleComponent >> initModel [
 WsPasswordInputExampleComponent >> initView [
 
 	super initView.
-	toggleShowPasswordButton := self firstComponent: WsShowHideToggleComponent.
+	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
 	passwordField := view querySelector: 'input'.
 	passwordField placeholder: self placeholderAttribute.
 	toggleShowPasswordButton -@ #isOnPort

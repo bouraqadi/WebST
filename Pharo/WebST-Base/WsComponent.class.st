@@ -89,12 +89,6 @@ WsComponent >> document [
 	^document
 ]
 
-{ #category : 'accessing' }
-WsComponent >> firstComponent: componentClass [
-
-	^ view querySelector: componentClass tagName
-]
-
 { #category : 'initialization' }
 WsComponent >> initView [
 
@@ -140,7 +134,14 @@ WsComponent >> view [
 
 { #category : 'accessing' }
 WsComponent >> viewChildAt: elementId [
-	^self elementAt: elementId in: view
+
+	^ view elementAt: elementId
+]
+
+{ #category : 'accessing' }
+WsComponent >> viewFirstComponent: componentClass [
+
+	^ view firstComponent: componentClass
 ]
 
 { #category : 'event init' }

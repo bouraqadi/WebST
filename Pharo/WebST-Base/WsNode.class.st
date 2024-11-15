@@ -20,6 +20,12 @@ WsNode class >> javascriptName [
 ]
 
 { #category : 'accessing children' }
+WsNode >> allComponents: componentClass [
+
+	^ self allElementsByTag: componentClass tagName
+]
+
+{ #category : 'accessing children' }
 WsNode >> allElementsByCssClass: cssClassName [
 
 	^ self querySelectorAll: '.' , cssClassName
@@ -34,6 +40,12 @@ WsNode >> allElementsByTag: tagName [
 { #category : 'accessing children' }
 WsNode >> elementAt: id [
 	^self querySelector: '#', id
+]
+
+{ #category : 'accessing children' }
+WsNode >> firstComponent: componentClass [
+
+	^ self firstElementByTag: componentClass tagName
 ]
 
 { #category : 'accessing children' }
