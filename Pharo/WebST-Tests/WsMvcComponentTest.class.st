@@ -60,11 +60,7 @@ WsMvcComponentTest >> testDynamicComponentCreationWithProvidedModel [
 	newComponent := self jsComponentClass model: jsModel.
 	staticComponent := self allComponents first.
 	"Inserting new component first make it easier to view result during debug"
-	document body
-		insertBefore: newComponent
-		existingChild: staticComponent.
+	staticComponent parentNode prepend: newComponent.
 	self assert: self allComponents size equals: 2.
-	self
-		assertComponent: newComponent
-		
+	self assertComponent: newComponent
 ]
