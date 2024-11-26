@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsAppWsNotRenderingSubComponent',
+	#name : 'WsAppNotRenderingSubComponent',
 	#superclass : 'PjWebApplication',
 	#traits : 'WsTViewBasedApp',
 	#classTraits : 'WsTViewBasedApp classTrait',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'accessing' }
-WsAppWsNotRenderingSubComponent class >> viewClass [
+WsAppNotRenderingSubComponent class >> viewClass [
 
 	<pharoJsSkip>
 	^WsViewNotRenderingSubComponent 
