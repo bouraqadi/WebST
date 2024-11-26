@@ -5,9 +5,9 @@ Class {
 		'resource',
 		'url'
 	],
-	#category : 'WebST-Tests-Views',
+	#category : 'WebST-Tests-Resources',
 	#package : 'WebST-Tests',
-	#tag : 'Views'
+	#tag : 'Resources'
 }
 
 { #category : 'testing' }

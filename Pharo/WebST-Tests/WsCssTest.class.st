@@ -1,9 +1,9 @@
 Class {
 	#name : 'WsCssTest',
 	#superclass : 'WsResourceElementTest',
-	#category : 'WebST-Tests-Views',
+	#category : 'WebST-Tests-Resources',
 	#package : 'WebST-Tests',
-	#tag : 'Views'
+	#tag : 'Resources'
 }
 
 { #category : 'tests' }

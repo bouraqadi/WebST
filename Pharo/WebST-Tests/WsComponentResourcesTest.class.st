@@ -1,16 +1,16 @@
 Class {
 	#name : 'WsComponentResourcesTest',
 	#superclass : 'TestCase',
-	#category : 'WebST-Tests-Views',
+	#category : 'WebST-Tests-Resources',
 	#package : 'WebST-Tests',
-	#tag : 'Views'
+	#tag : 'Resources'
 }
 
 { #category : 'tests' }
 WsComponentResourcesTest >> testAppGlobalResources [
 
 	| appHtml |
-	appHtml := WsAppWsNotRenderingSubComponent html.
+	appHtml := WsAppNotRenderingSubComponent html.
 	WsLeafComponent resources
 		collect: [ :aResource | '*' , aResource url , '*' ]
 		thenDo: [ :pattern | self assert: (pattern match: appHtml) ]
