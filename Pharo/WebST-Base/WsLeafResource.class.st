@@ -44,8 +44,13 @@ WsLeafResource >> = anObject [
 ]
 
 { #category : 'initialization' }
-WsLeafResource >> crossoriginAnonymous [
+WsLeafResource >> beCrossoriginAnonymous [
 	crossorigin := 'anonymous'
+]
+
+{ #category : 'initialization' }
+WsLeafResource >> beNoReferrer [
+	referrerpolicy := 'no-referrer'
 ]
 
 { #category : 'comparing' }
@@ -59,18 +64,13 @@ WsLeafResource >> hash [
 WsLeafResource >> initialize [
 	super initialize.
 
-	self crossoriginAnonymous.
-	self noReferrer
+	self beCrossoriginAnonymous.
+	self beNoReferrer
 ]
 
 { #category : 'accessing' }
 WsLeafResource >> integrity: aString [
 	integrity := aString
-]
-
-{ #category : 'initialization' }
-WsLeafResource >> noReferrer [
-	referrerpolicy := 'no-referrer'
 ]
 
 { #category : 'rendering' }
