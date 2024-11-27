@@ -19,6 +19,13 @@ WsTApp classSide >> appClasses [
 	^ super appClasses , self allComponentClasses asArray
 ]
 
+{ #category : 'exporting' }
+WsTApp classSide >> beforeExportApp [
+
+	<pharoJsSkip>
+	WsResourceFolder default rootPath: self resourceRootPath
+]
+
 { #category : 'accessing' }
 WsTApp classSide >> exporterClass [
 
@@ -52,4 +59,10 @@ WsTApp classSide >> renderOn: html [
 
 	<pharoJsSkip>
 	html renderAppClass: self
+]
+
+{ #category : 'exporting' }
+WsTApp classSide >> resourceRootPath [
+
+	^ WsResourceFolder defaultRootPath
 ]

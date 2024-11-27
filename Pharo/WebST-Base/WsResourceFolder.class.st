@@ -19,12 +19,14 @@ WsResourceFolder class >> default [
 
 { #category : 'accessing' }
 WsResourceFolder class >> defaultRootPath [
-	^'../Resources/'
+
+	^ 'Resources/'
 ]
 
 { #category : 'default instance' }
 WsResourceFolder class >> resetDefault [
 
+	<script>
 	default := nil
 ]
 

@@ -2,7 +2,9 @@ Class {
 	#name : 'WsResourceFolderTest',
 	#superclass : 'TestCase',
 	#instVars : [
-		'resourceFolder'
+		'resourceFolder',
+		'savedRootPath',
+		'classFactory'
 	],
 	#category : 'WebST-Tests-Resources',
 	#package : 'WebST-Tests',
@@ -29,6 +31,15 @@ WsResourceFolderTest >> assertPathToResources [
 ]
 
 { #category : 'tests' }
+WsResourceFolderTest >> assertResouceFullPath [
+
+	| path resource |
+	path := 'path/to/css/theme.css'.
+	resource := WsCssLink url: path.
+	self assert: resource url equals: (resourceFolder fullPathFrom: path)
+]
+
+{ #category : 'tests' }
 WsResourceFolderTest >> assertRootPath: path [
 
 	| actualPath |
@@ -41,9 +52,76 @@ WsResourceFolderTest >> assertRootPath: path [
 ]
 
 { #category : 'tests' }
+WsResourceFolderTest >> newAppClass [
+
+	| appClass appFolder |
+	appClass := classFactory make: [ :builder |
+		            builder
+			            superclass: PjWebApplication;
+			            traits: { WsTApp } ].
+	appClass class compileSilently:
+		'renderContentOn: html <pharoJsSkip> ^self'.
+	appFolder := '/tmp/WebST/ResourceFolderTest' asFileReference
+		             ensureCreateDirectory.
+	appClass appFolder: appFolder.
+	^ appClass
+]
+
+{ #category : 'tests' }
 WsResourceFolderTest >> setUp [
+
 	super setUp.
-	resourceFolder := WsResourceFolder new
+	savedRootPath := WsResourceFolder default rootPath.
+	WsResourceFolder resetDefault.
+	resourceFolder := WsResourceFolder default.
+	classFactory := ClassFactoryForTestCase new.
+]
+
+{ #category : 'tests' }
+WsResourceFolderTest >> tearDown [
+
+	classFactory cleanUp.
+	WsResourceFolder resetDefault.
+	WsResourceFolder default rootPath: savedRootPath.
+	super tearDown
+]
+
+{ #category : 'tests' }
+WsResourceFolderTest >> testAppCustomizingRootPath [
+
+	| appClass customRootPath methodSource |
+	appClass := self newAppClass.
+	customRootPath := '/my/custom/root/path/'.
+	methodSource := String streamContents: [ :str |
+		                str
+			                << 'resourceRootPath';
+			                cr;
+			                << $^;
+			                print: customRootPath ].
+	appClass class compileSilently: methodSource.
+	appClass exportApp.
+	self assert: resourceFolder rootPath equals: customRootPath.
+	self assertResouceFullPath
+]
+
+{ #category : 'tests' }
+WsResourceFolderTest >> testAppDefaultRootPath [
+
+	| appClass  |
+	appClass := self newAppClass.
+	appClass exportApp.
+	self assert: resourceFolder rootPath equals: WsResourceFolder defaultRootPath.
+	self assertResouceFullPath
+]
+
+{ #category : 'tests' }
+WsResourceFolderTest >> testAppSetsResourcePathBeforeExport [
+
+	| appClass  |
+	appClass := self newAppClass.
+	appClass beforeExportApp.
+	self assert: resourceFolder rootPath equals: WsResourceFolder defaultRootPath.
+	self assertResouceFullPath
 ]
 
 { #category : 'tests' }
@@ -65,10 +143,7 @@ WsResourceFolderTest >> testDefaultRootPath [
 { #category : 'tests' }
 WsResourceFolderTest >> testLocalResourceUrl [
 
-	| path resource |
-	path := 'path/to/css/theme.css'.
-	resource := WsCssLink url: path.
-	self assert: resource url equals: (resourceFolder fullPathFrom: path)
+	self assertResouceFullPath
 ]
 
 { #category : 'tests' }
