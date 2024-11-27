@@ -89,9 +89,15 @@ WsLeafResource >> renderTagOn: html [
 ]
 
 { #category : 'accessing' }
+WsLeafResource >> resourceFolder [
+	^WsResourceFolder default
+]
+
+{ #category : 'accessing' }
 WsLeafResource >> url [
 
-	^ url
+	(url includesSubstring: '://') ifTrue: [ ^url ].
+	^ self resourceFolder fullPathFrom: url
 ]
 
 { #category : 'accessing' }
