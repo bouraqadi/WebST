@@ -76,7 +76,8 @@ WsBootstrapResources class >> initBootstrap5o3o3 [
 { #category : 'class initialization' }
 WsBootstrapResources class >> initBootstrapIcons1o11o3 [
 
-	BootstrapIcons1o11o3 := WsCssLink new fixedPathString:		                        'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'
+	BootstrapIcons1o11o3 := WsCssLink fixedPathString:
+		                        'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'
 ]
 
 { #category : 'class initialization' }
