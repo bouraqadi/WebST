@@ -8,14 +8,26 @@ Trait {
 { #category : 'adding' }
 WsTResourceFactory >> addCssAt: urlString [
 
-	self addResourceClass: WsCssLink  url: urlString.
+	self addResourceClass: WsCssLink  pathString: urlString.
 
+]
+
+{ #category : 'adding' }
+WsTResourceFactory >> addCssAtFixedPathString: urlString [
+
+	self addResourceClass: WsCssLink fixedPathString: urlString
 ]
 
 { #category : 'adding' }
 WsTResourceFactory >> addJsAt: urlString [
 
-	self addResourceClass: WsJsScript url: urlString
+	self addResourceClass: WsJsScript pathString: urlString
+]
+
+{ #category : 'adding' }
+WsTResourceFactory >> addJsAtFixedPathString: urlString [
+
+	self addResourceClass: WsJsScript fixedPathString: urlString
 ]
 
 { #category : 'adding' }
@@ -24,10 +36,18 @@ WsTResourceFactory >> addResource: aResource [
 ]
 
 { #category : 'adding' }
-WsTResourceFactory >> addResourceClass: resourceClass url: urlString [
+WsTResourceFactory >> addResourceClass: resourceClass fixedPathString: urlString [
 
 	| aResource |
-	aResource := resourceClass url: urlString.
+	aResource := resourceClass fixedPathString: urlString.
+	self addResource: aResource
+]
+
+{ #category : 'adding' }
+WsTResourceFactory >> addResourceClass: resourceClass pathString: urlString [
+
+	| aResource |
+	aResource := resourceClass pathString: urlString.
 	self addResource: aResource
 ]
 

@@ -21,10 +21,10 @@ WsIntermediateCompositeViewCD >> renderOuterHtmlOn: html [
 WsIntermediateCompositeViewCD >> resources [
 
 	^ {
-		  (WsCssLink url: 'cssC+D').
-		  (WsJsScript url: 'jsC+D').
-		  (WsCssLink url: 'cssX').
-		  (WsJsScript url: 'jsX').
-				  (WsCssLink url: 'cssY').
-		  (WsJsScript url: 'jsY').	 }
+		  (WsCssLink fixedPathString: 'cssC+D').
+		  (WsJsScript fixedPathString: 'jsC+D').
+		  (WsCssLink fixedPathString: 'cssX').
+		  (WsJsScript fixedPathString: 'jsX').
+		  (WsCssLink fixedPathString: 'cssY').
+		  (WsJsScript fixedPathString: 'jsY') }
 ]

@@ -19,6 +19,6 @@ WsDependantView >> renderOuterHtmlOn: html [
 WsDependantView >> resources [
 
 	^ {
-		  (WsCssLink url: 'requiredCSS').
-		  (WsJsScript url: 'requiredJS') }
+		  (WsCssLink fixedPathString: 'requiredCSS').
+		  (WsJsScript fixedPathString: 'requiredJS') }
 ]

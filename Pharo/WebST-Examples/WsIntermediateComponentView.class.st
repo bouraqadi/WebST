@@ -20,8 +20,8 @@ WsIntermediateComponentView >> renderOuterHtmlOn: html [
 WsIntermediateComponentView >> resources [
 
 	^ {
-		  (WsCssLink url: 'intermediateCss').
-		  (WsJsScript url: 'intermediateJs').
-		  (WsCssLink url: 'sharedCss').
-		  (WsJsScript url: 'sharedJs') }
+		  (WsCssLink fixedPathString: 'intermediateCss').
+		  (WsJsScript fixedPathString: 'intermediateJs').
+		  (WsCssLink fixedPathString: 'sharedCss').
+		  (WsJsScript fixedPathString: 'sharedJs') }
 ]

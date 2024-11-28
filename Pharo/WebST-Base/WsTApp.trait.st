@@ -23,7 +23,7 @@ WsTApp classSide >> appClasses [
 WsTApp classSide >> beforeExportApp [
 
 	<pharoJsSkip>
-	WsResourceFolder default rootPath: self resourceRootPath
+	WsResourceFolder rootPath: self resourceRootPath
 ]
 
 { #category : 'accessing' }

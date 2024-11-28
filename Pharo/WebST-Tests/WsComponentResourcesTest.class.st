@@ -12,7 +12,7 @@ WsComponentResourcesTest >> testAppGlobalResources [
 	| appHtml |
 	appHtml := WsAppNotRenderingSubComponent html.
 	WsLeafComponent resources
-		collect: [ :aResource | '*' , aResource url , '*' ]
+		collect: [ :aResource | '*' , aResource pathString , '*' ]
 		thenDo: [ :pattern | self assert: (pattern match: appHtml) ]
 ]
 

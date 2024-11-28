@@ -16,8 +16,8 @@ WsLeafComponentView >> renderOuterHtmlOn: html [
 WsLeafComponentView >> resources [
 
 	^ {
-		  (WsCssLink url: 'leafCss').
-		  (WsJsScript url: 'leafJs').
-		  (WsCssLink url: 'sharedCss').
-		  (WsJsScript url: 'sharedJs') }
+		  (WsCssLink fixedPathString: 'leafCss').
+		  (WsJsScript fixedPathString: 'leafJs').
+		  (WsCssLink fixedPathString: 'sharedCss').
+		  (WsJsScript fixedPathString: 'sharedJs') }
 ]

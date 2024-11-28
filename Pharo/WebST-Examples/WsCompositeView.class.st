@@ -21,10 +21,10 @@ WsCompositeView >> renderOuterHtmlOn: html [
 WsCompositeView >> resources [
 
 	^ {
-		  (WsCssLink url: 'cssABCD').
-		  (WsJsScript url: 'jsABCD').
-		  (WsCssLink url: 'cssA').
-		  (WsJsScript url: 'jsA').
-		  (WsCssLink url: 'cssY').
-		  (WsJsScript url: 'jsY')		 }
+		  (WsCssLink fixedPathString: 'cssABCD').
+		  (WsJsScript fixedPathString: 'jsABCD').
+		  (WsCssLink fixedPathString: 'cssA').
+		  (WsJsScript fixedPathString: 'jsA').
+		  (WsCssLink fixedPathString: 'cssY').
+		  (WsJsScript fixedPathString: 'jsY') }
 ]

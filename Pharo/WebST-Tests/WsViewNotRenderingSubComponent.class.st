@@ -19,8 +19,8 @@ WsViewNotRenderingSubComponent >> renderOuterHtmlOn: html [
 WsViewNotRenderingSubComponent >> resources [
 
 	^ {
-		  (WsCssLink url: 'intermediateCss').
-		  (WsJsScript url: 'intermediateJs').
-		  (WsCssLink url: 'sharedCss').
-		  (WsJsScript url: 'sharedJs') }
+		  (WsCssLink pathString: 'intermediateCss').
+		  (WsJsScript pathString: 'intermediateJs').
+		  (WsCssLink pathString: 'sharedCss').
+		  (WsJsScript pathString: 'sharedJs') }
 ]

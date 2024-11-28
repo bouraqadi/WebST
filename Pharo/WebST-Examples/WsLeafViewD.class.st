@@ -16,6 +16,6 @@ WsLeafViewD >> renderOuterHtmlOn: html [
 WsLeafViewD >> resources [
 
 	^ {
-		  (WsCssLink url: 'cssX').
-		  (WsJsScript url: 'jsX') }
+		  (WsCssLink pathString: 'cssX').
+		  (WsJsScript pathString: 'jsX') }
 ]

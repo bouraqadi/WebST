@@ -21,6 +21,6 @@ WsJsScript >> renderTagOn: html [
 	^ html script
 		  defer;
 		  type: 'text/javascript';
-		  url: self url;
+		  url: self pathString;
 	  yourself
 ]

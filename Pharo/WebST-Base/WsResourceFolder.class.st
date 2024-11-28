@@ -23,11 +23,28 @@ WsResourceFolder class >> defaultRootPath [
 	^ 'Resources/'
 ]
 
+{ #category : 'accessing' }
+WsResourceFolder class >> fullPathFrom: pathString [
+	^self default fullPathFrom: pathString
+]
+
 { #category : 'default instance' }
 WsResourceFolder class >> resetDefault [
 
 	<script>
 	default := nil
+]
+
+{ #category : 'accessing' }
+WsResourceFolder class >> rootPath [
+
+	^ self default rootPath
+]
+
+{ #category : 'accessing' }
+WsResourceFolder class >> rootPath: newPath [
+
+	self default rootPath: newPath
 ]
 
 { #category : 'initialization' }

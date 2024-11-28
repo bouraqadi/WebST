@@ -31,12 +31,12 @@ WsResourceFolderTest >> assertPathToResources [
 ]
 
 { #category : 'tests' }
-WsResourceFolderTest >> assertResouceFullPath [
+WsResourceFolderTest >> assertResourceFullPath [
 
 	| path resource |
 	path := 'path/to/css/theme.css'.
-	resource := WsCssLink url: path.
-	self assert: resource url equals: (resourceFolder fullPathFrom: path)
+	resource := WsCssLink pathString: path.
+	self assert: resource pathString equals: (resourceFolder fullPathFrom: path)
 ]
 
 { #category : 'tests' }
@@ -71,10 +71,10 @@ WsResourceFolderTest >> newAppClass [
 WsResourceFolderTest >> setUp [
 
 	super setUp.
-	savedRootPath := WsResourceFolder default rootPath.
+	savedRootPath := WsResourceFolder rootPath.
 	WsResourceFolder resetDefault.
 	resourceFolder := WsResourceFolder default.
-	classFactory := ClassFactoryForTestCase new.
+	classFactory := ClassFactoryForTestCase new
 ]
 
 { #category : 'tests' }
@@ -82,7 +82,7 @@ WsResourceFolderTest >> tearDown [
 
 	classFactory cleanUp.
 	WsResourceFolder resetDefault.
-	WsResourceFolder default rootPath: savedRootPath.
+	WsResourceFolder rootPath: savedRootPath.
 	super tearDown
 ]
 
@@ -101,7 +101,7 @@ WsResourceFolderTest >> testAppCustomizingRootPath [
 	appClass class compileSilently: methodSource.
 	appClass exportApp.
 	self assert: resourceFolder rootPath equals: customRootPath.
-	self assertResouceFullPath
+	self assertResourceFullPath
 ]
 
 { #category : 'tests' }
@@ -111,7 +111,7 @@ WsResourceFolderTest >> testAppDefaultRootPath [
 	appClass := self newAppClass.
 	appClass exportApp.
 	self assert: resourceFolder rootPath equals: WsResourceFolder defaultRootPath.
-	self assertResouceFullPath
+	self assertResourceFullPath
 ]
 
 { #category : 'tests' }
@@ -121,7 +121,7 @@ WsResourceFolderTest >> testAppSetsResourcePathBeforeExport [
 	appClass := self newAppClass.
 	appClass beforeExportApp.
 	self assert: resourceFolder rootPath equals: WsResourceFolder defaultRootPath.
-	self assertResouceFullPath
+	self assertResourceFullPath
 ]
 
 { #category : 'tests' }
@@ -143,13 +143,14 @@ WsResourceFolderTest >> testDefaultRootPath [
 { #category : 'tests' }
 WsResourceFolderTest >> testLocalResourceUrl [
 
-	self assertResouceFullPath
+	self assertResourceFullPath
 ]
 
 { #category : 'tests' }
 WsResourceFolderTest >> testRemoteResourceUrl [
+
 	| url resource |
 	url := 'http://some.site.com/path/to/css/theme.css'.
-	resource := WsCssLink url: url.
-	self assert: resource url equals: url
+	resource := WsCssLink fixedPathString: url.
+	self assert: resource pathString equals: url
 ]

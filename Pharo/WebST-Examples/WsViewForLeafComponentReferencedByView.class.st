@@ -16,8 +16,8 @@ WsViewForLeafComponentReferencedByView >> renderOuterHtmlOn: html [
 WsViewForLeafComponentReferencedByView >> resources [
 
 	^ {
-		  (WsCssLink url: 'subViewLeafCss').
-		  (WsJsScript url: 'subViewLeafJs').
-		  (WsCssLink url: 'sharedCss').
-		  (WsJsScript url: 'sharedJs') }
+		  (WsCssLink pathString: 'subViewLeafCss').
+		  (WsJsScript pathString: 'subViewLeafJs').
+		  (WsCssLink pathString: 'sharedCss').
+		  (WsJsScript pathString: 'sharedJs') }
 ]

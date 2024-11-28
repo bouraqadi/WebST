@@ -175,7 +175,7 @@ WsRenderer >> renderAppClass: appClass [
 	page title: appClass title.
 	page addResourcesAll: contentRenderer globalResources.
 	page addViewHtml: contentRenderer html.
-	page addJsAt: appClass appJsFileName.
+	page addJsAtFixedPathString: appClass appJsFileName.
 	self render: page
 ]
 

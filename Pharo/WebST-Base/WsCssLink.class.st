@@ -22,7 +22,7 @@ WsCssLink >> addTo: resourceManager [
 WsCssLink >> renderTagOn: html [
 
 	^ html link
-		beStylesheet;
-		url: self url;
-		yourself
+		  beStylesheet;
+		  url: self pathString;
+		  yourself
 ]

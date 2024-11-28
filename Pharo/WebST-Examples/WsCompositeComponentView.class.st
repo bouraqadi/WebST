@@ -19,8 +19,8 @@ WsCompositeComponentView >> renderOuterHtmlOn: html [
 WsCompositeComponentView >> resources [
 
 	^ {
-		  (WsCssLink url: 'compositeCss').
-		  (WsJsScript url: 'compositeJs').
-		  (WsCssLink url: 'sharedCss').
-		  (WsJsScript url: 'sharedJs') }
+		  (WsCssLink fixedPathString: 'compositeCss').
+		  (WsJsScript fixedPathString: 'compositeJs').
+		  (WsCssLink fixedPathString: 'sharedCss').
+		  (WsJsScript fixedPathString: 'sharedJs') }
 ]

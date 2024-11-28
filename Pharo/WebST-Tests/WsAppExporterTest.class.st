@@ -34,9 +34,13 @@ WsAppExporterTest >> setUp [
 { #category : 'tests' }
 WsAppExporterTest >> testHtmlAndJsFilesExport [
 
+	| html |
 	self deny: self jsFile exists.
 	self deny: self htmlFile exists.
 	self appClass exportApp.
 	self assert: self jsFile exists.
-	self assert: self htmlFile exists
+	self assert: self htmlFile exists.
+	html := self htmlFile contents.
+	self assert: (html includesSubstring: '<script').
+	self assert: (html includesSubstring: self jsFile basename)
 ]

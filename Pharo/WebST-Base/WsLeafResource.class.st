@@ -8,7 +8,7 @@ Class {
 	#name : 'WsLeafResource',
 	#superclass : 'WsResource',
 	#instVars : [
-		'url',
+		'path',
 		'integrity',
 		'crossorigin',
 		'referrerpolicy'
@@ -19,17 +19,35 @@ Class {
 }
 
 { #category : 'instance creation' }
-WsLeafResource class >> url: aString [
-	^self new
-		url: aString;
-		yourself 
+WsLeafResource class >> fixedPathString: aString [
+
+	^ self new
+		  fixedPathString: aString;
+		  yourself
 ]
 
 { #category : 'instance creation' }
-WsLeafResource class >> url: urlString integrity: integrityString [ 
+WsLeafResource class >> fixedPathString: urlString integrity: integrityString [
 
 	^ self new
-		url: urlString;
+		  fixedPathString: urlString;
+		  integrity: integrityString;
+		  yourself
+]
+
+{ #category : 'instance creation' }
+WsLeafResource class >> pathString: aString [
+
+	^ self new
+		  pathString: aString;
+		  yourself
+]
+
+{ #category : 'instance creation' }
+WsLeafResource class >> pathString: urlString integrity: integrityString [ 
+
+	^ self new
+		pathString: urlString;
 		integrity: integrityString;
 		yourself
 ]
@@ -40,7 +58,14 @@ WsLeafResource >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
-	^ url = anObject url
+	^ self basicPathString = anObject basicPathString
+]
+
+{ #category : 'accessing' }
+WsLeafResource >> basicPathString [
+
+	path ifNil: [ ^nil ].
+	^ path basicPathString
 ]
 
 { #category : 'initialization' }
@@ -53,17 +78,23 @@ WsLeafResource >> beNoReferrer [
 	referrerpolicy := 'no-referrer'
 ]
 
+{ #category : 'accessing' }
+WsLeafResource >> fixedPathString: aString [
+
+	path := WsFixedResourcePath pathString: aString
+]
+
 { #category : 'comparing' }
 WsLeafResource >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
-	^ url hash
+	^ self basicPathString hash
 ]
 
 { #category : 'initialization' }
 WsLeafResource >> initialize [
-	super initialize.
 
+	super initialize.
 	self beCrossoriginAnonymous.
 	self beNoReferrer
 ]
@@ -71,6 +102,19 @@ WsLeafResource >> initialize [
 { #category : 'accessing' }
 WsLeafResource >> integrity: aString [
 	integrity := aString
+]
+
+{ #category : 'accessing' }
+WsLeafResource >> pathString [
+
+	path ifNil: [ ^nil ].
+	^ path pathString
+]
+
+{ #category : 'accessing' }
+WsLeafResource >> pathString: aString [
+
+	path := WsResourcePath pathString: aString
 ]
 
 { #category : 'rendering' }
@@ -86,22 +130,4 @@ WsLeafResource >> renderOuterHtmlOn: html [
 WsLeafResource >> renderTagOn: html [
 
 	self subclassResponsibility
-]
-
-{ #category : 'accessing' }
-WsLeafResource >> resourceFolder [
-	^WsResourceFolder default
-]
-
-{ #category : 'accessing' }
-WsLeafResource >> url [
-
-	(url includesSubstring: '://') ifTrue: [ ^url ].
-	^ self resourceFolder fullPathFrom: url
-]
-
-{ #category : 'accessing' }
-WsLeafResource >> url: anObject [
-
-	url := anObject
 ]

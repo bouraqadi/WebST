@@ -34,5 +34,5 @@ WsResourceElementTest >> setUp [
 
 	super setUp.
 	url := 'https://site.domain/some/path/to/file'.
-	resource := self resourceClass url: url
+	resource := self resourceClass fixedPathString: url
 ]
