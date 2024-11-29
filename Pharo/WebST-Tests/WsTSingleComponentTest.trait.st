@@ -70,7 +70,7 @@ WsTSingleComponentTest classSide >> dataAttributes [
 { #category : 'accessing' }
 WsTSingleComponentTest >> allComponents [
 
-	^ self document querySelectorAll: self componentClass tagName
+	^ self document querySelectorAll: self componentTagName
 ]
 
 { #category : 'accessing' }
@@ -90,6 +90,12 @@ WsTSingleComponentTest >> component: aComponent [
 WsTSingleComponentTest >> componentClass [
 
 	^ self class componentClass
+]
+
+{ #category : 'accessing' }
+WsTSingleComponentTest >> componentTagName [
+
+	^ self componentClass tagName
 ]
 
 { #category : 'accessing' }
