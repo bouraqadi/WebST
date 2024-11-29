@@ -20,6 +20,11 @@ WsHtmlElement class >> javascriptName [
 	^ #HTMLElement
 ]
 
+{ #category : 'accessing visibility' }
+WsHtmlElement >> computedDisplayStyle [
+	^self computedStyle display 
+]
+
 { #category : 'accessing size' }
 WsHtmlElement >> computedHeight [
 
@@ -120,6 +125,12 @@ WsHtmlElement >> defaultZIndex [
 	^self computedZIndex
 ]
 
+{ #category : 'accessing visibility' }
+WsHtmlElement >> displayStyle: value flag: flag [
+
+	style setProperty: 'display' value: value flag: flag
+]
+
 { #category : 'accessing' }
 WsHtmlElement >> hasDataAttributeAt: jsAttributeName [ 
 
@@ -146,16 +157,45 @@ WsHtmlElement >> heightPx [
 	^ style height
 ]
 
+{ #category : 'accessing visibility' }
+WsHtmlElement >> hide [
+
+	self displayStyle: 'none' flag: 'important'
+]
+
 { #category : 'converting' }
 WsHtmlElement >> intFromPx: aString [
 	aString ifEmpty: [ ^0 ].
 	^aString asInteger 
 ]
 
+{ #category : 'accessing visibility' }
+WsHtmlElement >> isHidden [
+
+	^ self computedDisplayStyle  = 'none'
+]
+
+{ #category : 'accessing visibility' }
+WsHtmlElement >> isShowing [
+	^self isHidden not
+	
+]
+
 { #category : 'converting' }
 WsHtmlElement >> pxFromInt: anInteger [
 
 	^ anInteger asString, 'px'
+]
+
+{ #category : 'accessing' }
+WsHtmlElement >> setStyleProperty: propertyName value: value flag: falg [
+	style setProperty: propertyName value: value flag: falg
+]
+
+{ #category : 'accessing visibility' }
+WsHtmlElement >> show [
+
+	self displayStyle: '' flag: ''
 ]
 
 { #category : 'accessing size' }
