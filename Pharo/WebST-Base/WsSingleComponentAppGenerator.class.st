@@ -117,7 +117,7 @@ WsSingleComponentAppGenerator >> newAppFor: componentClass attributes: component
 
 
 	| appClass |
-	appClass := classFactory newSubclassOf: appSuperclass.
+	appClass := classFactory make:[: builder | builder superclass: appSuperclass].
 	appClass
 		rootComponentClass: componentClass;
 		rootComponentAttributes: componentDataAttributes;
