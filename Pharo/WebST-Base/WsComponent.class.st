@@ -84,6 +84,17 @@ WsComponent class >> viewClass [
 	self subclassResponsibility 
 ]
 
+{ #category : 'initialization' }
+WsComponent >> connectedCallback [
+	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
+	"See https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks"
+	"PharoJS introduces a prefix to method selectors. So, we need an alias here to ensure we have the exact name."
+	<jsAlias: #connectedCallback>
+
+	self initializeOnDomConnection.
+	self isConnectedPort notify
+]
+
 { #category : 'accessing' }
 WsComponent >> document [
 	^document
@@ -97,11 +108,9 @@ WsComponent >> initView [
 
 { #category : 'initialization' }
 WsComponent >> initializeOnDomConnection [
-	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
-	"See https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks"
-	<jsAlias: #connectedCallback>
-
-	self resetView
+	"Called by #connectedCallback once the component is attached to the DOM"
+	
+	self resetView 
 ]
 
 { #category : 'initialization' }
