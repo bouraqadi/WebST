@@ -92,7 +92,7 @@ WsComponent >> connectedCallback [
 	<jsAlias: #connectedCallback>
 
 	self initializeOnDomConnection.
-	self isConnectedPort notify
+	self notifyDomConnectionObservers
 ]
 
 { #category : 'accessing' }
@@ -111,6 +111,14 @@ WsComponent >> initializeOnDomConnection [
 	"Called by #connectedCallback once the component is attached to the DOM"
 	
 	self resetView 
+]
+
+{ #category : 'DOM connection observing' }
+WsComponent >> installConnectedNotificationTrigger [
+	"Web Compoments have a callback that we use to trigger notifications.
+	See WsComponent >> #connectedCallback"
+	
+	^self
 ]
 
 { #category : 'initialization' }
@@ -153,28 +161,4 @@ WsComponent >> viewChildAt: elementId [
 WsComponent >> viewFirstComponent: componentClass [
 
 	^ view firstComponent: componentClass
-]
-
-{ #category : 'event init' }
-WsComponent >> whenConnectedToDomDo: aBlock [
-	"HTML does not provide any support for detecting a connection to DOM"
-	"Workaround: Rely on an animation event sent to a dedicated empty element"
-	| style notifier |
-	style := document createElement: 'style'.
-	style textContent: '
-	#domConnectionSignaler{
-		width: 0 !important;
-		height: 0 !important;
-		animation-name: empty;
-		animation-duration: 0s;
-		animation-iteration-count: 0;
-	}
-	@keyframes empty{
-	}'.
-	notifier := document createElement: 'div'.
-	notifier id: 'domConnectionSignaler'.
-	notifier addEventListener: #animationstart block: aBlock.
-	view
-		append: style;
-		append: notifier
 ]
