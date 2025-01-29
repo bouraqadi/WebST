@@ -67,10 +67,13 @@ WsNode >> firstElementByTag: tagName [
 WsNode >> installConnectedNotificationTrigger [
 	"HTML does not provide any support for detecting a connection to DOM"
 	"Workaround: Rely on an animation event sent to a dedicated empty element"
-	| triggerStyle trigger |
+	"Esnure we don't have duplicate triggering"
+	| triggerCssClassName triggerStyle trigger |
+	triggerCssClassName := #webStConnectedNotificationTrigger.
+	(self firstElementByCssClass: triggerCssClassName) ifNotNil: [ ^self ].
 	triggerStyle := document createElement: 'style'.
 	triggerStyle textContent: '
-	.connectedNotificationTrigger{
+	.',triggerCssClassName,'{
 		width: 0 !important;
 		height: 0 !important;
 		animation-name: empty;
@@ -80,7 +83,7 @@ WsNode >> installConnectedNotificationTrigger [
 	@keyframes empty{
 	}'.
 	trigger := document createElement: 'span'.
-	trigger className: 'connectedNotificationTrigger'.
+	trigger className: triggerCssClassName.
 	trigger addEventListener: #animationstart block: [self notifyDomConnectionObservers].
 	self
 		append: triggerStyle;
