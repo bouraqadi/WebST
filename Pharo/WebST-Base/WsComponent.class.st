@@ -125,7 +125,7 @@ WsComponent >> installConnectedNotificationTrigger [
 
 { #category : 'observing lifecycle' }
 WsComponent >> isComponentReady [
-	^isComponentReady ifNil: [ false ]
+	^isComponentReady ifNil: [ isComponentReady := false ]
 ]
 
 { #category : 'observing lifecycle' }
