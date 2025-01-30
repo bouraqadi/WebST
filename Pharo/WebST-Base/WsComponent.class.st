@@ -22,6 +22,14 @@ WsComponent class >> new [
 	^ document createElement: self tagName
 ]
 
+{ #category : 'instance creation' }
+WsComponent class >> newOnComponentReadyDo: aBlock [
+
+	^ self new
+		onComponentReadyDo: aBlock;
+		yourself
+]
+
 { #category : 'demoing' }
 WsComponent class >> playground [
 
@@ -132,7 +140,7 @@ WsComponent >> isComponentReady [
 WsComponent >> notifyComponentReadyObservers [
 	isComponentReady := true.
 	isComponentReadyPort ifNil: [ ^self ].
-	isComponentReadyPort notify.
+	isComponentReadyPort notifyWith: self.
 
 ]
 
