@@ -6,7 +6,8 @@ Class {
 	#name : 'WsHtmlElement',
 	#superclass : 'WsNode',
 	#instVars : [
-		'style'
+		'style',
+		'isComponentReadyPort'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -169,6 +170,16 @@ WsHtmlElement >> intFromPx: aString [
 	^aString asInteger 
 ]
 
+{ #category : 'observing lifecycle' }
+WsHtmlElement >> isComponentReady [
+	^false
+]
+
+{ #category : 'observing lifecycle' }
+WsHtmlElement >> isComponentReadyPort [
+	^isComponentReadyPort ifNil: [ isComponentReadyPort := HyCollectionPort new ]
+]
+
 { #category : 'accessing visibility' }
 WsHtmlElement >> isHidden [
 
@@ -179,6 +190,17 @@ WsHtmlElement >> isHidden [
 WsHtmlElement >> isShowing [
 	^self isHidden not
 	
+]
+
+{ #category : 'observing lifecycle' }
+WsHtmlElement >> onComponentReadyDo: aBlock [
+	"Request to perform aBlock when component finished initialization"
+	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
+	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"
+	
+	self isComponentReady ifTrue: [ ^aBlock value ].
+	self isComponentReadyPort => aBlock.
+
 ]
 
 { #category : 'converting' }

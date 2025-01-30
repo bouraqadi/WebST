@@ -1,9 +1,9 @@
 Class {
 	#name : 'WsDivDomConnectionNotificationTest',
 	#superclass : 'WsDomConnectionNotificationTest',
-	#category : 'WebST-Tests-Support',
+	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
-	#tag : 'Support'
+	#tag : 'Initialization'
 }
 
 { #category : 'tests' }

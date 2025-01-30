@@ -4,7 +4,8 @@ Class {
 	#traits : 'PjTDomController',
 	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
-		'view'
+		'view',
+		'isComponentReady'
 	],
 	#pools : [
 		'PjBrowserGlobals'
@@ -91,8 +92,9 @@ WsComponent >> connectedCallback [
 	"PharoJS introduces a prefix to method selectors. So, we need an alias here to ensure we have the exact name."
 	<jsAlias: #connectedCallback>
 
+	self notifyDomConnectionObservers.
 	self initializeOnDomConnection.
-	self notifyDomConnectionObservers
+	self notifyComponentReadyObservers.
 ]
 
 { #category : 'accessing' }
@@ -119,6 +121,19 @@ WsComponent >> installConnectedNotificationTrigger [
 	See WsComponent >> #connectedCallback"
 	
 	^self
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> isComponentReady [
+	^isComponentReady ifNil: [ false ]
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> notifyComponentReadyObservers [
+	isComponentReady := true.
+	isComponentReadyPort ifNil: [ ^self ].
+	isComponentReadyPort notify.
+
 ]
 
 { #category : 'initialization' }

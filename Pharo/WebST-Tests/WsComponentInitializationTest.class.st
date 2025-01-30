@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsSubcomponentsInitializationOrderTest',
+	#name : 'WsComponentInitializationTest',
 	#superclass : 'PjWebAppTestCase',
 	#traits : 'WsTSingleComponentTest',
 	#classTraits : 'WsTSingleComponentTest classTrait',
@@ -9,12 +9,12 @@ Class {
 }
 
 { #category : 'accessing' }
-WsSubcomponentsInitializationOrderTest class >> componentClass [
+WsComponentInitializationTest class >> componentClass [
 	^WsLevel3InitTestComponent 
 ]
 
 { #category : 'tests' }
-WsSubcomponentsInitializationOrderTest >> testCreationOrder [
+WsComponentInitializationTest >> testSubomponentInitializedBeforeComposite [
 	| registry level3Component level2Component level1Component expectedList |
 	registry := self component initRegistry.
 	self deny: registry isNil.
