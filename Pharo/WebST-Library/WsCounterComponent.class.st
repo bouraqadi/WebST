@@ -63,12 +63,12 @@ WsCounterComponent >> preConnectInitialize [
 
 	| incrementButton decrementButton resetButton |
 	super preConnectInitialize.
-	display := view querySelector: '.display'.
-	incrementButton := view querySelector: '.increment'.
+	display := view firstElementByCssClass: 'display'.
+	incrementButton := view firstElementByCssClass: 'increment'.
 	self onClickElement: incrementButton do: [ self increment ].
-	decrementButton := view querySelector: '.decrement'.
+	decrementButton := view firstElementByCssClass: 'decrement'.
 	self onClickElement: decrementButton do: [ self decrement ].
-	resetButton := view querySelector: '.reset'.
+	resetButton := view firstElementByCssClass: 'reset'.
 	self onClickElement: resetButton do: [ self reset ].
 	model -@ #countPort => [ :newCount |
 		self displayCount: newCount ].
