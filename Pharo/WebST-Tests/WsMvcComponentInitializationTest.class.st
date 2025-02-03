@@ -20,9 +20,8 @@ WsMvcComponentInitializationTest class >> componentClass [
 { #category : 'asserting' }
 WsMvcComponentInitializationTest >> assertComponent [
 
-	self assert: component viewResetCount equals: 1.
-	self assert: component viewInitCount equals: 1.
-	self assert: component modelInitCount equals: 1
+	self assert: component postConnectInitCount equals: 1.
+	self assert: component preConnectInitCount equals: 1
 ]
 
 { #category : 'asserting' }

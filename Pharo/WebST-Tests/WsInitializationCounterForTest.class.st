@@ -4,9 +4,8 @@ Class {
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
-		'viewResetCount',
-		'viewInitCount',
-		'modelInitCount'
+		'postConnectInitCount',
+		'preConnectInitCount'
 	],
 	#category : 'WebST-Tests-Support',
 	#package : 'WebST-Tests',
@@ -26,44 +25,30 @@ WsInitializationCounterForTest class >> viewClass [
 	^WsMinimalView 
 ]
 
-{ #category : 'initialization' }
-WsInitializationCounterForTest >> initModel [
+{ #category : 'accessing' }
+WsInitializationCounterForTest >> postConnectInitCount [
 
-	console log: 'initModel'.
-	modelInitCount := self modelInitCount + 1.
-	super initModel
+	^ postConnectInitCount ifNil: [ 0 ]
 ]
 
 { #category : 'initialization' }
-WsInitializationCounterForTest >> initView [
+WsInitializationCounterForTest >> postConnectInitialize [
 
-	console log: 'initView'.
-	viewInitCount := self viewInitCount + 1.
-	super initView
+	console log: 'postConnectInitialize'.
+	postConnectInitCount := self postConnectInitCount + 1.
+	super postConnectInitialize
 ]
 
 { #category : 'accessing' }
-WsInitializationCounterForTest >> modelInitCount [
+WsInitializationCounterForTest >> preConnectInitCount [
 
-	^ modelInitCount ifNil: [ 0 ]
+	^ preConnectInitCount ifNil: [ 0 ]
 ]
 
 { #category : 'initialization' }
-WsInitializationCounterForTest >> resetView [
+WsInitializationCounterForTest >> preConnectInitialize [
 
-	console log: 'resetView'.
-	viewResetCount := self viewResetCount + 1.
-	super resetView
-]
-
-{ #category : 'accessing' }
-WsInitializationCounterForTest >> viewInitCount [
-
-	^ viewInitCount ifNil: [ 0 ]
-]
-
-{ #category : 'accessing' }
-WsInitializationCounterForTest >> viewResetCount [
-
-	^ viewResetCount ifNil: [ 0 ]
+	console log: 'preConnectInitialize'.
+	preConnectInitCount := self preConnectInitCount + 1.
+	super preConnectInitialize
 ]
