@@ -188,3 +188,15 @@ WsComponent >> viewFirstComponent: componentClass [
 
 	^ view firstComponent: componentClass
 ]
+
+{ #category : 'accessing' }
+WsComponent >> viewFirstElementByCssClass: cssClassName [
+
+	^ view firstElementByCssClass: cssClassName
+]
+
+{ #category : 'accessing' }
+WsComponent >> viewFirstElementByTag: tagName [
+
+	^ view firstElementByTag: tagName
+]
