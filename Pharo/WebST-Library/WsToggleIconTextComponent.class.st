@@ -36,17 +36,6 @@ WsToggleIconTextComponent >> defaultOnIconAttribute [
 ]
 
 { #category : 'initialization' }
-WsToggleIconTextComponent >> initView [
-
-	super initView.
-	onController := WsIconTextRowController container: onView.
-	onController icon: self onIconAttribute; text: self onTextAttribute.
-	offController := WsIconTextRowController container: offView.
-	offController icon: self offIconAttribute; text: self offTextAttribute.
-
-]
-
-{ #category : 'initialization' }
 WsToggleIconTextComponent >> offIconAttribute [
 
 	^ self
@@ -76,4 +65,15 @@ WsToggleIconTextComponent >> onTextAttribute [
 	^ self
 		  dataAttributeAt: #onText
 		  ifAbsent: [ nil ]
+]
+
+{ #category : 'initialization' }
+WsToggleIconTextComponent >> postConnectInitialize [
+
+	super postConnectInitialize.
+	onController := WsIconTextRowController container: onView.
+	onController icon: self onIconAttribute; text: self onTextAttribute.
+	offController := WsIconTextRowController container: offView.
+	offController icon: self offIconAttribute; text: self offTextAttribute.
+
 ]

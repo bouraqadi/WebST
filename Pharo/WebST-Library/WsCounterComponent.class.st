@@ -59,19 +59,10 @@ WsCounterComponent >> increment [
 ]
 
 { #category : 'initialization' }
-WsCounterComponent >> initModel [
-
-	super initModel.
-	model -@ #countPort => [ :newCount |
-	self displayCount: newCount ].
-	self updateDisplay
-]
-
-{ #category : 'initialization' }
-WsCounterComponent >> initView [
+WsCounterComponent >> postConnectInitialize [
 
 	| incrementButton decrementButton resetButton |
-	super initView.
+	super postConnectInitialize.
 	display := view querySelector: '.display'.
 	incrementButton := view querySelector: '.increment'.
 	self onClickElement: incrementButton do: [ self increment ].
@@ -80,6 +71,15 @@ WsCounterComponent >> initView [
 	resetButton := view querySelector: '.reset'.
 	self onClickElement: resetButton do: [ self reset ].
 
+]
+
+{ #category : 'initialization' }
+WsCounterComponent >> preConnectInitialize [
+
+	super preConnectInitialize.
+	model -@ #countPort => [ :newCount |
+	self displayCount: newCount ].
+	self updateDisplay
 ]
 
 { #category : 'actions' }

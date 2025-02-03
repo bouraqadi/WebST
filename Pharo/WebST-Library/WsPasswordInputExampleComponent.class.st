@@ -48,29 +48,6 @@ WsPasswordInputExampleComponent >> displayPassword: newText [
 	passwordField value: newText
 ]
 
-{ #category : 'initialization' }
-WsPasswordInputExampleComponent >> initModel [
-
-	super initModel.
-	passwordPort := model -@ #textPort.
-	passwordPort => [ :newText | self displayPassword: newText ].
-	self displayPassword: model text
-]
-
-{ #category : 'initialization' }
-WsPasswordInputExampleComponent >> initView [
-
-	super initView.
-	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
-	passwordField := view querySelector: 'input'.
-	passwordField placeholder: self placeholderAttribute.
-	toggleShowPasswordButton -@ #isOnPort
-	=> [ :aBoolean | self showPasswordAsPlainText: aBoolean ].
-	self
-		onChangeElement: passwordField
-		do: [ :newPassword | self savePassword: newPassword ]
-]
-
 { #category : 'accessing' }
 WsPasswordInputExampleComponent >> password [
 
@@ -89,6 +66,29 @@ WsPasswordInputExampleComponent >> placeholderAttribute [
 	^ self
 		  dataAttributeAt: #placeholder
 		  ifAbsent: [ self defaultPlaceholderAttribute ]
+]
+
+{ #category : 'initialization' }
+WsPasswordInputExampleComponent >> postConnectInitialize [
+
+	super postConnectInitialize.
+	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
+	passwordField := view querySelector: 'input'.
+	passwordField placeholder: self placeholderAttribute.
+	toggleShowPasswordButton -@ #isOnPort
+	=> [ :aBoolean | self showPasswordAsPlainText: aBoolean ].
+	self
+		onChangeElement: passwordField
+		do: [ :newPassword | self savePassword: newPassword ]
+]
+
+{ #category : 'initialization' }
+WsPasswordInputExampleComponent >> preConnectInitialize [
+
+	super preConnectInitialize.
+	passwordPort := model -@ #textPort.
+	passwordPort => [ :newText | self displayPassword: newText ].
+	self displayPassword: model text
 ]
 
 { #category : 'actions' }

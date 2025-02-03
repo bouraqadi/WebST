@@ -63,19 +63,16 @@ WsTextFieldWithButtonsComponent >> displayText: aString [
 	input value: aString
 ]
 
-{ #category : 'initialization' }
-WsTextFieldWithButtonsComponent >> initModel [
-
-	super initModel.
-	model -@ #textPort => [ :newText | self displayText: newText ].
-	self displayModelText
+{ #category : 'accessing' }
+WsTextFieldWithButtonsComponent >> inputValue [
+	^input value
 ]
 
 { #category : 'initialization' }
-WsTextFieldWithButtonsComponent >> initView [
+WsTextFieldWithButtonsComponent >> postConnectInitialize [
 
 	| cancelButton saveButton |
-	super initView .
+	super postConnectInitialize .
 	input := view querySelector: '.textInput'.
 	cancelButton := view querySelector: '.cancelButton'.
 	self onClickElement: cancelButton do: [ self cancel ].
@@ -83,9 +80,12 @@ WsTextFieldWithButtonsComponent >> initView [
 	self onClickElement: saveButton do: [ self save ]
 ]
 
-{ #category : 'accessing' }
-WsTextFieldWithButtonsComponent >> inputValue [
-	^input value
+{ #category : 'initialization' }
+WsTextFieldWithButtonsComponent >> preConnectInitialize [
+
+	super preConnectInitialize.
+	model -@ #textPort => [ :newText | self displayText: newText ].
+	self displayModelText
 ]
 
 { #category : 'actions' }

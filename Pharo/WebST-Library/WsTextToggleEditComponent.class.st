@@ -48,21 +48,6 @@ WsTextToggleEditComponent >> defaultTextAttribute [
 	^ self class defaultTextAttribute
 ]
 
-{ #category : 'initialization' }
-WsTextToggleEditComponent >> initView [
-
-	super initView.
-	textReader := self viewFirstComponent: WsTextComponent.
-	self onClickElement: textReader do: [ self openEditor ].
-	textEditor := self viewFirstComponent: WsTextFieldWithButtonsComponent.
-	textEditor
-		cancelBlock: [ self cancelEdit ];
-		saveBlock: [ :newText | self saveEdit: newText ].
-	self closeEditor.
-	self model: textReader model.
-	self text: self textAttribute
-]
-
 { #category : 'accessing' }
 WsTextToggleEditComponent >> model [
 	^textReader model
@@ -81,6 +66,21 @@ WsTextToggleEditComponent >> openEditor [
 
 	self show: textEditor.
 	self hide: textReader
+]
+
+{ #category : 'initialization' }
+WsTextToggleEditComponent >> postConnectInitialize [
+
+	super postConnectInitialize.
+	textReader := self viewFirstComponent: WsTextComponent.
+	self onClickElement: textReader do: [ self openEditor ].
+	textEditor := self viewFirstComponent: WsTextFieldWithButtonsComponent.
+	textEditor
+		cancelBlock: [ self cancelEdit ];
+		saveBlock: [ :newText | self saveEdit: newText ].
+	self closeEditor.
+	self model: textReader model.
+	self text: self textAttribute
 ]
 
 { #category : 'accessing' }

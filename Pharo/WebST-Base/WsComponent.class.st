@@ -94,6 +94,12 @@ WsComponent class >> viewClass [
 ]
 
 { #category : 'initialization' }
+WsComponent >> basicInitialize [ 
+	self preConnectInitialize.
+	self onConnectedDo: [self postConnectInitialize]
+]
+
+{ #category : 'initialization' }
 WsComponent >> connectedCallback [
 	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
 	"See https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks"
@@ -101,7 +107,6 @@ WsComponent >> connectedCallback [
 	<jsAlias: #connectedCallback>
 
 	self notifyDomConnectionObservers.
-	self initializeOnDomConnection.
 	self notifyComponentReadyObservers.
 ]
 
@@ -111,16 +116,11 @@ WsComponent >> document [
 ]
 
 { #category : 'initialization' }
-WsComponent >> initView [
-
-	view innerHTML: self shadowHtml
-]
-
-{ #category : 'initialization' }
-WsComponent >> initializeOnDomConnection [
-	"Called by #connectedCallback once the component is attached to the DOM"
-	
-	self resetView 
+WsComponent >> initialize [ 
+	super initialize.
+	view := self attachShadow:
+			        { (#mode -> self shadowEncapsulationMode) } asJsObject.
+	self basicInitialize
 ]
 
 { #category : 'DOM connection observing' }
@@ -145,12 +145,15 @@ WsComponent >> notifyComponentReadyObservers [
 ]
 
 { #category : 'initialization' }
-WsComponent >> resetView [
+WsComponent >> postConnectInitialize [
 
-	view ifNil: [
-		view := self attachShadow:
-			        { (#mode -> self shadowEncapsulationMode) } asJsObject ].
-	self initView
+	^self
+]
+
+{ #category : 'initialization' }
+WsComponent >> preConnectInitialize [
+
+	view innerHTML: self shadowHtml
 ]
 
 { #category : 'initialization' }

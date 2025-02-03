@@ -21,7 +21,7 @@ WsInitTestComponent >> initRegistry [
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> initView [ 
-	super initView.
+WsInitTestComponent >> postConnectInitialize [ 
+	super postConnectInitialize.
 	self initRegistry add: self
 ]

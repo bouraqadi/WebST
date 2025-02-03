@@ -53,18 +53,18 @@ WsTextComponent >> display [
 ]
 
 { #category : 'initialization' }
-WsTextComponent >> initModel [
+WsTextComponent >> postConnectInitialize [
 
-	super initModel.
-	model -@ #textPort => [ :newText | self updateDisplay: newText ].
-	model text: self textAttribute
+	super postConnectInitialize.
+	display := view querySelector: '.display'
 ]
 
 { #category : 'initialization' }
-WsTextComponent >> initView [
+WsTextComponent >> preConnectInitialize [
 
-	super initView.
-	display := view querySelector: '.display'
+	super preConnectInitialize.
+	model -@ #textPort => [ :newText | self updateDisplay: newText ].
+	model text: self textAttribute
 ]
 
 { #category : 'accessing' }
