@@ -36,6 +36,19 @@ WsMvcComponent >> basicModel: aModel [
 	model := aModel
 ]
 
+{ #category : 'initialization' }
+WsMvcComponent >> ensureModel [
+	"Don't create a model if one is provided upon creation by the class side #model: constructor method"
+	model ifNotNil: [^self].
+	self initializeNewModel
+]
+
+{ #category : 'initialization' }
+WsMvcComponent >> initializeNewModel [
+	model := self newModel
+
+]
+
 { #category : 'accessing' }
 WsMvcComponent >> model [
 
@@ -46,7 +59,7 @@ WsMvcComponent >> model [
 WsMvcComponent >> model: aModel [
 
 	model := aModel.
-	self basicInitialize
+	self reset
 ]
 
 { #category : 'initialization' }
@@ -57,7 +70,6 @@ WsMvcComponent >> newModel [
 { #category : 'initialization' }
 WsMvcComponent >> preConnectInitialize [ 
 	super preConnectInitialize.
-	"Don't create a model if one is provided upon creation by the class side #model: constructor method"
-	model ifNil: [ model := self newModel ].
+	self ensureModel.
 
 ]

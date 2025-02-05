@@ -89,7 +89,7 @@ WsHtmlElement >> computedZIndex [
 	^ zIndexString asNumber
 ]
 
-{ #category : 'accessing' }
+{ #category : 'accessing attributes' }
 WsHtmlElement >> dataAttributeAt: jsAttributeName ifAbsent: aBlock [
 
 	"Read attributes defined in html. JS attribute name is camel case.
@@ -132,11 +132,11 @@ WsHtmlElement >> displayStyle: value flag: flag [
 	style setProperty: 'display' value: value flag: flag
 ]
 
-{ #category : 'accessing' }
+{ #category : 'accessing attributes' }
 WsHtmlElement >> hasDataAttributeAt: jsAttributeName [ 
 
-	self dataAttributeAt: jsAttributeName ifAbsent: [ ^false ].
-	^true
+	^self ifDataAttribute: jsAttributeName present: [true] absent: [ false ].
+
 ]
 
 { #category : 'accessing size' }
@@ -162,6 +162,30 @@ WsHtmlElement >> heightPx [
 WsHtmlElement >> hide [
 
 	self displayStyle: 'none' flag: 'important'
+]
+
+{ #category : 'accessing attributes' }
+WsHtmlElement >> ifDataAttribute: jsAttributeName absent: handleAttributeMissingBlock [
+
+	^self 
+		ifDataAttribute: jsAttributeName 
+		present: [ : attributeValue | attributeValue ] 
+		absent: handleAttributeMissingBlock
+
+]
+
+{ #category : 'accessing attributes' }
+WsHtmlElement >> ifDataAttribute: jsAttributeName present: useAttribteValueBlock [
+
+	^self ifDataAttribute: jsAttributeName present: useAttribteValueBlock absent: nil
+]
+
+{ #category : 'accessing attributes' }
+WsHtmlElement >> ifDataAttribute: jsAttributeName present: useAttribteValueBlock absent: handleAttributeMissingBlock [
+	| attributeValue |
+	attributeValue := self dataAttributeAt: jsAttributeName ifAbsent: [ ^handleAttributeMissingBlock value ].
+	^useAttribteValueBlock cull: attributeValue
+	
 ]
 
 { #category : 'converting' }
@@ -209,7 +233,7 @@ WsHtmlElement >> pxFromInt: anInteger [
 	^ anInteger asString, 'px'
 ]
 
-{ #category : 'accessing' }
+{ #category : 'accessing attributes' }
 WsHtmlElement >> setStyleProperty: propertyName value: value flag: falg [
 	style setProperty: propertyName value: value flag: falg
 ]

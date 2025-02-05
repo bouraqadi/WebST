@@ -94,9 +94,10 @@ WsComponent class >> viewClass [
 ]
 
 { #category : 'initialization' }
-WsComponent >> basicInitialize [ 
-	self preConnectInitialize.
-	self onConnectedDo: [self postConnectInitialize]
+WsComponent >> beReady [
+	self postConnectInitialize.
+	self whenComponentReadyNotifyObservers.
+
 ]
 
 { #category : 'initialization' }
@@ -107,7 +108,7 @@ WsComponent >> connectedCallback [
 	<jsAlias: #connectedCallback>
 
 	self notifyDomConnectionObservers.
-	self notifyComponentReadyObservers.
+
 ]
 
 { #category : 'accessing' }
@@ -120,7 +121,7 @@ WsComponent >> initialize [
 	super initialize.
 	view := self attachShadow:
 			        { (#mode -> self shadowEncapsulationMode) } asJsObject.
-	self basicInitialize
+	self reset
 ]
 
 { #category : 'DOM connection observing' }
@@ -138,7 +139,6 @@ WsComponent >> isComponentReady [
 
 { #category : 'observing lifecycle' }
 WsComponent >> notifyComponentReadyObservers [
-	isComponentReady := true.
 	isComponentReadyPort ifNil: [ ^self ].
 	isComponentReadyPort notifyWith: self.
 
@@ -154,6 +154,25 @@ WsComponent >> postConnectInitialize [
 WsComponent >> preConnectInitialize [
 
 	view innerHTML: self shadowHtml
+]
+
+{ #category : 'initialization' }
+WsComponent >> reset [
+	self preConnectInitialize.
+	self onConnectedDo: [ self beReady ].
+
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> resetIsComponentReady [
+	isComponentReady := false.
+
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> setIsComponentReady [
+	isComponentReady := true.
+	self notifyComponentReadyObservers 
 ]
 
 { #category : 'initialization' }
@@ -199,4 +218,9 @@ WsComponent >> viewFirstElementByCssClass: cssClassName [
 WsComponent >> viewFirstElementByTag: tagName [
 
 	^ view firstElementByTag: tagName
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> whenComponentReadyNotifyObservers [
+	self setIsComponentReady 
 ]
