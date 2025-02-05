@@ -59,10 +59,10 @@ WsCounterModel >> initialize [
 	super initialize.
 	countPort := HyCollectionPort new.
 	countPort notificationSelector: #value:.
-	self reset
+	self resetCount
 ]
 
 { #category : 'operations' }
-WsCounterModel >> reset [
+WsCounterModel >> resetCount [
 	self count: 0
 ]

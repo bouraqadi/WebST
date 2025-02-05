@@ -37,17 +37,11 @@ WsToDoItemComponent >> displayChecked: aBoolean [
 ]
 
 { #category : 'initialization' }
-WsToDoItemComponent >> postConnectInitialize [
-
-	super postConnectInitialize.
-	textComponent := self viewFirstComponent: WsTextToggleEditComponent.
-	checkbox := view querySelector: '.todo-checkbox'
-]
-
-{ #category : 'initialization' }
 WsToDoItemComponent >> preConnectInitialize [
 
 	super preConnectInitialize.
+	textComponent := self viewFirstComponent: WsTextToggleEditComponent.
+	checkbox := view querySelector: '.todo-checkbox'.
 	textComponent model: model.
 	model -@ #isCheckedPort
 	=> [ :isChecked | self displayChecked: isChecked ].

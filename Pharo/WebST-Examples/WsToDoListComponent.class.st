@@ -56,18 +56,12 @@ WsToDoListComponent >> heading: newTitle [
 ]
 
 { #category : 'initialization' }
-WsToDoListComponent >> postConnectInitialize [
-
-	| addButton |
-	super postConnectInitialize.
-	headingDisplay := view querySelector: '.headingDisplay'.
-	addButton := view querySelector: '.addItemButton'.
-	self onClickElement: addButton do: [ self addItem ]
-]
-
-{ #category : 'initialization' }
 WsToDoListComponent >> preConnectInitialize [
 
+	| addButton |
 	super preConnectInitialize.
-	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ]
+	headingDisplay := self viewFirstElementByCssClass: 'headingDisplay'.
+	addButton := self viewFirstElementByCssClass: 'addItemButton'.
+	self onClickElement: addButton do: [ self addItem ].
+	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ].
 ]

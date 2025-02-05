@@ -35,7 +35,7 @@ WsTextComponentTest >> assertDefaultAttributesApplied [
 	super assertDefaultAttributesApplied.
 	self
 		assert: component text
-		equals: self componentClass defaultTextAttribute
+		equals: WsTextModel defaultText
 ]
 
 { #category : 'asserting' }

@@ -15,13 +15,29 @@ WsInitTestComponent class >> viewClass [
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> initRegistry [
-	^window at: #initRegistry ifAbsent: [window at: #initRegistry put: OrderedCollection new].
-
+WsInitTestComponent >> postConnectInitialize [ 
+	super postConnectInitialize.
+	self postConnectRegistry add: self
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> postConnectInitialize [ 
-	super postConnectInitialize.
-	self initRegistry add: self
+WsInitTestComponent >> postConnectRegistry [
+	^self registryAt: #postConnect
+]
+
+{ #category : 'initialization' }
+WsInitTestComponent >> preConnectInitialize [ 
+	super preConnectInitialize.
+	self preConnectRegistry add: self
+]
+
+{ #category : 'initialization' }
+WsInitTestComponent >> preConnectRegistry [
+	^self registryAt: #preConnect
+]
+
+{ #category : 'initialization' }
+WsInitTestComponent >> registryAt: aSymbol [
+	^window at: aSymbol ifAbsent: [window at: aSymbol put: OrderedCollection new].
+
 ]

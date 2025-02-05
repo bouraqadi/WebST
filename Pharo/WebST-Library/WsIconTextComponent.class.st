@@ -68,9 +68,9 @@ WsIconTextComponent >> iconAttribute [
 ]
 
 { #category : 'initialization' }
-WsIconTextComponent >> postConnectInitialize [
+WsIconTextComponent >> preConnectInitialize [
 
-	super postConnectInitialize.
+	super preConnectInitialize.
 	controller := WsIconTextRowController container: view.
 	self icon: self iconAttribute.
 	self text: self textAttribute.
@@ -82,8 +82,7 @@ WsIconTextComponent >> text: aString [
 	controller text: aString
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 WsIconTextComponent >> textAttribute [
-
-	^ self dataAttributeAt: #text ifAbsent: [ self defaultTextAttribute ]
+	^self dataAttributeAt: #text ifAbsent: [ self defaultTextAttribute ]
 ]

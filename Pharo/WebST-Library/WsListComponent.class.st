@@ -97,16 +97,10 @@ WsListComponent >> newItemModel [
 ]
 
 { #category : 'initialization' }
-WsListComponent >> postConnectInitialize [
-
-	super postConnectInitialize.
-	listView := view querySelector: 'ul'
-]
-
-{ #category : 'initialization' }
 WsListComponent >> preConnectInitialize [
 
 	super preConnectInitialize.
+	listView := view querySelector: 'ul'.
 	model -@ #addPort => [ : itemModel : itemIndex | self handleAdd: itemModel at: itemIndex].
 	self displayModel
 ]

@@ -69,9 +69,9 @@ WsTextToggleEditComponent >> openEditor [
 ]
 
 { #category : 'initialization' }
-WsTextToggleEditComponent >> postConnectInitialize [
+WsTextToggleEditComponent >> preConnectInitialize [
 
-	super postConnectInitialize.
+	super preConnectInitialize.
 	textReader := self viewFirstComponent: WsTextComponent.
 	self onClickElement: textReader do: [ self openEditor ].
 	textEditor := self viewFirstComponent: WsTextFieldWithButtonsComponent.

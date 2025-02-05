@@ -12,11 +12,6 @@ Class {
 }
 
 { #category : 'accessing' }
-WsTextComponent class >> defaultTextAttribute [
-	^'...'
-]
-
-{ #category : 'accessing' }
 WsTextComponent class >> modelClass [
 
 	^WsTextModel 
@@ -43,28 +38,23 @@ WsTextComponent class >> viewClass [
 ]
 
 { #category : 'accessing' }
-WsTextComponent >> defaultTextAttribute [
-	^ self class defaultTextAttribute
-]
-
-{ #category : 'accessing' }
 WsTextComponent >> display [
 	^display
 ]
 
 { #category : 'initialization' }
-WsTextComponent >> postConnectInitialize [
-
-	super postConnectInitialize.
-	display := view querySelector: '.display'
+WsTextComponent >> initializeNewModel [
+	super initializeNewModel.
+	self ifDataAttribute: #text present: [ : newText | model text: newText ] 
 ]
 
 { #category : 'initialization' }
 WsTextComponent >> preConnectInitialize [
 
 	super preConnectInitialize.
+	display := view querySelector: '.display'.
 	model -@ #textPort => [ :newText | self updateDisplay: newText ].
-	model text: self textAttribute
+	self updateDisplay: self text
 ]
 
 { #category : 'accessing' }
@@ -76,14 +66,6 @@ WsTextComponent >> text [
 WsTextComponent >> text: newText [
 
 	^ model text: newText
-]
-
-{ #category : 'accessing' }
-WsTextComponent >> textAttribute [
-
-	^ self
-		  dataAttributeAt: #text
-		  ifAbsent: [ self defaultTextAttribute ]
 ]
 
 { #category : 'actions' }

@@ -23,8 +23,8 @@ WsLevel2InitTestComponent >> level1Subcomponent [
 ]
 
 { #category : 'initialization' }
-WsLevel2InitTestComponent >> postConnectInitialize [
+WsLevel2InitTestComponent >> preConnectInitialize [
 
-	super postConnectInitialize.
+	super preConnectInitialize.
 	level1Subcomponent := self viewFirstComponent: WsInitTestComponent 
 ]

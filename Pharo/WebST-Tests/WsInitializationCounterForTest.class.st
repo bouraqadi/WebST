@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'postConnectInitCount',
-		'preConnectInitCount'
+		'preConnectInitCount',
+		'readyInitCount'
 	],
 	#category : 'WebST-Tests-Support',
 	#package : 'WebST-Tests',
@@ -51,4 +52,11 @@ WsInitializationCounterForTest >> preConnectInitialize [
 	console log: 'preConnectInitialize'.
 	preConnectInitCount := self preConnectInitCount + 1.
 	super preConnectInitialize
+]
+
+{ #category : 'initialization' }
+WsInitializationCounterForTest >> reset [
+	super reset.
+	preConnectInitCount := nil.
+	postConnectInitCount := nil.
 ]
