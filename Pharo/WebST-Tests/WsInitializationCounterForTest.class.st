@@ -35,8 +35,8 @@ WsInitializationCounterForTest >> postConnectInitCount [
 { #category : 'initialization' }
 WsInitializationCounterForTest >> postConnectInitialize [
 
-	console log: 'postConnectInitialize'.
 	postConnectInitCount := self postConnectInitCount + 1.
+	console log: 'postConnectInitialize'.
 	super postConnectInitialize
 ]
 
@@ -49,14 +49,18 @@ WsInitializationCounterForTest >> preConnectInitCount [
 { #category : 'initialization' }
 WsInitializationCounterForTest >> preConnectInitialize [
 
-	console log: 'preConnectInitialize'.
+	super preConnectInitialize.
 	preConnectInitCount := self preConnectInitCount + 1.
-	super preConnectInitialize
+	console log: 'preConnectInitialize'; log: preConnectInitCount.
+	
+
 ]
 
 { #category : 'initialization' }
 WsInitializationCounterForTest >> reset [
-	super reset.
 	preConnectInitCount := nil.
 	postConnectInitCount := nil.
+	console log: 'reset'.
+	super reset.
+
 ]
