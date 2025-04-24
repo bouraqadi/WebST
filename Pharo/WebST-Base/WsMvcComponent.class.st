@@ -68,8 +68,8 @@ WsMvcComponent >> newModel [
 ]
 
 { #category : 'initialization' }
-WsMvcComponent >> preConnectInitialize [ 
-	super preConnectInitialize.
+WsMvcComponent >> postConnectInitialize [ 
+	super postConnectInitialize.
 	self ensureModel.
 
 ]

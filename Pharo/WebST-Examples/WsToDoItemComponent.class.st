@@ -37,9 +37,9 @@ WsToDoItemComponent >> displayChecked: aBoolean [
 ]
 
 { #category : 'initialization' }
-WsToDoItemComponent >> preConnectInitialize [
+WsToDoItemComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	textComponent := self viewFirstComponent: WsTextToggleEditComponent.
 	checkbox := view querySelector: '.todo-checkbox'.
 	textComponent model: model.

@@ -56,10 +56,10 @@ WsToDoListComponent >> heading: newTitle [
 ]
 
 { #category : 'initialization' }
-WsToDoListComponent >> preConnectInitialize [
+WsToDoListComponent >> postConnectInitialize [
 
 	| addButton |
-	super preConnectInitialize.
+	super postConnectInitialize.
 	headingDisplay := self viewFirstElementByCssClass: 'headingDisplay'.
 	addButton := self viewFirstElementByCssClass: 'addItemButton'.
 	self onClickElement: addButton do: [ self addItem ].

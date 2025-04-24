@@ -151,9 +151,9 @@ WsComponent >> postConnectInitialize [
 ]
 
 { #category : 'initialization' }
-WsComponent >> preConnectInitialize [
+WsComponent >> preConnectInitialize [ 
+	view innerHTML: self shadowHtml.
 
-	view innerHTML: self shadowHtml
 ]
 
 { #category : 'initialization' }

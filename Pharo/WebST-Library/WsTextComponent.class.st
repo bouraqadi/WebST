@@ -49,9 +49,9 @@ WsTextComponent >> initializeNewModel [
 ]
 
 { #category : 'initialization' }
-WsTextComponent >> preConnectInitialize [
+WsTextComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	display := view querySelector: '.display'.
 	model -@ #textPort => [ :newText | self updateDisplay: newText ].
 	self updateDisplay: self text

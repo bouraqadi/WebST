@@ -59,10 +59,10 @@ WsCounterComponent >> increment [
 ]
 
 { #category : 'initialization' }
-WsCounterComponent >> preConnectInitialize [
+WsCounterComponent >> postConnectInitialize [
 
 	| incrementButton decrementButton resetButton |
-	super preConnectInitialize.
+	super postConnectInitialize.
 	display := view firstElementByCssClass: 'display'.
 	incrementButton := view firstElementByCssClass: 'increment'.
 	self onClickElement: incrementButton do: [ self increment ].

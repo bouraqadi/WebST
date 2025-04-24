@@ -68,9 +68,9 @@ WsToggleIconTextComponent >> onTextAttribute [
 ]
 
 { #category : 'initialization' }
-WsToggleIconTextComponent >> preConnectInitialize [
+WsToggleIconTextComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	onController := WsIconTextRowController container: onView.
 	onController icon: self onIconAttribute; text: self onTextAttribute.
 	offController := WsIconTextRowController container: offView.

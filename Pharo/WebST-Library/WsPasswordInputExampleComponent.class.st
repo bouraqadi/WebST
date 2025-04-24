@@ -69,9 +69,9 @@ WsPasswordInputExampleComponent >> placeholderAttribute [
 ]
 
 { #category : 'initialization' }
-WsPasswordInputExampleComponent >> preConnectInitialize [
+WsPasswordInputExampleComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
 	passwordField := view querySelector: 'input'.
 	passwordField placeholder: self placeholderAttribute.

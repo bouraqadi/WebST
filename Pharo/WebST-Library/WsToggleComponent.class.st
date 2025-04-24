@@ -46,9 +46,9 @@ WsToggleComponent >> isOn: aBoolean [
 ]
 
 { #category : 'initialization' }
-WsToggleComponent >> preConnectInitialize [
+WsToggleComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	onView := view querySelector: '#onView'.
 	offView := view querySelector: '#offView'.
 	isOnPort := model -@ #isOnPort.

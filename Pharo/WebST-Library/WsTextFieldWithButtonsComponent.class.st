@@ -69,10 +69,10 @@ WsTextFieldWithButtonsComponent >> inputValue [
 ]
 
 { #category : 'initialization' }
-WsTextFieldWithButtonsComponent >> preConnectInitialize [
+WsTextFieldWithButtonsComponent >> postConnectInitialize [
 
 	| cancelButton saveButton |
-	super preConnectInitialize.
+	super postConnectInitialize.
 	input := view querySelector: '.textInput'.
 	cancelButton := view querySelector: '.cancelButton'.
 	self onClickElement: cancelButton do: [ self cancel ].

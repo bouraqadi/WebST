@@ -18,9 +18,9 @@ WsWebBackComponent class >> defaultIconAttribute [
 ]
 
 { #category : 'initialization' }
-WsWebBackComponent >> preConnectInitialize [
+WsWebBackComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	webHistoryController := WsWebHistoryController new.
 	webHistoryController makeBackButton: self.
 

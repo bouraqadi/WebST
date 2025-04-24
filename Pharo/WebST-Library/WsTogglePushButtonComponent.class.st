@@ -65,9 +65,9 @@ WsTogglePushButtonComponent >> onButtonCssAttribute [
 ]
 
 { #category : 'initialization' }
-WsTogglePushButtonComponent >> preConnectInitialize [
+WsTogglePushButtonComponent >> postConnectInitialize [
 
-	super preConnectInitialize.
+	super postConnectInitialize.
 	self onButton classList add: self onButtonCssAttribute.
 	self offButton classList add: self offButtonCssAttribute.
 
