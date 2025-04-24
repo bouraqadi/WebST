@@ -11,7 +11,8 @@ Class {
 	#name : 'WsNode',
 	#superclass : 'Object',
 	#instVars : [
-		'isConnectedPort'
+		'isConnectedPort',
+		'parentNode'
 	],
 	#pools : [
 		'PjBrowserGlobals'
@@ -123,4 +124,9 @@ WsNode >> onConnectedDo: aBlock [
 	self isConnected ifTrue: [ ^aBlock value ].
 	self isConnectedPort => aBlock.
 	self installConnectedNotificationTrigger
+]
+
+{ #category : 'accessing children' }
+WsNode >> parentNode [
+	^parentNode 
 ]
