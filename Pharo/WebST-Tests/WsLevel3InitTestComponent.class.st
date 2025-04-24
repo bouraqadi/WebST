@@ -18,6 +18,11 @@ WsLevel3InitTestComponent class >> viewClass [
 ]
 
 { #category : 'accessing' }
+WsLevel3InitTestComponent >> level1SubSubcomponent [
+	^self level2Subcomponent level1Subcomponent 
+]
+
+{ #category : 'accessing' }
 WsLevel3InitTestComponent >> level2Subcomponent [
 	^level2Subcomponent 
 ]
@@ -26,4 +31,12 @@ WsLevel3InitTestComponent >> level2Subcomponent [
 WsLevel3InitTestComponent >> preConnectInitialize [ 
 	super preConnectInitialize.
 	level2Subcomponent := self viewFirstComponent: WsLevel2InitTestComponent 
+]
+
+{ #category : 'accessing' }
+WsLevel3InitTestComponent >> withSubcmponentsInInitializationOrder [
+	^{
+	self level1SubSubcomponent.
+	self level2Subcomponent.
+	self}
 ]

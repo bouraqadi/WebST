@@ -16,12 +16,14 @@ WsComponentInitializationTest class >> componentClass [
 { #category : 'tests' }
 WsComponentInitializationTest >> assertRegistriesMatchCollection: expectedList [
 
+	| localExpectedList |
+	localExpectedList := expectedList asLocalObject.
 	self
 		assertRegistry: self component preConnectRegistry
-		matchesCollection: expectedList.
+		matchesCollection:  localExpectedList.
 	self
 		assertRegistry: self component postConnectRegistry
-		matchesCollection: expectedList.
+		matchesCollection: localExpectedList.
 
 ]
 
@@ -38,16 +40,9 @@ WsComponentInitializationTest >> assertRegistry: registry matchesCollection: exp
 { #category : 'tests' }
 WsComponentInitializationTest >> testSubomponentInitializedBeforeComposite [
 
-	| level3Component level2Component level1Component expectedList |
-	level3Component := self component.
-	level2Component := level3Component level2Subcomponent.
-	level1Component := level2Component level1Subcomponent.
-	expectedList := {
-		                level1Component.
-		                level2Component.
-		                level3Component }.
-	self assertRegistriesMatchCollection: expectedList.
+	self assertRegistriesMatchCollection: self component withSubcmponentsInInitializationOrder.
+	self component resetRegistries.
 	self component reset.
-	self assertRegistriesMatchCollection: expectedList.
+	self assertRegistriesMatchCollection: self component withSubcmponentsInInitializationOrder.
 
 ]

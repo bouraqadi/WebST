@@ -3,6 +3,10 @@ Class {
 	#superclass : 'WsComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
+	#classVars : [
+		'PostConnectRegistry',
+		'PreConnectRegistry'
+	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
 	#tag : 'Initialization'
@@ -22,7 +26,7 @@ WsInitTestComponent >> postConnectInitialize [
 
 { #category : 'initialization' }
 WsInitTestComponent >> postConnectRegistry [
-	^self registryAt: #postConnect
+	^PostConnectRegistry ifNil: [ PostConnectRegistry := OrderedCollection new ]
 ]
 
 { #category : 'initialization' }
@@ -33,11 +37,11 @@ WsInitTestComponent >> preConnectInitialize [
 
 { #category : 'initialization' }
 WsInitTestComponent >> preConnectRegistry [
-	^self registryAt: #preConnect
+	^PreConnectRegistry ifNil: [ PreConnectRegistry := OrderedCollection new ]
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> registryAt: aSymbol [
-	^window at: aSymbol ifAbsent: [window at: aSymbol put: OrderedCollection new].
-
+WsInitTestComponent >> resetRegistries [
+	PreConnectRegistry := nil.
+	PostConnectRegistry := nil
 ]
