@@ -1,5 +1,11 @@
 "
-Placeholder for JS class Node. See class-side method #javascriptName
+Placeholder for JS class Node. See class-side method #javascriptName.
+
+The #onConnectedDo:, and #notifyDomConnectionObservers methods allows observing connection to DOM for any HTML element.
+The actual support to these observation is provided by the #installConnectedNotificationTrigger method.
+
+The WsNode >> #installConnectedNotificationTrigger implements a hack to install a connection trigger for basic basic HTML elements.
+This method is overriden in WsHtmlElement since browsers provide a callback for custom HTML elements connection.
 "
 Class {
 	#name : 'WsNode',
