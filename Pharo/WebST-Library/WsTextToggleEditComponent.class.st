@@ -64,6 +64,7 @@ WsTextToggleEditComponent >> model: newModel [
 { #category : 'actions' }
 WsTextToggleEditComponent >> openEditor [
 
+	textEditor displayText: self text.
 	self show: textEditor.
 	self hide: textReader
 ]

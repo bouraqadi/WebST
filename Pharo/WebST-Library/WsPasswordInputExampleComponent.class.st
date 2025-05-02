@@ -72,11 +72,13 @@ WsPasswordInputExampleComponent >> placeholderAttribute [
 WsPasswordInputExampleComponent >> postConnectInitialize [
 
 	super postConnectInitialize.
-	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
+	toggleShowPasswordButton := self viewFirstComponent:
+		                            WsShowHideToggleComponent.
+	toggleShowPasswordButton onComponentReadyDo: [ 	
+			toggleShowPasswordButton -@ #isOnPort => [ :aBoolean | self showPasswordAsPlainText: aBoolean ]].
+	
 	passwordField := view querySelector: 'input'.
 	passwordField placeholder: self placeholderAttribute.
-	toggleShowPasswordButton -@ #isOnPort
-	=> [ :aBoolean | self showPasswordAsPlainText: aBoolean ].
 	self
 		onChangeElement: passwordField
 		do: [ :newPassword | self savePassword: newPassword ].

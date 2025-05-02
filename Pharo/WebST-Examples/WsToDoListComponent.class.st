@@ -59,8 +59,8 @@ WsToDoListComponent >> heading: newTitle [
 WsToDoListComponent >> postConnectInitialize [
 
 	| addButton |
-	super postConnectInitialize.
 	headingDisplay := self viewFirstElementByCssClass: 'headingDisplay'.
+	super postConnectInitialize.
 	addButton := self viewFirstElementByCssClass: 'addItemButton'.
 	self onClickElement: addButton do: [ self addItem ].
 	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ].
