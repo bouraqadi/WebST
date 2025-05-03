@@ -45,7 +45,7 @@ WsMvcComponent >> ensureModel [
 
 { #category : 'initialization' }
 WsMvcComponent >> initializeNewModel [
-	model := self newModel
+	self basicModel: self newModel
 
 ]
 
@@ -58,7 +58,7 @@ WsMvcComponent >> model [
 { #category : 'initialization' }
 WsMvcComponent >> model: aModel [
 
-	model := aModel.
+	self basicModel: aModel.
 	self reset
 ]
 
