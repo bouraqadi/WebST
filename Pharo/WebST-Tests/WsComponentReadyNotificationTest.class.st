@@ -23,14 +23,14 @@ WsComponentReadyNotificationTest >> testComponentPassedToNotificationSubscribedA
 	newComponent := self evalBlock: [WsMinimalComponent new].
 	document body append: newComponent.
 	self waitUntil: [ newComponent isPostConnectInitializeDone ].
-	newComponent onPostConnectDo: [: someValue | window at: #passedValue put: someValue  ].
+	newComponent onReadyDo: [: someValue | window at: #passedValue put: someValue  ].
 	self assert: (window at: #passedValue) identicalTo: newComponent 
 ]
 
 { #category : 'tests' }
 WsComponentReadyNotificationTest >> testComponentPassedToNotificationSubscribedBeforeReady [
 	| newComponent |
-	newComponent := self evalBlock: [WsMinimalComponent newOnComponentReadyDo: [: someValue | window at: #passedValue put: someValue ]].
+	newComponent := self evalBlock: [WsMinimalComponent newWhenReadyDo: [: someValue | window at: #passedValue put: someValue ]].
 	document body prepend: newComponent.
 	self waitUntil: [ newComponent isPostConnectInitializeDone ].
 	self assert: (window at: #passedValue) identicalTo: newComponent 
@@ -42,7 +42,7 @@ WsComponentReadyNotificationTest >> testObserversSubscribedAfterReady [
 	newComponent := self newComponent.
 	document body prepend: newComponent.
 	jsCounters := self evalBlock: [ {PjCounter new. PjCounter new} ].
-	self evalBlock: [ jsCounters do: [: aCounter | newComponent onPostConnectDo: [aCounter increment]] ].
+	self evalBlock: [ jsCounters do: [: aCounter | newComponent onReadyDo: [aCounter increment]] ].
 	counters := jsCounters asLocalObject. "Array with proxies to JS counters for easy/faster testing"
 	self waitWhile: [ counters anySatisfy: [: aCounter | aCounter count = 0]].
 	self assert: (counters allSatisfy: [: aCounter | aCounter count = 1])
@@ -53,7 +53,7 @@ WsComponentReadyNotificationTest >> testObserversSubscribedBeforeReady [
 	| newComponent jsCounters counters |
 	newComponent := self newComponent.
 	jsCounters := self evalBlock: [ {PjCounter new. PjCounter new} ].
-	self evalBlock: [ jsCounters do: [: aCounter | newComponent onPostConnectDo: [aCounter increment]] ].
+	self evalBlock: [ jsCounters do: [: aCounter | newComponent onReadyDo: [aCounter increment]] ].
 	counters := jsCounters asLocalObject. "Array with proxies to JS counters for easy/faster testing"
 	document body prepend: newComponent.
 	self waitWhile: [ counters anySatisfy: [: aCounter | aCounter count = 0]].

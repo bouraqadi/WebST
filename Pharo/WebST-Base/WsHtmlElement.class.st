@@ -218,24 +218,24 @@ WsHtmlElement >> isShowing [
 ]
 
 { #category : 'observing lifecycle' }
-WsHtmlElement >> onPostConnectDo: aBlock [
-	"Request to perform aBlock when component finished postConnectInitialize"
-	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
-	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"
-	
-"	self postConnectInitializePort => aBlock.
-	self isPostConnectInitializeDone ifTrue: [ aBlock cull: self ].
-"
-]
-
-{ #category : 'observing lifecycle' }
-WsHtmlElement >> onPreConnectDo: aBlock [
+WsHtmlElement >> onCreatedDo: aBlock [
 	"Request to perform aBlock when component finished preConnectinitialize"
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
 	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"
 	
 "	self preConnectInitializePort => aBlock.
 	self isPreConnectInitializeDone ifTrue: [ ^aBlock cull: self ].
+"
+]
+
+{ #category : 'observing lifecycle' }
+WsHtmlElement >> onReadyDo: aBlock [
+	"Request to perform aBlock when component finished postConnectInitialize"
+	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
+	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"
+	
+"	self postConnectInitializePort => aBlock.
+	self isPostConnectInitializeDone ifTrue: [ aBlock cull: self ].
 "
 ]
 

@@ -5,7 +5,7 @@ Class {
 	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
 		'view',
-		'isComponentReady'
+		'isPostConnectInitializeDone'
 	],
 	#pools : [
 		'PjBrowserGlobals'
@@ -23,10 +23,10 @@ WsComponent class >> new [
 ]
 
 { #category : 'instance creation' }
-WsComponent class >> newOnComponentReadyDo: aBlock [
+WsComponent class >> newWhenReadyDo: aBlock [
 
 	^ self new
-		onPostConnectDo: aBlock;
+		onReadyDo: aBlock;
 		yourself
 ]
 
@@ -134,14 +134,13 @@ WsComponent >> installConnectedNotificationTrigger [
 
 { #category : 'observing lifecycle' }
 WsComponent >> isPostConnectInitializeDone [
-	^isComponentReady ifNil: [ isComponentReady := false ]
+	^isPostConnectInitializeDone ifNil: [ isPostConnectInitializeDone := false ]
 ]
 
 { #category : 'observing lifecycle' }
 WsComponent >> notifyComponentReadyObservers [
-	isComponentReadyPort ifNil: [ ^self ].
-	isComponentReadyPort notifyWith: self.
-
+	"isComponentReadyPort ifNil: [ ^self ].
+	isComponentReadyPort notifyWith: self."
 ]
 
 { #category : 'initialization' }
@@ -164,14 +163,8 @@ WsComponent >> reset [
 ]
 
 { #category : 'observing lifecycle' }
-WsComponent >> resetIsComponentReady [
-	isComponentReady := false.
-
-]
-
-{ #category : 'observing lifecycle' }
 WsComponent >> setIsComponentReady [
-	isComponentReady := true.
+	isPostConnectInitializeDone := true.
 	self notifyComponentReadyObservers 
 ]
 
