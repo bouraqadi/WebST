@@ -26,7 +26,7 @@ WsComponent class >> new [
 WsComponent class >> newOnComponentReadyDo: aBlock [
 
 	^ self new
-		onComponentReadyDo: aBlock;
+		onPostConnectDo: aBlock;
 		yourself
 ]
 
@@ -133,7 +133,7 @@ WsComponent >> installConnectedNotificationTrigger [
 ]
 
 { #category : 'observing lifecycle' }
-WsComponent >> isComponentReady [
+WsComponent >> isPostConnectInitializeDone [
 	^isComponentReady ifNil: [ isComponentReady := false ]
 ]
 
