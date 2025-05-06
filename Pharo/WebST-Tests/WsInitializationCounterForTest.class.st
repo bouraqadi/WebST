@@ -49,14 +49,16 @@ WsInitializationCounterForTest >> preConnectInitCount [
 { #category : 'initialization' }
 WsInitializationCounterForTest >> preConnectInitialize [
 
+	super preConnectInitialize.
 	console log: 'preConnectInitialize'.
 	preConnectInitCount := self preConnectInitCount + 1.
-	super preConnectInitialize
+
 ]
 
 { #category : 'initialization' }
 WsInitializationCounterForTest >> reset [
-	super reset.
 	preConnectInitCount := nil.
 	postConnectInitCount := nil.
+	super reset.
+
 ]
