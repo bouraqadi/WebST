@@ -37,6 +37,15 @@ WsTextComponent class >> viewClass [
 	^WsTextView
 ]
 
+{ #category : 'initialization' }
+WsTextComponent >> beReady [
+
+	super beReady.
+	display := view querySelector: '.display'.
+	model -@ #textPort => [ :newText | self updateDisplay: newText ].
+	self updateDisplay: self text
+]
+
 { #category : 'accessing' }
 WsTextComponent >> display [
 	^display
@@ -46,15 +55,6 @@ WsTextComponent >> display [
 WsTextComponent >> initializeNewModel [
 	super initializeNewModel.
 	self ifDataAttribute: #text present: [ : newText | model text: newText ] 
-]
-
-{ #category : 'initialization' }
-WsTextComponent >> preConnectInitialize [
-
-	super preConnectInitialize.
-	display := view querySelector: '.display'.
-	model -@ #textPort => [ :newText | self updateDisplay: newText ].
-	self updateDisplay: self text
 ]
 
 { #category : 'accessing' }

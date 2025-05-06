@@ -34,6 +34,18 @@ WsToggleComponent class >> modelClass [
 	^WsToggleModel 
 ]
 
+{ #category : 'initialization' }
+WsToggleComponent >> beReady [
+
+	super beReady.
+	onView := view querySelector: '#onView'.
+	offView := view querySelector: '#offView'.
+	isOnPort := model -@ #isOnPort.
+	controller := WsToggleController new.
+	controller model: model onView: onView offView: offView.
+
+]
+
 { #category : 'accessing' }
 WsToggleComponent >> isOn [
 	^model isOn
@@ -43,18 +55,6 @@ WsToggleComponent >> isOn [
 WsToggleComponent >> isOn: aBoolean [
 
 	model isOn: aBoolean
-]
-
-{ #category : 'initialization' }
-WsToggleComponent >> preConnectInitialize [
-
-	super preConnectInitialize.
-	onView := view querySelector: '#onView'.
-	offView := view querySelector: '#offView'.
-	isOnPort := model -@ #isOnPort.
-	controller := WsToggleController new.
-	controller model: model onView: onView offView: offView.
-
 ]
 
 { #category : 'actions' }

@@ -229,7 +229,7 @@ WsHtmlElement >> onCreatedDo: aBlock [
 ]
 
 { #category : 'observing lifecycle' }
-WsHtmlElement >> onReadyDo: aBlock [
+WsHtmlElement >> onStartedDo: aBlock [
 	"Request to perform aBlock when component finished postConnectInitialize"
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
 	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"

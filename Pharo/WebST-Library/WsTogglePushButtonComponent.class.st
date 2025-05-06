@@ -31,6 +31,15 @@ WsTogglePushButtonComponent class >> viewClass [
 	^WsTogglePushButtonView 
 ]
 
+{ #category : 'initialization' }
+WsTogglePushButtonComponent >> beReady [
+
+	super beReady.
+	self onButton classList add: self onButtonCssAttribute.
+	self offButton classList add: self offButtonCssAttribute.
+
+]
+
 { #category : 'accessing' }
 WsTogglePushButtonComponent >> defaultOffButtonCssAttribute [
 	^self class defaultOffButtonCssAttribute
@@ -62,13 +71,4 @@ WsTogglePushButtonComponent >> onButton [
 { #category : 'accessing' }
 WsTogglePushButtonComponent >> onButtonCssAttribute [
 	^self dataAttributeAt: #onButtonCss ifAbsent: [ self defaultOnButtonCssAttribute ]
-]
-
-{ #category : 'initialization' }
-WsTogglePushButtonComponent >> preConnectInitialize [
-
-	super preConnectInitialize.
-	self onButton classList add: self onButtonCssAttribute.
-	self offButton classList add: self offButtonCssAttribute.
-
 ]

@@ -31,6 +31,21 @@ WsTextToggleEditComponent class >> viewClass [
 	^ WsTextToggleEditView
 ]
 
+{ #category : 'initialization' }
+WsTextToggleEditComponent >> beReady [
+
+	super beReady.
+	textReader := self viewFirstComponent: WsTextComponent.
+	self onClickElement: textReader do: [ self openEditor ].
+	textEditor := self viewFirstComponent: WsTextFieldWithButtonsComponent.
+	textEditor
+		cancelBlock: [ self cancelEdit ];
+		saveBlock: [ :newText | self saveEdit: newText ].
+	self closeEditor.
+	self model: textReader model.
+	self text: self textAttribute
+]
+
 { #category : 'actions' }
 WsTextToggleEditComponent >> cancelEdit [
 	self closeEditor
@@ -66,21 +81,6 @@ WsTextToggleEditComponent >> openEditor [
 
 	self show: textEditor.
 	self hide: textReader
-]
-
-{ #category : 'initialization' }
-WsTextToggleEditComponent >> preConnectInitialize [
-
-	super preConnectInitialize.
-	textReader := self viewFirstComponent: WsTextComponent.
-	self onClickElement: textReader do: [ self openEditor ].
-	textEditor := self viewFirstComponent: WsTextFieldWithButtonsComponent.
-	textEditor
-		cancelBlock: [ self cancelEdit ];
-		saveBlock: [ :newText | self saveEdit: newText ].
-	self closeEditor.
-	self model: textReader model.
-	self text: self textAttribute
 ]
 
 { #category : 'accessing' }

@@ -30,6 +30,14 @@ WsComponent class >> newWhenReadyDo: aBlock [
 		yourself
 ]
 
+{ #category : 'instance creation' }
+WsComponent class >> newWhenStartedDo: aBlock [
+
+	^ self new
+		onStartedDo: aBlock;
+		yourself
+]
+
 { #category : 'demoing' }
 WsComponent class >> playground [
 
@@ -95,9 +103,8 @@ WsComponent class >> viewClass [
 
 { #category : 'initialization' }
 WsComponent >> beReady [
-	self postConnectInitialize.
-	self whenComponentReadyNotifyObservers.
 
+	view innerHTML: self shadowHtml
 ]
 
 { #category : 'initialization' }
@@ -144,21 +151,9 @@ WsComponent >> notifyComponentReadyObservers [
 ]
 
 { #category : 'initialization' }
-WsComponent >> postConnectInitialize [
-
-	^self
-]
-
-{ #category : 'initialization' }
-WsComponent >> preConnectInitialize [
-
-	view innerHTML: self shadowHtml
-]
-
-{ #category : 'initialization' }
 WsComponent >> reset [
-	self preConnectInitialize.
-	self onConnectedDo: [ self beReady ].
+	self beReady.
+	self onConnectedDo: [ self startThenNotifyObservers ].
 
 ]
 
@@ -182,6 +177,19 @@ WsComponent >> shadowEncapsulationMode [
 WsComponent >> shadowHtml [
 
 	^ self class shadowHtml
+]
+
+{ #category : 'initialization' }
+WsComponent >> start [
+
+	^self
+]
+
+{ #category : 'initialization' }
+WsComponent >> startThenNotifyObservers [
+	self start.
+	self whenStartedNotifyObservers.
+
 ]
 
 { #category : 'accessing' }
@@ -214,6 +222,6 @@ WsComponent >> viewFirstElementByTag: tagName [
 ]
 
 { #category : 'observing lifecycle' }
-WsComponent >> whenComponentReadyNotifyObservers [
+WsComponent >> whenStartedNotifyObservers [
 	self setIsComponentReady 
 ]

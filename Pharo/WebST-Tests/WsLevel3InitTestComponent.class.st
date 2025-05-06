@@ -17,13 +17,13 @@ WsLevel3InitTestComponent class >> viewClass [
 	^WsLevel3InitTestView 
 ]
 
+{ #category : 'initialization' }
+WsLevel3InitTestComponent >> beReady [ 
+	super beReady.
+	level2Subcomponent := self viewFirstComponent: WsLevel2InitTestComponent 
+]
+
 { #category : 'accessing' }
 WsLevel3InitTestComponent >> level2Subcomponent [
 	^level2Subcomponent 
-]
-
-{ #category : 'initialization' }
-WsLevel3InitTestComponent >> preConnectInitialize [ 
-	super preConnectInitialize.
-	level2Subcomponent := self viewFirstComponent: WsLevel2InitTestComponent 
 ]

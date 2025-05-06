@@ -36,6 +36,15 @@ WsIconTextComponent class >> viewClass [
 	^WsIconTextRowView 
 ]
 
+{ #category : 'initialization' }
+WsIconTextComponent >> beReady [
+
+	super beReady.
+	controller := WsIconTextRowController container: view.
+	self icon: self iconAttribute.
+	self text: self textAttribute.
+]
+
 { #category : 'accessing' }
 WsIconTextComponent >> controller [
 	^controller
@@ -65,15 +74,6 @@ WsIconTextComponent >> iconAttribute [
 	^ self
 		  dataAttributeAt: #icon
 		  ifAbsent: [ self defaultIconAttribute ]
-]
-
-{ #category : 'initialization' }
-WsIconTextComponent >> preConnectInitialize [
-
-	super preConnectInitialize.
-	controller := WsIconTextRowController container: view.
-	self icon: self iconAttribute.
-	self text: self textAttribute.
 ]
 
 { #category : 'accessing' }

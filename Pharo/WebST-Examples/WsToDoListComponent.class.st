@@ -36,6 +36,17 @@ WsToDoListComponent class >> viewClass [
 	^ WsToDoListView
 ]
 
+{ #category : 'initialization' }
+WsToDoListComponent >> beReady [
+
+	| addButton |
+	super beReady.
+	headingDisplay := self viewFirstElementByCssClass: 'headingDisplay'.
+	addButton := self viewFirstElementByCssClass: 'addItemButton'.
+	self onClickElement: addButton do: [ self addItem ].
+	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ].
+]
+
 { #category : 'actions' }
 WsToDoListComponent >> displayHeading: aString [
 
@@ -53,15 +64,4 @@ WsToDoListComponent >> displayModel [
 WsToDoListComponent >> heading: newTitle [
 
 	model heading: newTitle
-]
-
-{ #category : 'initialization' }
-WsToDoListComponent >> preConnectInitialize [
-
-	| addButton |
-	super preConnectInitialize.
-	headingDisplay := self viewFirstElementByCssClass: 'headingDisplay'.
-	addButton := self viewFirstElementByCssClass: 'addItemButton'.
-	self onClickElement: addButton do: [ self addItem ].
-	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ].
 ]

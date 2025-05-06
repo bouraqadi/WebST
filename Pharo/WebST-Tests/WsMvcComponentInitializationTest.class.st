@@ -22,13 +22,13 @@ WsMvcComponentInitializationTest >> assertComponent [
 
 	self assert: component isConnected.
 	self assert: component isPostConnectInitializeDone.
-	self assert: component postConnectInitCount equals: 1.
-	self assert: component preConnectInitCount equals: 1.
+	self assert: component startCount equals: 1.
+	self assert: component readyCount equals: 1.
 	component reset.
 	self assert: component isConnected.
 	self assert: component isPostConnectInitializeDone.
-	self assert: component postConnectInitCount equals: 1.
-	self assert: component preConnectInitCount equals: 1.
+	self assert: component startCount equals: 1.
+	self assert: component readyCount equals: 1.
 	
 ]
 

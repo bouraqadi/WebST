@@ -52,6 +52,15 @@ WsListComponent >> addItemModels: itemModels [
 	model addAll: itemModels 
 ]
 
+{ #category : 'initialization' }
+WsListComponent >> beReady [
+
+	super beReady.
+	listView := view querySelector: 'ul'.
+	model -@ #addPort => [ : itemModel : itemIndex | self handleAdd: itemModel at: itemIndex].
+	self displayModel
+]
+
 { #category : 'actions' }
 WsListComponent >> displayItemModel: itemModel [
 
@@ -94,13 +103,4 @@ WsListComponent >> newItemComponent: itemModel [
 WsListComponent >> newItemModel [
 
 	^ self itemModelClass new
-]
-
-{ #category : 'initialization' }
-WsListComponent >> preConnectInitialize [
-
-	super preConnectInitialize.
-	listView := view querySelector: 'ul'.
-	model -@ #addPort => [ : itemModel : itemIndex | self handleAdd: itemModel at: itemIndex].
-	self displayModel
 ]

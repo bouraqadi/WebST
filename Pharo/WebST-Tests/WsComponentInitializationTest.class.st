@@ -14,29 +14,7 @@ WsComponentInitializationTest class >> componentClass [
 ]
 
 { #category : 'tests' }
-WsComponentInitializationTest >> assertRegistriesMatchCollection: expectedList [
-
-	self
-		assertRegistry: self component preConnectRegistry
-		matchesCollection: expectedList.
-	self
-		assertRegistry: self component postConnectRegistry
-		matchesCollection: expectedList.
-
-]
-
-{ #category : 'tests' }
-WsComponentInitializationTest >> assertRegistry: registry matchesCollection: expectedList [
-
-	self deny: registry isNil.
-	self assert: registry size equals: 3.
-	self
-		assertCollection: registry asLocalObject asArray
-		equals: expectedList
-]
-
-{ #category : 'tests' }
-WsComponentInitializationTest >> testSubomponentInitializedBeforeComposite [
+WsComponentInitializationTest >> assertRegistriesMatchInitializationSequence [
 
 	| level3Component level2Component level1Component expectedList |
 	level3Component := self component.
@@ -46,8 +24,29 @@ WsComponentInitializationTest >> testSubomponentInitializedBeforeComposite [
 		                level1Component.
 		                level2Component.
 		                level3Component }.
-	self assertRegistriesMatchCollection: expectedList.
+	self
+		assertRegistry: self component readyRegistry
+		matchesCollection: expectedList.
+	self
+		assertRegistry: self component startRegistry
+		matchesCollection: expectedList
+]
+
+{ #category : 'tests' }
+WsComponentInitializationTest >> assertRegistry: registry matchesCollection: expectedList [
+
+	self deny: registry isNil.
+	self assert: registry size equals: 3.
+	self
+		assertCollection: registry asLocalObject
+		equals: expectedList
+]
+
+{ #category : 'tests' }
+WsComponentInitializationTest >> testSubomponentInitializedBeforeComposite [
+
+	self assertRegistriesMatchInitializationSequence.
 	self component reset.
-	self assertRegistriesMatchCollection: expectedList.
+	self assertRegistriesMatchInitializationSequence.
 
 ]

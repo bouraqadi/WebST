@@ -35,6 +35,23 @@ WsCounterComponent class >> viewClass [
 ]
 
 { #category : 'initialization' }
+WsCounterComponent >> beReady [
+
+	| incrementButton decrementButton resetButton |
+	super beReady.
+	display := view firstElementByCssClass: 'display'.
+	incrementButton := view firstElementByCssClass: 'increment'.
+	self onClickElement: incrementButton do: [ self increment ].
+	decrementButton := view firstElementByCssClass: 'decrement'.
+	self onClickElement: decrementButton do: [ self decrement ].
+	resetButton := view firstElementByCssClass: 'reset'.
+	self onClickElement: resetButton do: [ self resetCount ].
+	model -@ #countPort => [ :newCount |
+		self displayCount: newCount ].
+	self updateDisplay
+]
+
+{ #category : 'initialization' }
 WsCounterComponent >> count: anInteger [
 
 	model count: anInteger
@@ -56,23 +73,6 @@ WsCounterComponent >> displayCount: newCount [
 WsCounterComponent >> increment [
 
 	model increment
-]
-
-{ #category : 'initialization' }
-WsCounterComponent >> preConnectInitialize [
-
-	| incrementButton decrementButton resetButton |
-	super preConnectInitialize.
-	display := view firstElementByCssClass: 'display'.
-	incrementButton := view firstElementByCssClass: 'increment'.
-	self onClickElement: incrementButton do: [ self increment ].
-	decrementButton := view firstElementByCssClass: 'decrement'.
-	self onClickElement: decrementButton do: [ self decrement ].
-	resetButton := view firstElementByCssClass: 'reset'.
-	self onClickElement: resetButton do: [ self resetCount ].
-	model -@ #countPort => [ :newCount |
-		self displayCount: newCount ].
-	self updateDisplay
 ]
 
 { #category : 'actions' }
