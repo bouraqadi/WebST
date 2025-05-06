@@ -158,9 +158,15 @@ WsComponent >> isStarted [
 ]
 
 { #category : 'observing lifecycle' }
-WsComponent >> notifyComponentReadyObservers [
+WsComponent >> notifyIsReadyObservers [
 	"isComponentReadyPort ifNil: [ ^self ].
 	isComponentReadyPort notifyWith: self."
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> notifyIsStartedObservers [
+	isStartedPort ifNil: [ ^self ].
+	isStartedPort notify "notifyWith: self."
 ]
 
 { #category : 'initialization' }
@@ -197,7 +203,7 @@ WsComponent >> startThenNotifyObservers [
 
 	self start.
 	isStarted := true.
-	self notifyComponentReadyObservers
+	self notifyIsStartedObservers
 ]
 
 { #category : 'accessing' }

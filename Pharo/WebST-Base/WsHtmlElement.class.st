@@ -1,5 +1,9 @@
 "
-Placeholder for JS class HTMLElement. See class-side method #javascriptName
+Class Extension for JS class HTMLElement (See class-side method #javascriptName).
+
+Provides
+- Utility methods to handle CSS. They rely on #style read-only IV in JavaScript. #style, declared in this calss since Smalltalk requires declaring IVs as opposite to JS.
+- support for ready and start lifecycle states. This is because sometimes web browsers create custom HTML elements as instance of HTMLElement and attach them to the actual class later. Meanwhile, component users should be able to check state and subscribe to lifecycle events using methods #onReadyDo: and #onStartedDo:. These rely on IVs isReadyPort and isStartedPort.
 
 "
 Class {
@@ -7,8 +11,8 @@ Class {
 	#superclass : 'WsNode',
 	#instVars : [
 		'style',
-		'preConnectInitializePort',
-		'postConnectInitializePort'
+		'isReadyPort',
+		'isStartedPort'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -206,6 +210,11 @@ WsHtmlElement >> isReady [
 	^false
 ]
 
+{ #category : 'observing lifecycle' }
+WsHtmlElement >> isReadyPort [
+	^isReadyPort ifNil: [ isReadyPort := HyCollectionPort notificationSelector: #cull: ]
+]
+
 { #category : 'accessing visibility' }
 WsHtmlElement >> isShowing [
 	^self isHidden not
@@ -218,14 +227,19 @@ WsHtmlElement >> isStarted [
 ]
 
 { #category : 'observing lifecycle' }
+WsHtmlElement >> isStartedPort [
+	^isStartedPort ifNil: [ isStartedPort := HyCollectionPort notificationSelector: #cull: ]
+]
+
+{ #category : 'observing lifecycle' }
 WsHtmlElement >> onReadyDo: aBlock [
 	"Request to perform aBlock when component finished preConnectinitialize"
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
 	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"
 	
-"	self preConnectInitializePort => aBlock.
-	self isPreConnectInitializeDone ifTrue: [ ^aBlock cull: self ].
-"
+	self isReadyPort => aBlock.
+	self isReady ifTrue: [ ^aBlock cull: self ].
+
 ]
 
 { #category : 'observing lifecycle' }
@@ -234,19 +248,9 @@ WsHtmlElement >> onStartedDo: aBlock [
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
 	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"
 	
-"	self postConnectInitializePort => aBlock.
-	self isPostConnectInitializeDone ifTrue: [ aBlock cull: self ].
-"
-]
+	self isStartedPort => aBlock.
+	self isStarted ifTrue: [ aBlock cull: self ].
 
-{ #category : 'observing lifecycle' }
-WsHtmlElement >> postConnectInitializePort [
-	"^postConnectInitializePort ifNil: [ postConnectInitializePort := HyCollectionPort notificationSelector: #cull: ]"
-]
-
-{ #category : 'observing lifecycle' }
-WsHtmlElement >> preConnectInitializePort [
-	"^preConnectInitializePort ifNil: [ preConnectInitializePort := HyCollectionPort notificationSelector: #cull: ]"
 ]
 
 { #category : 'converting' }
