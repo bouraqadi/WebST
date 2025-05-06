@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
 		'view',
-		'isPostConnectInitializeDone'
+		'isStarted',
+		'isReady'
 	],
 	#pools : [
 		'PjBrowserGlobals'
@@ -108,6 +109,13 @@ WsComponent >> beReady [
 ]
 
 { #category : 'initialization' }
+WsComponent >> beReadyThenNotifyObservers [
+
+	self beReady.
+	isReady := true.
+]
+
+{ #category : 'initialization' }
 WsComponent >> connectedCallback [
 	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
 	"See https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks"
@@ -140,8 +148,13 @@ WsComponent >> installConnectedNotificationTrigger [
 ]
 
 { #category : 'observing lifecycle' }
-WsComponent >> isPostConnectInitializeDone [
-	^isPostConnectInitializeDone ifNil: [ isPostConnectInitializeDone := false ]
+WsComponent >> isReady [
+	^isReady ifNil: [ isReady := false ]
+]
+
+{ #category : 'observing lifecycle' }
+WsComponent >> isStarted [
+	^isStarted ifNil: [ isStarted := false ]
 ]
 
 { #category : 'observing lifecycle' }
@@ -152,15 +165,9 @@ WsComponent >> notifyComponentReadyObservers [
 
 { #category : 'initialization' }
 WsComponent >> reset [
-	self beReady.
+	self beReadyThenNotifyObservers.
 	self onConnectedDo: [ self startThenNotifyObservers ].
 
-]
-
-{ #category : 'observing lifecycle' }
-WsComponent >> setIsComponentReady [
-	isPostConnectInitializeDone := true.
-	self notifyComponentReadyObservers 
 ]
 
 { #category : 'initialization' }
@@ -187,9 +194,10 @@ WsComponent >> start [
 
 { #category : 'initialization' }
 WsComponent >> startThenNotifyObservers [
-	self start.
-	self whenStartedNotifyObservers.
 
+	self start.
+	isStarted := true.
+	self notifyComponentReadyObservers
 ]
 
 { #category : 'accessing' }
@@ -219,9 +227,4 @@ WsComponent >> viewFirstElementByCssClass: cssClassName [
 WsComponent >> viewFirstElementByTag: tagName [
 
 	^ view firstElementByTag: tagName
-]
-
-{ #category : 'observing lifecycle' }
-WsComponent >> whenStartedNotifyObservers [
-	self setIsComponentReady 
 ]

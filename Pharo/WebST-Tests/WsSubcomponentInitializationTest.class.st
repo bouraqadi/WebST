@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsComponentInitializationTest',
+	#name : 'WsSubcomponentInitializationTest',
 	#superclass : 'PjWebAppTestCase',
 	#traits : 'WsTSingleComponentTest',
 	#classTraits : 'WsTSingleComponentTest classTrait',
@@ -9,21 +9,21 @@ Class {
 }
 
 { #category : 'accessing' }
-WsComponentInitializationTest class >> componentClass [
-	^WsLevel3InitTestComponent 
+WsSubcomponentInitializationTest class >> componentClass [
+	^WsOuterCompositeForInitTest 
 ]
 
 { #category : 'tests' }
-WsComponentInitializationTest >> assertRegistriesMatchInitializationSequence [
+WsSubcomponentInitializationTest >> assertRegistriesMatchInitializationSequence [
 
-	| level3Component level2Component level1Component expectedList |
-	level3Component := self component.
-	level2Component := level3Component level2Subcomponent.
-	level1Component := level2Component level1Subcomponent.
+	| outerComposite middleComposite basicComponent expectedList |
+	outerComposite := self component.
+	middleComposite := outerComposite middleComposite.
+	basicComponent := middleComposite basicComponent.
 	expectedList := {
-		                level1Component.
-		                level2Component.
-		                level3Component }.
+		                basicComponent.
+		                middleComposite.
+		                outerComposite }.
 	self
 		assertRegistry: self component readyRegistry
 		matchesCollection: expectedList.
@@ -33,7 +33,7 @@ WsComponentInitializationTest >> assertRegistriesMatchInitializationSequence [
 ]
 
 { #category : 'tests' }
-WsComponentInitializationTest >> assertRegistry: registry matchesCollection: expectedList [
+WsSubcomponentInitializationTest >> assertRegistry: registry matchesCollection: expectedList [
 
 	self deny: registry isNil.
 	self assert: registry size equals: 3.
@@ -43,7 +43,7 @@ WsComponentInitializationTest >> assertRegistry: registry matchesCollection: exp
 ]
 
 { #category : 'tests' }
-WsComponentInitializationTest >> testSubomponentInitializedBeforeComposite [
+WsSubcomponentInitializationTest >> testSubomponentInitializedBeforeComposite [
 
 	self assertRegistriesMatchInitializationSequence.
 	self component reset.

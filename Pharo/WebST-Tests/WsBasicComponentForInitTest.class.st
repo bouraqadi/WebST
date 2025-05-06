@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsInitTestComponent',
+	#name : 'WsBasicComponentForInitTest',
 	#superclass : 'WsComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
@@ -9,42 +9,42 @@ Class {
 }
 
 { #category : 'accessing' }
-WsInitTestComponent class >> viewClass [
+WsBasicComponentForInitTest class >> viewClass [
 	<pharoJsSkip>
 	^WsInitTestView 
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> beReady [ 
+WsBasicComponentForInitTest >> beReady [ 
 	super beReady.
 	self readyRegistry add: self
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> readyRegistry [
+WsBasicComponentForInitTest >> readyRegistry [
 	^self registryAt: #readyRegistry
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> registryAt: aSymbol [
+WsBasicComponentForInitTest >> registryAt: aSymbol [
 	^window at: aSymbol ifAbsent: [window at: aSymbol put: OrderedCollection new].
 
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> reset [
+WsBasicComponentForInitTest >> reset [
 	self readyRegistry removeAll.
 	self startRegistry removeAll. 
 	super reset.
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> start [ 
+WsBasicComponentForInitTest >> start [ 
 	super start.
 	self startRegistry add: self
 ]
 
 { #category : 'initialization' }
-WsInitTestComponent >> startRegistry [
+WsBasicComponentForInitTest >> startRegistry [
 	^self registryAt: #startRegistry
 ]

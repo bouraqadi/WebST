@@ -120,7 +120,8 @@ WsNode >> notifyDomConnectionObservers [
 WsNode >> onConnectedDo: aBlock [
 	"Request to perform aBlock when connected to the DOM tree"
 	
-	self isConnected ifTrue: [ ^aBlock value ].
 	self isConnectedPort => aBlock.
-	self installConnectedNotificationTrigger
+	self installConnectedNotificationTrigger.
+	self isConnected ifTrue: [ ^aBlock value ].
+
 ]

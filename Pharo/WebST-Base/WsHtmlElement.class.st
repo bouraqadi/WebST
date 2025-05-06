@@ -202,12 +202,7 @@ WsHtmlElement >> isHidden [
 ]
 
 { #category : 'observing lifecycle' }
-WsHtmlElement >> isPostConnectInitializeDone [
-	^false
-]
-
-{ #category : 'observing lifecycle' }
-WsHtmlElement >> isPreConnectInitializeDone [
+WsHtmlElement >> isReady [
 	^false
 ]
 
@@ -218,7 +213,12 @@ WsHtmlElement >> isShowing [
 ]
 
 { #category : 'observing lifecycle' }
-WsHtmlElement >> onCreatedDo: aBlock [
+WsHtmlElement >> isStarted [
+	^false
+]
+
+{ #category : 'observing lifecycle' }
+WsHtmlElement >> onReadyDo: aBlock [
 	"Request to perform aBlock when component finished preConnectinitialize"
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
 	The HTMLElements are migrated to become instances of the appropraite component class, when the missing component class is loaded and registred, i.e. linked to the custom tag"

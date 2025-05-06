@@ -15,6 +15,6 @@ WsLevel2InitTestView >> levelName [
 WsLevel2InitTestView >> renderOuterHtmlOn: html [
 
 	super renderOuterHtmlOn: html.
-	html render: WsInitTestComponent
+	html render: WsBasicComponentForInitTest
 
 ]

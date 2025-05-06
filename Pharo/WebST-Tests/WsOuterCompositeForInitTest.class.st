@@ -1,10 +1,10 @@
 Class {
-	#name : 'WsLevel3InitTestComponent',
-	#superclass : 'WsInitTestComponent',
+	#name : 'WsOuterCompositeForInitTest',
+	#superclass : 'WsBasicComponentForInitTest',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
-		'level2Subcomponent'
+		'middleComposite'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -12,18 +12,18 @@ Class {
 }
 
 { #category : 'accessing' }
-WsLevel3InitTestComponent class >> viewClass [
+WsOuterCompositeForInitTest class >> viewClass [
 	<pharoJsSkip>
 	^WsLevel3InitTestView 
 ]
 
 { #category : 'initialization' }
-WsLevel3InitTestComponent >> beReady [ 
+WsOuterCompositeForInitTest >> beReady [ 
 	super beReady.
-	level2Subcomponent := self viewFirstComponent: WsLevel2InitTestComponent 
+	middleComposite := self viewFirstComponent: WsMiddleCompositeForInitTest 
 ]
 
 { #category : 'accessing' }
-WsLevel3InitTestComponent >> level2Subcomponent [
-	^level2Subcomponent 
+WsOuterCompositeForInitTest >> middleComposite [
+	^middleComposite 
 ]
