@@ -1,6 +1,11 @@
 Class {
 	#name : 'WsComponentLifecycleTest',
 	#superclass : 'PjWebAppTestCase',
+	#instVars : [
+		'component',
+		'readyCounter',
+		'startCounter'
+	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
 	#tag : 'Initialization'
@@ -13,69 +18,117 @@ WsComponentLifecycleTest class >> appClass [
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> newComponent [
-	^self evalBlock: [ WsMinimalComponent new ].
+	^self evalBlock: [ WsLifecycleTestComponent new ].
+
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> setUp [
+	super setUp.
+	component := self newComponent.
+	readyCounter := self evalBlock: [ PjCounter new].
+	startCounter := self evalBlock: [ PjCounter new].
+
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> subscribeObservers [
+	self evalBlock: [ 
+		component onReadyDo: [:readyValue| 
+			window at: #readyValue put: readyValue.
+			readyCounter increment].
+		component onStartedDo: [: startValue |
+			window at: #startValue put: startValue.
+			startCounter increment]
+	].	
+
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> testComponentAttachedToDomBeforeReady [
+	self deny: component isReady.
+	self deny: component isStarted.
+	document body append: component.
+	self deny: component isReady.
+	self deny: component isStarted.
+	component basicSetIsReady.
+	self waitUntil: [component isReady].
+	self assert: component isReady.
 
 ]
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> testComponentIsFirstReadyThenStarted [
 
-	| newComponent registry |
-	newComponent := self newComponent.
-	self assert: newComponent isReady.
-	registry := self evalBlock: [
-		            window at: #registry put: OrderedCollection new ].
-	self evalBlock: [
-		newComponent onStartedDo: [ registry add: #started ].
-		newComponent onReadyDo: [ registry add: #ready ] ].
-	self deny: newComponent isStarted.
-	document body append: newComponent.
-	self waitUntil: [ newComponent isStarted ].
-	self assert: newComponent isReady.
-	self
-		assertCollection: registry asLocalObject
-		equals: #( ready started )
-]
+	self deny: component isReady.
+	self deny: component isStarted.
+	component basicSetIsReady.
+	self waitUntil: [component isReady].
+	self deny: component isStarted.
+	document body append: component.
+	self waitUntil: [ component isStarted ].
+	self assert: component isReady.
 
-{ #category : 'tests' }
-WsComponentLifecycleTest >> testComponentPassedToNotificationSubscribedAfterReady [
-	| newComponent |
-	newComponent := self evalBlock: [WsMinimalComponent new].
-	document body append: newComponent.
-	self waitUntil: [ newComponent isStarted ].
-	newComponent onStartedDo: [: someValue | window at: #passedValue put: someValue  ].
-	self assert: (window at: #passedValue) identicalTo: newComponent 
-]
-
-{ #category : 'tests' }
-WsComponentLifecycleTest >> testComponentPassedToNotificationSubscribedBeforeReady [
-	| newComponent |
-	newComponent := self evalBlock: [WsMinimalComponent newWhenStartedDo: [: someValue | window at: #passedValue put: someValue ]].
-	document body prepend: newComponent.
-	self waitUntil: [ newComponent isStarted ].
-	self assert: (window at: #passedValue) identicalTo: newComponent 
 ]
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> testObserversSubscribedAfterReady [
-	| newComponent jsCounters counters |
-	newComponent := self newComponent.
-	document body prepend: newComponent.
-	jsCounters := self evalBlock: [ {PjCounter new. PjCounter new} ].
-	self evalBlock: [ jsCounters do: [: aCounter | newComponent onStartedDo: [aCounter increment]] ].
-	counters := jsCounters asLocalObject. "Array with proxies to JS counters for easy/faster testing"
-	self waitWhile: [ counters anySatisfy: [: aCounter | aCounter count = 0]].
-	self assert: (counters allSatisfy: [: aCounter | aCounter count = 1])
+	self assert: (window at: #readyValue) isNil.
+	self assert: readyCounter count equals: 0.
+	self assert: (window at: #startValue) isNil.
+	self assert: startCounter count equals: 0.
+	component basicSetIsReady.
+	self waitUntil: [ component isReady ].
+	self subscribeObservers.
+	self assert: (window at: #readyValue) identicalTo: component.
+	self assert: readyCounter count equals: 1.
+	self assert: (window at: #startValue) isNil.
+	self assert: startCounter count equals: 0.
+	document body append: component.
+	self waitUntil: [ component isStarted ].
+	self assert: (window at: #readyValue) identicalTo: component.
+	self assert: readyCounter count equals: 1.
+	self assert: (window at: #startValue) identicalTo: component.
+	self assert: startCounter count equals: 1.
+
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> testObserversSubscribedAfterStarted [
+	self assert: (window at: #readyValue) isNil.
+	self assert: readyCounter count equals: 0.
+	self assert: (window at: #startValue) isNil.
+	self assert: startCounter count equals: 0.
+	component basicSetIsReady.
+	self waitUntil: [ component isReady ].
+	document body append: component.
+	self waitUntil: [ component isStarted ].	
+	self subscribeObservers.
+	self assert: (window at: #readyValue) identicalTo: component.
+	self assert: readyCounter count equals: 1.
+	self assert: (window at: #startValue) identicalTo: component.
+	self assert: startCounter count equals: 1.
+
 ]
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> testObserversSubscribedBeforeReady [
-	| newComponent jsCounters counters |
-	newComponent := self newComponent.
-	jsCounters := self evalBlock: [ {PjCounter new. PjCounter new} ].
-	self evalBlock: [ jsCounters do: [: aCounter | newComponent onStartedDo: [aCounter increment]] ].
-	counters := jsCounters asLocalObject. "Array with proxies to JS counters for easy/faster testing"
-	document body prepend: newComponent.
-	self waitWhile: [ counters anySatisfy: [: aCounter | aCounter count = 0]].
-	self assert: (counters allSatisfy: [: aCounter | aCounter count = 1])
+	self assert: (window at: #readyValue) isNil.
+	self assert: readyCounter count equals: 0.
+	self assert: (window at: #startValue) isNil.
+	self assert: startCounter count equals: 0.
+	self subscribeObservers.
+	component basicSetIsReady.
+	self waitUntil: [ component isReady ].
+	self assert: (window at: #readyValue) identicalTo: component.
+	self assert: readyCounter count equals: 1.
+	self assert: (window at: #startValue) isNil.
+	self assert: startCounter count equals: 0.
+	document body append: component.
+	self waitUntil: [ component isStarted ].
+	self assert: (window at: #readyValue) identicalTo: component.
+	self assert: readyCounter count equals: 1.
+	self assert: (window at: #startValue) identicalTo: component.
+	self assert: startCounter count equals: 1.
+
 ]

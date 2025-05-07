@@ -108,14 +108,14 @@ WsComponent >> beReady [
 	view innerHTML: self shadowHtml
 ]
 
-{ #category : 'initialization' }
+{ #category : 'lifecycle' }
 WsComponent >> beReadyThenNotifyObservers [
 
 	self beReady.
-	isReady := true.
+	self setIsReady
 ]
 
-{ #category : 'initialization' }
+{ #category : 'lifecycle' }
 WsComponent >> connectedCallback [
 	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
 	"See https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks"
@@ -147,26 +147,26 @@ WsComponent >> installConnectedNotificationTrigger [
 	^self
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsComponent >> isReady [
 	^isReady ifNil: [ isReady := false ]
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsComponent >> isStarted [
 	^isStarted ifNil: [ isStarted := false ]
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsComponent >> notifyIsReadyObservers [
-	"isComponentReadyPort ifNil: [ ^self ].
-	isComponentReadyPort notifyWith: self."
+	isReadyPort ifNil: [ ^self ].
+	isReadyPort notifyWith: self.
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsComponent >> notifyIsStartedObservers [
 	isStartedPort ifNil: [ ^self ].
-	isStartedPort notify "notifyWith: self."
+	isStartedPort notifyWith: self.
 ]
 
 { #category : 'initialization' }
@@ -174,6 +174,20 @@ WsComponent >> reset [
 	self beReadyThenNotifyObservers.
 	self onConnectedDo: [ self startThenNotifyObservers ].
 
+]
+
+{ #category : 'lifecycle' }
+WsComponent >> setIsReady [
+
+	isReady := true.
+	self notifyIsReadyObservers 
+]
+
+{ #category : 'lifecycle' }
+WsComponent >> setIsStarted [
+
+	isStarted := true.
+	self notifyIsStartedObservers
 ]
 
 { #category : 'initialization' }
@@ -198,12 +212,13 @@ WsComponent >> start [
 	^self
 ]
 
-{ #category : 'initialization' }
+{ #category : 'lifecycle' }
 WsComponent >> startThenNotifyObservers [
 
-	self start.
-	isStarted := true.
-	self notifyIsStartedObservers
+	self onReadyDo: [
+		self start.
+		self setIsStarted].
+
 ]
 
 { #category : 'accessing' }
