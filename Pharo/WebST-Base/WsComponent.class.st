@@ -249,3 +249,13 @@ WsComponent >> viewFirstElementByTag: tagName [
 
 	^ view firstElementByTag: tagName
 ]
+
+{ #category : 'lifecycle' }
+WsComponent >> when: otherComponent isReadyDo: aBlock [ 
+	^self
+]
+
+{ #category : 'lifecycle' }
+WsComponent >> when: otherComponent isStartedDo: aBlock [ 
+	^self
+]
