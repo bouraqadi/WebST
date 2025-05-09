@@ -1,18 +1,18 @@
 Class {
-	#name : 'WsLevel2InitTestView',
-	#superclass : 'WsInitTestView',
+	#name : 'WsMiddleViewForInitTest',
+	#superclass : 'WsBasicViewForInitTest',
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
 	#tag : 'Initialization'
 }
 
 { #category : 'rendering' }
-WsLevel2InitTestView >> levelName [ 
+WsMiddleViewForInitTest >> levelName [ 
 	^'Level 2'
 ]
 
 { #category : 'rendering' }
-WsLevel2InitTestView >> renderOuterHtmlOn: html [
+WsMiddleViewForInitTest >> renderOuterHtmlOn: html [
 
 	super renderOuterHtmlOn: html.
 	html render: WsBasicComponentForInitTest

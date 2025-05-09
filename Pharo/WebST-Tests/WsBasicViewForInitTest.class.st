@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsInitTestView',
+	#name : 'WsBasicViewForInitTest',
 	#superclass : 'WsView',
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -7,12 +7,12 @@ Class {
 }
 
 { #category : 'rendering' }
-WsInitTestView >> levelName [
+WsBasicViewForInitTest >> levelName [
 	^'Level 1'
 ]
 
 { #category : 'rendering' }
-WsInitTestView >> renderOuterHtmlOn: html [
+WsBasicViewForInitTest >> renderOuterHtmlOn: html [
 
 	html paragraph: self levelName
 ]

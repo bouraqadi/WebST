@@ -11,7 +11,7 @@ Class {
 { #category : 'accessing' }
 WsBasicComponentForInitTest class >> viewClass [
 	<pharoJsSkip>
-	^WsInitTestView 
+	^WsBasicViewForInitTest 
 ]
 
 { #category : 'initialization' }

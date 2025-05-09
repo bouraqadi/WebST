@@ -14,7 +14,7 @@ Class {
 { #category : 'accessing' }
 WsMiddleCompositeForInitTest class >> viewClass [
 	<pharoJsSkip>
-	^WsLevel2InitTestView 
+	^WsMiddleViewForInitTest 
 ]
 
 { #category : 'accessing' }
