@@ -18,7 +18,7 @@ WsComponentLifecycleTest class >> appClass [
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> newComponent [
-	^self evalBlock: [ WsLifecycleTestComponent new ].
+	^self evalBlock: [ WsComponentForLifecycleTest new ].
 
 ]
 
@@ -51,8 +51,11 @@ WsComponentLifecycleTest >> testComponentAttachedToDomBeforeReady [
 	document body append: component.
 	self deny: component isReady.
 	self deny: component isStarted.
-	component basicSetIsReady.
+	component setCanBeReady.
 	self waitUntil: [component isReady].
+	self deny: component isStarted.
+	component setCanStart.
+	self waitUntil: [component isStarted].
 	self assert: component isReady.
 
 ]
@@ -60,9 +63,10 @@ WsComponentLifecycleTest >> testComponentAttachedToDomBeforeReady [
 { #category : 'tests' }
 WsComponentLifecycleTest >> testComponentIsFirstReadyThenStarted [
 
+	component setCanStart.
 	self deny: component isReady.
 	self deny: component isStarted.
-	component basicSetIsReady.
+	component setCanBeReady.
 	self waitUntil: [component isReady].
 	self deny: component isStarted.
 	document body append: component.
@@ -73,11 +77,12 @@ WsComponentLifecycleTest >> testComponentIsFirstReadyThenStarted [
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> testObserversSubscribedAfterReady [
+
 	self assert: (window at: #readyValue) isNil.
 	self assert: readyCounter count equals: 0.
 	self assert: (window at: #startValue) isNil.
 	self assert: startCounter count equals: 0.
-	component basicSetIsReady.
+	component setCanBeReadyAndStart.
 	self waitUntil: [ component isReady ].
 	self subscribeObservers.
 	self assert: (window at: #readyValue) identicalTo: component.
@@ -89,36 +94,36 @@ WsComponentLifecycleTest >> testObserversSubscribedAfterReady [
 	self assert: (window at: #readyValue) identicalTo: component.
 	self assert: readyCounter count equals: 1.
 	self assert: (window at: #startValue) identicalTo: component.
-	self assert: startCounter count equals: 1.
-
+	self assert: startCounter count equals: 1
 ]
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> testObserversSubscribedAfterStarted [
+
 	self assert: (window at: #readyValue) isNil.
 	self assert: readyCounter count equals: 0.
 	self assert: (window at: #startValue) isNil.
 	self assert: startCounter count equals: 0.
-	component basicSetIsReady.
+	component setCanBeReadyAndStart.
 	self waitUntil: [ component isReady ].
 	document body append: component.
-	self waitUntil: [ component isStarted ].	
+	self waitUntil: [ component isStarted ].
 	self subscribeObservers.
 	self assert: (window at: #readyValue) identicalTo: component.
 	self assert: readyCounter count equals: 1.
 	self assert: (window at: #startValue) identicalTo: component.
-	self assert: startCounter count equals: 1.
-
+	self assert: startCounter count equals: 1
 ]
 
 { #category : 'tests' }
 WsComponentLifecycleTest >> testObserversSubscribedBeforeReady [
+
 	self assert: (window at: #readyValue) isNil.
 	self assert: readyCounter count equals: 0.
 	self assert: (window at: #startValue) isNil.
 	self assert: startCounter count equals: 0.
 	self subscribeObservers.
-	component basicSetIsReady.
+	component setCanBeReadyAndStart.
 	self waitUntil: [ component isReady ].
 	self assert: (window at: #readyValue) identicalTo: component.
 	self assert: readyCounter count equals: 1.
@@ -129,6 +134,5 @@ WsComponentLifecycleTest >> testObserversSubscribedBeforeReady [
 	self assert: (window at: #readyValue) identicalTo: component.
 	self assert: readyCounter count equals: 1.
 	self assert: (window at: #startValue) identicalTo: component.
-	self assert: startCounter count equals: 1.
-
+	self assert: startCounter count equals: 1
 ]

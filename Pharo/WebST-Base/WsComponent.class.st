@@ -171,9 +171,10 @@ WsComponent >> notifyIsStartedObservers [
 
 { #category : 'initialization' }
 WsComponent >> reset [
-	self beReadyThenNotifyObservers.
-	self onConnectedDo: [ self startThenNotifyObservers ].
 
+	self beReadyThenNotifyObservers.
+	self onReadyDo: [
+		self onConnectedDo: [ self startThenNotifyObservers ] ] 
 ]
 
 { #category : 'lifecycle' }
@@ -215,9 +216,8 @@ WsComponent >> start [
 { #category : 'lifecycle' }
 WsComponent >> startThenNotifyObservers [
 
-	self onReadyDo: [
-		self start.
-		self setIsStarted].
+	self start.
+	self setIsStarted.
 
 ]
 
