@@ -149,6 +149,12 @@ WsComponent >> isStarted [
 	^lifecycleController isStarted
 ]
 
+{ #category : 'initialization' }
+WsComponent >> lifeCycleControllerClass [
+
+	^ WsComponentLifecycleController
+]
+
 { #category : 'lifecycle' }
 WsComponent >> notifyIsReadyObservers [
 	isReadyPort ifNil: [ ^self ].
@@ -164,8 +170,7 @@ WsComponent >> notifyIsStartedObservers [
 { #category : 'initialization' }
 WsComponent >> reset [
 
-	lifecycleController := WsComponentLifecycleController component: self.
-
+	lifecycleController := self lifeCycleControllerClass component: self
 ]
 
 { #category : 'initialization' }

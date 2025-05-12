@@ -12,7 +12,8 @@ Class {
 		'isReadyCondition',
 		'isStartedCondition',
 		'beReadyDoneKey',
-		'startDoneKey'
+		'startDoneKey',
+		'isConnected'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -28,7 +29,9 @@ WsComponentLifecycleController class >> component: aComponent [
 
 { #category : 'acting' }
 WsComponentLifecycleController >> beReady [
-	self component beReady
+	self component beReady.
+	self setBeReadyDone.
+
 ]
 
 { #category : 'accessing' }
@@ -37,11 +40,12 @@ WsComponentLifecycleController >> component [
 	^ component
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 WsComponentLifecycleController >> component: aComponent [
 
 	component := aComponent.
-	self step
+	component onConnectedDo: [ self setIsConnected ].
+
 ]
 
 { #category : 'initialization' }
@@ -63,8 +67,9 @@ WsComponentLifecycleController >> createStates [
 { #category : 'initialization' }
 WsComponentLifecycleController >> createTransitions [
 	nilComponentState transitionTo: gettingReadyState when: [ self isComponentAvailable ].
-	gettingReadyState transitionTo: waitingForConnectionState when: [ self isReady ].
-	waitingForConnectionState transitionTo: startingState when: [ self isConnected ].
+	gettingReadyState transitionTo: waitingForConnectionState when: [ self isReady "and: [ self isConnected not ]" ].
+"	gettingReadyState transitionTo: startingState when: [ self isReady and: [ self isConnected ] ].
+"	waitingForConnectionState transitionTo: startingState when: [ self isConnected ].
 	startingState transitionTo: runningState when: [ self isStarted ] 
 ]
 
@@ -74,6 +79,7 @@ WsComponentLifecycleController >> initialize [
 	super initialize.
 	isReadyCondition := WsActionTriggeringAndCondition new.
 	beReadyDoneKey := isReadyCondition addFalse.
+	isConnected := false.
 	isStartedCondition := WsActionTriggeringAndCondition new.
 	startDoneKey := isStartedCondition addFalse.	
 	automaton := SmAutomaton new.
@@ -87,6 +93,11 @@ WsComponentLifecycleController >> isComponentAvailable [
 ]
 
 { #category : 'testing' }
+WsComponentLifecycleController >> isConnected [
+	^isConnected
+]
+
+{ #category : 'testing' }
 WsComponentLifecycleController >> isReady [
 	^ isReadyCondition isTrue
 ]
@@ -97,8 +108,28 @@ WsComponentLifecycleController >> isStarted [
 ]
 
 { #category : 'acting' }
+WsComponentLifecycleController >> setBeReadyDone [
+	isReadyCondition setTrue: beReadyDoneKey.
+	self step
+]
+
+{ #category : 'acting' }
+WsComponentLifecycleController >> setIsConnected [
+	isConnected := true.
+	self step
+]
+
+{ #category : 'acting' }
+WsComponentLifecycleController >> setStartDone [
+	isStartedCondition setTrue: startDoneKey.
+	self step
+]
+
+{ #category : 'acting' }
 WsComponentLifecycleController >> start [
-	self component start
+	self component start.
+	self setStartDone
+	
 ]
 
 { #category : 'acting' }
