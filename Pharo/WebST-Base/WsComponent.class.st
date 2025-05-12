@@ -5,8 +5,7 @@ Class {
 	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
 		'view',
-		'isStarted',
-		'isReady'
+		'lifecycleController'
 	],
 	#pools : [
 		'PjBrowserGlobals'
@@ -109,13 +108,6 @@ WsComponent >> beReady [
 ]
 
 { #category : 'lifecycle' }
-WsComponent >> beReadyThenNotifyObservers [
-
-	self beReady.
-	self setIsReady
-]
-
-{ #category : 'lifecycle' }
 WsComponent >> connectedCallback [
 	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
 	"See https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks"
@@ -149,12 +141,12 @@ WsComponent >> installConnectedNotificationTrigger [
 
 { #category : 'lifecycle' }
 WsComponent >> isReady [
-	^isReady ifNil: [ isReady := false ]
+	^lifecycleController isReady
 ]
 
 { #category : 'lifecycle' }
 WsComponent >> isStarted [
-	^isStarted ifNil: [ isStarted := false ]
+	^lifecycleController isStarted
 ]
 
 { #category : 'lifecycle' }
@@ -172,23 +164,8 @@ WsComponent >> notifyIsStartedObservers [
 { #category : 'initialization' }
 WsComponent >> reset [
 
-	self beReadyThenNotifyObservers.
-	self onReadyDo: [
-		self onConnectedDo: [ self startThenNotifyObservers ] ] 
-]
+	lifecycleController := WsComponentLifecycleController component: self.
 
-{ #category : 'lifecycle' }
-WsComponent >> setIsReady [
-
-	isReady := true.
-	self notifyIsReadyObservers 
-]
-
-{ #category : 'lifecycle' }
-WsComponent >> setIsStarted [
-
-	isStarted := true.
-	self notifyIsStartedObservers
 ]
 
 { #category : 'initialization' }
@@ -211,14 +188,6 @@ WsComponent >> shadowHtml [
 WsComponent >> start [
 
 	^self
-]
-
-{ #category : 'lifecycle' }
-WsComponent >> startThenNotifyObservers [
-
-	self start.
-	self setIsStarted.
-
 ]
 
 { #category : 'accessing' }
