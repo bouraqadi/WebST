@@ -2,28 +2,30 @@ Class {
 	#name : 'WsAndCondition',
 	#superclass : 'Object',
 	#instVars : [
-		'elements'
+		'variables'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
 	#tag : 'Components'
 }
 
-{ #category : 'elements' }
+{ #category : 'variables' }
 WsAndCondition >> add: aBoolean [
 
-	elements add: aBoolean.
-	^ elements size
+	| newVariable |
+	newVariable := WsConditionVariable value: aBoolean condition: self.
+	variables add: newVariable.
+	^ newVariable
 ]
 
-{ #category : 'elements' }
+{ #category : 'variables' }
 WsAndCondition >> addFalse [
 
 	^self add: false.
 
 ]
 
-{ #category : 'elements' }
+{ #category : 'variables' }
 WsAndCondition >> addTrue [
 
 	^ self add: true
@@ -44,7 +46,7 @@ WsAndCondition >> ifTrueDo: aBlock [
 { #category : 'initialization' }
 WsAndCondition >> initialize [ 
 	super initialize.
-	elements := OrderedCollection new
+	variables := Set new
 ]
 
 { #category : 'testing' }
@@ -57,20 +59,25 @@ WsAndCondition >> isFalse [
 { #category : 'testing' }
 WsAndCondition >> isTrue [
 
-	^ (elements includes: false) not
+	^ (self values includes: false) not
 ]
 
 { #category : 'printing' }
 WsAndCondition >> printOn: aStream [
 
 	aStream << 'AND ('.
-	elements
+	variables
 		do: [ :aBoolean | aStream print: aBoolean ]
 		separatedBy: [ aStream << ', ' ].
 	aStream << $)
 ]
 
-{ #category : 'elements' }
-WsAndCondition >> setTrue: key [
-	elements at: key put: true
+{ #category : 'updating' }
+WsAndCondition >> update [
+	^self
+]
+
+{ #category : 'variables' }
+WsAndCondition >> values [
+	^variables collect: [: var| var value]
 ]

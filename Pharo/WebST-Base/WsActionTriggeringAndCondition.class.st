@@ -9,17 +9,15 @@ Class {
 	#tag : 'Components'
 }
 
-{ #category : 'elements' }
+{ #category : 'variables' }
 WsActionTriggeringAndCondition >> attemptAction [
 
 	self ifTrueDo: actionBlock
 ]
 
-{ #category : 'elements' }
-WsActionTriggeringAndCondition >> setTrue: key [
-
-	super setTrue: key.
-	self attemptAction
+{ #category : 'updating' }
+WsActionTriggeringAndCondition >> update [
+	self attemptAction 
 ]
 
 { #category : 'enumerating' }

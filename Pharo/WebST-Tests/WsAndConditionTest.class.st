@@ -33,33 +33,33 @@ WsAndConditionTest >> setUp [
 { #category : 'tests' }
 WsAndConditionTest >> test1False1TrueSwitchFalseToTrue [
 
-	| elementKey |
-	elementKey := condition addFalse.
+	| variable |
+	variable := condition addFalse.
 	condition addTrue.
-	condition setTrue: elementKey.
+	variable setTrue.
 	self assertCondition
 ]
 
 { #category : 'tests' }
 WsAndConditionTest >> test1True1FalseSwitchFalseToTrue [
 
-	| elementKey |
+	| variable |
 	condition addTrue.
-	elementKey := condition addFalse.
-	condition setTrue: elementKey.
+	variable := condition addFalse.
+	variable setTrue.
 	self assertCondition
 ]
 
 { #category : 'tests' }
 WsAndConditionTest >> test2FalseSwitchFalseToTrue [
 
-	| key1 key2 |
-	key1 := condition addFalse.
-	key2 := condition addFalse.
+	| var1 var2 |
+	var1 := condition addFalse.
+	var2 := condition addFalse.
 	self denyCondition. 
-	condition setTrue: key2.
+	var2 setTrue.
 	self denyCondition. 
-	condition setTrue: key1.
+	var1 setTrue.
 	self assertCondition
 ]
 
@@ -91,10 +91,10 @@ WsAndConditionTest >> testIfTrueAddFalse [
 { #category : 'tests' }
 WsAndConditionTest >> testIfTrueAddFalseThenSwitchToTrue [
 
-	| key doneIfTrueBlock |
-	key := condition addFalse.
+	| variable doneIfTrueBlock |
+	variable := condition addFalse.
 	doneIfTrueBlock := false.
-	condition setTrue: key.
+	variable setTrue.
 	condition ifTrueDo: [ doneIfTrueBlock := true ].
 	self assert: doneIfTrueBlock
 ]
@@ -121,9 +121,9 @@ WsAndConditionTest >> testIfTrueDefault [
 { #category : 'tests' }
 WsAndConditionTest >> testTrue1ElementSwitchFalseToTrue [
 
-	| elementKey |
-	elementKey := condition addFalse.
-	condition setTrue: elementKey.
+	| variable |
+	variable := condition addFalse.
+	variable setTrue.
 	self assertCondition
 ]
 

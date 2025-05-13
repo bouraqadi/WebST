@@ -37,11 +37,11 @@ WsActionTriggeringAndConditionTest >> testWhenTrueWith1False [
 { #category : 'tests' }
 WsActionTriggeringAndConditionTest >> testWhenTrueWith1FalseSwitch [
 
-	| done key |
+	| done variable |
 	done := false.
-	key := condition addFalse.
+	variable := condition addFalse.
 	condition whenTrueDo: [ done := true ].
-	condition setTrue: key.
+	variable setTrue.
 	self assert: done
 ]
 
@@ -58,13 +58,13 @@ WsActionTriggeringAndConditionTest >> testWhenTrueWith1True [
 { #category : 'tests' }
 WsActionTriggeringAndConditionTest >> testWhenTrueWith2FalseSwitch [
 
-	| done key1 key2 |
+	| done var1 var2 |
 	done := false.
-	key1 := condition addFalse.
-	key2 := condition addFalse.
+	var1 := condition addFalse.
+	var2 := condition addFalse.
 	condition whenTrueDo: [ done := true ].
-	condition setTrue: key1.
+	var1 setTrue.
 	self deny: done.
-	condition setTrue: key2.
+	var2 setTrue.
 	self assert: done
 ]
