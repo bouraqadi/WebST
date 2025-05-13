@@ -16,12 +16,8 @@ Class {
 WsCompositeForLifecycleTest >> beReady [
 
 	super beReady.
-	self
-		when: subcomponentA
-		isReadyDo: [ console log: 'Subcomponent A is Ready' ].
-	self
-		when: subcomponentB
-		isReadyDo: [ console log: 'Subcomponent B is Ready' ].
+	console log: 'Composite beReady DONE'.
+
 ]
 
 { #category : 'initialization' }
@@ -29,9 +25,22 @@ WsCompositeForLifecycleTest >> initialize [
 
 	super initialize.
 	subcomponentA := WsComponentForLifecycleTest new.
-	view append: subcomponentA.
 	subcomponentB := WsComponentForLifecycleTest new.
-	view append: subcomponentB
+	self
+		when: subcomponentA
+		isReadyDo: [ console log: 'Subcomponent A is Ready' ].
+	self
+		when: subcomponentB
+		isReadyDo: [ console log: 'Subcomponent B is Ready' ].
+	self
+		when: subcomponentA
+		isStartedDo: [ console log: 'Subcomponent A is started' ].
+	self
+		when: subcomponentB
+		isStartedDo: [ console log: 'Subcomponent B is started' ].
+	view append: subcomponentA.
+	view append: subcomponentB.
+
 ]
 
 { #category : 'initialization' }
@@ -50,12 +59,7 @@ WsCompositeForLifecycleTest >> notifyIsStartedObservers [
 WsCompositeForLifecycleTest >> start [
 
 	super start.
-	self
-		when: subcomponentA
-		isStartedDo: [ console log: 'Subcomponent A is started' ].
-	self
-		when: subcomponentB
-		isStartedDo: [ console log: 'Subcomponent B is started' ]
+	console log: 'Composite start DONE'
 ]
 
 { #category : 'accessing' }

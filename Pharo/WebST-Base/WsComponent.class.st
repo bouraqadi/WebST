@@ -170,7 +170,12 @@ WsComponent >> notifyIsStartedObservers [
 { #category : 'initialization' }
 WsComponent >> reset [
 
-	lifecycleController := self lifeCycleControllerClass component: self
+	"We need that the component first references the controller before 
+	making the controller reference the component. Because, the controller triggers some actions on the component that require the component to know about the controller.
+	See method WsLifecycleController >> #component:"
+	
+	lifecycleController := self lifeCycleControllerClass new.
+	lifecycleController component: self
 ]
 
 { #category : 'initialization' }
@@ -225,11 +230,19 @@ WsComponent >> viewFirstElementByTag: tagName [
 ]
 
 { #category : 'lifecycle' }
-WsComponent >> when: otherComponent isReadyDo: aBlock [ 
-	^self
+WsComponent >> when: otherComponent isReadyDo: aBlock [
+	| variable |
+	variable := lifecycleController addIsReadyVariable.
+	otherComponent onReadyDo: [
+		variable setTrue.
+		aBlock value]
 ]
 
 { #category : 'lifecycle' }
 WsComponent >> when: otherComponent isStartedDo: aBlock [ 
-	^self
+	| variable |
+	variable := lifecycleController addIsStartedVariable.
+	otherComponent onStartedDo: [
+		variable setTrue.
+		aBlock value]
 ]

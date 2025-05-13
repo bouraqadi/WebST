@@ -9,15 +9,18 @@ Class {
 }
 
 { #category : 'initialization' }
-WsComponentForLifecycleTest >> setCanBeReady [
-	lifecycleController setCanBeReady 
+WsComponentForLifecycleTest >> lifeCycleControllerClass [ 
+	^WsLifecycleControllerForTest 
 ]
 
-{ #category : 'initialization' }
+{ #category : 'acting' }
+WsComponentForLifecycleTest >> setCanBeReady [
+	lifecycleController setCanBeReady
+]
+
+{ #category : 'acting' }
 WsComponentForLifecycleTest >> setCanBeReadyAndStart [
-	self 
-		setCanBeReady; 
-		setCanStart
+	lifecycleController setCanBeReadyAndStart
 ]
 
 { #category : 'initialization' }
