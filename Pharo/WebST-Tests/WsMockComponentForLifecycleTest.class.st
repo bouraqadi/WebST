@@ -3,13 +3,12 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'connectionBlock',
-		'canBeReady',
-		'canStart',
-		'onReadyAction',
-		'onStartedAction',
 		'isConnected',
 		'didNotifyIsReadyObservers',
-		'didNotifyIsStartedObservers'
+		'didNotifyIsStartedObservers',
+		'lifecycleController',
+		'canStartVariable',
+		'canBeReadyVariable'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -18,9 +17,7 @@ Class {
 
 { #category : 'acting' }
 WsMockComponentForLifecycleTest >> beReady [
-	canBeReady ifFalse: [ ^self ].
-	onReadyAction value
-	
+	^self
 ]
 
 { #category : 'acting' }
@@ -42,9 +39,7 @@ WsMockComponentForLifecycleTest >> didNotifyIsStartedObservers [
 { #category : 'initialization' }
 WsMockComponentForLifecycleTest >> initialize [ 
 	super initialize.
-	canBeReady := false.
 	isConnected := false.
-	canStart := false.
 	didNotifyIsReadyObservers := false.
 	didNotifyIsStartedObservers := false
 ]
@@ -52,6 +47,13 @@ WsMockComponentForLifecycleTest >> initialize [
 { #category : 'accessing' }
 WsMockComponentForLifecycleTest >> isConnected [
 	^isConnected
+]
+
+{ #category : 'initialization' }
+WsMockComponentForLifecycleTest >> lifecycleController: aController [
+	lifecycleController := aController.
+	canBeReadyVariable := lifecycleController addIsReadyVariable.
+	canStartVariable := lifecycleController addIsStartedVariable
 ]
 
 { #category : 'acting' }
@@ -70,31 +72,17 @@ WsMockComponentForLifecycleTest >> onConnectedDo: aFullBlockClosure [
 	connectionBlock := aFullBlockClosure
 ]
 
-{ #category : 'accessing' }
-WsMockComponentForLifecycleTest >> onReadyDo: aFullBlockClosure [ 
-	onReadyAction := aFullBlockClosure
-]
-
-{ #category : 'accessing' }
-WsMockComponentForLifecycleTest >> onStartedDo: aFullBlockClosure [ 
-	onStartedAction := aFullBlockClosure 
-]
-
 { #category : 'acting' }
 WsMockComponentForLifecycleTest >> setCanBeReady [
-	canBeReady := true.
-	onReadyAction value
+	canBeReadyVariable setTrue
 ]
 
 { #category : 'acting' }
 WsMockComponentForLifecycleTest >> setCanStart [
-	canStart := true.
-	onStartedAction value
-
+	canStartVariable setTrue
 ]
 
 { #category : 'acting' }
 WsMockComponentForLifecycleTest >> start [
-	canStart ifFalse: [ ^self ].
-	onStartedAction value
+	^self
 ]

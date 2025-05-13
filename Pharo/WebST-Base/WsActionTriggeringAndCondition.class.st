@@ -9,6 +9,13 @@ Class {
 	#tag : 'Components'
 }
 
+{ #category : 'instance creation' }
+WsActionTriggeringAndCondition class >> whenTrueDo: aBlock [
+	^self new
+		whenTrueDo: aBlock;
+		yourself
+]
+
 { #category : 'variables' }
 WsActionTriggeringAndCondition >> attemptAction [
 

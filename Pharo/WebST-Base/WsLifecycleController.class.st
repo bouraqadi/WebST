@@ -11,8 +11,8 @@ Class {
 		'nilComponentState',
 		'isReadyCondition',
 		'isStartedCondition',
-		'beReadyDoneKey',
-		'startDoneKey',
+		'beReadyDoneVariable',
+		'startDoneVariable',
 		'isConnected'
 	],
 	#category : 'WebST-Base-Components',
@@ -27,10 +27,20 @@ WsLifecycleController class >> component: aComponent [
 		yourself
 ]
 
+{ #category : 'variables' }
+WsLifecycleController >> addIsReadyVariable [
+	^isReadyCondition addFalse 
+]
+
+{ #category : 'variables' }
+WsLifecycleController >> addIsStartedVariable [
+	^isStartedCondition addFalse 
+]
+
 { #category : 'acting' }
 WsLifecycleController >> beReady [
 	self component beReady.
-
+	self setBeReadyDone 
 ]
 
 { #category : 'accessing' }
@@ -43,9 +53,7 @@ WsLifecycleController >> component [
 WsLifecycleController >> component: aComponent [
 
 	component := aComponent.
-	component onReadyDo: [ self setBeReadyDone ].
 	component onConnectedDo: [ self setIsConnected ].
-	component onStartedDo: [ self setStartDone ].
 	self step
 
 ]
@@ -79,13 +87,14 @@ WsLifecycleController >> createTransitions [
 WsLifecycleController >> initialize [
 
 	super initialize.
-	isReadyCondition := WsActionTriggeringAndCondition new.
-	beReadyDoneKey := isReadyCondition addFalse.
-	isStartedCondition := WsActionTriggeringAndCondition new.
-	startDoneKey := isStartedCondition addFalse.	
 	automaton := SmAutomaton new.
 	self createStates.
-	self createTransitions
+	self createTransitions.
+	isReadyCondition := WsActionTriggeringAndCondition whenTrueDo: [self step].
+	beReadyDoneVariable := isReadyCondition addFalse.
+	isStartedCondition := WsActionTriggeringAndCondition whenTrueDo: [self step].
+	startDoneVariable := isStartedCondition addFalse.	
+
 ]
 
 { #category : 'transitions' }
@@ -146,8 +155,7 @@ WsLifecycleController >> notifyIsStartedObservers [
 
 { #category : 'acting' }
 WsLifecycleController >> setBeReadyDone [
-	isReadyCondition setTrue: beReadyDoneKey.
-	self step
+	beReadyDoneVariable setTrue
 ]
 
 { #category : 'acting' }
@@ -157,14 +165,13 @@ WsLifecycleController >> setIsConnected [
 
 { #category : 'acting' }
 WsLifecycleController >> setStartDone [
-	isStartedCondition setTrue: startDoneKey.
-	self step
+	startDoneVariable setTrue
 ]
 
 { #category : 'acting' }
 WsLifecycleController >> start [
 	self component start.
-
+	self setStartDone 
 ]
 
 { #category : 'acting' }
