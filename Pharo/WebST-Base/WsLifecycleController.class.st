@@ -56,11 +56,11 @@ WsLifecycleController >> createStates [
 	nilComponentState := automaton newState.
 	nilComponentState label: 'Nil Component'.
 	automaton initialState: nilComponentState.
-	gettingReadyState := automaton newStateOnEntryDo: [ self beReady ].
+	gettingReadyState := automaton newStateOnEntryDo: [ self beReady ] onExitDo: [self notifyIsReadyObservers].
 	gettingReadyState label: 'Getting Ready'.
 	waitingForConnectionState := automaton newState.
 	waitingForConnectionState label: 'Waiting for Connection to DOM'.
-	startingState := automaton newStateOnEntryDo: [ self start ].
+	startingState := automaton newStateOnEntryDo: [ self start ] onExitDo: [self notifyIsStartedObservers].
 	startingState label: 'Starting'.
 	runningState := automaton newState.
 	runningState label: 'Running'
@@ -132,6 +132,16 @@ WsLifecycleController >> isWaitingForComponent [
 { #category : 'states' }
 WsLifecycleController >> isWaitingForConnectionToDom [
 	^automaton currentState == waitingForConnectionState 
+]
+
+{ #category : 'acting' }
+WsLifecycleController >> notifyIsReadyObservers [
+	component notifyIsReadyObservers
+]
+
+{ #category : 'acting' }
+WsLifecycleController >> notifyIsStartedObservers [
+	component notifyIsStartedObservers
 ]
 
 { #category : 'acting' }

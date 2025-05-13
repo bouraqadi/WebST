@@ -30,8 +30,10 @@ WsLifecycleControllerTest >> setUp [
 WsLifecycleControllerTest >> testBeReadyDelayed [
 	lifecycle component: component.
 	self assertState: #isGettingReady.
+	self deny: component didNotifyIsReadyObservers.
 	component setCanBeReady.
 	self assertState: #isWaitingForConnectionToDom.
+	self assert: component didNotifyIsReadyObservers
 
 ]
 
@@ -40,13 +42,17 @@ WsLifecycleControllerTest >> testBeReadyImmediatelyAfterComponentSet [
 	component setCanBeReady.
 	lifecycle component: component.
 	self assertState: #isWaitingForConnectionToDom.
+	self assert: component didNotifyIsReadyObservers
 
 ]
 
 { #category : 'running' }
 WsLifecycleControllerTest >> testComponentSet [
 	lifecycle component: WsMockComponentForLifecycleTest new.
-	self assertState: #isGettingReady 
+	self assertState: #isGettingReady.
+	self deny: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers
+
 ]
 
 { #category : 'running' }
@@ -55,6 +61,8 @@ WsLifecycleControllerTest >> testConnected [
 	component connectToDom.
 	lifecycle component: component.
 	self assertState: #isStarting.
+	self assert: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers
 
 ]
 
@@ -63,14 +71,19 @@ WsLifecycleControllerTest >> testConnectedDelayed [
 	component setCanBeReady.
 	lifecycle component: component.
 	self assertState: #isWaitingForConnectionToDom.
+	self assert: component didNotifyIsReadyObservers.
 	component connectToDom.
 	self assertState: #isStarting.
+	self assert: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers
 
 ]
 
 { #category : 'running' }
 WsLifecycleControllerTest >> testNoComponent [
 	self assertState: #isWaitingForComponent.
+	self deny: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers
 
 ]
 
@@ -80,8 +93,12 @@ WsLifecycleControllerTest >> testStartAfterDelayedConnection [
 	component setCanStart.
 	lifecycle component: component.
 	self assertState: #isWaitingForConnectionToDom.
+	self assert: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers.
 	component connectToDom.
 	self assertState: #isRunning.
+	self assert: component didNotifyIsReadyObservers.
+	self assert: component didNotifyIsStartedObservers
 
 ]
 
@@ -91,8 +108,12 @@ WsLifecycleControllerTest >> testStartDoneAfterDelayedStart [
 	component connectToDom.
 	lifecycle component: component.
 	self assertState: #isStarting.
+	self assert: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers.
 	component setCanStart.
 	self assertState: #isRunning.
+	self assert: component didNotifyIsReadyObservers.
+	self assert: component didNotifyIsStartedObservers
 
 ]
 
@@ -103,4 +124,7 @@ WsLifecycleControllerTest >> testStartImmediatelyIfAlreadyConnected [
 	component setCanStart.
 	lifecycle component: component.
 	self assertState: #isRunning.
+	self assert: component didNotifyIsReadyObservers.
+	self assert: component didNotifyIsStartedObservers
+
 ]

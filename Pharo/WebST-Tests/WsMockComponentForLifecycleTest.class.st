@@ -8,7 +8,8 @@ Class {
 		'onReadyAction',
 		'onStartedAction',
 		'isConnected',
-		'didNotifyIsReadyObservers'
+		'didNotifyIsReadyObservers',
+		'didNotifyIsStartedObservers'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -33,17 +34,35 @@ WsMockComponentForLifecycleTest >> didNotifyIsReadyObservers [
 	^didNotifyIsReadyObservers
 ]
 
+{ #category : 'accessing' }
+WsMockComponentForLifecycleTest >> didNotifyIsStartedObservers [
+	^didNotifyIsStartedObservers
+]
+
 { #category : 'initialization' }
 WsMockComponentForLifecycleTest >> initialize [ 
 	super initialize.
 	canBeReady := false.
 	isConnected := false.
-	canStart := false
+	canStart := false.
+	didNotifyIsReadyObservers := false.
+	didNotifyIsStartedObservers := false
 ]
 
 { #category : 'accessing' }
 WsMockComponentForLifecycleTest >> isConnected [
 	^isConnected
+]
+
+{ #category : 'acting' }
+WsMockComponentForLifecycleTest >> notifyIsReadyObservers [
+	didNotifyIsReadyObservers := true.
+
+]
+
+{ #category : 'initialization' }
+WsMockComponentForLifecycleTest >> notifyIsStartedObservers [
+	didNotifyIsStartedObservers := true 
 ]
 
 { #category : 'accessing' }
