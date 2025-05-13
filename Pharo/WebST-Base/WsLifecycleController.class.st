@@ -12,8 +12,7 @@ Class {
 		'isReadyCondition',
 		'isStartedCondition',
 		'beReadyDoneVariable',
-		'startDoneVariable',
-		'isConnected'
+		'startDoneVariable'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
