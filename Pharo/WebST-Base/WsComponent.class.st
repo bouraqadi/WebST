@@ -152,7 +152,7 @@ WsComponent >> isStarted [
 { #category : 'initialization' }
 WsComponent >> lifeCycleControllerClass [
 
-	^ WsComponentLifecycleController
+	^ WsLifecycleController
 ]
 
 { #category : 'lifecycle' }

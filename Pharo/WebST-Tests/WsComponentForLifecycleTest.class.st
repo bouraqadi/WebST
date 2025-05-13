@@ -9,11 +9,6 @@ Class {
 }
 
 { #category : 'initialization' }
-WsComponentForLifecycleTest >> lifeCycleControllerClass [ 
-	^WsComponentLifecycleControllerForTest 
-]
-
-{ #category : 'initialization' }
 WsComponentForLifecycleTest >> setCanBeReady [
 	lifecycleController setCanBeReady 
 ]

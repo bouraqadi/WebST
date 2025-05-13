@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsComponentLifecycleController',
+	#name : 'WsLifecycleController',
 	#superclass : 'Object',
 	#instVars : [
 		'component',
@@ -21,35 +21,37 @@ Class {
 }
 
 { #category : 'instance creation' }
-WsComponentLifecycleController class >> component: aComponent [
+WsLifecycleController class >> component: aComponent [
 	^self new
 		component: aComponent;
 		yourself
 ]
 
 { #category : 'acting' }
-WsComponentLifecycleController >> beReady [
+WsLifecycleController >> beReady [
 	self component beReady.
-	self setBeReadyDone.
 
 ]
 
 { #category : 'accessing' }
-WsComponentLifecycleController >> component [
+WsLifecycleController >> component [
 
 	^ component
 ]
 
 { #category : 'initialization' }
-WsComponentLifecycleController >> component: aComponent [
+WsLifecycleController >> component: aComponent [
 
 	component := aComponent.
+	component onReadyDo: [ self setBeReadyDone ].
 	component onConnectedDo: [ self setIsConnected ].
+	component onStartedDo: [ self setStartDone ].
+	self step
 
 ]
 
-{ #category : 'initialization' }
-WsComponentLifecycleController >> createStates [
+{ #category : 'states' }
+WsLifecycleController >> createStates [
 
 	nilComponentState := automaton newState.
 	nilComponentState label: 'Nil Component'.
@@ -64,22 +66,21 @@ WsComponentLifecycleController >> createStates [
 	runningState label: 'Running'
 ]
 
-{ #category : 'initialization' }
-WsComponentLifecycleController >> createTransitions [
+{ #category : 'transitions' }
+WsLifecycleController >> createTransitions [
 	nilComponentState transitionTo: gettingReadyState when: [ self isComponentAvailable ].
-	gettingReadyState transitionTo: waitingForConnectionState when: [ self isReady "and: [ self isConnected not ]" ].
-"	gettingReadyState transitionTo: startingState when: [ self isReady and: [ self isConnected ] ].
-"	waitingForConnectionState transitionTo: startingState when: [ self isConnected ].
+	gettingReadyState transitionTo: waitingForConnectionState when: [ self isReady and: [ self isConnected not ] ].
+	gettingReadyState transitionTo: startingState when: [ self isReady and: [ self isConnected ] ].
+	waitingForConnectionState transitionTo: startingState when: [ self isConnected ].
 	startingState transitionTo: runningState when: [ self isStarted ] 
 ]
 
 { #category : 'initialization' }
-WsComponentLifecycleController >> initialize [
+WsLifecycleController >> initialize [
 
 	super initialize.
 	isReadyCondition := WsActionTriggeringAndCondition new.
 	beReadyDoneKey := isReadyCondition addFalse.
-	isConnected := false.
 	isStartedCondition := WsActionTriggeringAndCondition new.
 	startDoneKey := isStartedCondition addFalse.	
 	automaton := SmAutomaton new.
@@ -87,52 +88,76 @@ WsComponentLifecycleController >> initialize [
 	self createTransitions
 ]
 
-{ #category : 'testing' }
-WsComponentLifecycleController >> isComponentAvailable [
+{ #category : 'transitions' }
+WsLifecycleController >> isComponentAvailable [
 	^self component notNil
 ]
 
-{ #category : 'testing' }
-WsComponentLifecycleController >> isConnected [
-	^isConnected
+{ #category : 'transitions' }
+WsLifecycleController >> isConnected [
+	component ifNil: [ ^false ].
+	^component isConnected
 ]
 
-{ #category : 'testing' }
-WsComponentLifecycleController >> isReady [
+{ #category : 'states' }
+WsLifecycleController >> isGettingReady [
+	^automaton currentState == gettingReadyState 
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> isReady [
 	^ isReadyCondition isTrue
 ]
 
-{ #category : 'testing' }
-WsComponentLifecycleController >> isStarted [
+{ #category : 'states' }
+WsLifecycleController >> isRunning [
+	^automaton currentState == runningState 
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> isStarted [
 	^isStartedCondition isTrue
 ]
 
+{ #category : 'states' }
+WsLifecycleController >> isStarting [
+	^automaton currentState == startingState 
+]
+
+{ #category : 'states' }
+WsLifecycleController >> isWaitingForComponent [
+	^automaton currentState == nilComponentState 
+]
+
+{ #category : 'states' }
+WsLifecycleController >> isWaitingForConnectionToDom [
+	^automaton currentState == waitingForConnectionState 
+]
+
 { #category : 'acting' }
-WsComponentLifecycleController >> setBeReadyDone [
+WsLifecycleController >> setBeReadyDone [
 	isReadyCondition setTrue: beReadyDoneKey.
 	self step
 ]
 
 { #category : 'acting' }
-WsComponentLifecycleController >> setIsConnected [
-	isConnected := true.
+WsLifecycleController >> setIsConnected [
 	self step
 ]
 
 { #category : 'acting' }
-WsComponentLifecycleController >> setStartDone [
+WsLifecycleController >> setStartDone [
 	isStartedCondition setTrue: startDoneKey.
 	self step
 ]
 
 { #category : 'acting' }
-WsComponentLifecycleController >> start [
+WsLifecycleController >> start [
 	self component start.
-	self setStartDone
-	
+
 ]
 
 { #category : 'acting' }
-WsComponentLifecycleController >> step [
+WsLifecycleController >> step [
 	automaton step
 ]
