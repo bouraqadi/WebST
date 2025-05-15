@@ -52,8 +52,8 @@ WsTextComponent >> getReady [
 ]
 
 { #category : 'initialization' }
-WsTextComponent >> initializeNewModel [
-	super initializeNewModel.
+WsTextComponent >> initializeModel [
+	super initializeModel.
 	self ifDataAttribute: #text present: [ : newText | model text: newText ] 
 ]
 

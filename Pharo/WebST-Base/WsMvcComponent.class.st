@@ -40,7 +40,7 @@ WsMvcComponent >> basicModel: aModel [
 WsMvcComponent >> ensureModel [
 	"Don't create a model if one is provided upon creation by the class side #model: constructor method"
 	self model ifNotNil: [^self].
-	self initializeNewModel
+	self initializeModel
 ]
 
 { #category : 'initialization' }
@@ -51,7 +51,7 @@ WsMvcComponent >> getReady [
 ]
 
 { #category : 'initialization' }
-WsMvcComponent >> initializeNewModel [
+WsMvcComponent >> initializeModel [
 	self basicModel: self newModel
 
 ]
