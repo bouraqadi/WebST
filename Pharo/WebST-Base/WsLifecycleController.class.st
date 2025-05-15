@@ -36,12 +36,6 @@ WsLifecycleController >> addIsStartedVariable [
 	^isStartedCondition addFalse 
 ]
 
-{ #category : 'acting' }
-WsLifecycleController >> beReady [
-	self component beReady.
-	self setBeReadyDone 
-]
-
 { #category : 'accessing' }
 WsLifecycleController >> component [
 
@@ -67,7 +61,7 @@ WsLifecycleController >> createStates [
 	nilComponentState := automaton newState.
 	nilComponentState label: 'Nil Component'.
 	automaton initialState: nilComponentState.
-	gettingReadyState := automaton newStateOnEntryDo: [ self beReady ] onExitDo: [self notifyIsReadyObservers].
+	gettingReadyState := automaton newStateOnEntryDo: [ self getReady ] onExitDo: [self notifyIsReadyObservers].
 	gettingReadyState label: 'Getting Ready'.
 	waitingForConnectionState := automaton newState.
 	waitingForConnectionState label: 'Waiting for Connection to DOM'.
@@ -84,6 +78,12 @@ WsLifecycleController >> createTransitions [
 	gettingReadyState transitionTo: startingState when: [ self isReady and: [ self isConnected ] ].
 	waitingForConnectionState transitionTo: startingState when: [ self isConnected ].
 	startingState transitionTo: runningState when: [ self isStarted ] 
+]
+
+{ #category : 'acting' }
+WsLifecycleController >> getReady [
+	self component getReady.
+	self setBeReadyDone 
 ]
 
 { #category : 'initialization' }

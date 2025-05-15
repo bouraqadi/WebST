@@ -32,20 +32,6 @@ WsTextFieldWithButtonsComponent class >> viewClass [
 	^WsTextFieldWithButtonsView 
 ]
 
-{ #category : 'initialization' }
-WsTextFieldWithButtonsComponent >> beReady [
-
-	| cancelButton saveButton |
-	super beReady.
-	input := view querySelector: '.textInput'.
-	cancelButton := view querySelector: '.cancelButton'.
-	self onClickElement: cancelButton do: [ self cancel ].
-	saveButton := view querySelector: '.saveButton'.
-	self onClickElement: saveButton do: [ self save ].
-	model -@ #textPort => [ :newText | self displayText: newText ].
-	self displayModelText
-]
-
 { #category : 'actions' }
 WsTextFieldWithButtonsComponent >> cancel [
 
@@ -75,6 +61,20 @@ WsTextFieldWithButtonsComponent >> displayModelText [
 WsTextFieldWithButtonsComponent >> displayText: aString [
 
 	input value: aString
+]
+
+{ #category : 'initialization' }
+WsTextFieldWithButtonsComponent >> getReady [
+
+	| cancelButton saveButton |
+	super getReady.
+	input := view querySelector: '.textInput'.
+	cancelButton := view querySelector: '.cancelButton'.
+	self onClickElement: cancelButton do: [ self cancel ].
+	saveButton := view querySelector: '.saveButton'.
+	self onClickElement: saveButton do: [ self save ].
+	model -@ #textPort => [ :newText | self displayText: newText ].
+	self displayModelText
 ]
 
 { #category : 'accessing' }

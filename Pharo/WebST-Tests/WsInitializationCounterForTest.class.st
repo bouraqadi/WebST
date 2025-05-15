@@ -26,9 +26,9 @@ WsInitializationCounterForTest class >> viewClass [
 ]
 
 { #category : 'initialization' }
-WsInitializationCounterForTest >> beReady [
+WsInitializationCounterForTest >> getReady [
 
-	super beReady.
+	super getReady.
 	console log: 'beReady'.
 	readyCount := self readyCount + 1.
 

@@ -18,9 +18,9 @@ WsWebBackComponent class >> defaultIconAttribute [
 ]
 
 { #category : 'initialization' }
-WsWebBackComponent >> beReady [
+WsWebBackComponent >> getReady [
 
-	super beReady.
+	super getReady.
 	webHistoryController := WsWebHistoryController new.
 	webHistoryController makeBackButton: self.
 

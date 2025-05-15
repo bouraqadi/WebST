@@ -101,12 +101,6 @@ WsComponent class >> viewClass [
 	self subclassResponsibility 
 ]
 
-{ #category : 'initialization' }
-WsComponent >> beReady [
-
-	view innerHTML: self shadowHtml
-]
-
 { #category : 'lifecycle' }
 WsComponent >> connectedCallback [
 	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
@@ -121,6 +115,12 @@ WsComponent >> connectedCallback [
 { #category : 'accessing' }
 WsComponent >> document [
 	^document
+]
+
+{ #category : 'initialization' }
+WsComponent >> getReady [
+
+	view innerHTML: self shadowHtml
 ]
 
 { #category : 'initialization' }

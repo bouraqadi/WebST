@@ -38,10 +38,20 @@ WsPasswordInputExampleComponent class >> viewClass [
 	^WsPasswordInputExampleView 
 ]
 
-{ #category : 'initialization' }
-WsPasswordInputExampleComponent >> beReady [
+{ #category : 'accessing' }
+WsPasswordInputExampleComponent >> defaultPlaceholderAttribute [
+	^self class defaultPlaceholderAttribute
+]
 
-	super beReady.
+{ #category : 'actions' }
+WsPasswordInputExampleComponent >> displayPassword: newText [
+	passwordField value: newText
+]
+
+{ #category : 'initialization' }
+WsPasswordInputExampleComponent >> getReady [
+
+	super getReady.
 	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
 	passwordField := view querySelector: 'input'.
 	passwordField placeholder: self placeholderAttribute.
@@ -53,16 +63,6 @@ WsPasswordInputExampleComponent >> beReady [
 	passwordPort := model -@ #textPort.
 	passwordPort => [ :newText | self displayPassword: newText ].
 	self displayPassword: model text
-]
-
-{ #category : 'accessing' }
-WsPasswordInputExampleComponent >> defaultPlaceholderAttribute [
-	^self class defaultPlaceholderAttribute
-]
-
-{ #category : 'actions' }
-WsPasswordInputExampleComponent >> displayPassword: newText [
-	passwordField value: newText
 ]
 
 { #category : 'accessing' }

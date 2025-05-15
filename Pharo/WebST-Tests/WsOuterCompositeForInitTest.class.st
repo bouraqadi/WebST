@@ -18,8 +18,8 @@ WsOuterCompositeForInitTest class >> viewClass [
 ]
 
 { #category : 'initialization' }
-WsOuterCompositeForInitTest >> beReady [ 
-	super beReady.
+WsOuterCompositeForInitTest >> getReady [ 
+	super getReady.
 	middleComposite := self viewFirstComponent: WsMiddleCompositeForInitTest 
 ]
 

@@ -31,10 +31,15 @@ WsToDoItemComponent class >> viewClass [
 	^WsToDoItemView 
 ]
 
-{ #category : 'initialization' }
-WsToDoItemComponent >> beReady [
+{ #category : 'actions' }
+WsToDoItemComponent >> displayChecked: aBoolean [
+	checkbox checked: aBoolean
+]
 
-	super beReady.
+{ #category : 'initialization' }
+WsToDoItemComponent >> getReady [
+
+	super getReady.
 	textComponent := self viewFirstComponent: WsTextToggleEditComponent.
 	checkbox := view querySelector: '.todo-checkbox'.
 	textComponent model: model.
@@ -42,11 +47,6 @@ WsToDoItemComponent >> beReady [
 	=> [ :isChecked | self displayChecked: isChecked ].
 	self displayChecked: model isChecked.
 
-]
-
-{ #category : 'actions' }
-WsToDoItemComponent >> displayChecked: aBoolean [
-	checkbox checked: aBoolean
 ]
 
 { #category : 'accessing' }

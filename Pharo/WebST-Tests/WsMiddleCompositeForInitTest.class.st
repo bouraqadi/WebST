@@ -23,8 +23,8 @@ WsMiddleCompositeForInitTest >> basicComponent [
 ]
 
 { #category : 'initialization' }
-WsMiddleCompositeForInitTest >> beReady [
+WsMiddleCompositeForInitTest >> getReady [
 
-	super beReady.
+	super getReady.
 	basicComponent := self viewFirstComponent: WsBasicComponentForInitTest 
 ]

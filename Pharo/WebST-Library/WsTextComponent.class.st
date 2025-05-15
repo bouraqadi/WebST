@@ -37,18 +37,18 @@ WsTextComponent class >> viewClass [
 	^WsTextView
 ]
 
-{ #category : 'initialization' }
-WsTextComponent >> beReady [
-
-	super beReady.
-	display := view querySelector: '.display'.
-	model -@ #textPort => [ :newText | self updateDisplay: newText ].
-	self updateDisplay: self text
-]
-
 { #category : 'accessing' }
 WsTextComponent >> display [
 	^display
+]
+
+{ #category : 'initialization' }
+WsTextComponent >> getReady [
+
+	super getReady.
+	display := view querySelector: '.display'.
+	model -@ #textPort => [ :newText | self updateDisplay: newText ].
+	self updateDisplay: self text
 ]
 
 { #category : 'initialization' }

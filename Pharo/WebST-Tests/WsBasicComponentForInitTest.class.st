@@ -15,8 +15,8 @@ WsBasicComponentForInitTest class >> viewClass [
 ]
 
 { #category : 'initialization' }
-WsBasicComponentForInitTest >> beReady [ 
-	super beReady.
+WsBasicComponentForInitTest >> getReady [ 
+	super getReady.
 	self readyRegistry add: self
 ]
 

@@ -13,9 +13,9 @@ Class {
 }
 
 { #category : 'initialization' }
-WsCompositeForLifecycleTest >> beReady [
+WsCompositeForLifecycleTest >> getReady [
 
-	super beReady.
+	super getReady.
 	console log: 'Composite beReady DONE'.
 
 ]

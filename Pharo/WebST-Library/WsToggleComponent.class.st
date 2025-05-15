@@ -35,9 +35,9 @@ WsToggleComponent class >> modelClass [
 ]
 
 { #category : 'initialization' }
-WsToggleComponent >> beReady [
+WsToggleComponent >> getReady [
 
-	super beReady.
+	super getReady.
 	onView := view querySelector: '#onView'.
 	offView := view querySelector: '#offView'.
 	isOnPort := model -@ #isOnPort.

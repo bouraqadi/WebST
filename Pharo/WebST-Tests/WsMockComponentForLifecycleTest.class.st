@@ -16,11 +16,6 @@ Class {
 }
 
 { #category : 'acting' }
-WsMockComponentForLifecycleTest >> beReady [
-	^self
-]
-
-{ #category : 'acting' }
 WsMockComponentForLifecycleTest >> connectToDom [
 	isConnected := true.
 	connectionBlock value
@@ -34,6 +29,11 @@ WsMockComponentForLifecycleTest >> didNotifyIsReadyObservers [
 { #category : 'accessing' }
 WsMockComponentForLifecycleTest >> didNotifyIsStartedObservers [
 	^didNotifyIsStartedObservers
+]
+
+{ #category : 'acting' }
+WsMockComponentForLifecycleTest >> getReady [
+	^self
 ]
 
 { #category : 'initialization' }
