@@ -243,3 +243,19 @@ WsComponent >> when: otherComponent isStartedDo: aBlock [
 		when: otherComponent 
 		isStartedDo: aBlock 
 ]
+
+{ #category : 'lifecycle' }
+WsComponent >> whenAll: otherComponents areReadyDo: aBlock [
+	lifecycleController 
+		whenAll: otherComponents 
+		areReadyDo: aBlock
+
+]
+
+{ #category : 'lifecycle' }
+WsComponent >> whenAll: otherComponents areStartedDo: aBlock [
+	lifecycleController 
+		whenAll: otherComponents 
+		areStartedDo: aBlock
+
+]
