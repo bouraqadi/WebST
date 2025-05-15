@@ -52,8 +52,9 @@ WsPasswordInputComponent >> getReady [
 
 	super getReady.
 	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
-	self when: toggleShowPasswordButton isReadyDo: [ 
-		self initToggleShowPasswordButton ].
+	self 
+		when: toggleShowPasswordButton 
+		isReadyDo: [ self initToggleShowPasswordButton ].
 	passwordField := view querySelector: 'input'.
 	passwordField placeholder: self placeholderAttribute.
 	self

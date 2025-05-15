@@ -25,6 +25,8 @@ WsSingleComponentAppGenerator class >> playgroundFor: aComponent [
 
 { #category : 'instance creation' }
 WsSingleComponentAppGenerator class >> resetCurrent [
+	<script>
+	
 	current cleanUp.
 	current := nil
 ]
