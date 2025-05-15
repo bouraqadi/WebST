@@ -1,5 +1,5 @@
 Class {
-	#name : 'WsPasswordInputExampleView',
+	#name : 'WsPasswordInputView',
 	#superclass : 'WsBootstrap5View',
 	#category : 'WebST-Library-Text',
 	#package : 'WebST-Library',
@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'rendering' }
-WsPasswordInputExampleView >> renderOuterHtmlOn: html [
+WsPasswordInputView >> renderOuterHtmlOn: html [
 
 	html div
 		class: 'input-group';

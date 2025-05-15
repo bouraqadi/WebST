@@ -1,12 +1,11 @@
 Class {
-	#name : 'WsPasswordInputExampleComponent',
+	#name : 'WsPasswordInputComponent',
 	#superclass : 'WsMvcComponent',
 	#traits : 'WsTConcreteComponent',
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'toggleShowPasswordButton',
-		'passwordField',
-		'passwordPort'
+		'passwordField'
 	],
 	#category : 'WebST-Library-Text',
 	#package : 'WebST-Library',
@@ -14,71 +13,78 @@ Class {
 }
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent class >> defaultPlaceholderAttribute [
+WsPasswordInputComponent class >> defaultPlaceholderAttribute [
 
 	^ ''
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent class >> modelClass [
+WsPasswordInputComponent class >> modelClass [
 
 	^WsTextModel
 ]
 
 { #category : 'class initialization' }
-WsPasswordInputExampleComponent class >> tagName [
+WsPasswordInputComponent class >> tagName [
 
 	^'ws-password-input'
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent class >> viewClass [
+WsPasswordInputComponent class >> viewClass [
 
 	<pharoJsSkip>
-	^WsPasswordInputExampleView 
+	^WsPasswordInputView 
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent >> defaultPlaceholderAttribute [
+WsPasswordInputComponent >> defaultPlaceholderAttribute [
 	^self class defaultPlaceholderAttribute
 ]
 
 { #category : 'actions' }
-WsPasswordInputExampleComponent >> displayPassword: newText [
+WsPasswordInputComponent >> displayPassword: newText [
 	passwordField value: newText
 ]
 
 { #category : 'initialization' }
-WsPasswordInputExampleComponent >> getReady [
+WsPasswordInputComponent >> getReady [
 
 	super getReady.
 	toggleShowPasswordButton := self viewFirstComponent: WsShowHideToggleComponent.
+	self when: toggleShowPasswordButton isReadyDo: [ 
+		self initToggleShowPasswordButton ].
 	passwordField := view querySelector: 'input'.
 	passwordField placeholder: self placeholderAttribute.
-	toggleShowPasswordButton -@ #isOnPort
-	=> [ :aBoolean | self showPasswordAsPlainText: aBoolean ].
 	self
 		onChangeElement: passwordField
 		do: [ :newPassword | self savePassword: newPassword ].
-	passwordPort := model -@ #textPort.
-	passwordPort => [ :newText | self displayPassword: newText ].
+	model -@ #textPort => [ :newText | self displayPassword: newText ].
 	self displayPassword: model text
 ]
 
+{ #category : 'initialization' }
+WsPasswordInputComponent >> initToggleShowPasswordButton [
+
+	toggleShowPasswordButton -@ #isOnPort => [ :aBoolean | 
+		self showPasswordAsPlainText: aBoolean ].
+
+]
+
 { #category : 'accessing' }
-WsPasswordInputExampleComponent >> password [
+WsPasswordInputComponent >> password [
 
 	^ model text
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent >> password: newPassword [
+WsPasswordInputComponent >> password: newPassword [
 
 	model text: newPassword
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent >> placeholderAttribute [
+WsPasswordInputComponent >> placeholderAttribute [
 
 	^ self
 		  dataAttributeAt: #placeholder
@@ -86,25 +92,25 @@ WsPasswordInputExampleComponent >> placeholderAttribute [
 ]
 
 { #category : 'actions' }
-WsPasswordInputExampleComponent >> savePassword: newPassword [
+WsPasswordInputComponent >> savePassword: newPassword [
 	model text: newPassword 
 ]
 
 { #category : 'actions' }
-WsPasswordInputExampleComponent >> showPasswordAsPlainText: aBoolean [
+WsPasswordInputComponent >> showPasswordAsPlainText: aBoolean [
 	| newType |
 	newType := aBoolean ifTrue: [ 'text' ] ifFalse: ['password'].
 	passwordField type: newType
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent >> value [
+WsPasswordInputComponent >> value [
 
 	^ self password
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponent >> value: newPassword [
+WsPasswordInputComponent >> value: newPassword [
 
 	self password: newPassword
 ]

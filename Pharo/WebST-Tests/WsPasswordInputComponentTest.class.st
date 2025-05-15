@@ -1,28 +1,28 @@
 Class {
-	#name : 'WsPasswordInputExampleComponentTest',
+	#name : 'WsPasswordInputComponentTest',
 	#superclass : 'WsMvcComponentTest',
 	#instVars : [
 		'toggleShowPasswordButton',
 		'passwordField'
 	],
-	#category : 'WebST-Tests-Examples',
+	#category : 'WebST-Tests-Library',
 	#package : 'WebST-Tests',
-	#tag : 'Examples'
+	#tag : 'Library'
 }
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponentTest class >> componentClass [
+WsPasswordInputComponentTest class >> componentClass [
 
-	^ WsPasswordInputExampleComponent 
+	^ WsPasswordInputComponent 
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponentTest class >> dataAttributes [
+WsPasswordInputComponentTest class >> dataAttributes [
 	^{#placeholder -> 'New Password'}
 ]
 
 { #category : 'asserting' }
-WsPasswordInputExampleComponentTest >> assertCustomAttributesApplied [
+WsPasswordInputComponentTest >> assertCustomAttributesApplied [
 
 	super assertCustomAttributesApplied.
 	self
@@ -31,7 +31,7 @@ WsPasswordInputExampleComponentTest >> assertCustomAttributesApplied [
 ]
 
 { #category : 'asserting' }
-WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
+WsPasswordInputComponentTest >> assertDefaultAttributesApplied [
 
 	super assertDefaultAttributesApplied.
 	self
@@ -41,7 +41,7 @@ WsPasswordInputExampleComponentTest >> assertDefaultAttributesApplied [
 ]
 
 { #category : 'asserting' }
-WsPasswordInputExampleComponentTest >> assertViewModelLink [
+WsPasswordInputComponentTest >> assertViewModelLink [
 
 	| password1 password2 password3 |
 	self assert: passwordField value equals: model text.
@@ -65,13 +65,13 @@ WsPasswordInputExampleComponentTest >> assertViewModelLink [
 ]
 
 { #category : 'asserting' }
-WsPasswordInputExampleComponentTest >> clickToggleButton [
+WsPasswordInputComponentTest >> clickToggleButton [
 
 	self toggleButtonVisibleView click
 ]
 
 { #category : 'accessing' }
-WsPasswordInputExampleComponentTest >> component: newComponent [
+WsPasswordInputComponentTest >> component: newComponent [
 
 	super component: newComponent.
 	toggleShowPasswordButton := shadowRoot querySelector:
@@ -80,7 +80,7 @@ WsPasswordInputExampleComponentTest >> component: newComponent [
 ]
 
 { #category : 'asserting' }
-WsPasswordInputExampleComponentTest >> toggleButtonVisibleView [
+WsPasswordInputComponentTest >> toggleButtonVisibleView [
 
 	(self isShowing: toggleShowPasswordButton onView) ifTrue:  [ ^toggleShowPasswordButton onView ].
 	^toggleShowPasswordButton offView
