@@ -181,3 +181,21 @@ WsLifecycleController >> start [
 WsLifecycleController >> step [
 	automaton step
 ]
+
+{ #category : 'variables' }
+WsLifecycleController >> when: otherComponent isReadyDo: aBlock [
+	| variable |
+	variable := self addIsReadyVariable.
+	otherComponent onReadyDo: [
+		variable setTrue.
+		aBlock value]
+]
+
+{ #category : 'variables' }
+WsLifecycleController >> when: otherComponent isStartedDo: aBlock [ 
+	| variable |
+	variable := self addIsStartedVariable.
+	otherComponent onStartedDo: [
+		variable setTrue.
+		aBlock value]
+]

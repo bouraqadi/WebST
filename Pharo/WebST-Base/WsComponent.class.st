@@ -231,18 +231,15 @@ WsComponent >> viewFirstElementByTag: tagName [
 
 { #category : 'lifecycle' }
 WsComponent >> when: otherComponent isReadyDo: aBlock [
-	| variable |
-	variable := lifecycleController addIsReadyVariable.
-	otherComponent onReadyDo: [
-		variable setTrue.
-		aBlock value]
+	lifecycleController 
+		when: otherComponent 
+		isReadyDo: aBlock
+
 ]
 
 { #category : 'lifecycle' }
 WsComponent >> when: otherComponent isStartedDo: aBlock [ 
-	| variable |
-	variable := lifecycleController addIsStartedVariable.
-	otherComponent onStartedDo: [
-		variable setTrue.
-		aBlock value]
+	lifecycleController 
+		when: otherComponent 
+		isStartedDo: aBlock 
 ]
