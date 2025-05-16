@@ -28,12 +28,12 @@ WsLifecycleController class >> component: aComponent [
 
 { #category : 'variables' }
 WsLifecycleController >> addIsReadyVariable [
-	^isReadyCondition addFalse 
+	^isReadyCondition addFalseVariable 
 ]
 
 { #category : 'variables' }
 WsLifecycleController >> addIsStartedVariable [
-	^isStartedCondition addFalse 
+	^isStartedCondition addFalseVariable 
 ]
 
 { #category : 'accessing' }
@@ -93,10 +93,10 @@ WsLifecycleController >> initialize [
 	automaton := SmAutomaton new.
 	self createStates.
 	self createTransitions.
-	isReadyCondition := WsActionTriggeringAndCondition whenTrueDo: [self step].
-	beReadyDoneVariable := isReadyCondition addFalse.
-	isStartedCondition := WsActionTriggeringAndCondition whenTrueDo: [self step].
-	startDoneVariable := isStartedCondition addFalse.	
+	isReadyCondition := WsAndCondition whenTrueDo: [self step].
+	beReadyDoneVariable := isReadyCondition addFalseVariable.
+	isStartedCondition := WsAndCondition whenTrueDo: [self step].
+	startDoneVariable := isStartedCondition addFalseVariable.	
 
 ]
 
@@ -198,4 +198,30 @@ WsLifecycleController >> when: otherComponent isStartedDo: aBlock [
 	otherComponent onStartedDo: [
 		variable setTrue.
 		aBlock value]
+]
+
+{ #category : 'variables' }
+WsLifecycleController >> whenAll: otherComponents areReadyDo: aBlock [
+	| subcondition  |
+	subcondition := isReadyCondition addSubcondition.
+	otherComponents do: [ : aComponent | 
+		|variable|
+		variable := subcondition addFalseVariable.
+		aComponent onReadyDo: [ variable setTrue ].		
+	].
+	subcondition whenTrueDo: aBlock.
+
+]
+
+{ #category : 'variables' }
+WsLifecycleController >> whenAll: otherComponents areStartedDo: aBlock [
+	| subcondition |
+	subcondition := isStartedCondition addSubcondition.
+	otherComponents do: [ : aComponent | 
+		|variable|
+		variable := subcondition addFalseVariable.
+		aComponent onStartedDo: [ variable setTrue ].		
+	].
+	subcondition whenTrueDo: aBlock.
+
 ]

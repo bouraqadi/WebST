@@ -1,6 +1,6 @@
 Class {
 	#name : 'WsConditionVariable',
-	#superclass : 'Object',
+	#superclass : 'WsConditionElement',
 	#instVars : [
 		'value',
 		'condition'
@@ -34,6 +34,11 @@ WsConditionVariable >> condition: anObject [
 WsConditionVariable >> initialize [ 
 	super initialize.
 	self setFalse.
+]
+
+{ #category : 'testing' }
+WsConditionVariable >> isTrue [
+	^self value
 ]
 
 { #category : 'printing' }

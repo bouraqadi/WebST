@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'WsTConcreteComponent classTrait',
 	#instVars : [
 		'subcomponentB',
-		'subcomponentA'
+		'subcomponentA',
+		'subcomponentC'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -26,20 +27,28 @@ WsCompositeForLifecycleTest >> initialize [
 	super initialize.
 	subcomponentA := WsComponentForLifecycleTest new.
 	subcomponentB := WsComponentForLifecycleTest new.
+	subcomponentC := WsComponentForLifecycleTest new.
+	subcomponentA onReadyDo: [  console log: 'Subcomponent A is ready' ].
+	subcomponentB onReadyDo: [  console log: 'Subcomponent B is ready' ].
+	subcomponentC onReadyDo: [  console log: 'Subcomponent C is ready' ].
+	subcomponentA onStartedDo: [  console log: 'Subcomponent A is started' ].
+	subcomponentB onStartedDo: [  console log: 'Subcomponent B is started' ].
+	subcomponentC onStartedDo: [  console log: 'Subcomponent C is started' ].
 	self
 		when: subcomponentA
-		isReadyDo: [ console log: 'Subcomponent A is Ready' ].
+		isReadyDo: [ console log: 'Composite when: subcomponentA isReadyDo:' ].
 	self
-		when: subcomponentB
-		isReadyDo: [ console log: 'Subcomponent B is Ready' ].
+		whenAll: {subcomponentB. subcomponentC}
+		areReadyDo: [ console log: 'Composite whenAll: {subcomponentB. subcomponentC} areReadyDo:' ].
 	self
 		when: subcomponentA
-		isStartedDo: [ console log: 'Subcomponent A is started' ].
+		isStartedDo: [ console log: 'Composite when: subcomponentA isStartedDo:' ].
 	self
-		when: subcomponentB
-		isStartedDo: [ console log: 'Subcomponent B is started' ].
+		whenAll: {subcomponentB. subcomponentC}
+		areStartedDo: [ console log: 'Composite whenAll: {subcomponentB. subcomponentC} areStartedDo:' ].
 	view append: subcomponentA.
 	view append: subcomponentB.
+	view append: subcomponentC.
 
 ]
 
@@ -72,4 +81,10 @@ WsCompositeForLifecycleTest >> subcomponentA [
 WsCompositeForLifecycleTest >> subcomponentB [
 
 	^ subcomponentB
+]
+
+{ #category : 'accessing' }
+WsCompositeForLifecycleTest >> subcomponentC [
+
+	^ subcomponentC
 ]

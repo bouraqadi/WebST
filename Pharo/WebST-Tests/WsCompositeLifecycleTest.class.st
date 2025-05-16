@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'composite',
 		'subcomponentB',
-		'subcomponentA'
+		'subcomponentA',
+		'subcomponentC'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -22,7 +23,8 @@ WsCompositeLifecycleTest >> setUp [
 	super setUp.
 	composite := self evalBlock: [ WsCompositeForLifecycleTest new ].
 	subcomponentA := composite subcomponentA.
-	subcomponentB := composite subcomponentB
+	subcomponentB := composite subcomponentB.
+	subcomponentC := composite subcomponentC.
 ]
 
 { #category : 'tests' }
@@ -32,12 +34,16 @@ WsCompositeLifecycleTest >> testCompositeReadyAfterSubcomponents [
 	subcomponentA setCanBeReady.
 	self deny: composite isReady.
 	subcomponentB setCanBeReady.
+	self deny: composite isReady.
+	subcomponentC setCanBeReady.
 	self waitUntil: [composite isReady].
 ]
 
 { #category : 'tests' }
 WsCompositeLifecycleTest >> testCompositeReadyAfterSubcomponentsReversed [
 
+	self deny: composite isReady.
+	subcomponentC setCanBeReady.
 	self deny: composite isReady.
 	subcomponentB setCanBeReady.
 	self deny: composite isReady.
@@ -53,6 +59,8 @@ WsCompositeLifecycleTest >> testCompositeStartedAfterSubcomponents [
 	subcomponentA setCanBeReadyAndStart.
 	self deny: composite isStarted.
 	subcomponentB setCanBeReadyAndStart.
+	self deny: composite isStarted.
+	subcomponentC setCanBeReadyAndStart.
 	self waitUntil: [ composite isStarted ]
 ]
 
@@ -61,8 +69,10 @@ WsCompositeLifecycleTest >> testCompositeStartedAfterSubcomponentsReversed [
 
 	document body append: composite.
 	self deny: composite isStarted.
-	subcomponentA setCanBeReadyAndStart.
+	subcomponentC setCanBeReadyAndStart.
 	self deny: composite isStarted.
 	subcomponentB setCanBeReadyAndStart.
+	self deny: composite isStarted.
+	subcomponentA setCanBeReadyAndStart.
 	self waitUntil: [ composite isStarted ]
 ]

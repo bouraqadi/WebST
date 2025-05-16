@@ -13,8 +13,8 @@ Class {
 { #category : 'initialization' }
 WsLifecycleControllerForTest >> initialize [ 
 	super initialize.
-	canBeReadyVariabe := isReadyCondition addFalse.
-	canStartVariabe := isStartedCondition addFalse.
+	canBeReadyVariabe := isReadyCondition addFalseVariable.
+	canStartVariabe := isStartedCondition addFalseVariable.
 ]
 
 { #category : 'acting' }

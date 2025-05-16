@@ -1,34 +1,56 @@
 Class {
 	#name : 'WsAndCondition',
-	#superclass : 'Object',
+	#superclass : 'WsConditionElement',
 	#instVars : [
-		'variables'
+		'elements',
+		'actionBlock'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
 	#tag : 'Components'
 }
 
-{ #category : 'variables' }
-WsAndCondition >> add: aBoolean [
+{ #category : 'instance creation' }
+WsAndCondition class >> whenTrueDo: aBlock [
+	^self new
+		whenTrueDo: aBlock;
+		yourself
+]
+
+{ #category : 'elements' }
+WsAndCondition >> addFalseVariable [
+
+	^self addVariableValue: false.
+
+]
+
+{ #category : 'elements' }
+WsAndCondition >> addSubcondition [
+	| newSubcondition |
+	newSubcondition := self species whenTrueDo: [self update].
+	elements add: newSubcondition.
+	^ newSubcondition
+]
+
+{ #category : 'elements' }
+WsAndCondition >> addTrueVariable [
+
+	^ self addVariableValue: true
+]
+
+{ #category : 'elements' }
+WsAndCondition >> addVariableValue: aBoolean [
 
 	| newVariable |
 	newVariable := WsConditionVariable value: aBoolean condition: self.
-	variables add: newVariable.
+	elements add: newVariable.
 	^ newVariable
 ]
 
 { #category : 'variables' }
-WsAndCondition >> addFalse [
+WsAndCondition >> attemptAction [
 
-	^self add: false.
-
-]
-
-{ #category : 'variables' }
-WsAndCondition >> addTrue [
-
-	^ self add: true
+	self ifTrueDo: actionBlock
 ]
 
 { #category : 'testing' }
@@ -46,27 +68,24 @@ WsAndCondition >> ifTrueDo: aBlock [
 { #category : 'initialization' }
 WsAndCondition >> initialize [ 
 	super initialize.
-	variables := Set new
-]
-
-{ #category : 'testing' }
-WsAndCondition >> isFalse [
-	^ self isTrue not
-
-	
+	elements := Set new
 ]
 
 { #category : 'testing' }
 WsAndCondition >> isTrue [
 
-	^ (self values includes: false) not
+	| falseElements |
+	elements ifEmpty: [ ^false ].
+	falseElements := elements select: [: var| var isFalse].
+	^falseElements isEmpty
+
 ]
 
 { #category : 'printing' }
 WsAndCondition >> printOn: aStream [
 
 	aStream << 'AND ('.
-	variables
+	elements
 		do: [ :aBoolean | aStream print: aBoolean ]
 		separatedBy: [ aStream << ', ' ].
 	aStream << $)
@@ -74,10 +93,12 @@ WsAndCondition >> printOn: aStream [
 
 { #category : 'updating' }
 WsAndCondition >> update [
-	^self
+	self attemptAction 
 ]
 
-{ #category : 'variables' }
-WsAndCondition >> values [
-	^variables collect: [: var| var value]
+{ #category : 'enumerating' }
+WsAndCondition >> whenTrueDo: aBlock [
+
+	actionBlock := aBlock.
+	self attemptAction
 ]
