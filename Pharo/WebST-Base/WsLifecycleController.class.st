@@ -50,7 +50,7 @@ WsLifecycleController >> component: aComponent [
 	See #createStates method"
 	
 	component := aComponent.
-	component onConnectedDo: [ self setIsConnected ].
+	component onConnectedDo: [ self step ].
 	self step
 
 ]
@@ -159,11 +159,6 @@ WsLifecycleController >> notifyIsStartedObservers [
 { #category : 'acting' }
 WsLifecycleController >> setBeReadyDone [
 	beReadyDoneVariable setTrue
-]
-
-{ #category : 'acting' }
-WsLifecycleController >> setIsConnected [
-	self step
 ]
 
 { #category : 'acting' }

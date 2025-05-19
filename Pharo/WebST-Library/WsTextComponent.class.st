@@ -47,14 +47,9 @@ WsTextComponent >> getReady [
 
 	super getReady.
 	display := view querySelector: '.display'.
+	self ifDataAttribute: #text present: [ : newText | model text: newText ].
 	model -@ #textPort => [ :newText | self updateDisplay: newText ].
 	self updateDisplay: self text
-]
-
-{ #category : 'initialization' }
-WsTextComponent >> initializeModel [
-	super initializeModel.
-	self ifDataAttribute: #text present: [ : newText | model text: newText ] 
 ]
 
 { #category : 'accessing' }
