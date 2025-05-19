@@ -61,19 +61,14 @@ WsListComponent >> displayItemModel: itemModel [
 ]
 
 { #category : 'initialization' }
-WsListComponent >> displayModel [
-
-	model items withIndexDo: [ :item :index |
-		self displayItemModel: item ]
-]
-
-{ #category : 'initialization' }
 WsListComponent >> getReady [
 
 	super getReady.
 	listView := view querySelector: 'ul'.
-	model -@ #addPort => [ : itemModel : itemIndex | self handleAdd: itemModel at: itemIndex].
-	self displayModel
+	model -@ #addPort
+	=> [ :itemModel :itemIndex | self handleAdd: itemModel at: itemIndex ].
+	model items withIndexDo: [ :item :index |
+		self displayItemModel: item ]
 ]
 
 { #category : 'actions' }

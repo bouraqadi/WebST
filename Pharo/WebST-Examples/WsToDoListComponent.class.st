@@ -43,21 +43,16 @@ WsToDoListComponent >> displayHeading: aString [
 ]
 
 { #category : 'initialization' }
-WsToDoListComponent >> displayModel [
-
-	super displayModel.
-	self displayHeading: model heading
-]
-
-{ #category : 'initialization' }
 WsToDoListComponent >> getReady [
 
 	| addButton |
 	super getReady.
 	headingDisplay := self viewFirstElementByCssClass: 'headingDisplay'.
+	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ].	
+	self displayHeading: model heading.
 	addButton := self viewFirstElementByCssClass: 'addItemButton'.
 	self onClickElement: addButton do: [ self addItem ].
-	model -@ #headingPort => [ :newTitle | self displayHeading: newTitle ].
+
 ]
 
 { #category : 'accessing' }
