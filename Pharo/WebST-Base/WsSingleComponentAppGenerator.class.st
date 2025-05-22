@@ -27,7 +27,7 @@ WsSingleComponentAppGenerator class >> playgroundFor: aComponent [
 WsSingleComponentAppGenerator class >> resetCurrent [
 	<script>
 	
-	current cleanUp.
+	current ifNotNil: [current cleanUp].
 	current := nil
 ]
 
@@ -46,7 +46,7 @@ WsSingleComponentAppGenerator >> appFor: componentClass [
 { #category : 'creating' }
 WsSingleComponentAppGenerator >> appFor: componentClass attributes: componentDataAttributes style: componentStyle cssClasses: componentCssClasses appSuperclass: appSuperclass traits: appTraits [
 
-	| descriptor |
+	| descriptor appClass |
 	descriptor := WsSingleComponentAppDescriptor new
 		              superclass: appSuperclass;
 		              traits: appTraits;
@@ -55,14 +55,16 @@ WsSingleComponentAppGenerator >> appFor: componentClass attributes: componentDat
 		              style: componentStyle;
 		              cssClasses: componentCssClasses;
 		              yourself.
-	^ appClassesDict at: descriptor ifAbsentPut: [
-		  self
-			  newAppFor: componentClass
-			  attributes: componentDataAttributes
-			  style: componentStyle
-			  cssClasses: componentCssClasses
-			  appSuperclass: appSuperclass
-			  traits: appTraits ]
+	appClass := appClassesDict at: descriptor ifAbsent: [ nil ].
+	(appClass notNil and: [ appClass isObsolete not ]) ifTrue: [
+		^ appClass ].
+	^ appClassesDict at: descriptor put: (self
+			   newAppFor: componentClass
+			   attributes: componentDataAttributes
+			   style: componentStyle
+			   cssClasses: componentCssClasses
+			   appSuperclass: appSuperclass
+			   traits: appTraits)
 ]
 
 { #category : 'initialization' }
@@ -130,9 +132,10 @@ WsSingleComponentAppGenerator >> newAppFor: componentClass attributes: component
 
 { #category : 'utility' }
 WsSingleComponentAppGenerator >> playgroundFor: componentClass [
+
 	| app |
-	app := self appFor: componentClass .
-	app playground
+	app := self appFor: componentClass.
+	^app playground
 ]
 
 { #category : 'initialization' }
