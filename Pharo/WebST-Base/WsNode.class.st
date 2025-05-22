@@ -10,9 +10,6 @@ This method is overriden in WsHtmlElement since browsers provide a callback for 
 Class {
 	#name : 'WsNode',
 	#superclass : 'Object',
-	#instVars : [
-		'isConnectedPort'
-	],
 	#pools : [
 		'PjBrowserGlobals'
 	],
@@ -67,60 +64,4 @@ WsNode >> firstElementByCssClass: cssClassName [
 WsNode >> firstElementByTag: tagName [
 
 	^ self querySelector: tagName
-]
-
-{ #category : 'DOM connection observing' }
-WsNode >> installConnectedNotificationTrigger [
-	"HTML does not provide any support for detecting a connection to DOM"
-	"Workaround: Rely on an animation event sent to a dedicated empty element"
-	"Esnure we don't have duplicate triggering"
-	| triggerCssClassName triggerStyle trigger |
-	triggerCssClassName := #webStConnectedNotificationTrigger.
-	(self firstElementByCssClass: triggerCssClassName) ifNotNil: [ ^self ].
-	triggerStyle := document createElement: 'style'.
-	triggerStyle textContent: '
-	.',triggerCssClassName,'{
-		width: 0 !important;
-		height: 0 !important;
-		animation-name: empty;
-		animation-duration: 0s;
-		animation-iteration-count: 0;
-	}
-	@keyframes empty{
-	}'.
-	trigger := document createElement: 'span'.
-	trigger className: triggerCssClassName.
-	trigger addEventListener: #animationstart block: [self notifyDomConnectionObservers].
-	self
-		append: triggerStyle;
-		append: trigger
-]
-
-{ #category : 'DOM connection observing' }
-WsNode >> isConnected [
-	"The read-only isConnected property of the Node interface returns a boolean indicating whether the node is connected (directly or indirectly) to a Document object."
-	"See https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected"
-	<javascript: 'return this.isConnected'>
-	
-	^self instVarNamed: #isConnected
-]
-
-{ #category : 'DOM connection observing' }
-WsNode >> isConnectedPort [
-	^isConnectedPort ifNil: [ isConnectedPort := HyCollectionPort new ]
-]
-
-{ #category : 'DOM connection observing' }
-WsNode >> notifyDomConnectionObservers [
-	isConnectedPort ifNil: [ ^self ].
-	isConnectedPort notify
-]
-
-{ #category : 'DOM connection observing' }
-WsNode >> onConnectedDo: aBlock [
-	"Request to perform aBlock when connected to the DOM tree"
-
-	self isConnectedPort => aBlock.
-	self installConnectedNotificationTrigger.
-
 ]

@@ -131,14 +131,6 @@ WsComponent >> initialize [
 	self reset
 ]
 
-{ #category : 'DOM connection observing' }
-WsComponent >> installConnectedNotificationTrigger [
-	"Web Compoments have a callback that we use to trigger notifications.
-	See WsComponent >> #connectedCallback"
-
-	^self
-]
-
 { #category : 'lifecycle' }
 WsComponent >> isReady [
 	^lifecycleController isReady
@@ -165,12 +157,6 @@ WsComponent >> notifyIsReadyObservers [
 WsComponent >> notifyIsStartedObservers [
 	isStartedPort ifNil: [ ^self ].
 	isStartedPort notifyWith: self.
-]
-
-{ #category : 'DOM connection observing' }
-WsComponent >> onConnectedDo: aBlock [
-	super onConnectedDo: aBlock.
-	self isConnected ifTrue: aBlock 
 ]
 
 { #category : 'initialization' }

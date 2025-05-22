@@ -12,7 +12,8 @@ Class {
 	#instVars : [
 		'style',
 		'isReadyPort',
-		'isStartedPort'
+		'isStartedPort',
+		'isConnectedPort'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -199,6 +200,20 @@ WsHtmlElement >> intFromPx: aString [
 	^aString asInteger 
 ]
 
+{ #category : 'DOM connection observing' }
+WsHtmlElement >> isConnected [
+	"The read-only isConnected property of the Node interface returns a boolean indicating whether the node is connected (directly or indirectly) to a Document object."
+	"See https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected"
+	<javascript: 'return this.isConnected'>
+	
+	^self instVarNamed: #isConnected
+]
+
+{ #category : 'DOM connection observing' }
+WsHtmlElement >> isConnectedPort [
+	^isConnectedPort ifNil: [ isConnectedPort := HyCollectionPort new ]
+]
+
 { #category : 'accessing visibility' }
 WsHtmlElement >> isHidden [
 
@@ -229,6 +244,20 @@ WsHtmlElement >> isStarted [
 { #category : 'observing lifecycle' }
 WsHtmlElement >> isStartedPort [
 	^isStartedPort ifNil: [ isStartedPort := HyCollectionPort notificationSelector: #cull: ]
+]
+
+{ #category : 'DOM connection observing' }
+WsHtmlElement >> notifyDomConnectionObservers [
+	isConnectedPort ifNil: [ ^self ].
+	isConnectedPort notify
+]
+
+{ #category : 'DOM connection observing' }
+WsHtmlElement >> onConnectedDo: aBlock [
+	"Request to perform aBlock when connected to the DOM tree"
+
+	self isConnectedPort => aBlock.
+	self isConnected ifTrue: aBlock
 ]
 
 { #category : 'observing lifecycle' }
