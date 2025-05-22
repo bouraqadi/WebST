@@ -24,12 +24,14 @@ WsDomConnectionNotificationTest class >> isAbstract [
 { #category : 'tests' }
 WsDomConnectionNotificationTest >> assertObservers [
 
+	200 milliseconds wait.
 	self waitUntil: [
 		counters allSatisfy: [ :aCounter | aCounter count = 1 ] ].
 	domElement remove.
 	self waitWhile: [ domElement isConnected ].
 	document body prepend: domElement.
 	self waitUntil: [ domElement isConnected ].
+	200 milliseconds wait.
 	self waitUntil: [
 		counters allSatisfy: [ :aCounter | aCounter count = 2 ] ]
 ]
@@ -56,10 +58,13 @@ WsDomConnectionNotificationTest >> subscribeObservers [
 
 { #category : 'tests' }
 WsDomConnectionNotificationTest >> testObserversSubscribedAfterConnection [
+
 	document body prepend: domElement.
 	self waitUntil: [ domElement isConnected ].
+	"Give a chance to the browser to fully handle connection callback event"
+	100 milliseconds wait.
 	self subscribeObservers.
-	self assertObservers 
+	self assertObservers
 ]
 
 { #category : 'tests' }
@@ -68,16 +73,20 @@ WsDomConnectionNotificationTest >> testObserversSubscribedBeforeConnection [
 	self subscribeObservers.
 	document body prepend: domElement.
 	self waitUntil: [ domElement isConnected ].
+	"Give a chance to the browser to fully handle connection callback event"
+	100 milliseconds wait.
 	self assertObservers
 ]
 
 { #category : 'tests' }
 WsDomConnectionNotificationTest >> testObserversSubscribedMultipeTimesReceivesOnly1Notification [
-	<expectedFailure>
 
+	<expectedFailure>
 	self subscribeObservers.
 	document body prepend: domElement.
 	self waitUntil: [ domElement isConnected ].
+	"Give a chance to the browser to fully handle connection callback event"
+	100 milliseconds wait.
 	self subscribeObservers.
-	self assertObservers 
+	self assertObservers
 ]
