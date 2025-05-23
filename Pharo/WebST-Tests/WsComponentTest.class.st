@@ -41,6 +41,7 @@ WsComponentTest >> assertComponent [
 { #category : 'asserting' }
 WsComponentTest >> assertComponent: aComponent [
 
+	self waitUntil: [ aComponent isStarted ].
 	self assertComponent: aComponent with: nil
 ]
 
