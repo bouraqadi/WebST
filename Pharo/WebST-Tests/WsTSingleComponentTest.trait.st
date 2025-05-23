@@ -4,8 +4,8 @@ Trait {
 		'component',
 		'shadowRoot'
 	],
-	#traits : 'PjTAppRunsInJS',
-	#classTraits : 'PjTAppRunsInJS classTrait',
+	#traits : 'PjTAppRunsInJS + PjTWaitUntilReady',
+	#classTraits : 'PjTAppRunsInJS classTrait + PjTWaitUntilReady classTrait',
 	#category : 'WebST-Tests-Support',
 	#package : 'WebST-Tests',
 	#tag : 'Support'
@@ -83,7 +83,8 @@ WsTSingleComponentTest >> component [
 WsTSingleComponentTest >> component: aComponent [
 
 	component := aComponent.
-	shadowRoot := component at: #shadowRoot 
+	self waitUntil: [ component isStarted ].
+	shadowRoot := component at: #shadowRoot
 ]
 
 { #category : 'accessing' }
