@@ -12,9 +12,11 @@ WsTBootstrapIcons1View >> bootstrapIcons1Resources [
 ]
 
 { #category : 'rendering' }
-WsTBootstrapIcons1View >> renderOn: html icon: iconCssClass [
+WsTBootstrapIcons1View >> renderOn: renderer icon: iconCssClass [
 
-	^html icon class: ('bi ' , iconCssClass); yourself
+	^ renderer icon
+		  class: 'bi ' , iconCssClass;
+		  yourself
 ]
 
 { #category : 'rendering' }
