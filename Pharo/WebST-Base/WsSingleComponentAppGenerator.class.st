@@ -119,9 +119,11 @@ WsSingleComponentAppGenerator >> initialize [
 { #category : 'creating' }
 WsSingleComponentAppGenerator >> newAppFor: componentClass attributes: componentDataAttributes style: componentStyle cssClasses: componentCssClasses appSuperclass: appSuperclass traits: appTraits [
 
-
 	| appClass |
-	appClass := classFactory make:[: builder | builder superclass: appSuperclass].
+	appClass := classFactory make: [ :builder |
+		            builder 
+							superclass: appSuperclass; 
+							package: componentClass package ].
 	appClass
 		rootComponentClass: componentClass;
 		rootComponentAttributes: componentDataAttributes;
@@ -133,9 +135,11 @@ WsSingleComponentAppGenerator >> newAppFor: componentClass attributes: component
 { #category : 'utility' }
 WsSingleComponentAppGenerator >> playgroundFor: componentClass [
 
-	| app |
-	app := self appFor: componentClass.
-	^app playground
+	| appClass playground |
+	appClass := self appFor: componentClass.
+	playground := appClass playground.
+	playground window whenClosedDo: [ appClass removeFromSystem ].
+	^ playground
 ]
 
 { #category : 'initialization' }

@@ -4,7 +4,8 @@ Class {
 	#traits : 'PjTWaitUntilReady',
 	#classTraits : 'PjTWaitUntilReady classTrait',
 	#instVars : [
-		'playground'
+		'playground',
+		'appClass'
 	],
 	#category : 'WebST-Tests-Support',
 	#package : 'WebST-Tests',
@@ -15,6 +16,13 @@ Class {
 WsComponentPlaygroundTest >> appClassForComponentClass [
 
 	^ WsSingleComponentAppGenerator current appFor: self componentClass
+]
+
+{ #category : 'tests' }
+WsComponentPlaygroundTest >> closePlayground [
+
+	playground ifNotNil: [ playground window close ].
+
 ]
 
 { #category : 'tests' }
@@ -33,14 +41,14 @@ WsComponentPlaygroundTest >> openPlayground [
 { #category : 'tests' }
 WsComponentPlaygroundTest >> setUp [
 	super setUp.
-	WsSingleComponentAppGenerator resetCurrent
+	WsSingleComponentAppGenerator resetCurrent.
+	appClass := self appClassForComponentClass 
 ]
 
 { #category : 'tests' }
 WsComponentPlaygroundTest >> tearDown [
 
-	playground ifNotNil: [
-		playground window close].
+	self closePlayground.
 	super tearDown
 ]
 
@@ -54,17 +62,34 @@ WsComponentPlaygroundTest >> testAppClassCached [
 ]
 
 { #category : 'tests' }
+WsComponentPlaygroundTest >> testAppClassRemovedUponClosingPlayground [
+
+	self openPlayground.
+	self closePlayground.
+	self deny: (Smalltalk globals includes: appClass)
+]
+
+{ #category : 'tests' }
+WsComponentPlaygroundTest >> testAppExport [
+
+	appClass exportApp.
+	self assert: appClass appFullHtmlFileName asFileReference exists
+]
+
+{ #category : 'tests' }
 WsComponentPlaygroundTest >> testAppFolder [
 
-	| componentClass |
-	componentClass := self appClassForComponentClass.
-	self assert: componentClass defaultAppFolder exists
+	appClass resetAppFolder.
+	self assert: appClass appFolder exists.
+	self
+		assert: appClass appFolder basename
+		equals: self componentClass name , '-Test'
 ]
 
 { #category : 'tests' }
 WsComponentPlaygroundTest >> testObsoleteClass [
 
-	self appClassForComponentClass removeFromSystem.
+	appClass removeFromSystem.
 	self openPlayground
 ]
 

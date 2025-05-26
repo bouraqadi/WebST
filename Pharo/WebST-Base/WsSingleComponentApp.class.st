@@ -12,6 +12,15 @@ Class {
 }
 
 { #category : 'accessing' }
+WsSingleComponentApp class >> defaultAppFolderName [
+
+	<pharoJsSkip>
+	| aWsSingleComponentApp |
+	aWsSingleComponentApp := self new.
+	^ aWsSingleComponentApp componentClass name , '-Test'
+]
+
+{ #category : 'accessing' }
 WsSingleComponentApp class >> title [
 
 	<pharoJsSkip> 

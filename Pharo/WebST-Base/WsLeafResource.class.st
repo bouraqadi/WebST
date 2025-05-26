@@ -70,11 +70,21 @@ WsLeafResource >> basicPathString [
 
 { #category : 'initialization' }
 WsLeafResource >> beCrossoriginAnonymous [
+	"The crossorigin attribute, valid on the <audio>, <img>, <link>, <script>, and <video> elements, provides support for CORS, defining how the element handles cross-origin requests.
+	
+	 #anonymous = Request uses CORS headers and credentials flag is set to 'same-origin'. There is no exchange of user credentials via cookies, client-side TLS certificates or HTTP authentication, unless destination is the same origin.
+
+	See https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/crossorigin
+"
 	crossorigin := 'anonymous'
 ]
 
 { #category : 'initialization' }
 WsLeafResource >> beNoReferrer [
+	"The referrerPolicy property of the HTMLScriptElement interface reflects the HTML referrerpolicy of the <script> element, which defines how the referrer is set when fetching the script and any scripts it imports.
+	
+	See https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/referrerPolicy"
+	
 	referrerpolicy := 'no-referrer'
 ]
 
@@ -101,6 +111,9 @@ WsLeafResource >> initialize [
 
 { #category : 'accessing' }
 WsLeafResource >> integrity: aString [
+	"The integrity property of the HTMLScriptElement interface is a string that contains inline metadata that a browser can use to verify that a fetched resource has been delivered without unexpected manipulation.
+	
+	See https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/integrity"
 	integrity := aString
 ]
 
@@ -119,10 +132,13 @@ WsLeafResource >> pathString: aString [
 
 { #category : 'rendering' }
 WsLeafResource >> renderOuterHtmlOn: html [
+	"#crossorigin attribute removed to allow resource use in a local HTML file, typically for single component tests. See https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/crossorigin
+
+	#integrity attribute is removed because resource is not eligible for integrity checks, since  crossorigin attribute is removed. Itegrity check can be done only for resources that are either CORS-enabled or same-origin. See https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/integrity"
 
 	(self renderTagOn: html)
-		attributeAt: #integrity put: integrity;
-		attributeAt: #crossorigin put: crossorigin;
+"		attributeAt: #integrity put: integrity;
+		attributeAt: #crossorigin put: crossorigin;"
 		attributeAt: #referrerpolicy put: referrerpolicy
 ]
 
