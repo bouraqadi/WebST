@@ -14,14 +14,19 @@ Class {
 { #category : 'tests' }
 WsComponentPlaygroundTest >> appClassForComponentClass [
 
-	^WsSingleComponentAppGenerator current appFor: WsMinimalComponent.
+	^ WsSingleComponentAppGenerator current appFor: self componentClass
+]
 
+{ #category : 'tests' }
+WsComponentPlaygroundTest >> componentClass [
+
+	^WsMinimalComponent
 ]
 
 { #category : 'tests' }
 WsComponentPlaygroundTest >> openPlayground [
 
-	playground := WsMinimalComponent playground.
+	playground := self componentClass playground.
 	self waitUntil: [ playground bridge isConnected ]
 ]
 
@@ -49,6 +54,14 @@ WsComponentPlaygroundTest >> testAppClassCached [
 ]
 
 { #category : 'tests' }
+WsComponentPlaygroundTest >> testAppFolder [
+
+	| componentClass |
+	componentClass := self appClassForComponentClass.
+	self assert: componentClass defaultAppFolder exists
+]
+
+{ #category : 'tests' }
 WsComponentPlaygroundTest >> testObsoleteClass [
 
 	self appClassForComponentClass removeFromSystem.
@@ -58,5 +71,6 @@ WsComponentPlaygroundTest >> testObsoleteClass [
 { #category : 'tests' }
 WsComponentPlaygroundTest >> testOpenPlayground [
 
-	self openPlayground
+	self openPlayground.
+	self assert: (playground window title includesSubstring: self componentClass name)
 ]
