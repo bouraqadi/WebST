@@ -16,12 +16,24 @@ WsResourceElementTest class >> isAbstract [
 ]
 
 { #category : 'tests' }
-WsResourceElementTest >> assertHtml: expectedHtml [
+WsResourceElementTest >> assertHtmlEquals: expectedHtml [
 
+	self assert: self html equals: expectedHtml
+]
+
+{ #category : 'tests' }
+WsResourceElementTest >> assertHtmlMatch: htmlPattern [
+
+	self assert: (htmlPattern match: self html)
+]
+
+{ #category : 'tests' }
+WsResourceElementTest >> html [
 	| renderer |
 	renderer := resource renderClass render: resource.
 	renderer flush.
-	self assert: renderer html equals: expectedHtml
+	^renderer html
+
 ]
 
 { #category : 'tests' }
