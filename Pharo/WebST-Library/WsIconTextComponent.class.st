@@ -77,6 +77,12 @@ WsIconTextComponent >> iconAttribute [
 ]
 
 { #category : 'accessing' }
+WsIconTextComponent >> text [
+
+	^controller text
+]
+
+{ #category : 'accessing' }
 WsIconTextComponent >> text: aString [
 
 	controller text: aString

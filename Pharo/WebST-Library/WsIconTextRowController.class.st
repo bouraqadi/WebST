@@ -42,6 +42,11 @@ WsIconTextRowController >> iconElement: anObject [
 ]
 
 { #category : 'accessing' }
+WsIconTextRowController >> text [
+	^self textElement textContent
+]
+
+{ #category : 'accessing' }
 WsIconTextRowController >> text: aString [
 
 	aString ifNil: [ ^self hide: self textElement ].
