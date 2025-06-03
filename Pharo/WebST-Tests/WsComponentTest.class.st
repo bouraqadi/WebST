@@ -26,14 +26,6 @@ WsComponentTest class >> resources [
 ]
 
 { #category : 'asserting' }
-WsComponentTest >> assert: actualValue equalsDataAttributeAt: aSymbol [
-
-	| expectedValue |
-	expectedValue := self dataAttributesDict at: aSymbol. 
-	self assert: actualValue equals: expectedValue
-]
-
-{ #category : 'asserting' }
 WsComponentTest >> assertComponent [ 
 	self subclassResponsibility 
 ]
@@ -73,12 +65,6 @@ WsComponentTest >> assertCustomAttributesApplied [
 WsComponentTest >> assertDefaultAttributesApplied [
 
 	^ self
-]
-
-{ #category : 'accessing' }
-WsComponentTest >> dataAttributesDict [
-
-	^ self class dataAttributes asDictionary
 ]
 
 { #category : 'accessing' }

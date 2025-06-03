@@ -73,6 +73,14 @@ WsTSingleComponentTest >> allComponents [
 	^ self document querySelectorAll: self componentTagName
 ]
 
+{ #category : 'asserting' }
+WsTSingleComponentTest >> assert: actualValue equalsDataAttributeAt: aSymbol [
+
+	| expectedValue |
+	expectedValue := self dataAttributeAt: aSymbol.
+	self assert: actualValue equals: expectedValue
+]
+
 { #category : 'accessing' }
 WsTSingleComponentTest >> component [
 	^component ifNil: [ component := self firstComponent ]
@@ -97,6 +105,17 @@ WsTSingleComponentTest >> componentClass [
 WsTSingleComponentTest >> componentTagName [
 
 	^ self componentClass tagName
+]
+
+{ #category : 'accessing' }
+WsTSingleComponentTest >> dataAttributeAt: key [
+	^self dataAttributesDict at: key
+]
+
+{ #category : 'accessing' }
+WsTSingleComponentTest >> dataAttributesDict [
+
+	^ self class dataAttributes asDictionary
 ]
 
 { #category : 'accessing' }

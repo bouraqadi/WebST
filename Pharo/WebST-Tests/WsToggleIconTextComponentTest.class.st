@@ -33,13 +33,12 @@ WsToggleIconTextComponentTest >> assertCustomAttributesApplied [
 
 	| expectedOnClass expectedOffClass |
 	super assertCustomAttributesApplied.
-	expectedOnClass := self dataAttributesDict at: #onIcon.
+	expectedOnClass := self dataAttributeAt: #onIcon.
 	self assert: onIcon hasCssClass: expectedOnClass.
 	self assert: onText textContent equalsDataAttributeAt: #onText.
-	expectedOffClass := self dataAttributesDict at: #offIcon.
+	expectedOffClass := self dataAttributeAt: #offIcon.
 	self assert: offIcon hasCssClass: expectedOffClass.
-	self assert: offText textContent equalsDataAttributeAt: #offText.
-
+	self assert: offText textContent equalsDataAttributeAt: #offText
 ]
 
 { #category : 'asserting' }

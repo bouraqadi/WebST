@@ -41,7 +41,7 @@ WsIconTextComponentTest >> assertCustomAttributesApplied [
 
 	| iconAttribute |
 	super assertCustomAttributesApplied.
-	iconAttribute := self dataAttributesDict at: #icon.
+	iconAttribute := self dataAttributeAt: #icon.
 	self assert: (iconElement classList contains: iconAttribute).
 	self assertShowing: textElement.
 	self assert: textElement textContent equalsDataAttributeAt: #text
