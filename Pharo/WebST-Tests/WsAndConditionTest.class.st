@@ -53,17 +53,42 @@ WsAndConditionTest >> test1False1TrueSwitchFalseToTrue [
 ]
 
 { #category : 'tests' }
-WsAndConditionTest >> test1Subcondition [
+WsAndConditionTest >> test1Subcondition1Variable [
 
 	| subcondition variable |
 	subcondition := condition addSubcondition.
-	self denyCondition: subcondition.
 	variable := subcondition addFalseVariable.
 	self denyCondition: subcondition.
 	self denyCondition.
 	variable setTrue.
 	self assertCondition: subcondition.
 	self assertCondition
+]
+
+{ #category : 'tests' }
+WsAndConditionTest >> test1Subcondition2Variables [
+
+	| subcondition variable1 variable2|
+	subcondition := condition addSubcondition.
+	variable1 := subcondition addFalseVariable.
+	variable2 := subcondition addFalseVariable.
+	self denyCondition: subcondition.
+	self denyCondition.
+	variable1 setTrue.
+	self denyCondition: subcondition.
+	self denyCondition.
+	variable2 setTrue.
+	self assertCondition: subcondition.
+	self assertCondition
+]
+
+{ #category : 'tests' }
+WsAndConditionTest >> test1SubconditionDefault [
+
+	| subcondition |
+	subcondition := condition addSubcondition.
+	self denyCondition: subcondition.
+
 ]
 
 { #category : 'tests' }
@@ -86,6 +111,22 @@ WsAndConditionTest >> test2FalseSwitchFalseToTrue [
 	var2 setTrue.
 	self denyCondition. 
 	var1 setTrue.
+	self assertCondition
+]
+
+{ #category : 'tests' }
+WsAndConditionTest >> test2Subconditions2VariablesEach [
+
+	| subconditionA variables subconditionB |
+	subconditionA := condition addSubcondition.
+	variables := Set new.
+	2 timesRepeat: [ variables add: subconditionA addFalseVariable ].
+	subconditionB := condition addSubcondition.
+	2 timesRepeat: [ variables add: subconditionB addFalseVariable ].
+	self denyCondition.
+	variables
+		do: [ :var | var setTrue ]
+		separatedBy: [ self denyCondition ].
 	self assertCondition
 ]
 
