@@ -26,20 +26,21 @@ WsComponentTest class >> resources [
 ]
 
 { #category : 'asserting' }
-WsComponentTest >> assertComponent [ 
-	self subclassResponsibility 
+WsComponentTest >> assertComponent [
+
+	^self 
 ]
 
 { #category : 'asserting' }
 WsComponentTest >> assertComponent: aComponent [
 
-	self waitUntil: [ aComponent isStarted ].
 	self assertComponent: aComponent with: nil
 ]
 
 { #category : 'asserting' }
 WsComponentTest >> assertComponent: aComponent with: aBlock [
 
+	self waitUntil: [ aComponent isStarted ].
 	self component: aComponent.
 	self assertComponentClass.
 	aBlock value.
