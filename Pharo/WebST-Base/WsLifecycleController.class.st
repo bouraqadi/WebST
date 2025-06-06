@@ -12,7 +12,9 @@ Class {
 		'isReadyCondition',
 		'isStartedCondition',
 		'beReadyDoneVariable',
-		'startDoneVariable'
+		'startDoneVariable',
+		'waitingForExternalSetupState',
+		'isExternalSetupRequired'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -61,11 +63,17 @@ WsLifecycleController >> createStates [
 	nilComponentState := automaton newState.
 	nilComponentState label: 'Nil Component'.
 	automaton initialState: nilComponentState.
-	gettingReadyState := automaton newStateOnEntryDo: [ self getReady ] onExitDo: [self notifyIsReadyObservers].
+	waitingForExternalSetupState := automaton newStateOnEntryDo: [ self notifyWaitForExternalSetupObservers ].
+	waitingForExternalSetupState label: 'Waiting for External Setup'.
+	gettingReadyState := automaton
+		                     newStateOnEntryDo: [ self getReady ]
+		                     onExitDo: [ self notifyIsReadyObservers ].
 	gettingReadyState label: 'Getting Ready'.
 	waitingForConnectionState := automaton newState.
 	waitingForConnectionState label: 'Waiting for Connection to DOM'.
-	startingState := automaton newStateOnEntryDo: [ self start ] onExitDo: [self notifyIsStartedObservers].
+	startingState := automaton
+		                 newStateOnEntryDo: [ self start ]
+		                 onExitDo: [ self notifyIsStartedObservers ].
 	startingState label: 'Starting'.
 	runningState := automaton newState.
 	runningState label: 'Running'
@@ -73,11 +81,33 @@ WsLifecycleController >> createStates [
 
 { #category : 'transitions' }
 WsLifecycleController >> createTransitions [
-	nilComponentState transitionTo: gettingReadyState when: [ self isComponentAvailable ].
-	gettingReadyState transitionTo: waitingForConnectionState when: [ self isReady and: [ self isConnected not ] ].
-	gettingReadyState transitionTo: startingState when: [ self isReady and: [ self isConnected ] ].
-	waitingForConnectionState transitionTo: startingState when: [ self isConnected ].
-	startingState transitionTo: runningState when: [ self isStarted ] 
+
+	nilComponentState
+		transitionTo: waitingForExternalSetupState
+		when: [ self isExternalSetupPossible ].
+	nilComponentState
+		transitionTo: gettingReadyState
+		when: [ self isGetReadyPossible ].
+	waitingForExternalSetupState
+		transitionTo: gettingReadyState
+		when: [ self isExternalSetupDone ].
+	gettingReadyState
+		transitionTo: waitingForConnectionState
+		when: [ self isReady and: [ self isConnected not ] ].
+	gettingReadyState
+		transitionTo: startingState
+		when: [ self isReady and: [ self isConnected ] ].
+	waitingForConnectionState
+		transitionTo: startingState
+		when: [ self isConnected ].
+	startingState transitionTo: runningState when: [ self isStarted ]
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> externalSetupDone [
+
+	self isExternalSetupRequired: false.
+	self step
 ]
 
 { #category : 'acting' }
@@ -93,11 +123,11 @@ WsLifecycleController >> initialize [
 	automaton := SmAutomaton new.
 	self createStates.
 	self createTransitions.
-	isReadyCondition := WsAndCondition whenTrueDo: [self step].
+	isReadyCondition := WsAndCondition whenTrueDo: [ self step ].
 	beReadyDoneVariable := isReadyCondition addFalseVariable.
-	isStartedCondition := WsAndCondition whenTrueDo: [self step].
-	startDoneVariable := isStartedCondition addFalseVariable.	
-
+	isStartedCondition := WsAndCondition whenTrueDo: [ self step ].
+	startDoneVariable := isStartedCondition addFalseVariable.
+	self isExternalSetupRequired: false.
 ]
 
 { #category : 'transitions' }
@@ -109,6 +139,36 @@ WsLifecycleController >> isComponentAvailable [
 WsLifecycleController >> isConnected [
 	component ifNil: [ ^false ].
 	^component isConnected
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> isExternalSetupDone [
+
+	^  self isExternalSetupRequired not
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> isExternalSetupPossible [
+
+	^ self isComponentAvailable and: [ self isExternalSetupRequired ]
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> isExternalSetupRequired [
+
+	^ isExternalSetupRequired
+]
+
+{ #category : 'accessing' }
+WsLifecycleController >> isExternalSetupRequired: anObject [
+
+	isExternalSetupRequired := anObject
+]
+
+{ #category : 'transitions' }
+WsLifecycleController >> isGetReadyPossible [
+
+	^ self isComponentAvailable and: [ self isExternalSetupRequired not ]
 ]
 
 { #category : 'states' }
@@ -146,6 +206,12 @@ WsLifecycleController >> isWaitingForConnectionToDom [
 	^automaton currentState == waitingForConnectionState 
 ]
 
+{ #category : 'states' }
+WsLifecycleController >> isWaitingForExternalSetup [
+
+	^ automaton currentState == waitingForExternalSetupState 
+]
+
 { #category : 'acting' }
 WsLifecycleController >> notifyIsReadyObservers [
 	component notifyIsReadyObservers
@@ -154,6 +220,13 @@ WsLifecycleController >> notifyIsReadyObservers [
 { #category : 'acting' }
 WsLifecycleController >> notifyIsStartedObservers [
 	component notifyIsStartedObservers
+]
+
+{ #category : 'acting' }
+WsLifecycleController >> notifyWaitForExternalSetupObservers [
+	component notifyWaitForExternalSetupObservers
+
+	
 ]
 
 { #category : 'acting' }

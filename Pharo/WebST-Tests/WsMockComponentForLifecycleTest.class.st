@@ -8,7 +8,8 @@ Class {
 		'didNotifyIsStartedObservers',
 		'lifecycleController',
 		'canStartVariable',
-		'canBeReadyVariable'
+		'canBeReadyVariable',
+		'didNotifyWaitForExternalSetupObservers'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -31,17 +32,32 @@ WsMockComponentForLifecycleTest >> didNotifyIsStartedObservers [
 	^didNotifyIsStartedObservers
 ]
 
+{ #category : 'accessing' }
+WsMockComponentForLifecycleTest >> didNotifyWaitForExternalSetupObservers [
+
+	^ didNotifyWaitForExternalSetupObservers
+]
+
+{ #category : 'initialization' }
+WsMockComponentForLifecycleTest >> externalSetupDone [
+
+	lifecycleController externalSetupDone
+]
+
 { #category : 'acting' }
 WsMockComponentForLifecycleTest >> getReady [
 	^self
 ]
 
 { #category : 'initialization' }
-WsMockComponentForLifecycleTest >> initialize [ 
+WsMockComponentForLifecycleTest >> initialize [
+
 	super initialize.
 	isConnected := false.
+	didNotifyWaitForExternalSetupObservers := false.
 	didNotifyIsReadyObservers := false.
-	didNotifyIsStartedObservers := false
+	didNotifyIsStartedObservers := false.
+
 ]
 
 { #category : 'accessing' }
@@ -67,6 +83,12 @@ WsMockComponentForLifecycleTest >> notifyIsStartedObservers [
 	didNotifyIsStartedObservers := true 
 ]
 
+{ #category : 'acting' }
+WsMockComponentForLifecycleTest >> notifyWaitForExternalSetupObservers [
+
+	didNotifyWaitForExternalSetupObservers := true
+]
+
 { #category : 'accessing' }
 WsMockComponentForLifecycleTest >> onConnectedDo: aFullBlockClosure [ 
 	connectionBlock := aFullBlockClosure
@@ -85,4 +107,9 @@ WsMockComponentForLifecycleTest >> setCanStart [
 { #category : 'acting' }
 WsMockComponentForLifecycleTest >> start [
 	^self
+]
+
+{ #category : 'initialization' }
+WsMockComponentForLifecycleTest >> waitForExternalSetup [
+	lifecycleController isExternalSetupRequired: true
 ]

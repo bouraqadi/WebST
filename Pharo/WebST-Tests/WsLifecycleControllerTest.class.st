@@ -12,10 +12,14 @@ Class {
 
 { #category : 'running' }
 WsLifecycleControllerTest >> assertState: expectedCurrentStateSelector [
+
 	| otherStateSelectors |
-	self assert: (controller perform: expectedCurrentStateSelector ).
-	otherStateSelectors :=	#(isGettingReady isRunning isStarting isWaitingForComponent isWaitingForConnectionToDom ) copyWithout: expectedCurrentStateSelector.
-	otherStateSelectors do: [ : stateSelector |
+	self assert: (controller perform: expectedCurrentStateSelector) description: 'Did not reach expected state ', expectedCurrentStateSelector.
+	otherStateSelectors := #( isWaitingForExternalSetup
+	                          isGettingReady isRunning isStarting
+	                          isWaitingForComponent isWaitingForConnectionToDom )
+		                       copyWithout: expectedCurrentStateSelector.
+	otherStateSelectors do: [ :stateSelector |
 		self deny: (controller perform: stateSelector) ]
 ]
 
@@ -136,4 +140,16 @@ WsLifecycleControllerTest >> testStartImmediatelyIfAlreadyConnected [
 	self assertState: #isRunning.
 	self assert: component didNotifyIsReadyObservers.
 	self assert: component didNotifyIsStartedObservers
+]
+
+{ #category : 'running' }
+WsLifecycleControllerTest >> testWaitForSetup [
+
+	component waitForExternalSetup.
+	self linkComponentToLifecycleController.
+	self assertState: #isWaitingForExternalSetup.
+	self assert: component didNotifyWaitForExternalSetupObservers.
+	component externalSetupDone.
+	self assertState: #isGettingReady.
+
 ]
