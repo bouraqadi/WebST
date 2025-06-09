@@ -41,6 +41,13 @@ WsCompositeForLifecycleTest >> getReady [
 ]
 
 { #category : 'initialization' }
+WsCompositeForLifecycleTest >> initialize [
+
+	super initialize.
+	self onConnectedDo: [ self writeLog: 'Composite connected' ]
+]
+
+{ #category : 'initialization' }
 WsCompositeForLifecycleTest >> notifyIsReadyObservers [ 
 	super notifyIsReadyObservers.
 	console log: 'Composite is ready'
