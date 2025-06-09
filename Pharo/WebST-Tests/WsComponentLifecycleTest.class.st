@@ -90,6 +90,43 @@ WsComponentLifecycleTest >> testComponentFirstWaitsForSetupThenReady [
 ]
 
 { #category : 'tests' }
+WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetup [
+
+	| div tagName |
+	self bridge loadClass: WsComponentForLifecycleTest.
+	div := document createElement: 'div'.
+	document body prepend: div.
+	tagName := WsComponentForLifecycleTest tagName.
+	div innerHTML: '<' , tagName , '></' , tagName , '>'.
+	component := div children first.
+	self waitUntil: [ component isComponentClassSet ].
+	self deny: component isWaitingForExternalSetup.
+	self deny: component isReady.
+	component setCanBeReady.
+	self waitUntil: [ component isReady ]
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetup [
+
+	| div tagName waitAttribute |
+	self bridge loadClass: WsComponentForLifecycleTest.
+	div := document createElement: 'div'.
+	document body prepend: div.
+	tagName := WsComponentForLifecycleTest tagName.
+	waitAttribute :=  'waitForSetup' asKebabCase.
+	div innerHTML:
+		'<' , tagName , ' data-', waitAttribute, '="true"></' , tagName , '>'.
+	component := div children first.
+	self waitUntil: [ component isComponentClassSet ].
+	self assert: component isWaitingForExternalSetup.
+	component setCanBeReady.
+	self deny: component isReady.
+	component externalSetupDone.
+	self waitUntil: [ component isReady ]
+]
+
+{ #category : 'tests' }
 WsComponentLifecycleTest >> testComponentIsFirstReadyThenStarted [
 
 	component setCanStart.

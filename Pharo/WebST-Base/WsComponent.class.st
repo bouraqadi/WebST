@@ -137,11 +137,19 @@ WsComponent >> getReady [
 ]
 
 { #category : 'initialization' }
-WsComponent >> initialize [ 
+WsComponent >> initialize [
+
 	super initialize.
 	view := self attachShadow:
-			        { (#mode -> self shadowEncapsulationMode) } asJsObject.
-	self reset
+		        { (#mode -> self shadowEncapsulationMode) } asJsObject.
+	self reset.
+
+]
+
+{ #category : 'lifecycle' }
+WsComponent >> isComponentClassSet [
+
+	^ true
 ]
 
 { #category : 'lifecycle' }

@@ -201,6 +201,11 @@ WsHtmlElement >> intFromPx: aString [
 	^aString asInteger 
 ]
 
+{ #category : 'lifecycle' }
+WsHtmlElement >> isComponentClassSet [
+	^false
+]
+
 { #category : 'DOM connection observing' }
 WsHtmlElement >> isConnected [
 	"The read-only isConnected property of the Node interface returns a boolean indicating whether the node is connected (directly or indirectly) to a Document object."
@@ -221,12 +226,12 @@ WsHtmlElement >> isHidden [
 	^ self computedDisplayStyle  = 'none'
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsHtmlElement >> isReady [
 	^false
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsHtmlElement >> isReadyPort [
 	^isReadyPort ifNil: [ isReadyPort := HyCollectionPort notificationSelector: #cull: ]
 ]
@@ -237,12 +242,12 @@ WsHtmlElement >> isShowing [
 	
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsHtmlElement >> isStarted [
 	^false
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsHtmlElement >> isStartedPort [
 	^isStartedPort ifNil: [ isStartedPort := HyCollectionPort notificationSelector: #cull: ]
 ]
@@ -261,7 +266,7 @@ WsHtmlElement >> onConnectedDo: aBlock [
 	self isConnected ifTrue: aBlock
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsHtmlElement >> onReadyDo: aBlock [
 	"Request to perform aBlock when component finished preConnectinitialize"
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
@@ -272,7 +277,7 @@ WsHtmlElement >> onReadyDo: aBlock [
 
 ]
 
-{ #category : 'observing lifecycle' }
+{ #category : 'lifecycle' }
 WsHtmlElement >> onStartedDo: aBlock [
 	"Request to perform aBlock when component finished postConnectInitialize"
 	"We put it here, since web browsers when encoutring a custom tag not registred, creates a instance of HTMLElement.
