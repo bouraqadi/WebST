@@ -17,39 +17,27 @@ Class {
 WsCompositeForLifecycleTest >> getReady [
 
 	super getReady.
-	console log: 'Composite beReady DONE'.
-
-]
-
-{ #category : 'initialization' }
-WsCompositeForLifecycleTest >> initialize [
-
-	super initialize.
 	subcomponentA := WsComponentForLifecycleTest new.
 	subcomponentB := WsComponentForLifecycleTest new.
 	subcomponentC := WsComponentForLifecycleTest new.
-	subcomponentA onReadyDo: [  console log: 'Subcomponent A is ready' ].
-	subcomponentB onReadyDo: [  console log: 'Subcomponent B is ready' ].
-	subcomponentC onReadyDo: [  console log: 'Subcomponent C is ready' ].
-	subcomponentA onStartedDo: [  console log: 'Subcomponent A is started' ].
-	subcomponentB onStartedDo: [  console log: 'Subcomponent B is started' ].
-	subcomponentC onStartedDo: [  console log: 'Subcomponent C is started' ].
+	subcomponentA onReadyDo: [ console log: 'Subcomponent A is ready' ].
+	subcomponentB onReadyDo: [ console log: 'Subcomponent B is ready' ].
+	subcomponentC onReadyDo: [ console log: 'Subcomponent C is ready' ].
 	self
 		when: subcomponentA
-		isReadyDo: [ console log: 'Composite when: subcomponentA isReadyDo:' ].
+		isReadyDo: [
+		console log: 'Composite when: subcomponentA isReadyDo:' ].
 	self
-		whenAll: {subcomponentB. subcomponentC}
-		areReadyDo: [ console log: 'Composite whenAll: {subcomponentB. subcomponentC} areReadyDo:' ].
-	self
-		when: subcomponentA
-		isStartedDo: [ console log: 'Composite when: subcomponentA isStartedDo:' ].
-	self
-		whenAll: {subcomponentB. subcomponentC}
-		areStartedDo: [ console log: 'Composite whenAll: {subcomponentB. subcomponentC} areStartedDo:' ].
+		whenAll: {
+				subcomponentB.
+				subcomponentC }
+		areReadyDo: [
+			console log:
+				'Composite whenAll: {subcomponentB. subcomponentC} areReadyDo:' ].
 	view append: subcomponentA.
 	view append: subcomponentB.
 	view append: subcomponentC.
-
+	console log: 'Composite beReady DONE'
 ]
 
 { #category : 'initialization' }
@@ -68,6 +56,23 @@ WsCompositeForLifecycleTest >> notifyIsStartedObservers [
 WsCompositeForLifecycleTest >> start [
 
 	super start.
+	subcomponentA onStartedDo: [
+		console log: 'Subcomponent A is started' ].
+	subcomponentB onStartedDo: [
+		console log: 'Subcomponent B is started' ].
+	subcomponentC onStartedDo: [
+		console log: 'Subcomponent C is started' ].
+	self
+		when: subcomponentA
+		isStartedDo: [
+		console log: 'Composite when: subcomponentA isStartedDo:' ].
+	self
+		whenAll: {
+				subcomponentB.
+				subcomponentC }
+		areStartedDo: [
+			console log:
+				'Composite whenAll: {subcomponentB. subcomponentC} areStartedDo:' ].
 	console log: 'Composite start DONE'
 ]
 
