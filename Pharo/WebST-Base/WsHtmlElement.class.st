@@ -13,7 +13,8 @@ Class {
 		'style',
 		'isReadyPort',
 		'isStartedPort',
-		'isConnectedPort'
+		'isConnectedPort',
+		'isWaitingForSetupPort'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',

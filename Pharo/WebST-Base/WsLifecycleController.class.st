@@ -127,7 +127,7 @@ WsLifecycleController >> initialize [
 	beReadyDoneVariable := isReadyCondition addFalseVariable.
 	isStartedCondition := WsAndCondition whenTrueDo: [ self step ].
 	startDoneVariable := isStartedCondition addFalseVariable.
-	self isExternalSetupRequired: false.
+	self isExternalSetupRequired: true
 ]
 
 { #category : 'transitions' }

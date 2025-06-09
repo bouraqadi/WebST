@@ -24,10 +24,16 @@ WsLifecycleControllerTest >> assertState: expectedCurrentStateSelector [
 ]
 
 { #category : 'running' }
+WsLifecycleControllerTest >> basicLinkComponentToLifecycleController [
+
+	controller component: component
+]
+
+{ #category : 'running' }
 WsLifecycleControllerTest >> linkComponentToLifecycleController [
 
-	controller component: component.
-
+	controller externalSetupDone.
+	self basicLinkComponentToLifecycleController
 ]
 
 { #category : 'running' }
@@ -57,15 +63,6 @@ WsLifecycleControllerTest >> testBeReadyImmediatelyAfterComponentSet [
 	self linkComponentToLifecycleController.
 	self assertState: #isWaitingForConnectionToDom.
 	self assert: component didNotifyIsReadyObservers
-]
-
-{ #category : 'running' }
-WsLifecycleControllerTest >> testComponentSet [
-	controller component: WsMockComponentForLifecycleTest new.
-	self assertState: #isGettingReady.
-	self deny: component didNotifyIsReadyObservers.
-	self deny: component didNotifyIsStartedObservers
-
 ]
 
 { #category : 'running' }
@@ -145,11 +142,11 @@ WsLifecycleControllerTest >> testStartImmediatelyIfAlreadyConnected [
 { #category : 'running' }
 WsLifecycleControllerTest >> testWaitForSetup [
 
-	component waitForExternalSetup.
-	self linkComponentToLifecycleController.
+	self basicLinkComponentToLifecycleController.
 	self assertState: #isWaitingForExternalSetup.
 	self assert: component didNotifyWaitForExternalSetupObservers.
 	component externalSetupDone.
 	self assertState: #isGettingReady.
-
+	self deny: component didNotifyIsReadyObservers.
+	self deny: component didNotifyIsStartedObservers
 ]

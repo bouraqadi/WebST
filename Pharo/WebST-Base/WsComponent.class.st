@@ -17,6 +17,14 @@ Class {
 
 { #category : 'instance creation' }
 WsComponent class >> new [
+
+	^self newWaitForSetup
+		externalSetupDone;
+		yourself
+]
+
+{ #category : 'instance creation' }
+WsComponent class >> newWaitForSetup [
 	"HTML element classes cannot be directly instantiated "
 
 	^ document createElement: self tagName
@@ -117,6 +125,11 @@ WsComponent >> document [
 	^document
 ]
 
+{ #category : 'lifecycle' }
+WsComponent >> externalSetupDone [
+	lifecycleController externalSetupDone
+]
+
 { #category : 'initialization' }
 WsComponent >> getReady [
 
@@ -141,6 +154,12 @@ WsComponent >> isStarted [
 	^lifecycleController isStarted
 ]
 
+{ #category : 'lifecycle' }
+WsComponent >> isWaitingForExternalSetup [
+
+	^ lifecycleController isWaitingForExternalSetup
+]
+
 { #category : 'initialization' }
 WsComponent >> lifeCycleControllerClass [
 
@@ -157,6 +176,13 @@ WsComponent >> notifyIsReadyObservers [
 WsComponent >> notifyIsStartedObservers [
 	isStartedPort ifNil: [ ^self ].
 	isStartedPort notifyWith: self.
+]
+
+{ #category : 'lifecycle' }
+WsComponent >> notifyWaitForExternalSetupObservers [ 
+
+	isWaitingForSetupPort ifNil: [ ^ self ].
+	isWaitingForSetupPort notifyWith: self
 ]
 
 { #category : 'initialization' }

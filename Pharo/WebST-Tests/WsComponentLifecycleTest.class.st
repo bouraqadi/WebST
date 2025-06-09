@@ -45,6 +45,23 @@ WsComponentLifecycleTest >> subscribeObservers [
 ]
 
 { #category : 'tests' }
+WsComponentLifecycleTest >> testComponentAttachedToDomAfterReady [
+
+	self deny: component isReady.
+	self deny: component isStarted.
+	component setCanBeReady.
+	self waitUntil: [ component isReady ].
+	document body append: component.
+	self assert: component isReady.
+	self deny: component isStarted.
+	component setCanStart.
+	self waitUntil: [ component isStarted ].
+	self assert: component isReady.
+	self assert: component isStarted.
+
+]
+
+{ #category : 'tests' }
 WsComponentLifecycleTest >> testComponentAttachedToDomBeforeReady [
 	self deny: component isReady.
 	self deny: component isStarted.
@@ -58,6 +75,18 @@ WsComponentLifecycleTest >> testComponentAttachedToDomBeforeReady [
 	self waitUntil: [component isStarted].
 	self assert: component isReady.
 
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> testComponentFirstWaitsForSetupThenReady [
+
+	component := self evalBlock: [
+		             WsComponentForLifecycleTest newWaitForSetup ].
+	component setCanBeReady.
+	self assert: component isWaitingForExternalSetup.
+	self deny: component isReady.
+	component externalSetupDone.
+	self waitUntil: [ component isReady ]
 ]
 
 { #category : 'tests' }
