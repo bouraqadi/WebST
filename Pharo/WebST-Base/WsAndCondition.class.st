@@ -47,7 +47,7 @@ WsAndCondition >> addVariableValue: aBoolean [
 	^ newVariable
 ]
 
-{ #category : 'variables' }
+{ #category : 'updating' }
 WsAndCondition >> attemptAction [
 
 	self ifTrueDo: actionBlock
