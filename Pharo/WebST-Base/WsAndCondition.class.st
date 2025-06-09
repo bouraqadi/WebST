@@ -26,8 +26,9 @@ WsAndCondition >> addFalseVariable [
 
 { #category : 'elements' }
 WsAndCondition >> addSubcondition [
+
 	| newSubcondition |
-	newSubcondition := self species whenTrueDo: [self update].
+	newSubcondition := self species condition: self.
 	elements add: newSubcondition.
 	^ newSubcondition
 ]
@@ -50,7 +51,9 @@ WsAndCondition >> addVariableValue: aBoolean [
 { #category : 'updating' }
 WsAndCondition >> attemptAction [
 
-	self ifTrueDo: actionBlock
+	self ifFalseDo: [ ^self ].
+	actionBlock value.
+	self updateCondition 
 ]
 
 { #category : 'testing' }

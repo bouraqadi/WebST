@@ -2,8 +2,7 @@ Class {
 	#name : 'WsConditionVariable',
 	#superclass : 'WsConditionElement',
 	#instVars : [
-		'value',
-		'condition'
+		'value'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -16,18 +15,6 @@ WsConditionVariable class >> value: aBoolean condition: aCondition [
 		value: aBoolean;
 		condition: aCondition;
 		yourself
-]
-
-{ #category : 'accessing' }
-WsConditionVariable >> condition [
-
-	^ condition
-]
-
-{ #category : 'accessing' }
-WsConditionVariable >> condition: anObject [
-
-	condition := anObject
 ]
 
 { #category : 'initialization' }
@@ -54,12 +41,6 @@ WsConditionVariable >> setFalse [
 { #category : 'setting' }
 WsConditionVariable >> setTrue [
 	self value: true
-]
-
-{ #category : 'setting' }
-WsConditionVariable >> updateCondition [
-	condition ifNil: [ ^self ].
-	condition update
 ]
 
 { #category : 'accessing' }

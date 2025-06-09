@@ -11,10 +11,10 @@ Class {
 		'nilComponentState',
 		'isReadyCondition',
 		'isStartedCondition',
-		'beReadyDoneVariable',
 		'startDoneVariable',
 		'waitingForExternalSetupState',
-		'isExternalSetupRequired'
+		'isExternalSetupRequired',
+		'getReadyDoneVariable'
 	],
 	#category : 'WebST-Base-Components',
 	#package : 'WebST-Base',
@@ -112,8 +112,10 @@ WsLifecycleController >> externalSetupDone [
 
 { #category : 'acting' }
 WsLifecycleController >> getReady [
+
 	self component getReady.
-	self setBeReadyDone 
+	self setGetReadyDone.
+
 ]
 
 { #category : 'initialization' }
@@ -124,7 +126,7 @@ WsLifecycleController >> initialize [
 	self createStates.
 	self createTransitions.
 	isReadyCondition := WsAndCondition whenTrueDo: [ self step ].
-	beReadyDoneVariable := isReadyCondition addFalseVariable.
+	getReadyDoneVariable := isReadyCondition addFalseVariable.
 	isStartedCondition := WsAndCondition whenTrueDo: [ self step ].
 	startDoneVariable := isStartedCondition addFalseVariable.
 	self isExternalSetupRequired: true
@@ -230,8 +232,8 @@ WsLifecycleController >> notifyWaitForExternalSetupObservers [
 ]
 
 { #category : 'acting' }
-WsLifecycleController >> setBeReadyDone [
-	beReadyDoneVariable setTrue
+WsLifecycleController >> setGetReadyDone [
+	getReadyDoneVariable setTrue
 ]
 
 { #category : 'acting' }
