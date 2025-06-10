@@ -17,17 +17,26 @@ Class {
 
 { #category : 'instance creation' }
 WsComponent class >> new [
+	"HTML element classes cannot be directly instantiated "
 
-	^self newWaitForSetup
-		externalSetupDone;
-		yourself
+	^ document createElement: self tagName
+]
+
+{ #category : 'instance creation' }
+WsComponent class >> newComponentWaitingForSetupHtml [
+	self subclassResponsibility 
 ]
 
 { #category : 'instance creation' }
 WsComponent class >> newWaitForSetup [
-	"HTML element classes cannot be directly instantiated "
+	"We don't have a way to setup a flag prior to instantiation, so we rely on HTML attribute"
+	"This is because component creation does not rely on new operator see WsComponent class >> #new"
+	"Otherwise, we would be using #basicNew like in PjFunction >> #basicNew"
 
-	^ document createElement: self tagName
+	| div |
+	div := document createElement: 'div'.
+	div innerHTML: self newComponentWaitingForSetupHtml.
+	^ div children first
 ]
 
 { #category : 'instance creation' }
@@ -109,6 +118,11 @@ WsComponent class >> viewClass [
 	self subclassResponsibility 
 ]
 
+{ #category : 'accessing' }
+WsComponent class >> waitForSetupAttributeKey [
+	^#waitForSetup
+]
+
 { #category : 'lifecycle' }
 WsComponent >> connectedCallback [
 	"The connectedCallback(): called each time the element is added to the document. The specification recommends that, as far as possible, developers should implement custom element setup in this callback rather than the constructor. "
@@ -150,6 +164,16 @@ WsComponent >> initialize [
 WsComponent >> isComponentClassSet [
 
 	^ true
+]
+
+{ #category : 'accessing' }
+WsComponent >> isExternalSetupRequired [
+
+	| aString |
+	aString := self
+		  dataAttributeAt: self waitForSetupAttributeKey
+		  ifAbsent: [ ^false ].
+	^aString asLowercase == 'true'
 ]
 
 { #category : 'lifecycle' }
@@ -195,13 +219,13 @@ WsComponent >> notifyWaitForExternalSetupObservers [
 
 { #category : 'initialization' }
 WsComponent >> reset [
-
 	"We need that the component first references the controller before 
 	making the controller reference the component. Because, the controller triggers some actions on the component that require the component to know about the controller.
 	See method WsLifecycleController >> #component:"
-	
+
 	lifecycleController := self lifeCycleControllerClass new.
-	lifecycleController component: self
+	lifecycleController component: self.
+
 ]
 
 { #category : 'initialization' }
@@ -253,6 +277,12 @@ WsComponent >> viewFirstElementByCssClass: cssClassName [
 WsComponent >> viewFirstElementByTag: tagName [
 
 	^ view firstElementByTag: tagName
+]
+
+{ #category : 'accessing' }
+WsComponent >> waitForSetupAttributeKey [
+
+	^self class waitForSetupAttributeKey
 ]
 
 { #category : 'lifecycle' }

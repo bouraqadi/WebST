@@ -9,7 +9,8 @@ Class {
 		'lifecycleController',
 		'canStartVariable',
 		'canBeReadyVariable',
-		'didNotifyWaitForExternalSetupObservers'
+		'didNotifyWaitForExternalSetupObservers',
+		'isExternalSetupRequired'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -63,6 +64,16 @@ WsMockComponentForLifecycleTest >> initialize [
 { #category : 'accessing' }
 WsMockComponentForLifecycleTest >> isConnected [
 	^isConnected
+]
+
+{ #category : 'testing' }
+WsMockComponentForLifecycleTest >> isExternalSetupRequired [
+	^isExternalSetupRequired ifNil: [ false ]
+]
+
+{ #category : 'accessing' }
+WsMockComponentForLifecycleTest >> isExternalSetupRequired: aBoolean [ 
+	isExternalSetupRequired := aBoolean
 ]
 
 { #category : 'initialization' }

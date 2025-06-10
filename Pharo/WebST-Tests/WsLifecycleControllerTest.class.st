@@ -24,16 +24,9 @@ WsLifecycleControllerTest >> assertState: expectedCurrentStateSelector [
 ]
 
 { #category : 'running' }
-WsLifecycleControllerTest >> basicLinkComponentToLifecycleController [
-
-	controller component: component
-]
-
-{ #category : 'running' }
 WsLifecycleControllerTest >> linkComponentToLifecycleController [
 
-	controller externalSetupDone.
-	self basicLinkComponentToLifecycleController
+	controller component: component
 ]
 
 { #category : 'running' }
@@ -142,7 +135,8 @@ WsLifecycleControllerTest >> testStartImmediatelyIfAlreadyConnected [
 { #category : 'running' }
 WsLifecycleControllerTest >> testWaitForSetup [
 
-	self basicLinkComponentToLifecycleController.
+	component isExternalSetupRequired: true.
+	self linkComponentToLifecycleController.
 	self assertState: #isWaitingForExternalSetup.
 	self assert: component didNotifyWaitForExternalSetupObservers.
 	component externalSetupDone.

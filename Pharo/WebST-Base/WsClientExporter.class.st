@@ -10,6 +10,11 @@ Class {
 	#tag : 'Apps'
 }
 
+{ #category : 'loading' }
+WsClientExporter >> convertAllClassesToJs: aCollection [ 
+	^jsExporter convertAllClassesToJs: aCollection 
+]
+
 { #category : 'transpiling' }
 WsClientExporter >> convertToJs: aPjJavascriptMessage [ 
 	^jsExporter convertToJs: aPjJavascriptMessage

@@ -18,13 +18,26 @@ WsCompositeLifecycleTest class >> appClass [
 ]
 
 { #category : 'tests' }
+WsCompositeLifecycleTest >> composite: aComposite [
+
+	composite := aComposite.
+	self setupSubcomponents
+]
+
+{ #category : 'tests' }
 WsCompositeLifecycleTest >> setUp [
 
 	super setUp.
-	composite := self evalBlock: [ WsCompositeForLifecycleTest new ].
+	self composite: (self evalBlock: [ WsCompositeForLifecycleTest new ]).
+
+]
+
+{ #category : 'tests' }
+WsCompositeLifecycleTest >> setupSubcomponents [
+
 	subcomponentA := composite subcomponentA.
 	subcomponentB := composite subcomponentB.
-	subcomponentC := composite subcomponentC.
+	subcomponentC := composite subcomponentC
 ]
 
 { #category : 'tests' }
@@ -127,4 +140,37 @@ WsCompositeLifecycleTest >> testCompositeStartedAfterSubcomponentsOrderCBA [
 	self deny: composite isStarted.
 	subcomponentA setCanBeReadyAndStart.
 	self waitUntil: [ composite isStarted ]
+]
+
+{ #category : 'tests' }
+WsCompositeLifecycleTest >> testCompositeWaitForSubcomponentSetup [
+
+	composite := self evalBlock: [
+		             WsCompositeForLifecycleTest newWaitForSetup ].
+	composite isRequiringSubcomponentSetup: true.
+	composite externalSetupDone.
+	self waitWhile: [ composite subcomponentC isNil ].
+	self setupSubcomponents.
+	self deny: composite isReady.
+	{
+		subcomponentA.
+		subcomponentB.
+		subcomponentC } do: [ :subcomp |
+		subcomp externalSetupDone.
+		subcomp setCanBeReady ].
+	self waitUntil: [ composite isReady ] 
+]
+
+{ #category : 'tests' }
+WsCompositeLifecycleTest >> testCompositeWaitingForSetup [
+
+	self composite:
+		(self evalBlock: [ WsCompositeForLifecycleTest newWaitForSetup ]).
+	self
+		assertCollection: {
+				subcomponentA.
+				subcomponentB.
+				subcomponentC }
+		equals: #( nil nil nil ).
+	self assert: composite isWaitingForExternalSetup
 ]

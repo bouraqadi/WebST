@@ -26,6 +26,13 @@ WsTConcreteComponent classSide >> javascriptInitialize [
 	self  registerTag
 ]
 
+{ #category : 'instance creation' }
+WsTConcreteComponent classSide >> newComponentWaitingForSetupHtml [
+
+	<jsLiteralGenerator>
+	^ '<' , self tagName , ' data-wait-for-setup="true"></' , self tagName , '>'
+]
+
 { #category : 'accessing' }
 WsTConcreteComponent classSide >> shadowHtml [
 

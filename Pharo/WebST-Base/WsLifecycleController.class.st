@@ -46,15 +46,14 @@ WsLifecycleController >> component [
 
 { #category : 'initialization' }
 WsLifecycleController >> component: aComponent [
-
 	"We immediately make the automaton step so we exit the state where the component is nil 
 	and enter the state for making it get ready. 
 	See #createStates method"
-	
+
 	component := aComponent.
+	self isExternalSetupRequired: component isExternalSetupRequired.
 	component onConnectedDo: [ self step ].
 	self step
-
 ]
 
 { #category : 'states' }

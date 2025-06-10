@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'subcomponentB',
 		'subcomponentA',
-		'subcomponentC'
+		'subcomponentC',
+		'isRequiringSubcomponentSetup'
 	],
 	#category : 'WebST-Tests-Initialization',
 	#package : 'WebST-Tests',
@@ -14,12 +15,22 @@ Class {
 }
 
 { #category : 'initialization' }
+WsCompositeForLifecycleTest >> createSubcomponents [
+
+	self isRequiringSubcomponentSetup ifFalse: [
+		subcomponentA := WsComponentForLifecycleTest new.
+		subcomponentB := WsComponentForLifecycleTest new.
+		^subcomponentC := WsComponentForLifecycleTest new].
+	subcomponentA := WsComponentForLifecycleTest newWaitForSetup.
+	subcomponentB := WsComponentForLifecycleTest newWaitForSetup.
+	subcomponentC := WsComponentForLifecycleTest newWaitForSetup
+]
+
+{ #category : 'initialization' }
 WsCompositeForLifecycleTest >> getReady [
 
 	super getReady.
-	subcomponentA := WsComponentForLifecycleTest new.
-	subcomponentB := WsComponentForLifecycleTest new.
-	subcomponentC := WsComponentForLifecycleTest new.
+	self createSubcomponents.
 	subcomponentA onReadyDo: [ console log: 'Subcomponent A is ready' ].
 	subcomponentB onReadyDo: [ console log: 'Subcomponent B is ready' ].
 	subcomponentC onReadyDo: [ console log: 'Subcomponent C is ready' ].
@@ -44,7 +55,19 @@ WsCompositeForLifecycleTest >> getReady [
 WsCompositeForLifecycleTest >> initialize [
 
 	super initialize.
-	self onConnectedDo: [ self writeLog: 'Composite connected' ]
+	self onConnectedDo: [ self writeLog: 'Composite connected' ].
+	self isRequiringSubcomponentSetup: false
+]
+
+{ #category : 'accessing' }
+WsCompositeForLifecycleTest >> isRequiringSubcomponentSetup [
+	^isRequiringSubcomponentSetup
+]
+
+{ #category : 'accessing' }
+WsCompositeForLifecycleTest >> isRequiringSubcomponentSetup: aBoolean [
+
+	isRequiringSubcomponentSetup := aBoolean
 ]
 
 { #category : 'initialization' }

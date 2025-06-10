@@ -107,16 +107,32 @@ WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetup [
 ]
 
 { #category : 'tests' }
-WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetup [
+WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetupAttributeVariations [
 
-	| div tagName waitAttribute |
+	| div tagName |
 	self bridge loadClass: WsComponentForLifecycleTest.
 	div := document createElement: 'div'.
 	document body prepend: div.
 	tagName := WsComponentForLifecycleTest tagName.
-	waitAttribute :=  'waitForSetup' asKebabCase.
+	#( 'false' 'FALSE' 'FaLsE' 'any' 'totally different stuff') do: [ :attributeValue |
+		div innerHTML:
+			'<' , tagName , ' data-wait-for-setup="' , attributeValue , '"></'
+			, tagName , '>'.
+		component := div children first.
+		self waitUntil: [ component isComponentClassSet ].
+		self deny: component isWaitingForExternalSetup ]
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetup [
+
+	| div tagName |
+	self bridge loadClass: WsComponentForLifecycleTest.
+	div := document createElement: 'div'.
+	document body prepend: div.
+	tagName := WsComponentForLifecycleTest tagName.
 	div innerHTML:
-		'<' , tagName , ' data-', waitAttribute, '="true"></' , tagName , '>'.
+		'<' , tagName , ' data-wait-for-setup="true"></' , tagName , '>'.
 	component := div children first.
 	self waitUntil: [ component isComponentClassSet ].
 	self assert: component isWaitingForExternalSetup.
@@ -124,6 +140,23 @@ WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetup [
 	self deny: component isReady.
 	component externalSetupDone.
 	self waitUntil: [ component isReady ]
+]
+
+{ #category : 'tests' }
+WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetupAttributeVariations [
+
+	| div tagName |
+	self bridge loadClass: WsComponentForLifecycleTest.
+	div := document createElement: 'div'.
+	document body prepend: div.
+	tagName := WsComponentForLifecycleTest tagName.
+	#( 'true' 'TRUE' 'tRuE' 'TrUe' ) do: [ :attributeValue |
+		div innerHTML:
+			'<' , tagName , ' data-wait-for-setup="' , attributeValue , '"></'
+			, tagName , '>'.
+		component := div children first.
+		self waitUntil: [ component isComponentClassSet ].
+		self assert: component isWaitingForExternalSetup ]
 ]
 
 { #category : 'tests' }
