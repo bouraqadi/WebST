@@ -31,9 +31,10 @@ WsTConcreteComponent classSide >> html [
 WsTConcreteComponent classSide >> htmlWaitForSetup [
 
 	<jsLiteralGenerator>
-	^ self rendererClass
-		  htmlFrom: self
-		  dataAttributes: { (self waitForSetupAttributeKey -> true) }
+	| renderer |
+	renderer := self rendererClass new.
+	self renderWaitForSetupOn: renderer.
+	^renderer html
 ]
 
 { #category : 'class initialization' }

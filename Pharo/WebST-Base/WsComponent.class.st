@@ -101,6 +101,15 @@ WsComponent class >> renderOuterHtmlOn: html with: brushBlock [
 ]
 
 { #category : 'rendering' }
+WsComponent class >> renderWaitForSetupOn: renderer [
+
+	<pharoJsSkip>
+	renderer
+		  render: self
+		  dataAttributes: { (self waitForSetupAttributeKey -> true) }
+]
+
+{ #category : 'rendering' }
 WsComponent class >> rendererClass [
 	<pharoJsSkip>
 	^self viewClass rendererClass
