@@ -55,13 +55,13 @@ WsCompositeForLifecycleTest >> getReady [
 WsCompositeForLifecycleTest >> initialize [
 
 	super initialize.
-	self onConnectedDo: [ self writeLog: 'Composite connected' ].
-	self isRequiringSubcomponentSetup: false
+	self onConnectedDo: [ self writeLog: 'Composite connected' ]
 ]
 
 { #category : 'accessing' }
 WsCompositeForLifecycleTest >> isRequiringSubcomponentSetup [
-	^isRequiringSubcomponentSetup
+
+	^ isRequiringSubcomponentSetup ifNil: [ false ]
 ]
 
 { #category : 'accessing' }
