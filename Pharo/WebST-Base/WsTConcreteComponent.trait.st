@@ -20,17 +20,26 @@ WsTConcreteComponent classSide >> findComponentClassesWith: aComponentClassFinde
 
 ]
 
+{ #category : 'rendering' }
+WsTConcreteComponent classSide >> html [
+
+	<jsLiteralGenerator>
+	^self rendererClass htmlFrom: self
+]
+
+{ #category : 'rendering' }
+WsTConcreteComponent classSide >> htmlWaitForSetup [
+
+	<jsLiteralGenerator>
+	^ self rendererClass
+		  htmlFrom: self
+		  dataAttributes: { (self waitForSetupAttributeKey -> true) }
+]
+
 { #category : 'class initialization' }
 WsTConcreteComponent classSide >> javascriptInitialize [
 
 	self  registerTag
-]
-
-{ #category : 'instance creation' }
-WsTConcreteComponent classSide >> newComponentWaitingForSetupHtml [
-
-	<jsLiteralGenerator>
-	^ '<' , self tagName , ' data-wait-for-setup="true"></' , self tagName , '>'
 ]
 
 { #category : 'accessing' }

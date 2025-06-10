@@ -17,6 +17,11 @@ WsComponentLifecycleTest class >> appClass [
 ]
 
 { #category : 'tests' }
+WsComponentLifecycleTest >> htmlFor: componentClass waitForSetupAttribute: attributeValue [
+	^WsRenderer htmlFrom: componentClass dataAttributes: {componentClass waitForSetupAttributeKey -> attributeValue }
+]
+
+{ #category : 'tests' }
 WsComponentLifecycleTest >> newComponent [
 	^self evalBlock: [ WsComponentForLifecycleTest new ].
 
@@ -92,12 +97,11 @@ WsComponentLifecycleTest >> testComponentFirstWaitsForSetupThenReady [
 { #category : 'tests' }
 WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetup [
 
-	| div tagName |
+	| div |
 	self bridge loadClass: WsComponentForLifecycleTest.
 	div := document createElement: 'div'.
 	document body prepend: div.
-	tagName := WsComponentForLifecycleTest tagName.
-	div innerHTML: '<' , tagName , '></' , tagName , '>'.
+	div innerHTML: WsComponentForLifecycleTest html.
 	component := div children first.
 	self waitUntil: [ component isComponentClassSet ].
 	self deny: component isWaitingForExternalSetup.
@@ -109,15 +113,17 @@ WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetup [
 { #category : 'tests' }
 WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetupAttributeVariations [
 
-	| div tagName |
+	| div |
 	self bridge loadClass: WsComponentForLifecycleTest.
 	div := document createElement: 'div'.
 	document body prepend: div.
-	tagName := WsComponentForLifecycleTest tagName.
-	#( 'false' 'FALSE' 'FaLsE' 'any' 'totally different stuff') do: [ :attributeValue |
-		div innerHTML:
-			'<' , tagName , ' data-wait-for-setup="' , attributeValue , '"></'
-			, tagName , '>'.
+	#( 'false' 'FALSE' 'FaLsE' 'any' 'totally different stuff' ) do: [
+		:attributeValue |
+		| html |
+		html := self
+			        htmlFor: WsComponentForLifecycleTest
+			        waitForSetupAttribute: attributeValue.
+		div innerHTML: html.
 		component := div children first.
 		self waitUntil: [ component isComponentClassSet ].
 		self deny: component isWaitingForExternalSetup ]
@@ -126,13 +132,11 @@ WsComponentLifecycleTest >> testComponentHtmlCreationSkipsWaitingForSetupAttribu
 { #category : 'tests' }
 WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetup [
 
-	| div tagName |
+	| div|
 	self bridge loadClass: WsComponentForLifecycleTest.
 	div := document createElement: 'div'.
 	document body prepend: div.
-	tagName := WsComponentForLifecycleTest tagName.
-	div innerHTML:
-		'<' , tagName , ' data-wait-for-setup="true"></' , tagName , '>'.
+	div innerHTML: WsComponentForLifecycleTest htmlWaitForSetup.
 	component := div children first.
 	self waitUntil: [ component isComponentClassSet ].
 	self assert: component isWaitingForExternalSetup.
@@ -145,15 +149,14 @@ WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetup [
 { #category : 'tests' }
 WsComponentLifecycleTest >> testComponentHtmlCreationWaitingForSetupAttributeVariations [
 
-	| div tagName |
+	| div  |
 	self bridge loadClass: WsComponentForLifecycleTest.
 	div := document createElement: 'div'.
 	document body prepend: div.
-	tagName := WsComponentForLifecycleTest tagName.
-	#( 'true' 'TRUE' 'tRuE' 'TrUe' ) do: [ :attributeValue |
-		div innerHTML:
-			'<' , tagName , ' data-wait-for-setup="' , attributeValue , '"></'
-			, tagName , '>'.
+	#( '' '  ' 'true' 'TRUE' 'tRuE' 'TrUe' ) do: [ :attributeValue |
+		|html|
+		html := self htmlFor: WsComponentForLifecycleTest waitForSetupAttribute: attributeValue.
+		div innerHTML: html.
 		component := div children first.
 		self waitUntil: [ component isComponentClassSet ].
 		self assert: component isWaitingForExternalSetup ]

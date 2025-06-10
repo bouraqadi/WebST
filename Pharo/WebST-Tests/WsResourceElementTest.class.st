@@ -30,7 +30,7 @@ WsResourceElementTest >> assertHtmlMatch: htmlPattern [
 { #category : 'tests' }
 WsResourceElementTest >> html [
 	| renderer |
-	renderer := resource renderClass render: resource.
+	renderer := resource rendererClass render: resource.
 	renderer flush.
 	^renderer html
 

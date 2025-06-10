@@ -20,6 +20,12 @@ WsRenderer class >> htmlFrom: anObject [
 ]
 
 { #category : 'rendering' }
+WsRenderer class >> htmlFrom: anObject dataAttributes: attributeAssociations [
+
+	^ self new htmlFrom: anObject dataAttributes: attributeAssociations
+]
+
+{ #category : 'rendering' }
 WsRenderer class >> htmlWithLocalResourcesFrom: anObject [
 
 	| basicRenderer |
@@ -100,6 +106,13 @@ WsRenderer >> htmlFrom: anObject [
 
 	self render: anObject.
 	^self html
+]
+
+{ #category : 'rendering' }
+WsRenderer >> htmlFrom: anObject dataAttributes: attributeAssociations [
+
+	self render: anObject dataAttributes: attributeAssociations.
+	^ self html
 ]
 
 { #category : 'rendering' }

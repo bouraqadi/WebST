@@ -15,6 +15,11 @@ Class {
 	#tag : 'Components'
 }
 
+{ #category : 'rendering' }
+WsComponent class >> htmlWaitForSetup [
+	self subclassResponsibility 
+]
+
 { #category : 'instance creation' }
 WsComponent class >> new [
 	"HTML element classes cannot be directly instantiated "
@@ -30,12 +35,14 @@ WsComponent class >> newComponentWaitingForSetupHtml [
 { #category : 'instance creation' }
 WsComponent class >> newWaitForSetup [
 	"We don't have a way to setup a flag prior to instantiation, so we rely on HTML attribute"
+
 	"This is because component creation does not rely on new operator see WsComponent class >> #new"
+
 	"Otherwise, we would be using #basicNew like in PjFunction >> #basicNew"
 
 	| div |
 	div := document createElement: 'div'.
-	div innerHTML: self newComponentWaitingForSetupHtml.
+	div innerHTML: self htmlWaitForSetup.
 	^ div children first
 ]
 
@@ -91,6 +98,12 @@ WsComponent class >> renderOuterHtmlOn: html with: brushBlock [
 	| htmlBrush |
 	htmlBrush := html tag: self tagName.
 	brushBlock value: htmlBrush
+]
+
+{ #category : 'rendering' }
+WsComponent class >> rendererClass [
+	<pharoJsSkip>
+	^self viewClass rendererClass
 ]
 
 { #category : 'rendering' }
@@ -169,11 +182,13 @@ WsComponent >> isComponentClassSet [
 { #category : 'accessing' }
 WsComponent >> isExternalSetupRequired [
 
-	| aString |
-	aString := self
-		  dataAttributeAt: self waitForSetupAttributeKey
-		  ifAbsent: [ ^false ].
-	^aString asLowercase == 'true'
+	| rawValue trimedValue |
+	rawValue := self
+		            dataAttributeAt: self waitForSetupAttributeKey
+		            ifAbsent: [ ^ false ].
+	trimedValue := rawValue trim.
+	trimedValue ifEmpty: [ ^true ].
+	^ trimedValue asLowercase == 'true'
 ]
 
 { #category : 'lifecycle' }

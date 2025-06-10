@@ -13,15 +13,15 @@ WsElement class >> html [
 ]
 
 { #category : 'rendering' }
-WsElement >> html [
+WsElement class >> rendererClass [
 
-	^ self renderClass htmlFrom: self
+	^ WsRenderer
 ]
 
 { #category : 'rendering' }
-WsElement >> renderClass [
+WsElement >> html [
 
-	^ WsRenderer
+	^ self rendererClass htmlFrom: self
 ]
 
 { #category : 'rendering' }
@@ -34,4 +34,9 @@ WsElement >> renderOn: html [
 WsElement >> renderOuterHtmlOn: html [
 
 	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+WsElement >> rendererClass [
+	^ self class rendererClass
 ]

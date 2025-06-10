@@ -39,14 +39,14 @@ WsView class >> renderOn: renderer with: initBlock [
 { #category : 'accessing' }
 WsView >> allGlobalResources [
 
-	^(self renderClass render: self)
+	^(self rendererClass render: self)
 		  globalResources
 ]
 
 { #category : 'rendering' }
 WsView >> html [
 
-	^self renderClass htmlWithLocalResourcesFrom: self
+	^self rendererClass htmlWithLocalResourcesFrom: self
 ]
 
 { #category : 'rendering' }
