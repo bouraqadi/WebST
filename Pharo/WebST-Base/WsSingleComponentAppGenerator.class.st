@@ -129,6 +129,9 @@ WsSingleComponentAppGenerator >> newAppFor: componentClass attributes: component
 		rootComponentAttributes: componentDataAttributes;
 		rootComponentStyle: componentStyle;
 		rootComponentCssClasses: componentCssClasses.
+	"The component class is stored in an IV lost upon transpilation. So, we need to ensure the IV is properly set. This is needed typically for the playground see WsSingleComponentApp class >> #playground"
+	appClass class compile: 'initialize
+		self rootComponentClass: ', componentClass name.
 	^ appClass
 ]
 

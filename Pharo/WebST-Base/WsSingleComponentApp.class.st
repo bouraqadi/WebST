@@ -20,6 +20,19 @@ WsSingleComponentApp class >> defaultAppFolderName [
 	^ aWsSingleComponentApp componentClass name , '-Test'
 ]
 
+{ #category : 'demoing' }
+WsSingleComponentApp class >> playground [
+	<pharoJsSkip>
+	| playground bridge app component |
+	playground := super playground.
+	bridge := playground bridge.
+	app := (bridge jsGlobalAt: self name) currentInstance.
+	playground addWorkspaceVariableNamed: #app value: app.
+	component := app rootComponent.
+	playground addWorkspaceVariableNamed: #component value: component.
+	^playground
+]
+
 { #category : 'accessing' }
 WsSingleComponentApp class >> title [
 
