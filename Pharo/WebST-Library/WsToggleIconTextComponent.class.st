@@ -47,6 +47,12 @@ WsToggleIconTextComponent >> getReady [
 ]
 
 { #category : 'initialization' }
+WsToggleIconTextComponent >> iconOn: onIconName off: offIconName [
+	onController icon: onIconName.
+	offController icon: offIconName
+]
+
+{ #category : 'initialization' }
 WsToggleIconTextComponent >> offIconAttribute [
 
 	^ self
