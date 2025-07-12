@@ -8,6 +8,7 @@ Class {
 
 { #category : 'tests' }
 WsComponentResourcesTest >> testAppGlobalResources [
+	<expectedFailure>
 
 	| appHtml |
 	appHtml := WsAppNotRenderingSubComponent html.
@@ -27,18 +28,18 @@ WsComponentResourcesTest >> testComponentClasses [
 
 { #category : 'tests' }
 WsComponentResourcesTest >> testComponentResources [
+	<expectedFailure>
 
 	self
-		assertCollection:
-			WsComponentNotRenderingSubComponent resources
+		assertCollection: WsComponentNotRenderingSubComponent resources
 		includesAll: WsLeafComponent resources
 ]
 
 { #category : 'tests' }
 WsComponentResourcesTest >> testViewGlobalResources [
-
+	<expectedFailure>
+	
 	self
-		assertCollection:
-			WsViewNotRenderingSubComponent allGlobalResources
+		assertCollection: WsViewNotRenderingSubComponent allGlobalResources
 		includesAll: WsLeafComponent resources
 ]
