@@ -28,11 +28,6 @@ WsComponent class >> new [
 ]
 
 { #category : 'instance creation' }
-WsComponent class >> newComponentWaitingForSetupHtml [
-	self subclassResponsibility 
-]
-
-{ #category : 'instance creation' }
 WsComponent class >> newWaitForSetup [
 	"We don't have a way to setup a flag prior to instantiation, so we rely on HTML attribute"
 
